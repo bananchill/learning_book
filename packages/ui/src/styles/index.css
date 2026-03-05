@@ -1,0 +1,11 @@
+/*
+ * @book/ui — Design System
+ *
+ * Точка входа для всех стилей дизайн-системы.
+ * Импортируется в apps/book/src/app/styles/main.css
+ */
+
+@import './tokens.css';
+@import './typography.css';
+@import './animations.css';
+@import './code-theme.css';

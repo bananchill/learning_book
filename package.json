@@ -1,0 +1,29 @@
+{
+  "name": "@book/root",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @book/app dev",
+    "dev:admin": "pnpm --filter @book/admin dev",
+    "dev:api": "pnpm --filter @book/api dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "tailwindcss": "^4.1.8",
+    "postcss": "^8.5.4",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@book/shared": ["../shared/src"],
+      "@book/shared/*": ["../shared/src/*"],
+      "@book/i18n": ["../i18n/src"],
+      "@book/i18n/*": ["../i18n/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}

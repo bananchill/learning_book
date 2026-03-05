@@ -1,0 +1,323 @@
+/*
+ * Design Tokens — @book/ui
+ *
+ * Семантические токены дизайн-системы.
+ * Цвета меняются между light/dark через CSS custom properties.
+ * Tailwind v4 интегрируется через @theme.
+ */
+
+/* --- Dark mode: class-based (.dark на <html>) --- */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ================================================================
+   SEMANTIC COLOR TOKENS
+   Меняются при переключении темы.
+   ================================================================ */
+
+:root {
+  /* Surface — фоны */
+  --book-bg: #ffffff;
+  --book-surface: #f8fafc;
+  --book-surface-elevated: #ffffff;
+  --book-surface-muted: #f1f5f9;
+  --book-surface-inset: #e2e8f0;
+
+  /* Border */
+  --book-border: #e2e8f0;
+  --book-border-muted: #f1f5f9;
+  --book-border-strong: #cbd5e1;
+
+  /* Text */
+  --book-text: #0f172a;
+  --book-text-secondary: #475569;
+  --book-text-muted: #64748b;
+  --book-text-inverse: #ffffff;
+
+  /* Brand — Primary (Indigo) */
+  --book-primary: #4f46e5;
+  --book-primary-hover: #4338ca;
+  --book-primary-light: #e0e7ff;
+  --book-primary-muted: #c7d2fe;
+  --book-primary-text: #3730a3;
+
+  /* Brand — Accent (Amber) */
+  --book-accent: #f59e0b;
+  --book-accent-hover: #d97706;
+  --book-accent-light: #fef3c7;
+  --book-accent-text: #92400e;
+
+  /* Semantic — Success (Emerald) */
+  --book-success: #10b981;
+  --book-success-light: #d1fae5;
+  --book-success-text: #065f46;
+
+  /* Semantic — Warning (Amber) */
+  --book-warning: #f59e0b;
+  --book-warning-light: #fef3c7;
+  --book-warning-text: #92400e;
+
+  /* Semantic — Danger (Rose) */
+  --book-danger: #e11d48;
+  --book-danger-hover: #be123c;
+  --book-danger-light: #ffe4e6;
+  --book-danger-text: #9f1239;
+
+  /* Semantic — Info (Sky) */
+  --book-info: #0ea5e9;
+  --book-info-light: #e0f2fe;
+  --book-info-text: #075985;
+
+  /* Special — Deep Dive (Violet) */
+  --book-deep: #8b5cf6;
+  --book-deep-light: #ede9fe;
+  --book-deep-border: #c4b5fd;
+  --book-deep-text: #5b21b6;
+
+  /* Focus ring */
+  --book-ring: #6366f1;
+  --book-ring-offset: #ffffff;
+
+  /* Scrollbar */
+  --book-scrollbar-track: #f1f5f9;
+  --book-scrollbar-thumb: #cbd5e1;
+
+  /* Shadow color base */
+  --book-shadow-color: 226 32% 17%;
+}
+
+.dark {
+  /* Surface */
+  --book-bg: #0b0f1a;
+  --book-surface: #111827;
+  --book-surface-elevated: #1e293b;
+  --book-surface-muted: #0f172a;
+  --book-surface-inset: #1e293b;
+
+  /* Border */
+  --book-border: #1e293b;
+  --book-border-muted: #1e293b;
+  --book-border-strong: #334155;
+
+  /* Text */
+  --book-text: #f1f5f9;
+  --book-text-secondary: #94a3b8;
+  --book-text-muted: #708198;
+  --book-text-inverse: #0f172a;
+
+  /* Brand — Primary */
+  --book-primary: #818cf8;
+  --book-primary-hover: #a5b4fc;
+  --book-primary-light: rgba(99, 102, 241, 0.15);
+  --book-primary-muted: rgba(99, 102, 241, 0.25);
+  --book-primary-text: #c7d2fe;
+
+  /* Brand — Accent */
+  --book-accent: #fbbf24;
+  --book-accent-hover: #fcd34d;
+  --book-accent-light: rgba(251, 191, 36, 0.15);
+  --book-accent-text: #fde68a;
+
+  /* Semantic — Success */
+  --book-success: #34d399;
+  --book-success-light: rgba(16, 185, 129, 0.15);
+  --book-success-text: #6ee7b7;
+
+  /* Semantic — Warning */
+  --book-warning: #fbbf24;
+  --book-warning-light: rgba(251, 191, 36, 0.15);
+  --book-warning-text: #fde68a;
+
+  /* Semantic — Danger */
+  --book-danger: #fb7185;
+  --book-danger-hover: #f43f5e;
+
+  --book-danger-light: rgba(244, 63, 94, 0.15);
+  --book-danger-text: #fda4af;
+
+  /* Semantic — Info */
+  --book-info: #38bdf8;
+  --book-info-light: rgba(14, 165, 233, 0.15);
+  --book-info-text: #7dd3fc;
+
+  /* Special — Deep Dive */
+  --book-deep: #a78bfa;
+  --book-deep-light: rgba(139, 92, 246, 0.15);
+  --book-deep-border: rgba(139, 92, 246, 0.3);
+  --book-deep-text: #c4b5fd;
+
+  /* Focus ring */
+  --book-ring: #818cf8;
+  --book-ring-offset: #0b0f1a;
+
+  /* Scrollbar */
+  --book-scrollbar-track: #1e293b;
+  --book-scrollbar-thumb: #334155;
+
+  /* Shadow color base */
+  --book-shadow-color: 226 50% 3%;
+}
+
+/* ================================================================
+   TAILWIND v4 THEME — регистрация токенов как утилит
+   ================================================================ */
+
+@theme {
+  /* --- Fonts --- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Code', monospace;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Semantic colors (auto-switch light/dark) --- */
+  --color-bg: var(--book-bg);
+  --color-surface: var(--book-surface);
+  --color-surface-elevated: var(--book-surface-elevated);
+  --color-surface-muted: var(--book-surface-muted);
+  --color-surface-inset: var(--book-surface-inset);
+
+  --color-border: var(--book-border);
+  --color-border-muted: var(--book-border-muted);
+  --color-border-strong: var(--book-border-strong);
+
+  --color-text: var(--book-text);
+  --color-text-secondary: var(--book-text-secondary);
+  --color-text-muted: var(--book-text-muted);
+  --color-text-inverse: var(--book-text-inverse);
+
+  --color-primary: var(--book-primary);
+  --color-primary-hover: var(--book-primary-hover);
+  --color-primary-light: var(--book-primary-light);
+  --color-primary-muted: var(--book-primary-muted);
+  --color-primary-text: var(--book-primary-text);
+
+  --color-accent: var(--book-accent);
+  --color-accent-hover: var(--book-accent-hover);
+  --color-accent-light: var(--book-accent-light);
+  --color-accent-text: var(--book-accent-text);
+
+  --color-success: var(--book-success);
+  --color-success-light: var(--book-success-light);
+  --color-success-text: var(--book-success-text);
+
+  --color-warning: var(--book-warning);
+  --color-warning-light: var(--book-warning-light);
+  --color-warning-text: var(--book-warning-text);
+
+  --color-danger: var(--book-danger);
+  --color-danger-hover: var(--book-danger-hover);
+  --color-danger-light: var(--book-danger-light);
+  --color-danger-text: var(--book-danger-text);
+
+  --color-info: var(--book-info);
+  --color-info-light: var(--book-info-light);
+  --color-info-text: var(--book-info-text);
+
+  --color-deep: var(--book-deep);
+  --color-deep-light: var(--book-deep-light);
+  --color-deep-border: var(--book-deep-border);
+  --color-deep-text: var(--book-deep-text);
+
+  --color-ring: var(--book-ring);
+  --color-ring-offset: var(--book-ring-offset);
+
+  /* --- Border Radius --- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-pill: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-xs: 0 1px 2px hsl(var(--book-shadow-color) / 0.05);
+  --shadow-sm: 0 1px 3px hsl(var(--book-shadow-color) / 0.08), 0 1px 2px hsl(var(--book-shadow-color) / 0.04);
+  --shadow-md: 0 4px 6px hsl(var(--book-shadow-color) / 0.07), 0 2px 4px hsl(var(--book-shadow-color) / 0.04);
+  --shadow-lg: 0 10px 15px hsl(var(--book-shadow-color) / 0.08), 0 4px 6px hsl(var(--book-shadow-color) / 0.04);
+  --shadow-xl: 0 20px 25px hsl(var(--book-shadow-color) / 0.1), 0 8px 10px hsl(var(--book-shadow-color) / 0.04);
+  --shadow-glow: 0 0 20px hsl(var(--book-shadow-color) / 0.15);
+
+  /* --- Z-Index --- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  /* --- Transition durations --- */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  /* --- Transition easings --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Spacing — content-specific --- */
+  --spacing-prose: 1.75rem;
+  --spacing-section: 3rem;
+}
+
+/* ================================================================
+   BASE STYLES
+   ================================================================ */
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--book-text);
+    background-color: var(--book-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  /* Уважаем prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus visible — кольцо фокуса */
+  :focus-visible {
+    outline: 2px solid var(--book-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Скроллбар */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--book-scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--book-scrollbar-thumb);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--book-border-strong);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--book-primary-muted);
+    color: var(--book-text);
+  }
+}

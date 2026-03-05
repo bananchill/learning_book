@@ -1,0 +1,55 @@
+{
+  "common": {
+    "next": "Далее",
+    "prev": "Назад",
+    "run": "Запустить",
+    "reset": "Сбросить",
+    "copy": "Копировать",
+    "copied": "Скопировано!",
+    "show_answer": "Показать ответ",
+    "close": "Закрыть",
+    "retry": "Попробовать снова",
+    "loading": "Загрузка..."
+  },
+  "difficulty": {
+    "easy": "Легко",
+    "medium": "Средне",
+    "hard": "Сложно"
+  },
+  "quiz": {
+    "question_of": "Вопрос {current} из {total}",
+    "correct": "Правильно!",
+    "incorrect": "Неправильно",
+    "score": "Результат: {score} из {total}",
+    "explanation": "Объяснение"
+  },
+  "task": {
+    "hint": "Подсказка",
+    "hint_level": "Подсказка {level} из 3",
+    "hint_confirm": "Уверен? Это сильная подсказка",
+    "solved": "Решено!",
+    "tests_passed": "Тесты пройдены: {passed} из {total}"
+  },
+  "chat": {
+    "placeholder": "Напишите сообщение...",
+    "send": "Отправить",
+    "thinking": "Думаю...",
+    "mentor_greeting": "Привет! Я помогу разобраться с темой. Чем могу помочь?"
+  },
+  "progress": {
+    "completed": "Завершено",
+    "in_progress": "В процессе",
+    "not_started": "Не начато",
+    "overall": "Общий прогресс"
+  },
+  "interview": {
+    "good_answer": "Хороший ответ",
+    "interviewer_wants": "Что хочет услышать интервьюер",
+    "common_mistakes": "Частые ошибки",
+    "follow_ups": "Дополнительные вопросы"
+  },
+  "deep_dive": {
+    "expand": "Углубиться",
+    "collapse": "Свернуть"
+  }
+}

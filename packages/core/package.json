@@ -1,0 +1,24 @@
+{
+  "name": "@book/core",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "@book/ui": "workspace:*",
+    "@book/i18n": "workspace:*",
+    "@book/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vue-tsc": "^2.2.10"
+  }
+}

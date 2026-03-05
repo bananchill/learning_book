@@ -1,0 +1,22 @@
+{
+  "name": "@book/i18n",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vue-i18n": "^11.1.3",
+    "@book/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "vue-tsc": "^2.2.10"
+  }
+}

@@ -1,0 +1,160 @@
+/*
+ * Animations — @book/ui
+ *
+ * Кейфреймы и утилиты анимаций для UI-компонентов.
+ */
+
+/* ================================================================
+   KEYFRAMES
+   ================================================================ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scale-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes highlight-flash {
+  0% { background-color: var(--book-accent-light); }
+  100% { background-color: transparent; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+@keyframes collapse-open {
+  from { grid-template-rows: 0fr; }
+  to { grid-template-rows: 1fr; }
+}
+
+@keyframes collapse-close {
+  from { grid-template-rows: 1fr; }
+  to { grid-template-rows: 0fr; }
+}
+
+/* ================================================================
+   TAILWIND THEME — регистрация анимаций
+   ================================================================ */
+
+@theme {
+  --animate-fade-in: fade-in 200ms var(--ease-out-expo);
+  --animate-fade-out: fade-out 150ms ease-in;
+  --animate-slide-up: slide-up 300ms var(--ease-out-expo);
+  --animate-slide-down: slide-down 300ms var(--ease-out-expo);
+  --animate-slide-in-right: slide-in-right 300ms var(--ease-out-expo);
+  --animate-scale-in: scale-in 200ms var(--ease-out-expo);
+  --animate-scale-out: scale-out 150ms ease-in;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+  --animate-spin: spin 1s linear infinite;
+  --animate-highlight: highlight-flash 1.5s ease-out;
+  --animate-shake: shake 400ms ease-in-out;
+  --animate-progress: progress-fill 600ms var(--ease-out-expo);
+}
+
+/* ================================================================
+   VUE TRANSITION CLASSES
+   Для <Transition name="modal"> и др.
+   ================================================================ */
+
+/* Modal */
+.modal-enter-active {
+  animation: fade-in 200ms var(--ease-out-expo);
+}
+
+.modal-leave-active {
+  animation: fade-out 150ms ease-in;
+}
+
+.modal-enter-active > [role="dialog"],
+.modal-enter-active > :last-child {
+  animation: scale-in 250ms var(--ease-out-expo);
+}
+
+.modal-leave-active > [role="dialog"],
+.modal-leave-active > :last-child {
+  animation: scale-out 150ms ease-in;
+}
+
+/* Slide up */
+.slide-up-enter-active {
+  animation: slide-up 300ms var(--ease-out-expo);
+}
+
+.slide-up-leave-active {
+  animation: fade-out 150ms ease-in;
+}
+
+/* Fade */
+.fade-enter-active {
+  animation: fade-in 200ms ease;
+}
+
+.fade-leave-active {
+  animation: fade-out 150ms ease;
+}
+
+/* Slide right (sidebar, panels) */
+.slide-right-enter-active {
+  animation: slide-in-right 300ms var(--ease-out-expo);
+}
+
+.slide-right-leave-active {
+  animation: fade-out 200ms ease-in;
+}
+
+/* Collapse (для DeepDive, аккордеонов) */
+.collapse-enter-active {
+  animation: collapse-open 300ms ease-out;
+  overflow: hidden;
+}
+
+.collapse-leave-active {
+  animation: collapse-close 200ms ease-in;
+  overflow: hidden;
+}

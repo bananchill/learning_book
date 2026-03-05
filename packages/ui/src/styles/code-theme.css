@@ -1,0 +1,132 @@
+/*
+ * Code Theme — @book/ui
+ *
+ * Тема подсветки синтаксиса для Shiki.
+ * Переменные переключаются между light/dark.
+ * Компонент CodeBlock использует эти переменные.
+ */
+
+:root {
+  /* --- Фон и текст блока кода --- */
+  --code-bg: #fafbfc;
+  --code-text: #24292e;
+  --code-border: #e1e4e8;
+  --code-line-highlight: rgba(79, 70, 229, 0.06);
+  --code-line-number: #bdc3c7;
+
+  /* --- Синтаксис — Light (GitHub-inspired) --- */
+  --code-keyword: #d73a49;
+  --code-string: #22863a;
+  --code-number: #005cc5;
+  --code-comment: #6a737d;
+  --code-function: #6f42c1;
+  --code-variable: #24292e;
+  --code-operator: #d73a49;
+  --code-punctuation: #24292e;
+  --code-type: #005cc5;
+  --code-constant: #005cc5;
+  --code-property: #005cc5;
+  --code-tag: #22863a;
+  --code-attr-name: #6f42c1;
+  --code-attr-value: #032f62;
+  --code-builtin: #e36209;
+  --code-regex: #032f62;
+  --code-inserted: #22863a;
+  --code-deleted: #d73a49;
+  --code-inserted-bg: rgba(34, 134, 58, 0.1);
+  --code-deleted-bg: rgba(215, 58, 73, 0.1);
+}
+
+.dark {
+  /* --- Фон и текст блока кода --- */
+  --code-bg: #0d1117;
+  --code-text: #e6edf3;
+  --code-border: #21262d;
+  --code-line-highlight: rgba(129, 140, 248, 0.08);
+  --code-line-number: #484f58;
+
+  /* --- Синтаксис — Dark (GitHub Dark-inspired) --- */
+  --code-keyword: #ff7b72;
+  --code-string: #a5d6ff;
+  --code-number: #79c0ff;
+  --code-comment: #8b949e;
+  --code-function: #d2a8ff;
+  --code-variable: #e6edf3;
+  --code-operator: #ff7b72;
+  --code-punctuation: #c9d1d9;
+  --code-type: #79c0ff;
+  --code-constant: #79c0ff;
+  --code-property: #79c0ff;
+  --code-tag: #7ee787;
+  --code-attr-name: #d2a8ff;
+  --code-attr-value: #a5d6ff;
+  --code-builtin: #ffa657;
+  --code-regex: #a5d6ff;
+  --code-inserted: #7ee787;
+  --code-deleted: #ff7b72;
+  --code-inserted-bg: rgba(63, 185, 80, 0.15);
+  --code-deleted-bg: rgba(248, 81, 73, 0.15);
+}
+
+/* ================================================================
+   SHIKI OVERRIDES
+   Применяются к HTML, сгенерированному Shiki.
+   ================================================================ */
+
+.shiki,
+.shiki code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.shiki {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0;
+}
+
+/* Строки с подсветкой */
+.shiki .highlighted {
+  background-color: var(--code-line-highlight);
+  display: inline-block;
+  width: 100%;
+  padding: 0 1.25rem;
+  margin: 0 -1.25rem;
+}
+
+/* Diff-подсветка */
+.shiki .diff.add {
+  background-color: var(--code-inserted-bg);
+}
+
+.shiki .diff.remove {
+  background-color: var(--code-deleted-bg);
+}
+
+/* Номера строк */
+.shiki .line-number {
+  color: var(--code-line-number);
+  user-select: none;
+  min-width: 2.5rem;
+  display: inline-block;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+/* ================================================================
+   INLINE CODE
+   Стили для инлайн-кода в разных контекстах.
+   ================================================================ */
+
+.code-inline {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  background: var(--book-surface-muted);
+  border: 1px solid var(--book-border);
+  color: var(--book-danger);
+  font-weight: 500;
+}

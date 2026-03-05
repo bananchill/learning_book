@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@book/core": ["../../packages/core/src"],
+      "@book/core/*": ["../../packages/core/src/*"],
+      "@book/ui": ["../../packages/ui/src"],
+      "@book/ui/*": ["../../packages/ui/src/*"],
+      "@book/i18n": ["../../packages/i18n/src"],
+      "@book/i18n/*": ["../../packages/i18n/src/*"],
+      "@book/shared": ["../../packages/shared/src"],
+      "@book/shared/*": ["../../packages/shared/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "env.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
