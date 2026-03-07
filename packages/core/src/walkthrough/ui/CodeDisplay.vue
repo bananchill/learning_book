@@ -1,33 +1,50 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const props = defineProps<{
   code: string
   activeLine?: number
   highlightLines?: number[]
 }>()
 
-const lines = props.code.split('\n')
+const lines = computed(() => props.code.split('\n'))
+
+const gutterWidth = computed(() => `${String(lines.value.length).length + 1}ch`)
 
 function lineClass(lineNum: number) {
   if (lineNum === props.activeLine) {
-    return 'bg-primary-light border-l-2 border-primary'
+    return 'bg-primary border-l-2 border-primary'
   }
   if (props.highlightLines?.includes(lineNum)) {
-    return 'bg-surface-muted border-l-2 border-border'
+    return 'bg-surface-muted/10 border-l-2 border-text-muted/20'
   }
   return 'border-l-2 border-transparent'
+}
+
+function gutterClass(lineNum: number) {
+  if (lineNum === props.activeLine) {
+    return 'text-text'
+  }
+  return 'text-text-muted/40'
 }
 </script>
 
 <template>
-  <div class="font-mono text-sm overflow-x-auto">
-    <div
-      v-for="(line, i) in lines"
-      :key="i"
-      class="flex transition-colors duration-fast px-3 py-0.5"
-      :class="lineClass(i + 1)"
-    >
-      <span class="text-text-muted w-8 text-right mr-4 select-none flex-shrink-0">{{ i + 1 }}</span>
-      <pre class="text-text whitespace-pre">{{ line }}</pre>
+  <div class="rounded-lg bg-[#1e1e2e] overflow-x-auto font-mono text-sm leading-6">
+    <div class="min-w-fit">
+      <div
+        v-for="(line, i) in lines"
+        :key="i"
+        class="flex transition-colors duration-fast"
+        :class="lineClass(i + 1)"
+      >
+        <span
+          class="select-none text-right shrink-0 px-4 transition-colors"
+          :class="gutterClass(i + 1)"
+          :style="{ width: `calc(${gutterWidth} + 2rem)` }"
+        >{{ i + 1 }}</span>
+        <pre class="text-text whitespace-pre pr-4">{{ line }}</pre>
+      </div>
     </div>
   </div>
 </template>

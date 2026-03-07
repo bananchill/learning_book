@@ -33,10 +33,10 @@ const autoPlay = useAutoPlay(() => {
     </div>
 
     <!-- Контент: код + состояние -->
-    <div class="flex flex-col lg:flex-row divide-y lg:divide-y-0 lg:divide-x divide-border">
+    <div class="flex flex-col divide-y lg:divide-y-0 lg:divide-x divide-border">
 
       <!-- Код -->
-      <div class="flex-1 min-w-0 py-3">
+      <div class="flex-1 w-full py-3">
         <CodeDisplay
           :code="walkthrough.code"
           :active-line="walkthrough.currentStep.value?.line"

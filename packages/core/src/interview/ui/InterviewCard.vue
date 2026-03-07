@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from '@book/i18n'
-import { BaseButton, DeepDive } from '@book/ui'
+import { BaseButton, DeepDive, LevelBadge } from '@book/ui'
 import type { InterviewQuestion } from '@book/shared'
 import type { SelfAssessment } from '../model/useInterview'
 
@@ -17,12 +17,6 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const levelColors: Record<string, string> = {
-  junior: 'bg-success-light text-success',
-  middle: 'bg-warning-light text-warning',
-  senior: 'bg-danger-light text-danger',
-}
-
 const assessOptions: { value: SelfAssessment; label: string; color: string }[] = [
   { value: 'good', label: 'interview.good', color: 'bg-success-light text-success border-success/30' },
   { value: 'ok', label: 'interview.ok', color: 'bg-warning-light text-warning border-warning/30' },
@@ -35,9 +29,7 @@ const assessOptions: { value: SelfAssessment; label: string; color: string }[] =
     <!-- Заголовок -->
     <div class="flex items-start justify-between gap-3">
       <p class="font-medium text-text leading-relaxed">{{ question.question }}</p>
-      <span class="flex-shrink-0 text-xs font-medium px-2 py-1 rounded-full" :class="levelColors[question.level]">
-        {{ t(`interview.level.${question.level}`) }}
-      </span>
+      <LevelBadge :level="question.level" class="flex-shrink-0" />
     </div>
 
     <!-- Кнопка раскрытия -->

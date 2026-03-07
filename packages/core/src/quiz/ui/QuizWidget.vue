@@ -66,7 +66,7 @@ function handleNext() {
         />
       </div>
 
-      <div class="p-6 space-y-5">
+      <div class="p-6 space-y-5 flex flex-col gap-3">
         <!-- Заголовок -->
         <div class="flex items-center justify-between">
           <span class="text-xs text-text-muted font-medium">
@@ -83,7 +83,7 @@ function handleNext() {
         />
 
         <!-- Кнопки -->
-        <div class="flex justify-end gap-3">
+        <div class="flex justify-end gap-3 pt-2 ">
           <BaseButton
             v-if="!isAnswered"
             variant="primary"
