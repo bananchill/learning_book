@@ -1,14 +1,16 @@
 import { ref, watch } from 'vue'
 import type { Quiz, Task, Walkthrough, Interview } from '@book/shared'
 
-// Динамический импорт всех .json файлов из контента
-const jsonModules = import.meta.glob<Record<string, unknown>>('@content/ru/**/*.json')
+// Динамический импорт всех .json файлов из контента (относительный путь)
+const jsonModules = import.meta.glob<Record<string, unknown>>('../../../../content/ru/**/*.json')
 
-interface ChapterData {
-  quiz: Quiz | null
-  tasks: Task[]
-  walkthrough: Walkthrough | null
-  interview: Interview | null
+// Построить маппинг: нормализованный путь → загрузчик
+const jsonMap = new Map<string, () => Promise<Record<string, unknown>>>()
+for (const [key, loader] of Object.entries(jsonModules)) {
+  const match = key.match(/ru\/(.+)$/)
+  if (match) {
+    jsonMap.set(match[1], loader)
+  }
 }
 
 export function useChapterData(contentPath: () => string | undefined) {
@@ -31,13 +33,14 @@ export function useChapterData(contentPath: () => string | undefined) {
 
     isLoading.value = true
 
-    const prefix = `@content/${basePath.replace(/^content\//, '')}`
+    // "content/ru/ch01-closures" → "ch01-closures"
+    const prefix = basePath.replace(/^content\/ru\//, '')
 
     const loaders = {
-      quiz: jsonModules[`${prefix}/quiz.json`],
-      tasks: jsonModules[`${prefix}/tasks/_tasks.json`],
-      walkthrough: jsonModules[`${prefix}/walkthrough.json`],
-      interview: jsonModules[`${prefix}/interview.json`],
+      quiz: jsonMap.get(`${prefix}/quiz.json`),
+      tasks: jsonMap.get(`${prefix}/tasks/_tasks.json`),
+      walkthrough: jsonMap.get(`${prefix}/walkthrough.json`),
+      interview: jsonMap.get(`${prefix}/interview.json`),
     }
 
     const results = await Promise.allSettled([
