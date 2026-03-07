@@ -1,0 +1,6 @@
+export { default as AIChatPanel } from './ui/AIChatPanel.vue'
+export { default as ChatMessage } from './ui/ChatMessage.vue'
+export { default as ChatInput } from './ui/ChatInput.vue'
+export { default as ChatToggle } from './ui/ChatToggle.vue'
+export { useAIChat } from './model/useAIChat'
+export { buildSystemPrompt } from './model/useChatContext'

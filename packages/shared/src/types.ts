@@ -54,3 +54,20 @@ export interface ConsoleEntry {
   level: 'log' | 'warn' | 'error'
   args: unknown[]
 }
+
+// Chat — контекст главы и сообщения
+export interface ChapterContext {
+  chapterId: string
+  title: string
+  topic: string
+  subchapter?: string
+  keyConcepts: string[]
+  commonMistakes: string[]
+}
+
+export interface ChatMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: number
+}

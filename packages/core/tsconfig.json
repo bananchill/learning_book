@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["vite/client"],
     "paths": {
       "@book/ui": ["../ui/src"],
       "@book/ui/*": ["../ui/src/*"],
