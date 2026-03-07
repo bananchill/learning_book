@@ -1,42 +1,46 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useI18n } from '@book/i18n'
 import { BaseButton, BaseCard, IconLabel } from '@book/ui'
+import { useProgressStore } from '@book/core'
+import { useBookConfig } from '@/features/navigation'
 
 const { t } = useI18n()
+const router = useRouter()
+const { sections: bookSections, firstAvailableChapter } = useBookConfig()
+const progress = useProgressStore()
 
-// Заглушка — будет заменена ProgressStore
-const hasProgress = false
+const hasProgress = computed(() => Object.keys(progress.allChapters).length > 0)
 
-const sections = [
-  {
-    key: 'js',
-    icon: '⚡',
-    color: 'text-accent',
-    bg: 'bg-accent-light',
-    chapters: 18,
-  },
-  {
-    key: 'architecture',
-    icon: '🏛',
-    color: 'text-deep',
-    bg: 'bg-deep-light',
-    chapters: 8,
-  },
-  {
-    key: 'databases',
-    icon: '🗄',
-    color: 'text-success',
-    bg: 'bg-success-light',
-    chapters: 7,
-  },
-  {
-    key: 'devops',
-    icon: '🚀',
-    color: 'text-info',
-    bg: 'bg-info-light',
-    chapters: 6,
-  },
-] as const
+// Маппинг section.id → визуальные данные
+const sectionVisuals: Record<string, { key: string; icon: string; bg: string }> = {
+  javascript: { key: 'js', icon: '⚡', bg: 'bg-accent-light' },
+  architecture: { key: 'architecture', icon: '🏛', bg: 'bg-deep-light' },
+  databases: { key: 'databases', icon: '🗄', bg: 'bg-success-light' },
+  devops: { key: 'devops', icon: '🚀', bg: 'bg-info-light' },
+}
+
+function navigateToSection(sectionId: string) {
+  const section = bookSections.value.find(s => s.id === sectionId)
+  if (section?.chapters[0]) {
+    router.push(`/${sectionId}/${section.chapters[0].id}`)
+  }
+}
+
+function navigateToFirstChapter() {
+  const first = firstAvailableChapter()
+  if (first) {
+    router.push(`/${first.sectionId}/${first.chapter.id}`)
+  }
+}
+
+const sections = computed(() =>
+  bookSections.value.map(s => ({
+    ...s,
+    ...(sectionVisuals[s.id] ?? { key: s.id, icon: '📚', bg: 'bg-surface-muted' }),
+  })),
+)
 
 const features = [
   { key: 'sandbox', icon: '🖥' },
@@ -78,10 +82,10 @@ const features = [
 
             <!-- CTA кнопки -->
             <div class="flex flex-wrap gap-3 mb-10">
-              <BaseButton size="lg" variant="primary">
+              <BaseButton size="lg" variant="primary" @click="navigateToFirstChapter">
                 {{ t('home.hero.cta_start') }}
               </BaseButton>
-              <BaseButton size="lg" variant="secondary">
+              <BaseButton size="lg" variant="secondary" @click="router.push('/#sections')">
                 {{ t('home.hero.cta_browse') }}
               </BaseButton>
             </div>
@@ -145,9 +149,10 @@ const features = [
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <BaseCard
           v-for="section in sections"
-          :key="section.key"
+          :key="section.id"
           :padding="false"
           class="p-6 sm:p-7 group cursor-pointer transition-all duration-normal hover:-translate-y-1 hover:shadow-md"
+          @click="navigateToSection(section.id)"
         >
           <div class="flex items-start gap-4 sm:gap-5">
             <!-- Иконка -->
@@ -219,7 +224,7 @@ const features = [
         <p class="text-text-secondary mb-6">
           {{ t('home.continue.empty') }}
         </p>
-        <BaseButton variant="primary">
+        <BaseButton variant="primary" @click="navigateToFirstChapter">
           {{ t('home.continue.empty_cta') }}
         </BaseButton>
       </div>

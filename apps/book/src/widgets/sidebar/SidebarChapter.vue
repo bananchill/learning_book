@@ -1,0 +1,65 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from '@book/i18n'
+import type { ChapterMeta } from '@book/shared'
+import { useProgressStore } from '@book/core'
+
+const props = defineProps<{
+  chapter: ChapterMeta
+  sectionId: string
+  isActive: boolean
+}>()
+
+const { t } = useI18n()
+const route = useRoute()
+const progress = useProgressStore()
+
+const percent = computed(() => progress.getChapterPercent(props.chapter.id))
+const isExpanded = ref(props.isActive)
+const currentSubchapter = computed(() => route.params.subchapter as string | undefined)
+</script>
+
+<template>
+  <div>
+    <router-link
+      :to="`/${sectionId}/${chapter.id}`"
+      class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors"
+      :class="isActive
+        ? 'bg-[var(--color-surface-muted)] text-[var(--color-text)] font-medium'
+        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-muted)]/50'"
+      @click="isExpanded = !isExpanded"
+    >
+      <span class="flex-1 truncate">{{ chapter.title }}</span>
+      <span v-if="percent > 0" class="text-xs text-[var(--color-text-muted)]">{{ percent }}%</span>
+    </router-link>
+
+    <!-- Подглавы -->
+    <div v-if="isActive && isExpanded" class="ml-4 mt-0.5 space-y-0.5">
+      <router-link
+        v-for="sub in chapter.subchapters"
+        :key="sub.id"
+        :to="`/${sectionId}/${chapter.id}/${sub.id}`"
+        class="block px-3 py-1 rounded text-xs transition-colors"
+        :class="currentSubchapter === sub.id
+          ? 'text-[var(--color-primary)] font-medium'
+          : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]'"
+      >
+        {{ sub.title }}
+      </router-link>
+
+      <router-link
+        :to="`/${sectionId}/${chapter.id}/tasks`"
+        class="block px-3 py-1 rounded text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+      >
+        {{ t('nav.tasks') }}
+      </router-link>
+      <router-link
+        :to="`/${sectionId}/${chapter.id}/playground`"
+        class="block px-3 py-1 rounded text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+      >
+        {{ t('nav.playground') }}
+      </router-link>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,47 @@
+{
+  "sections": [
+    {
+      "id": "javascript",
+      "title": "JavaScript / TypeScript",
+      "icon": "lightning",
+      "order": 1,
+      "chapters": [
+        {
+          "id": "ch01-closures",
+          "title": "Замыкания",
+          "description": "Полный разбор замыканий: от основ до внутренностей V8",
+          "order": 1,
+          "contentPath": "content/ru/ch01-closures",
+          "subchapters": [
+            { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
+            { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
+            { "id": "03-common-problems", "title": "Частые проблемы", "order": 3 },
+            { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
+            { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Архитектура",
+      "icon": "building",
+      "order": 2,
+      "chapters": []
+    },
+    {
+      "id": "databases",
+      "title": "Базы данных",
+      "icon": "database",
+      "order": 3,
+      "chapters": []
+    },
+    {
+      "id": "devops",
+      "title": "DevOps",
+      "icon": "rocket",
+      "order": 4,
+      "chapters": []
+    }
+  ]
+}

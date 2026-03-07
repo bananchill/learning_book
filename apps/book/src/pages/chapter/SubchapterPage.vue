@@ -1,0 +1,93 @@
+<script setup lang="ts">
+import { computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from '@book/i18n'
+import type { ChapterMeta } from '@book/shared'
+import { BaseButton } from '@book/ui'
+import { useProgressStore } from '@book/core'
+import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
+import { useBookConfig } from '@/features/navigation'
+
+const props = defineProps<{
+  chapter: ChapterMeta
+  sectionId: string
+}>()
+
+const route = useRoute()
+const { t } = useI18n()
+const progress = useProgressStore()
+const { findSubchapter } = useBookConfig()
+
+const subchapterId = computed(() => route.params.subchapter as string)
+const subchapter = computed(() =>
+  findSubchapter(props.sectionId, props.chapter.id, subchapterId.value),
+)
+
+const { component: contentComponent, isLoading, error } = useChapterContent(
+  () => subchapter.value
+    ? `${props.chapter.contentPath}/${subchapterId.value}.md`
+    : undefined,
+)
+
+// Отметить как прочитанное
+watch(contentComponent, (comp) => {
+  if (comp && subchapterId.value) {
+    progress.markSubchapterRead(props.chapter.id, subchapterId.value)
+  }
+})
+
+// Навигация: предыдущая / следующая подглава
+const currentIndex = computed(() =>
+  props.chapter.subchapters.findIndex(s => s.id === subchapterId.value),
+)
+const prevSub = computed(() => props.chapter.subchapters[currentIndex.value - 1])
+const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1])
+</script>
+
+<template>
+  <div>
+    <div v-if="subchapter" class="mb-8">
+      <h1 class="text-2xl font-bold text-[var(--color-text)] mb-2">{{ subchapter.title }}</h1>
+    </div>
+
+    <!-- Контент -->
+    <div v-if="isLoading" class="animate-pulse space-y-4">
+      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-3/4" />
+      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-1/2" />
+    </div>
+
+    <div v-else-if="contentComponent" class="book-prose">
+      <component :is="contentComponent" />
+    </div>
+
+    <ContentError v-else-if="error" :type="error" />
+    <ContentPlaceholder v-else />
+
+    <!-- Навигация назад/вперёд -->
+    <div class="flex items-center justify-between mt-12 pt-6 border-t border-[var(--color-border)]">
+      <router-link v-if="prevSub" :to="`/${sectionId}/${chapter.id}/${prevSub.id}`">
+        <BaseButton variant="ghost" size="sm">
+          &larr; {{ prevSub.title }}
+        </BaseButton>
+      </router-link>
+      <div v-else />
+
+      <router-link
+        v-if="nextSub"
+        :to="`/${sectionId}/${chapter.id}/${nextSub.id}`"
+      >
+        <BaseButton variant="ghost" size="sm">
+          {{ nextSub.title }} &rarr;
+        </BaseButton>
+      </router-link>
+      <router-link
+        v-else
+        :to="`/${sectionId}/${chapter.id}/tasks`"
+      >
+        <BaseButton variant="primary" size="sm">
+          {{ t('chapter.go_tasks') }} &rarr;
+        </BaseButton>
+      </router-link>
+    </div>
+  </div>
+</template>

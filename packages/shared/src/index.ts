@@ -14,4 +14,6 @@ export type {
   TestResult, ConsoleEntry,
   // Chat
   ChapterContext, ChatMessage,
+  // Конфиг книги
+  BookConfig, SectionMeta, ChapterMeta, SubchapterMeta,
 } from './types'
