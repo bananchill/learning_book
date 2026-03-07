@@ -4,8 +4,11 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "outDir": "dist",
-    "rootDir": "src",
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@book/shared": ["../../packages/shared/src"],
+      "@book/shared/*": ["../../packages/shared/src/*"]
+    }
   },
   "include": ["src/**/*.ts"]
 }

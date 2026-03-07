@@ -207,5 +207,76 @@
       "empty": "Ты ещё не начал читать",
       "empty_cta": "Начать с первой главы"
     }
+  },
+  "admin": {
+    "title": "Панель управления",
+    "nav": {
+      "dashboard": "Дашборд",
+      "chapters": "Главы",
+      "pipelines": "Пайплайны",
+      "settings": "Настройки"
+    },
+    "dashboard": {
+      "title": "Обзор",
+      "total_sections": "Секций",
+      "total_chapters": "Глав",
+      "total_tasks": "Задач",
+      "total_quiz": "Вопросов квиза",
+      "total_interview": "Вопросов интервью",
+      "content_coverage": "Покрытие контентом",
+      "chapters_with_content": "С контентом",
+      "chapters_empty": "Без контента",
+      "recent_chapters": "Последние главы"
+    },
+    "chapters": {
+      "title": "Все главы",
+      "no_chapters": "Глав пока нет",
+      "section": "Секция",
+      "tasks": "Задачи",
+      "quiz": "Квиз",
+      "interview": "Собеседование",
+      "walkthrough": "Разбор",
+      "code_review": "Code Review",
+      "resources": "Ресурсы",
+      "subchapters": "Подглавы",
+      "meta": "Метаданные",
+      "view_detail": "Подробнее"
+    },
+    "chapter_detail": {
+      "title": "Глава: {name}",
+      "tab_meta": "Мета",
+      "tab_subchapters": "Подглавы",
+      "tab_tasks": "Задачи",
+      "tab_quiz": "Квиз",
+      "tab_interview": "Собеседование",
+      "tab_walkthrough": "Разбор",
+      "tab_resources": "Ресурсы",
+      "no_data": "Данные отсутствуют",
+      "concepts": "Концепции",
+      "estimated_time": "Время",
+      "minutes": "{n} мин",
+      "topics": "Темы",
+      "steps": "Шагов"
+    },
+    "pipelines": {
+      "title": "Агентские пайплайны",
+      "content_pipeline": "Генерация контента",
+      "core_pipeline": "Разработка ядра",
+      "status_pending": "Ожидает",
+      "status_in_progress": "В процессе",
+      "status_completed": "Завершено",
+      "status_failed": "Ошибка",
+      "run_hint": "Запуск пайплайнов осуществляется через Claude Code",
+      "new_chapter": "Новая глава"
+    },
+    "settings": {
+      "title": "Настройки",
+      "book_config": "Конфигурация книги",
+      "sections_count": "{n} секций",
+      "chapters_count": "{n} глав",
+      "save": "Сохранить",
+      "saved": "Сохранено!",
+      "save_error": "Ошибка сохранения"
+    }
   }
 }

@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+
+/* Дизайн-система @book/ui */
+@import '../../../../../packages/ui/src/styles/index.css';
