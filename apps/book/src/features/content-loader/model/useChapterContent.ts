@@ -1,7 +1,7 @@
 import { ref, shallowRef, watch, type Component } from 'vue'
 
 // Динамический импорт всех .md файлов из контента (относительный путь)
-const contentModules = import.meta.glob<{ default: Component }>('../../../../content/ru/**/*.md')
+const contentModules = import.meta.glob<{ default: Component }>('../../../../../../content/ru/**/*.md')
 
 // Построить маппинг: нормализованный путь → загрузчик
 const moduleMap = new Map<string, () => Promise<{ default: Component }>>()
