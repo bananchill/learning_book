@@ -1,0 +1,59 @@
+{
+  "title": "Замыкание: как работает счётчик",
+  "code": "function createCounter() {\n  let count = 0\n\n  return {\n    increment() {\n      return ++count\n    },\n    getCount() {\n      return count\n    }\n  }\n}\n\nconst counter = createCounter()\ncounter.increment()\ncounter.increment()\ncounter.getCount()",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Объявляем функцию createCounter. Она пока не выполняется — просто сохраняется в памяти.",
+      "variables": { "createCounter": "function" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 13,
+      "description": "Вызываем createCounter(). Создаётся новое лексическое окружение для этого вызова.",
+      "variables": { "createCounter": "function" },
+      "callStack": ["global", "createCounter()"]
+    },
+    {
+      "line": 2,
+      "description": "Внутри createCounter создаётся переменная count = 0. Она живёт в окружении этого вызова.",
+      "variables": { "count": "0" },
+      "callStack": ["global", "createCounter()"],
+      "highlight": "count"
+    },
+    {
+      "line": 4,
+      "description": "Создаём объект с двумя методами. Оба метода — замыкания: они запоминают окружение, где был count.",
+      "variables": { "count": "0" },
+      "callStack": ["global", "createCounter()"],
+      "highlight": "closure"
+    },
+    {
+      "line": 13,
+      "description": "createCounter() возвращает объект. Функция завершилась, но её окружение (с count) НЕ удаляется — на него ссылаются методы.",
+      "variables": { "counter": "{ increment, getCount }", "count": "0 (в замыкании)" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 14,
+      "description": "Вызываем counter.increment(). Метод находит count через замыкание и увеличивает его.",
+      "variables": { "count": "1 (в замыкании)" },
+      "callStack": ["global", "increment()"],
+      "highlight": "count"
+    },
+    {
+      "line": 15,
+      "description": "Ещё раз counter.increment(). Тот же count, увеличивается до 2.",
+      "variables": { "count": "2 (в замыкании)" },
+      "callStack": ["global", "increment()"],
+      "highlight": "count"
+    },
+    {
+      "line": 16,
+      "description": "counter.getCount() читает count из замыкания. Возвращает 2. Оба метода работают с одной и той же переменной.",
+      "variables": { "count": "2 (в замыкании)", "результат": "2" },
+      "callStack": ["global", "getCount()"],
+      "highlight": "count"
+    }
+  ]
+}

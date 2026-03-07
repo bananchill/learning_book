@@ -1,0 +1,61 @@
+{
+  "chapter": "ch01-closures",
+  "resources": [
+    {
+      "title": "Closures — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures",
+      "type": "documentation",
+      "language": "en",
+      "description": "Каноническое описание замыканий: определение, примеры, практическое применение",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "You Don't Know JS: Scope & Closures",
+      "url": "https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/scope-closures",
+      "type": "book",
+      "language": "en",
+      "description": "Глубокий разбор областей видимости и замыканий от Кайла Симпсона",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "ECMAScript Specification — Lexical Environments",
+      "url": "https://tc39.es/ecma262/#sec-lexical-environments",
+      "type": "documentation",
+      "language": "en",
+      "description": "Формальное определение Lexical Environment в спецификации ECMAScript",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "How V8 Optimizes Closures",
+      "url": "https://v8.dev/blog",
+      "type": "article",
+      "language": "en",
+      "description": "Как движок V8 оптимизирует замыкания: context allocation и escape analysis",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "JavaScript Closures Explained Simply",
+      "url": "https://javascript.info/closure",
+      "type": "article",
+      "language": "en",
+      "description": "Пошаговое объяснение замыканий с интерактивными примерами",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "A Visual Guide to Closures",
+      "url": "https://www.youtube.com/results?search_query=javascript+closures+visual",
+      "type": "video",
+      "language": "en",
+      "description": "Визуальное объяснение замыканий и scope chain",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "React Hooks и замыкания: stale closures",
+      "url": "https://overreacted.io/a-complete-guide-to-useeffect/",
+      "type": "article",
+      "language": "en",
+      "description": "Дан Абрамов объясняет, как замыкания влияют на поведение React Hooks",
+      "difficulty": "intermediate"
+    }
+  ]
+}

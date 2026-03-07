@@ -1,0 +1,125 @@
+{
+  "chapter": "ch01-closures",
+  "tasks": [
+    {
+      "id": "01-easy-counter",
+      "title": "Простой счётчик",
+      "difficulty": "easy",
+      "description": "Создай функцию createCounter(), которая возвращает объект с тремя методами: increment() (увеличивает на 1 и возвращает значение), decrement() (уменьшает на 1 и возвращает значение), getCount() (возвращает текущее значение). Начальное значение — 0.",
+      "file": "01-easy-counter.js",
+      "testFile": "01-easy-counter.test.js",
+      "concepts": ["closure", "private-state"],
+      "hints": [
+        "Подумай, где объявить переменную count, чтобы она была доступна всем методам, но недоступна снаружи.",
+        "Объяви let count = 0 внутри createCounter. Возвращаемый объект будет замыканием над этой переменной.",
+        "return { increment() { return ++count }, decrement() { return --count }, getCount() { return count } }"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-memoize",
+      "title": "Мемоизация",
+      "difficulty": "easy",
+      "description": "Напиши функцию memoize(fn), которая принимает функцию с одним аргументом и возвращает её мемоизированную версию. При повторном вызове с тем же аргументом должен возвращаться кэшированный результат без вызова оригинальной функции.",
+      "file": "02-easy-memoize.js",
+      "testFile": "02-easy-memoize.test.js",
+      "concepts": ["closure", "caching"],
+      "hints": [
+        "Тебе нужно хранилище для кэша. Какую структуру данных лучше использовать?",
+        "Создай Map или объект внутри memoize. При каждом вызове проверяй, есть ли ключ в кэше.",
+        "const cache = new Map(); return (arg) => { if (cache.has(arg)) return cache.get(arg); const result = fn(arg); cache.set(arg, result); return result }"
+      ],
+      "estimatedMinutes": 7
+    },
+    {
+      "id": "03-easy-id-generator",
+      "title": "Генератор ID",
+      "difficulty": "easy",
+      "description": "Создай функцию createIdGenerator(prefix), которая возвращает функцию. Каждый вызов возвращённой функции генерирует уникальный ID в формате 'prefix-1', 'prefix-2', и т.д.",
+      "file": "03-easy-id-generator.js",
+      "testFile": "03-easy-id-generator.test.js",
+      "concepts": ["closure", "state"],
+      "hints": [
+        "Тебе нужен счётчик, который увеличивается при каждом вызове.",
+        "Объяви let id = 0 внутри createIdGenerator, возврати функцию, которая увеличивает id.",
+        "let id = 0; return () => `${prefix}-${++id}`"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "04-medium-fix-loop",
+      "title": "Исправь цикл",
+      "difficulty": "medium",
+      "description": "Функция createTimers() должна создать 5 таймеров, каждый из которых через 100мс выводит свой номер (0, 1, 2, 3, 4). Но сейчас все выводят 5. Исправь код тремя разными способами: с let, с IIFE, и с помощью bind/дополнительной функции. Верни массив из трёх исправленных функций.",
+      "file": "04-medium-fix-loop.js",
+      "testFile": "04-medium-fix-loop.test.js",
+      "concepts": ["closure-in-loop", "iife", "let-vs-var"],
+      "hints": [
+        "Проблема в том, что var создаёт одну переменную на весь цикл. Все коллбэки ссылаются на неё.",
+        "Способ 1: замени var на let. Способ 2: оберни тело цикла в IIFE. Способ 3: передай i как аргумент через bind или вспомогательную функцию.",
+        "let: for (let i = 0; ...) { setTimeout(() => log(i), 100) };\nIIFE: for (var i = 0; ...) { ((j) => { setTimeout(() => log(j), 100) })(i) }"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "05-medium-curry",
+      "title": "Каррирование",
+      "difficulty": "medium",
+      "description": "Реализуй функцию curry(fn), которая превращает обычную функцию в каррированную. curry(fn)(a)(b)(c) должно работать так же, как fn(a, b, c). Поддержи частичное применение: curry(fn)(a, b)(c) тоже должно работать.",
+      "file": "05-medium-curry.js",
+      "testFile": "05-medium-curry.test.js",
+      "concepts": ["closure", "partial-application", "recursion"],
+      "hints": [
+        "Каррированная функция должна проверять, достаточно ли аргументов для вызова оригинала.",
+        "Сравни количество собранных аргументов с fn.length. Если достаточно — вызови fn. Если нет — верни новую функцию, которая собирает оставшиеся.",
+        "function curry(fn) { return function curried(...args) { if (args.length >= fn.length) return fn(...args); return (...more) => curried(...args, ...more) } }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "06-hard-private-stack",
+      "title": "Приватный стек",
+      "difficulty": "hard",
+      "description": "Реализуй функцию createStack(), которая возвращает объект с методами: push(item), pop(), peek(), size(), isEmpty(), toArray() (возвращает копию). Внутреннее хранилище должно быть полностью приватным — доступ к массиву снаружи невозможен.",
+      "file": "06-hard-private-stack.js",
+      "testFile": "06-hard-private-stack.test.js",
+      "concepts": ["closure", "encapsulation", "data-structure"],
+      "hints": [
+        "Объяви массив внутри createStack. Все методы замкнутся на него.",
+        "toArray() должен возвращать копию массива ([...items]), чтобы нельзя было изменить внутреннее состояние.",
+        "const items = []; return { push(item) { items.push(item) }, pop() { return items.pop() }, peek() { return items[items.length - 1] }, size() { return items.length }, isEmpty() { return items.length === 0 }, toArray() { return [...items] } }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "07-hard-event-emitter",
+      "title": "Event Emitter",
+      "difficulty": "hard",
+      "description": "Реализуй функцию createEventEmitter(), которая возвращает объект с методами: on(event, handler) — подписка, off(event, handler) — отписка, emit(event, ...args) — вызов всех обработчиков, once(event, handler) — подписка на один раз. Все подписки хранятся приватно.",
+      "file": "07-hard-event-emitter.js",
+      "testFile": "07-hard-event-emitter.test.js",
+      "concepts": ["closure", "observer-pattern", "encapsulation"],
+      "hints": [
+        "Тебе нужна Map или объект для хранения обработчиков по имени события.",
+        "on: добавляй handler в массив. off: фильтруй массив. emit: вызывай все handler-ы. once: оберни handler в обёртку, которая вызывает off после первого вызова.",
+        "const listeners = new Map();\nfunction on(event, handler) { if (!listeners.has(event)) listeners.set(event, []); listeners.get(event).push(handler) }\nfunction once(event, handler) { const wrapper = (...args) => { off(event, wrapper); handler(...args) }; on(event, wrapper) }"
+      ],
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "08-hard-rate-limiter",
+      "title": "Rate Limiter",
+      "difficulty": "hard",
+      "description": "Напиши функцию createRateLimiter(fn, maxCalls, intervalMs), которая возвращает обёртку над fn. Обёртка позволяет вызвать fn не более maxCalls раз за intervalMs миллисекунд. Лишние вызовы игнорируются (возвращают undefined). Счётчик сбрасывается каждые intervalMs.",
+      "file": "08-hard-rate-limiter.js",
+      "testFile": "08-hard-rate-limiter.test.js",
+      "concepts": ["closure", "timing", "rate-limiting"],
+      "hints": [
+        "Тебе нужен счётчик вызовов и таймер для сброса.",
+        "Храни count и timestamp последнего сброса. При каждом вызове проверяй: прошло ли intervalMs? Если да — сбрось count. Если count < maxCalls — вызови fn и увеличь count.",
+        "let count = 0; let windowStart = Date.now(); return (...args) => { const now = Date.now(); if (now - windowStart >= intervalMs) { count = 0; windowStart = now } if (count < maxCalls) { count++; return fn(...args) } }"
+      ],
+      "estimatedMinutes": 15
+    }
+  ]
+}
