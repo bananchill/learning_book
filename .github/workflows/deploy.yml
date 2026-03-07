@@ -7,18 +7,14 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            cd ~/learning_book
-            git pull origin main
-            docker compose build --no-cache
-            docker compose up -d
-            docker image prune -f
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and deploy
+        run: |
+          docker compose build --no-cache
+          docker compose up -d
+          docker image prune -f
