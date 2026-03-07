@@ -39,3 +39,18 @@ export interface QuizQuestion {
   correctAnswer: string | number
   explanation: string
 }
+
+// Sandbox — результаты тестов и вывод консоли
+export interface TestResult {
+  name: string
+  status: 'pass' | 'fail' | 'error'
+  expected?: unknown
+  received?: unknown
+  message?: string
+  duration: number
+}
+
+export interface ConsoleEntry {
+  level: 'log' | 'warn' | 'error'
+  args: unknown[]
+}
