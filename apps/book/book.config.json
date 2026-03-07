@@ -19,6 +19,20 @@
             { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
             { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
           ]
+        },
+        {
+          "id": "ch02-async",
+          "title": "Асинхронность, параллелизм и конкурентность",
+          "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
+          "order": 2,
+          "contentPath": "content/ru/ch02-async",
+          "subchapters": [
+            { "id": "01-what-and-why", "title": "Синхронный vs асинхронный код", "order": 1 },
+            { "id": "02-event-loop", "title": "Event Loop", "order": 2 },
+            { "id": "03-promises", "title": "Promises", "order": 3 },
+            { "id": "04-async-await", "title": "Async/Await", "order": 4 },
+            { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
+          ]
         }
       ]
     },
