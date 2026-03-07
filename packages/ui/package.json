@@ -18,7 +18,8 @@
     "@book/shared": "workspace:*",
     "@vueuse/core": "^14.2.1",
     "shiki": "^4.0.1",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-i18n": "^11.1.3"
   },
   "devDependencies": {
     "vue-tsc": "^2.2.10"
