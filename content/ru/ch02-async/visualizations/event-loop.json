@@ -1,0 +1,64 @@
+{
+  "id": "event-loop",
+  "title": "Event Loop: microtasks vs macrotasks",
+  "type": "sequence",
+  "description": "Визуализация порядка выполнения: синхронный код → microtask queue → macrotask queue",
+  "frames": [
+    {
+      "label": "Начальное состояние",
+      "callStack": [],
+      "microtaskQueue": [],
+      "macrotaskQueue": [],
+      "output": [],
+      "note": "Event loop ожидает задачи"
+    },
+    {
+      "label": "console.log('1')",
+      "callStack": ["console.log('1')"],
+      "microtaskQueue": [],
+      "macrotaskQueue": [],
+      "output": ["1"],
+      "note": "Синхронный код выполняется сразу"
+    },
+    {
+      "label": "setTimeout(fn, 0)",
+      "callStack": ["setTimeout()"],
+      "microtaskQueue": [],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1"],
+      "note": "Колбэк ставится в macrotask queue"
+    },
+    {
+      "label": "Promise.resolve().then(fn)",
+      "callStack": [],
+      "microtaskQueue": ["fn → log('3')"],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1"],
+      "note": "Колбэк .then() ставится в microtask queue"
+    },
+    {
+      "label": "console.log('5')",
+      "callStack": ["console.log('5')"],
+      "microtaskQueue": ["fn → log('3')"],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1", "5"],
+      "note": "Синхронный код завершён, стек пуст"
+    },
+    {
+      "label": "Microtask: log('3')",
+      "callStack": ["then callback"],
+      "microtaskQueue": [],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1", "5", "3"],
+      "note": "Event loop обрабатывает ВСЕ microtasks до macrotask"
+    },
+    {
+      "label": "Macrotask: log('2')",
+      "callStack": ["setTimeout callback"],
+      "microtaskQueue": [],
+      "macrotaskQueue": [],
+      "output": ["1", "5", "3", "2"],
+      "note": "Только теперь выполняется macrotask"
+    }
+  ]
+}

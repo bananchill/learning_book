@@ -1,0 +1,50 @@
+[
+  {
+    "title": "MDN: Concurrency model and the event loop",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
+    "type": "documentation",
+    "language": "en",
+    "description": "Каноническое описание модели конкурентности и event loop в JavaScript",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "MDN: Using Promises",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полное руководство по промисам: создание, цепочки, обработка ошибок",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Jake Archibald: Tasks, microtasks, queues and schedules",
+    "url": "https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/",
+    "type": "article",
+    "language": "en",
+    "description": "Лучшая интерактивная визуализация event loop, microtasks и macrotasks",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "JavaScript.info: Промисы, async/await",
+    "url": "https://learn.javascript.ru/async",
+    "type": "article",
+    "language": "ru",
+    "description": "Подробное руководство на русском: callbacks, promises, async/await, микрозадачи",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Node.js: The event loop",
+    "url": "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+    "type": "documentation",
+    "language": "en",
+    "description": "Фазы event loop в Node.js: timers, poll, check, process.nextTick",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "MDN: AbortController",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "type": "documentation",
+    "language": "en",
+    "description": "Стандартный механизм отмены асинхронных операций",
+    "difficulty": "intermediate"
+  }
+]

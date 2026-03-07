@@ -1,0 +1,125 @@
+{
+  "chapter": "ch02-async",
+  "tasks": [
+    {
+      "id": "01-easy-delay",
+      "title": "Delay-промис",
+      "difficulty": "easy",
+      "description": "Создай функцию delay(ms), которая возвращает промис. Промис резолвится через ms миллисекунд. delay(1000) должен резолвиться примерно через 1 секунду.",
+      "file": "01-easy-delay.js",
+      "testFile": "01-easy-delay.test.js",
+      "concepts": ["promise", "setTimeout"],
+      "hints": [
+        "Функция должна вернуть new Promise.",
+        "Внутри промиса вызови setTimeout, который вызовет resolve через ms миллисекунд.",
+        "return new Promise(resolve => setTimeout(resolve, ms))"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "02-easy-sequential",
+      "title": "Последовательное выполнение",
+      "difficulty": "easy",
+      "description": "Напиши async-функцию sequential(tasks), которая принимает массив функций. Каждая функция возвращает промис. Выполни их последовательно (каждая ждёт предыдущую) и верни массив результатов.",
+      "file": "02-easy-sequential.js",
+      "testFile": "02-easy-sequential.test.js",
+      "concepts": ["async-await", "sequential-execution"],
+      "hints": [
+        "Используй цикл for...of и await внутри async-функции.",
+        "Создай массив results, в цикле await каждую задачу и push результат.",
+        "async function sequential(tasks) { const results = []; for (const task of tasks) { results.push(await task()) } return results }"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-easy-timeout-wrapper",
+      "title": "Timeout-обёртка",
+      "difficulty": "easy",
+      "description": "Напиши функцию withTimeout(promise, ms), которая оборачивает промис таймаутом. Если промис не резолвится за ms миллисекунд, результат реджектится с ошибкой 'Timeout'.",
+      "file": "03-easy-timeout-wrapper.js",
+      "testFile": "03-easy-timeout-wrapper.test.js",
+      "concepts": ["promise-race", "timeout"],
+      "hints": [
+        "Используй Promise.race — кто первый, тот и победил.",
+        "Создай промис-таймаут, который реджектится через ms. Используй Promise.race([promise, timeout]).",
+        "const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms)); return Promise.race([promise, timeout])"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "04-medium-promise-all",
+      "title": "Promise.all вручную",
+      "difficulty": "medium",
+      "description": "Реализуй функцию promiseAll(promises), которая работает как Promise.all: ждёт все промисы, возвращает массив результатов в том же порядке. Если хоть один реджектится — весь результат реджектится.",
+      "file": "04-medium-promise-all.js",
+      "testFile": "04-medium-promise-all.test.js",
+      "concepts": ["promise", "Promise.all"],
+      "hints": [
+        "Верни new Promise. Внутри заведи счётчик завершённых и массив результатов.",
+        "Для каждого промиса: при резолве сохрани результат по индексу и увеличь счётчик. Когда счётчик === длине — resolve всего результата. При reject — сразу reject.",
+        "let completed = 0; const results = []; promises.forEach((p, i) => { Promise.resolve(p).then(val => { results[i] = val; if (++completed === promises.length) resolve(results) }, reject) })"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "05-medium-retry",
+      "title": "Retry с backoff",
+      "difficulty": "medium",
+      "description": "Напиши async-функцию retry(fn, maxAttempts, delayMs). Она вызывает fn(). Если fn выбросит ошибку — повторяет попытку через delayMs, потом через delayMs*2, потом через delayMs*4 (exponential backoff). После maxAttempts неудачных попыток — выбрасывает последнюю ошибку.",
+      "file": "05-medium-retry.js",
+      "testFile": "05-medium-retry.test.js",
+      "concepts": ["async-await", "error-handling", "retry-pattern"],
+      "hints": [
+        "Используй цикл for с try/catch. В catch проверяй, осталась ли попытка.",
+        "Задержку можно сделать через delay: await new Promise(r => setTimeout(r, currentDelay)). Удваивай currentDelay после каждой неудачи.",
+        "let currentDelay = delayMs; for (let i = 0; i < maxAttempts; i++) { try { return await fn() } catch(e) { if (i === maxAttempts - 1) throw e; await new Promise(r => setTimeout(r, currentDelay)); currentDelay *= 2 } }"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "06-hard-parallel-limit",
+      "title": "Parallel limit",
+      "difficulty": "hard",
+      "description": "Реализуй async-функцию parallelLimit(tasks, limit). tasks — массив функций, каждая возвращает промис. Выполняй не более limit задач одновременно. Верни массив результатов в исходном порядке.",
+      "file": "06-hard-parallel-limit.js",
+      "testFile": "06-hard-parallel-limit.test.js",
+      "concepts": ["concurrency", "parallel-execution", "pool"],
+      "hints": [
+        "Представь пул воркеров: как только один завершился — бери следующую задачу из очереди.",
+        "Создай массив results и указатель nextIndex. Запусти limit «воркеров» — каждый берёт задачу по nextIndex, выполняет, сохраняет результат, берёт следующую.",
+        "async function worker() { while (nextIndex < tasks.length) { const i = nextIndex++; results[i] = await tasks[i]() } } await Promise.all(Array.from({length: limit}, worker))"
+      ],
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "07-hard-async-queue",
+      "title": "Async очередь",
+      "difficulty": "hard",
+      "description": "Создай функцию createAsyncQueue(), которая возвращает объект с методом enqueue(task). task — async-функция. Задачи выполняются строго последовательно: следующая начинается только после завершения предыдущей. enqueue возвращает промис с результатом задачи.",
+      "file": "07-hard-async-queue.js",
+      "testFile": "07-hard-async-queue.test.js",
+      "concepts": ["queue", "chaining", "concurrency"],
+      "hints": [
+        "Храни «хвост» очереди — промис последней задачи. Каждый enqueue привязывается к хвосту через .then().",
+        "let tail = Promise.resolve(). enqueue(task) добавляет task к хвосту: tail = tail.then(() => task()). Но нужно вернуть результат именно этой задачи.",
+        "enqueue(task) { const result = tail.then(() => task()); tail = result.catch(() => {}); return result }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "08-hard-event-loop-quiz",
+      "title": "Порядок выполнения",
+      "difficulty": "hard",
+      "description": "Напиши функцию getExecutionOrder(), которая возвращает промис с массивом чисел в порядке их выполнения. Внутри используй: console.log (sync), setTimeout, Promise.then, queueMicrotask, вложенные промисы. Функция должна вернуть правильный порядок: [1, 2, 3, 4, 5, 6].",
+      "file": "08-hard-event-loop-quiz.js",
+      "testFile": "08-hard-event-loop-quiz.test.js",
+      "concepts": ["event-loop", "microtask", "macrotask"],
+      "hints": [
+        "Синхронный код → microtasks (Promise.then, queueMicrotask) → macrotasks (setTimeout).",
+        "Microtasks внутри microtasks выполняются ДО macrotasks. queueMicrotask и Promise.then — оба microtasks.",
+        "Порядок: sync код (push 1, 2), microtasks в порядке добавления (push 3, 4), вложенные microtasks (push 5), setTimeout (push 6)."
+      ],
+      "estimatedMinutes": 15
+    }
+  ]
+}

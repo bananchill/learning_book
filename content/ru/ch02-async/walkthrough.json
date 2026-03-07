@@ -1,0 +1,65 @@
+{
+  "title": "Event Loop: порядок выполнения",
+  "code": "console.log('1')\n\nsetTimeout(() => {\n  console.log('2')\n}, 0)\n\nPromise.resolve()\n  .then(() => {\n    console.log('3')\n    queueMicrotask(() => console.log('4'))\n  })\n\nconsole.log('5')",
+  "steps": [
+    {
+      "line": 1,
+      "description": "console.log('1') — синхронный код. Выполняется сразу, выводит 1.",
+      "variables": { "output": "['1']" },
+      "callStack": ["global", "console.log('1')"],
+      "queues": { "microtask": [], "macrotask": [] }
+    },
+    {
+      "line": 3,
+      "description": "setTimeout с задержкой 0мс. Колбэк НЕ выполняется сразу — он ставится в очередь macrotask (task queue).",
+      "variables": { "output": "['1']" },
+      "callStack": ["global", "setTimeout()"],
+      "queues": { "microtask": [], "macrotask": ["() => log('2')"] }
+    },
+    {
+      "line": 7,
+      "description": "Promise.resolve() создаёт уже resolved промис. Колбэк .then() ставится в очередь microtask.",
+      "variables": { "output": "['1']" },
+      "callStack": ["global"],
+      "queues": { "microtask": ["() => log('3') + queueMicrotask(...)"], "macrotask": ["() => log('2')"] }
+    },
+    {
+      "line": 13,
+      "description": "console.log('5') — синхронный код. Выполняется сразу, выводит 5. Синхронный код завершён.",
+      "variables": { "output": "['1', '5']" },
+      "callStack": ["global", "console.log('5')"],
+      "queues": { "microtask": ["() => log('3') + queueMicrotask(...)"], "macrotask": ["() => log('2')"] }
+    },
+    {
+      "line": 9,
+      "description": "Call stack пуст → event loop берёт первую микрозадачу. Выполняется колбэк .then(): выводит 3 и ставит ещё одну микрозадачу (queueMicrotask).",
+      "variables": { "output": "['1', '5', '3']" },
+      "callStack": ["then callback"],
+      "queues": { "microtask": ["() => log('4')"], "macrotask": ["() => log('2')"] },
+      "highlight": "microtask"
+    },
+    {
+      "line": 10,
+      "description": "Новая микрозадача (queueMicrotask) тоже обрабатывается до макрозадач. Выводит 4.",
+      "variables": { "output": "['1', '5', '3', '4']" },
+      "callStack": ["queueMicrotask callback"],
+      "queues": { "microtask": [], "macrotask": ["() => log('2')"] },
+      "highlight": "microtask"
+    },
+    {
+      "line": 4,
+      "description": "Все микрозадачи выполнены → event loop берёт макрозадачу из task queue. Выполняется колбэк setTimeout, выводит 2.",
+      "variables": { "output": "['1', '5', '3', '4', '2']" },
+      "callStack": ["setTimeout callback"],
+      "queues": { "microtask": [], "macrotask": [] },
+      "highlight": "macrotask"
+    },
+    {
+      "line": 13,
+      "description": "Все очереди пусты. Итоговый порядок: 1, 5, 3, 4, 2. Синхронный код → microtasks → macrotasks.",
+      "variables": { "output": "['1', '5', '3', '4', '2']" },
+      "callStack": [],
+      "queues": { "microtask": [], "macrotask": [] }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "promise-states",
+  "title": "Состояния Promise",
+  "type": "state-diagram",
+  "description": "Promise переходит из pending в fulfilled или rejected — необратимо",
+  "states": [
+    {
+      "id": "pending",
+      "label": "pending",
+      "description": "Ожидание — начальное состояние",
+      "isInitial": true
+    },
+    {
+      "id": "fulfilled",
+      "label": "fulfilled",
+      "description": "Успешно завершён — есть значение (value)",
+      "isFinal": true
+    },
+    {
+      "id": "rejected",
+      "label": "rejected",
+      "description": "Завершён с ошибкой — есть причина (reason)",
+      "isFinal": true
+    }
+  ],
+  "transitions": [
+    {
+      "from": "pending",
+      "to": "fulfilled",
+      "label": "resolve(value)",
+      "trigger": "Вызов resolve() в конструкторе"
+    },
+    {
+      "from": "pending",
+      "to": "rejected",
+      "label": "reject(reason)",
+      "trigger": "Вызов reject() или throw внутри конструктора"
+    }
+  ],
+  "note": "Состояние необратимо: повторные вызовы resolve/reject игнорируются"
+}

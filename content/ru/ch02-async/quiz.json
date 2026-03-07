@@ -1,0 +1,107 @@
+{
+  "chapter": "ch02-async",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что выведет этот код?\n```js\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');\n```",
+      "type": "code-output",
+      "options": ["1, 2, 3, 4", "1, 4, 3, 2", "1, 4, 2, 3", "1, 3, 4, 2"],
+      "correctAnswer": 1,
+      "explanation": "Синхронный код (1, 4) выполняется первым. Затем microtask (Promise.then → 3), затем macrotask (setTimeout → 2). Microtasks всегда выполняются раньше macrotasks.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Чем Promise.all отличается от Promise.allSettled?",
+      "type": "multiple-choice",
+      "options": [
+        "Promise.all ждёт все промисы, Promise.allSettled — только первый",
+        "Promise.all реджектится при первой ошибке, Promise.allSettled ждёт все и возвращает статусы",
+        "Promise.allSettled быстрее, чем Promise.all",
+        "Они идентичны, allSettled — алиас"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Promise.all: если хоть один промис реджектится — весь результат реджектится. Promise.allSettled: ждёт завершения ВСЕХ промисов и возвращает массив {status, value/reason} для каждого.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Является ли JavaScript многопоточным языком?",
+      "type": "multiple-choice",
+      "options": [
+        "Да, JavaScript всегда выполняет код в нескольких потоках",
+        "Нет, JavaScript однопоточный, но конкурентный благодаря event loop",
+        "Нет, JavaScript полностью синхронный",
+        "Да, каждый Promise создаёт новый поток"
+      ],
+      "correctAnswer": 1,
+      "explanation": "JavaScript однопоточный — весь пользовательский код выполняется в одном потоке. Но благодаря event loop и Web APIs (которые работают в других потоках браузера/Node.js), JS может обрабатывать асинхронные операции не блокируя основной поток.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Что такое microtask queue?",
+      "type": "multiple-choice",
+      "options": [
+        "Очередь для setTimeout и setInterval",
+        "Очередь для DOM-событий",
+        "Очередь для Promise.then, queueMicrotask, MutationObserver",
+        "Очередь для Web Workers"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Microtask queue содержит колбэки Promise.then/catch/finally, queueMicrotask() и MutationObserver. Microtasks выполняются после каждой задачи (macrotask) и до рендеринга.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Что выведет этот код?\n```js\nasync function foo() {\n  console.log('A');\n  await Promise.resolve();\n  console.log('B');\n}\nconsole.log('C');\nfoo();\nconsole.log('D');\n```",
+      "type": "code-output",
+      "options": ["C, A, B, D", "C, A, D, B", "A, C, D, B", "C, D, A, B"],
+      "correctAnswer": 1,
+      "explanation": "C (синхронно), затем вызов foo() → A (синхронно до await), await приостанавливает foo, D (синхронно), затем B (microtask после await). Итого: C, A, D, B.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "question": "Какой антипаттерн здесь?\n```js\nasync function getData() {\n  const users = await fetch('/users').then(r => r.json());\n  const posts = await fetch('/posts').then(r => r.json());\n  return { users, posts };\n}\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Нельзя использовать .then() с await",
+        "Запросы выполняются последовательно, хотя могут параллельно",
+        "Нет обработки ошибок",
+        "Функция не возвращает Promise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Два независимых запроса выполняются последовательно из-за await. Правильно: const [users, posts] = await Promise.all([fetch('/users').then(r => r.json()), fetch('/posts').then(r => r.json())]). Это примерно вдвое быстрее.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q7",
+      "question": "Что делает AbortController?",
+      "type": "multiple-choice",
+      "options": [
+        "Останавливает event loop",
+        "Позволяет отменить асинхронные операции (fetch, listeners)",
+        "Завершает Web Worker",
+        "Отменяет все промисы в очереди"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AbortController создаёт signal, который можно передать в fetch, addEventListener и другие API. Вызов controller.abort() отменяет привязанные операции. Это стандартный способ отмены в JavaScript.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q8",
+      "question": "Что произойдёт, если microtask бесконечно добавляет новые microtasks?\n```js\nfunction loop() {\n  queueMicrotask(loop);\n}\nloop();\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Код выполнится один раз и остановится",
+        "Event loop зависнет — macrotasks и рендеринг не выполнятся",
+        "Браузер автоматически остановит выполнение через 5 секунд",
+        "Microtasks будут выполняться в фоне, не мешая основному потоку"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Event loop обрабатывает ВСЕ microtasks перед переходом к следующей macrotask. Если microtask добавляет новый microtask — очередь никогда не опустеет. Рендеринг, setTimeout, пользовательские события — всё заблокировано. Это называется microtask starvation.",
+      "difficulty": "hard"
+    }
+  ]
+}

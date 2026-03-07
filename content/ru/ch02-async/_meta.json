@@ -1,0 +1,9 @@
+{
+  "id": "ch02-async",
+  "title": "Асинхронность, параллелизм и конкурентность",
+  "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
+  "section": "javascript",
+  "order": 2,
+  "estimatedMinutes": 55,
+  "topics": ["async", "event-loop", "promises", "async-await", "concurrency", "microtasks", "macrotasks"]
+}
