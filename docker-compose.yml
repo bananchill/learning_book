@@ -5,6 +5,4 @@ services:
       dockerfile: apps/book/Dockerfile
     ports:
       - "5888:5888"
-    volumes:
-      - ./nginx/certs:/etc/nginx/certs:ro
     restart: unless-stopped
