@@ -1,6 +1,8 @@
 services:
   book:
-    build: .
+    build:
+      context: .
+      dockerfile: apps/book/Dockerfile
     ports:
       - "5888:5888"
     volumes:
