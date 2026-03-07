@@ -1,0 +1,5 @@
+export { default as QuizWidget } from './ui/QuizWidget.vue'
+export { default as QuestionCard } from './ui/QuestionCard.vue'
+export { default as QuizResults } from './ui/QuizResults.vue'
+export { useQuiz } from './model/useQuiz'
+export { calculateScore, isAnswerCorrect } from './lib/quizScoring'

@@ -134,6 +134,9 @@ importers:
       monaco-editor:
         specifier: ^0.55.1
         version: 0.55.1
+      pinia:
+        specifier: ^3.0.4
+        version: 3.0.4(typescript@5.8.3)(vue@3.5.29(typescript@5.8.3))
       vue:
         specifier: ^3.5.13
         version: 3.5.29(typescript@5.8.3)

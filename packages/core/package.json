@@ -18,6 +18,7 @@
     "@book/ui": "workspace:*",
     "@vueuse/core": "^14.2.1",
     "monaco-editor": "^0.55.1",
+    "pinia": "^3.0.4",
     "vue": "^3.5.13"
   },
   "devDependencies": {

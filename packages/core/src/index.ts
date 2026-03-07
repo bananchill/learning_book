@@ -19,3 +19,54 @@ export {
   useAIChat,
   buildSystemPrompt,
 } from './chat'
+
+// Quiz — интерактивные квизы
+export {
+  QuizWidget,
+  QuestionCard,
+  QuizResults,
+  useQuiz,
+  calculateScore,
+  isAnswerCorrect,
+} from './quiz'
+
+// Tasks — задачи с подсказками и code review
+export {
+  TaskView,
+  TaskList,
+  TaskCard,
+  HintSystem,
+  CodeReviewView,
+  useTask,
+  useHints,
+  useCodeReview,
+} from './tasks'
+
+// Walkthrough — пошаговый разбор кода
+export {
+  CodeWalkthrough,
+  CodeDisplay,
+  StateInspector,
+  StepControls,
+  useWalkthrough,
+  useAutoPlay,
+} from './walkthrough'
+
+// Interview — подготовка к собеседованию
+export {
+  InterviewPrep,
+  InterviewCard,
+  useInterview,
+} from './interview'
+
+// Progress — отслеживание прогресса
+export {
+  ProgressTracker,
+  ChapterProgressCard,
+  ProgressBar,
+  ProgressStats,
+  useProgressStore,
+  chapterCompletionPercent,
+  chapterStatus,
+  bookCompletionPercent,
+} from './progress'

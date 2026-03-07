@@ -1,0 +1,6 @@
+export { default as CodeWalkthrough } from './ui/CodeWalkthrough.vue'
+export { default as CodeDisplay } from './ui/CodeDisplay.vue'
+export { default as StateInspector } from './ui/StateInspector.vue'
+export { default as StepControls } from './ui/StepControls.vue'
+export { useWalkthrough } from './model/useWalkthrough'
+export { useAutoPlay } from './model/useAutoPlay'

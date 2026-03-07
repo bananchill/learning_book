@@ -1,0 +1,6 @@
+export { default as ProgressTracker } from './ui/ProgressTracker.vue'
+export { default as ChapterProgressCard } from './ui/ChapterProgressCard.vue'
+export { default as ProgressBar } from './ui/ProgressBar.vue'
+export { default as ProgressStats } from './ui/ProgressStats.vue'
+export { useProgressStore } from './model/useProgressStore'
+export { chapterCompletionPercent, chapterStatus, bookCompletionPercent } from './model/progressCalc'

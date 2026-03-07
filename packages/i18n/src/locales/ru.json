@@ -21,14 +21,27 @@
     "correct": "Правильно!",
     "incorrect": "Неправильно",
     "score": "Результат: {score} из {total}",
-    "explanation": "Объяснение"
+    "explanation": "Объяснение",
+    "submit": "Ответить",
+    "next": "Следующий",
+    "retry": "Пройти заново",
+    "results_title": "Результаты квиза"
   },
   "task": {
     "hint": "Подсказка",
     "hint_level": "Подсказка {level} из 3",
     "hint_confirm": "Уверен? Это сильная подсказка",
     "solved": "Решено!",
-    "tests_passed": "Тесты пройдены: {passed} из {total}"
+    "tests_passed": "Тесты пройдены: {passed} из {total}",
+    "tasks_title": "Задачи",
+    "completed": "Выполнено",
+    "not_started": "Не начато"
+  },
+  "code_review": {
+    "title": "Code Review",
+    "submit": "Проверить",
+    "found": "Найдено {found} из {total} проблем",
+    "mark_issue": "Отметьте строки с проблемами"
   },
   "chat": {
     "title": "AI Помощник",
@@ -49,10 +62,31 @@
     "overall": "Общий прогресс"
   },
   "interview": {
+    "title": "Подготовка к собеседованию",
     "good_answer": "Хороший ответ",
     "interviewer_wants": "Что хочет услышать интервьюер",
     "common_mistakes": "Частые ошибки",
-    "follow_ups": "Дополнительные вопросы"
+    "follow_ups": "Дополнительные вопросы",
+    "show_answer": "Показать ответ",
+    "self_assess": "Как бы вы ответили?",
+    "good": "Хорошо",
+    "ok": "Средне",
+    "bad": "Плохо",
+    "level": {
+      "junior": "Junior",
+      "middle": "Middle",
+      "senior": "Senior"
+    }
+  },
+  "walkthrough": {
+    "title": "Пошаговый разбор",
+    "step_of": "Шаг {current} из {total}",
+    "variables": "Переменные",
+    "call_stack": "Стек вызовов",
+    "scopes": "Области видимости",
+    "output": "Вывод",
+    "auto_play": "Авто",
+    "reset": "Сначала"
   },
   "deep_dive": {
     "expand": "Углубиться",
