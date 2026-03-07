@@ -179,7 +179,7 @@ content/ru/chXX-topic/
 - On "копай глубже": full expansion.
 - Do NOT over-explain by default.
 
-## Agents — 18 Total
+## Agents — 19 Total
 
 No separate orchestrator app. **Claude Code reads agent prompts directly and executes the pipelines.**
 
@@ -197,7 +197,7 @@ agents/
     analyzer.md
     writer.md
     visualizer.md
-  core/                           # Core Engine components + QA + git + design (12)
+  core/                           # Core Engine components + QA + git + design + types (13)
     layout-agent.md
     sandbox-agent.md
     chat-agent.md
@@ -207,6 +207,7 @@ agents/
     interview-agent.md
     walkthrough-agent.md
     designer-agent.md             # 🎨 Design system, tokens, themes, typography
+    types-agent.md                # 🏗️ Shared type library management (on-demand)
     tester-agent.md
     reviewer-agent.md
     committer-agent.md
@@ -231,13 +232,14 @@ Core Agent → TesterAgent → ReviewerAgent → CommitterAgent
 
 Core agent execution order (dependencies):
 1. LayoutAgent (foundation: @book/ui)
-2. SandboxAgent
-3. ChatAgent
-4. QuizAgent
-5. TaskAgent (depends on Sandbox)
-6. WalkthroughAgent
-7. InterviewAgent
-8. ProgressAgent (depends on all features)
+2. DesignerAgent (design system, builds on Layout)
+3. SandboxAgent
+4. ChatAgent
+5. QuizAgent
+6. TaskAgent (depends on Sandbox)
+7. WalkthroughAgent
+8. InterviewAgent
+9. ProgressAgent (depends on all features)
 
 ### How It Works
 
@@ -265,9 +267,10 @@ Core agent execution order (dependencies):
 1. ALWAYS read `agents/shared/stack-context.md` first
 2. Read the specific agent: `agents/core/<agent>.md`
 3. Follow instructions from both files
-4. After writing code → read `agents/core/tester-agent.md` and write tests
-5. After tests → read `agents/core/reviewer-agent.md` and review
-6. After approval → read `agents/core/committer-agent.md` and commit
+4. If new shared types needed → read `agents/core/types-agent.md` and add them first
+5. After writing code → read `agents/core/tester-agent.md` and write tests
+6. After tests → read `agents/core/reviewer-agent.md` and review
+7. After approval → read `agents/core/committer-agent.md` and commit
 
 ### When generating chapter content:
 1. Read `agents/shared/orchestrator.md` for pipeline overview
@@ -296,4 +299,5 @@ Core agent execution order (dependencies):
 | Commit changes | `committer-agent.md` |
 | Add shared UI | `stack-context.md` + `layout-agent.md` |
 | Create design system | `stack-context.md` + `designer-agent.md` + `reviewer-agent.md` + `committer-agent.md` |
+| Manage shared types | `stack-context.md` + `types-agent.md` |
 
