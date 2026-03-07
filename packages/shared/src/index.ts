@@ -1,2 +1,15 @@
 // @book/shared — типы, утилиты, composables
-export type { Chapter, Section, Task, Quiz, Difficulty } from './types'
+export type {
+  // Базовые типы
+  Chapter, Section, Task, Quiz, QuizQuestion, Difficulty,
+  // Code Review
+  CodeReview, CodeReviewIssue,
+  // Interview
+  Interview, InterviewQuestion,
+  // Walkthrough
+  Walkthrough, WalkthroughStep,
+  // Progress
+  ChapterProgress, BookProgress,
+  // Sandbox
+  TestResult,
+} from './types'
