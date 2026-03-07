@@ -8,6 +8,8 @@ order: 1
 
 **Замыкание** — это функция, которая запоминает переменные из места, где была создана, даже когда вызывается в другом месте.
 
+> Формальное определение из [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures): «A closure is the combination of a function bundled together with references to its surrounding state (the lexical environment)».
+
 ## Самый простой пример
 
 ```js
@@ -80,7 +82,7 @@ function setupButton(buttonId, message) {
 
 ## Ссылка, а не копия
 
-Это **ключевой** момент. Замыкание хранит ссылку на переменную, а не её значение в момент создания:
+Это **ключевой** момент, который подробно разбирает Кайл Симпсон в [You Don't Know JS: Scope & Closures](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/scope-closures). Замыкание хранит ссылку на переменную, а не её значение в момент создания:
 
 ```js
 function createFunctions() {

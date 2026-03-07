@@ -6,7 +6,7 @@ order: 3
 
 ## Классика: цикл с var и setTimeout
 
-Это самый известный баг, связанный с замыканиями:
+Это самый известный баг, связанный с замыканиями. Он подробно разобран в [MDN — Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) (раздел «Creating closures in loops: A common mistake»):
 
 ```js
 // ❌ Баг: выведет "5 5 5 5 5"

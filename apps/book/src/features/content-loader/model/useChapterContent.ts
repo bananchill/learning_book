@@ -1,55 +1,63 @@
 import { ref, shallowRef, watch, type Component } from 'vue'
+import path from 'path'
+import { useI18n } from '@book/i18n'
 
-// Динамический импорт всех .md файлов из контента (относительный путь)
-const contentModules = import.meta.glob<{ default: Component }>('../../../../../../content/ru/**/*.md')
+const contentModules = import.meta.glob('@content/**/*.md', {
+  eager: true
+})
 
-// Построить маппинг: нормализованный путь → загрузчик
-const moduleMap = new Map<string, () => Promise<{ default: Component }>>()
-for (const [key, loader] of Object.entries(contentModules)) {
-  // Ключи: "../../../../content/ru/ch01-closures/index.md"
-  // Извлекаем часть после "ru/"
-  const match = key.match(/ru\/(.+)$/)
-  if (match) {
-    moduleMap.set(match[1], loader)
+  const moduleMap = new Map<string, { default: Component }>()
+
+const buildModuleMap = (locale: string) => {
+  for (const [key, loader] of Object.entries(contentModules)) {
+    const match = key.match(`${locale}\/(.+)$`)
+    if (match) {
+      moduleMap.set(match[1], loader as { default: Component })
+    }
   }
 }
 
 export function useChapterContent(contentPath: () => string | undefined) {
+  const i18n = useI18n()
+  const locale = i18n.locale.value
   const component = shallowRef<Component | null>(null)
   const isLoading = ref(false)
   const error = ref<'not_found' | 'load_error' | null>(null)
+  buildModuleMap(locale)
 
-  watch(contentPath, async (path) => {
-    component.value = null
-    error.value = null
+  watch(
+    contentPath,
+    async (path) => {
+      component.value = null
+      error.value = null
 
-    if (!path) {
-      isLoading.value = false
-      return
-    }
+      if (!path) {
+        isLoading.value = false
+        return
+      }
 
-    isLoading.value = true
+      isLoading.value = true
 
-    // Нормализуем путь: "content/ru/ch01-closures/index.md" → "ch01-closures/index.md"
-    const normalizedPath = path.replace(/^content\/ru\//, '')
+      const normalizedPath = path.replace(`content\/${locale}\/`, '')
 
-    const loader = moduleMap.get(normalizedPath)
+      const loader = moduleMap.get(normalizedPath)
 
-    if (!loader) {
-      error.value = 'not_found'
-      isLoading.value = false
-      return
-    }
+      if (!loader) {
+        error.value = 'not_found'
+        isLoading.value = false
+        return
+      }
 
-    try {
-      const mod = await loader()
-      component.value = mod.default
-    } catch {
-      error.value = 'load_error'
-    } finally {
-      isLoading.value = false
-    }
-  }, { immediate: true })
+      try {
+        component.value = loader.default
+      } catch {
+        error.value = 'load_error'
+      } finally {
+        isLoading.value = false
+      }
+    },
+    { immediate: true }
+  )
 
   return { component, isLoading, error }
 }

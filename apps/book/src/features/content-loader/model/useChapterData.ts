@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
 import type { Quiz, Task, Walkthrough, Interview } from '@book/shared'
 
-// Динамический импорт всех .json файлов из контента (относительный путь)
+// Динамический импорт .json файлов из контента
 const jsonModules = import.meta.glob<Record<string, unknown>>('../../../../../../content/ru/**/*.json')
 
 // Построить маппинг: нормализованный путь → загрузчик

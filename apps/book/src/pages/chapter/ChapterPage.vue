@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from '@book/i18n'
 import type { ChapterMeta } from '@book/shared'
 import { BaseButton, BaseCard } from '@book/ui'
-import { useChapterContent, ContentPlaceholder } from '@/features/content-loader'
+import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
 import { ChapterView } from '@/widgets/chapter-view'
 
 const props = defineProps<{
@@ -29,15 +29,16 @@ const { component: contentComponent, isLoading, error } = useChapterContent(
 
     <!-- MDX контент -->
     <div v-if="isLoading" class="animate-pulse space-y-4">
-      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-3/4" />
-      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-1/2" />
-      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-5/6" />
+      <div class="h-4 bg-surface-muted rounded w-3/4" />
+      <div class="h-4 bg-surface-muted rounded w-1/2" />
+      <div class="h-4 bg-surface-muted rounded w-5/6" />
     </div>
 
     <div v-else-if="contentComponent" class="book-prose">
       <component :is="contentComponent" />
     </div>
 
+    <ContentError v-else-if="error" :type="error" />
     <ContentPlaceholder v-else />
 
     <!-- Содержание подглав -->
