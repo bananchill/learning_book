@@ -1,0 +1,16 @@
+node_modules
+dist
+.git
+.claude
+.github
+.vite
+*.local
+.env
+.env.*
+nginx/certs
+apps/admin
+apps/api
+agents
+docs
+ROADMAP.md
+CLAUDE.md

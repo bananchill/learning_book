@@ -1,0 +1,8 @@
+services:
+  book:
+    build: .
+    ports:
+      - "5888:5888"
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs:ro
+    restart: unless-stopped
