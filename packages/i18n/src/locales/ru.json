@@ -108,7 +108,10 @@
     "all_passed": "Все тесты пройдены!",
     "tests_count": "{passed} из {total} тестов пройдено",
     "no_tests": "Нет тестов для запуска",
-    "clear_console": "Очистить"
+    "clear_console": "Очистить",
+    "undo": "Отменить",
+    "redo": "Повторить",
+    "format": "Форматировать"
   },
   "nav": {
     "title": "Learning Book",

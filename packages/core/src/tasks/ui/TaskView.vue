@@ -10,6 +10,7 @@ const props = defineProps<{
   task: Task
   starterCode: string
   testCode: string
+  persistenceKey?: string
 }>()
 
 const emit = defineEmits<{
@@ -48,6 +49,7 @@ function handleTestResults(results: TestResult[]) {
     <CodeSandbox
       :starter-code="starterCode"
       :test-code="testCode"
+      :persistence-key="persistenceKey"
       language="javascript"
       :auto-run="true"
       :debounce-ms="800"

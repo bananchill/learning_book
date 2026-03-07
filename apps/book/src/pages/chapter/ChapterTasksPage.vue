@@ -4,7 +4,7 @@ import { useI18n } from '@book/i18n'
 import type { ChapterMeta } from '@book/shared'
 import { BaseButton } from '@book/ui'
 import { TaskList, TaskView, useProgressStore } from '@book/core'
-import { useChapterData, ContentPlaceholder } from '@/features/content-loader'
+import { useChapterData, useTaskCode, ContentPlaceholder } from '@/features/content-loader'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -19,6 +19,13 @@ const { tasks, isLoading } = useChapterData(() => props.chapter.contentPath)
 const selectedTaskId = ref<string | null>(null)
 const selectedTask = computed(() =>
   tasks.value.find(task => task.id === selectedTaskId.value),
+)
+
+// Загрузка starter-кода и тестов выбранной задачи
+const { starterCode, testCode, isLoading: isCodeLoading } = useTaskCode(
+  () => props.chapter.contentPath,
+  () => selectedTask.value?.file,
+  () => selectedTask.value?.testFile,
 )
 
 function handleSelect(taskId: string) {
@@ -42,11 +49,16 @@ function handleSolved(taskId: string) {
     </div>
 
     <template v-else-if="tasks.length > 0">
+      <div v-if="isCodeLoading && selectedTask" class="animate-pulse space-y-4">
+        <div class="h-64 bg-[var(--color-surface-muted)] rounded-xl" />
+      </div>
+
       <TaskView
-        v-if="selectedTask"
+        v-else-if="selectedTask"
         :task="selectedTask"
-        starter-code=""
-        test-code=""
+        :starter-code="starterCode"
+        :test-code="testCode"
+        :persistence-key="selectedTask.id"
         @solved="handleSolved(selectedTask!.id)"
       />
 

@@ -2,17 +2,18 @@
 import { useI18n } from '@book/i18n'
 import type { ChapterMeta } from '@book/shared'
 import { CodeSandbox } from '@book/core'
-import { ContentPlaceholder } from '@/features/content-loader'
 
-defineProps<{
+const props = defineProps<{
   chapter: ChapterMeta
   sectionId: string
 }>()
 
 const { t } = useI18n()
 
-// TODO: загрузить playground.vue из контента, когда будет доступен
-const hasPlayground = false
+const starterCode = `// ${props.chapter.title}
+// Экспериментируй с кодом здесь
+
+`
 </script>
 
 <template>
@@ -22,11 +23,12 @@ const hasPlayground = false
     </h1>
 
     <CodeSandbox
-      v-if="hasPlayground"
-      starter-code=""
+      :starter-code="starterCode"
       test-code=""
+      language="javascript"
+      :auto-run="false"
+      height="400px"
+      :persistence-key="`playground:${chapter.id}`"
     />
-
-    <ContentPlaceholder v-else />
   </div>
 </template>

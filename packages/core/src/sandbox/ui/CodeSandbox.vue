@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useI18n } from '@book/i18n'
 import { BaseButton } from '@book/ui'
 import type { TestResult } from '@book/shared'
@@ -17,6 +17,7 @@ const props = withDefaults(defineProps<{
   readOnly?: boolean
   height?: string
   showConsole?: boolean
+  persistenceKey?: string
 }>(), {
   starterCode: '',
   testCode: '',
@@ -41,13 +42,22 @@ const {
   error,
   testResults,
   consoleLogs,
+  canUndo,
+  canRedo,
   run,
   reset,
   updateCode,
+  undo,
+  redo,
+  format,
 } = useTestRunner(
   () => props.starterCode,
   () => props.testCode,
-  { autoRun: props.autoRun, debounceMs: props.debounceMs },
+  {
+    autoRun: props.autoRun,
+    debounceMs: props.debounceMs,
+    persistenceKey: props.persistenceKey,
+  },
 )
 
 // Нижняя панель: тесты или консоль
@@ -68,12 +78,47 @@ function onReset() {
   emit('code-change', code.value)
 }
 
+function onUndo() {
+  undo()
+  emit('code-change', code.value)
+}
+
+function onRedo() {
+  redo()
+  emit('code-change', code.value)
+}
+
+function onFormat() {
+  format()
+  emit('code-change', code.value)
+}
+
 function clearConsole() {
   consoleLogs.value = []
 }
 
+// Keyboard shortcuts: Ctrl+Z / Ctrl+Shift+Z
+function handleKeydown(e: KeyboardEvent) {
+  if (!e.ctrlKey && !e.metaKey) return
+
+  if (e.key === 'z' && !e.shiftKey) {
+    e.preventDefault()
+    onUndo()
+  } else if ((e.key === 'z' && e.shiftKey) || e.key === 'y') {
+    e.preventDefault()
+    onRedo()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown)
+})
+
 // Передаём результаты тестов наверх при изменении
-import { watch } from 'vue'
 watch(testResults, (results) => {
   if (results.length > 0) {
     emit('test-results', results)
@@ -95,10 +140,40 @@ watch(testResults, (results) => {
         </span>
       </div>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-1.5">
+        <!-- Undo / Redo -->
+        <BaseButton
+          size="sm"
+          variant="ghost"
+          :disabled="!canUndo"
+          :title="t('sandbox.undo')"
+          @click="onUndo"
+        >
+          ↩
+        </BaseButton>
+        <BaseButton
+          size="sm"
+          variant="ghost"
+          :disabled="!canRedo"
+          :title="t('sandbox.redo')"
+          @click="onRedo"
+        >
+          ↪
+        </BaseButton>
+
+        <div class="w-px h-4 bg-border mx-1" />
+
+        <!-- Форматировать -->
+        <BaseButton size="sm" variant="ghost" :title="t('sandbox.format')" @click="onFormat">
+          {{ t('sandbox.format') }}
+        </BaseButton>
+
+        <!-- Сбросить -->
         <BaseButton size="sm" variant="ghost" @click="onReset">
           {{ t('sandbox.reset') }}
         </BaseButton>
+
+        <!-- Запустить -->
         <BaseButton size="sm" variant="primary" :disabled="isRunning" @click="onRun">
           {{ isRunning ? t('sandbox.running') : t('sandbox.run') }}
         </BaseButton>

@@ -51,14 +51,14 @@ function formatArg(arg: unknown): string {
     </div>
 
     <!-- Логи -->
-    <div class="max-h-40 overflow-y-auto font-mono text-xs p-3 space-y-0.5 bg-surface-inset">
+    <div class="max-h-40 overflow-y-auto font-mono text-xs px-4 py-3 space-y-1 bg-surface-inset">
       <div
         v-for="(entry, i) in logs"
         :key="i"
-        :class="['flex gap-2', levelClass[entry.level]]"
+        :class="['flex gap-2 leading-5', levelClass[entry.level]]"
       >
-        <span class="flex-shrink-0 opacity-50">{{ levelPrefix[entry.level] }}</span>
-        <span>{{ entry.args.map(formatArg).join(' ') }}</span>
+        <span class="flex-shrink-0 opacity-50 select-none">{{ levelPrefix[entry.level] }}</span>
+        <span class="break-all whitespace-pre-wrap min-w-0">{{ entry.args.map(formatArg).join(' ') }}</span>
       </div>
 
       <div
