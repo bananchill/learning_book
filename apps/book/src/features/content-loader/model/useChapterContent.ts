@@ -1,5 +1,4 @@
 import { ref, shallowRef, watch, type Component } from 'vue'
-import path from 'path'
 import { useI18n } from '@book/i18n'
 
 const contentModules = import.meta.glob('@content/**/*.md', {
