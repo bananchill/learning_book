@@ -115,7 +115,7 @@ const [user, posts, config] = await Promise.all([
   fetch('/api/posts').then(r => r.json()),
   fetch('/api/config').then(r => r.json()),
 ])
-// Все три запроса идут параллельно, результат — когда все готовы
+// Все три запроса запускаются одновременно, результат — когда все готовы
 ```
 
 ### Promise.allSettled — подождать всех

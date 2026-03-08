@@ -104,7 +104,7 @@ async function loadAll() {
   return { users, posts, comments }
 }
 
-// ✅ Параллельно: ~1 секунда (максимум из трёх)
+// ✅ Одновременно: ~1 секунда (максимум из трёх)
 async function loadAll() {
   const [users, posts, comments] = await Promise.all([
     fetch('/api/users'),
@@ -115,7 +115,7 @@ async function loadAll() {
 }
 ```
 
-Правило: если операции **не зависят** друг от друга — запускай параллельно через `Promise.all`.
+Правило: если операции **не зависят** друг от друга — запускай одновременно через `Promise.all`.
 
 ## Подводный камень: await в цикле
 
@@ -130,7 +130,7 @@ async function fetchAll(urls) {
   return results
 }
 
-// ✅ Параллельно — все запросы одновременно
+// ✅ Одновременно — все запросы сразу
 async function fetchAll(urls) {
   return Promise.all(urls.map(url => fetch(url).then(r => r.json())))
 }
@@ -171,7 +171,7 @@ async function process(items) {
   return results
 }
 
-// ✅ Или параллельно через map + Promise.all
+// ✅ Или одновременно через map + Promise.all
 async function process(items) {
   return Promise.all(items.map(item => transform(item)))
 }
@@ -220,6 +220,6 @@ async function readLines(stream) {
 | async function | Всегда возвращает промис |
 | await | Приостанавливает функцию, остаток — в микрозадачу |
 | try/catch | Стандартная обработка ошибок async/await |
-| Параллельность | `Promise.all` для независимых операций |
+| Одновременный запуск | `Promise.all` для независимых операций |
 | forEach + async | Не работает — используй `for...of` или `map` + `Promise.all` |
 | Top-level await | Только в ES-модулях, блокирует импорт |

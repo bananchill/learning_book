@@ -6,16 +6,15 @@
       "question": "Что такое event loop и как он работает?",
       "level": "junior",
       "goodAnswer": "Event loop — механизм, который позволяет однопоточному JavaScript обрабатывать асинхронные операции. Он непрерывно проверяет: если call stack пуст, берёт задачу из microtask queue (Promise.then, queueMicrotask), а затем из macrotask queue (setTimeout, I/O). Microtasks всегда выполняются раньше macrotasks. Между макрозадачами браузер может делать рендеринг.",
-      "whatInterviewerWants": "Понимание, что JS однопоточный, но конкурентный. Знание разницы между microtask и macrotask. Способность объяснить порядок выполнения.",
+      "whatInterviewerWants": "Понимание, что JS однопоточный. Знание разницы между microtask и macrotask. Способность объяснить порядок выполнения.",
       "commonMistakes": [
-        "Говорят, что JS многопоточный",
         "Не знают разницу между micro и macrotask",
-        "Путают call stack и task queue"
+        "Путают call stack и task queue",
+        "Думают, что async/await создаёт отдельный поток"
       ],
       "followUps": [
         "Что будет, если microtask добавит ещё microtask?",
-        "Где рендеринг в цикле событий?",
-        "Чем event loop в Node.js отличается от браузерного?"
+        "Где рендеринг в цикле событий?"
       ]
     },
     {
@@ -56,48 +55,32 @@
       "question": "Почему await в цикле for — антипаттерн? Как исправить?",
       "level": "middle",
       "goodAnswer": "await в цикле делает итерации последовательными — каждая ждёт завершения предыдущей. Если задачи независимы, это кратно медленнее. Исправление: собрать все промисы в массив и использовать Promise.all. Но если задачи зависимы (каждая использует результат предыдущей) — последовательный await правилен.",
-      "whatInterviewerWants": "Понимание разницы между последовательным и параллельным выполнением. Знание Promise.all. Умение распознать, когда последовательность нужна, а когда нет.",
+      "whatInterviewerWants": "Понимание разницы между последовательным и одновременным запуском операций. Знание Promise.all. Умение распознать, когда последовательность нужна, а когда нет.",
       "commonMistakes": [
         "Всегда используют await в цикле, не задумываясь",
         "Не знают про Promise.all как альтернативу",
         "Не понимают, что иногда последовательный await — правильный выбор"
       ],
       "followUps": [
-        "А если нужно ограничить параллелизм до N запросов?",
+        "А если нужно ограничить количество одновременных запросов до N?",
         "Как обработать ошибки при Promise.all?"
       ]
     },
     {
       "id": "i5",
-      "question": "Чем конкурентность отличается от параллелизма?",
+      "question": "Как работает async/await под капотом?",
       "level": "senior",
-      "goodAnswer": "Конкурентность (concurrency) — структурирование программы для обработки нескольких задач, переключаясь между ними. Параллелизм (parallelism) — одновременное выполнение на нескольких ядрах/потоках. JavaScript конкурентен через event loop, но не параллелен в основном потоке. Настоящий параллелизм в JS: Web Workers, Worker Threads в Node.js, SharedArrayBuffer + Atomics.",
-      "whatInterviewerWants": "Глубокое понимание разницы. Знание, что JS конкурентен, но не параллелен (кроме Workers). Примеры настоящего параллелизма в JS.",
+      "goodAnswer": "async/await — синтаксический сахар над промисами. Async-функция всегда возвращает Promise. При встрече await функция приостанавливается, управление возвращается вызывающему коду, а остаток функции ставится в microtask queue. Когда промис резолвится — выполнение продолжается. Исторически это основано на генераторах: каждый await — это yield, а runtime управляет итерацией.",
+      "whatInterviewerWants": "Понимание, что await — не магия, а приостановка с постановкой продолжения в microtask queue. Связь с промисами и генераторами.",
       "commonMistakes": [
-        "Считают конкурентность и параллелизм синонимами",
-        "Не знают про Web Workers",
-        "Говорят, что async/await — это параллелизм"
+        "Думают, что await блокирует поток",
+        "Не знают про связь с генераторами",
+        "Не понимают, что код после await — это microtask"
       ],
       "followUps": [
-        "Как Web Workers общаются с основным потоком?",
-        "Что такое SharedArrayBuffer?",
-        "Когда стоит использовать Worker вместо async/await?"
-      ]
-    },
-    {
-      "id": "i6",
-      "question": "Как работает event loop в Node.js? Чем отличается от браузерного?",
-      "level": "senior",
-      "goodAnswer": "Node.js использует libuv с 6 фазами: timers (setTimeout/setInterval), pending callbacks (I/O), idle/prepare (внутренние), poll (новые I/O), check (setImmediate), close callbacks. Браузер: проще — macrotask → все microtasks → рендер → следующая macrotask. Ключевое отличие: в Node.js есть setImmediate (фаза check), process.nextTick (не microtask, выполняется ДО microtasks).",
-      "whatInterviewerWants": "Знание фаз libuv. Понимание process.nextTick vs queueMicrotask. Разница setImmediate vs setTimeout(0).",
-      "commonMistakes": [
-        "Считают event loop одинаковым в браузере и Node.js",
-        "Не знают про setImmediate",
-        "Путают process.nextTick и queueMicrotask"
-      ],
-      "followUps": [
-        "Что произойдёт при рекурсивном process.nextTick?",
-        "Чем setImmediate отличается от setTimeout(fn, 0)?"
+        "Чем await отличается от .then()?",
+        "Что такое top-level await и какие ограничения?",
+        "Как V8 оптимизирует async stack traces?"
       ]
     }
   ]

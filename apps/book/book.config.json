@@ -22,7 +22,7 @@
         },
         {
           "id": "ch02-async",
-          "title": "Асинхронность, параллелизм и конкурентность",
+          "title": "Асинхронность",
           "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
           "order": 2,
           "contentPath": "content/ru/ch02-async",

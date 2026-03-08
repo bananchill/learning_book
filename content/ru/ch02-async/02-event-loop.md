@@ -146,7 +146,7 @@ requestAnimationFrame(animate)
 
 <DeepDive>
 
-В Node.js event loop устроен иначе — он основан на библиотеке [libuv](https://libuv.org/) и имеет 6 фаз: timers, pending callbacks, idle/prepare, poll, check, close callbacks. `setImmediate` (фаза check) выполняется после I/O, а `process.nextTick` — вообще не часть event loop, он обрабатывается между фазами. Подробности — в [документации Node.js](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick).
+В Node.js event loop основан на библиотеке [libuv](https://libuv.org/) и имеет 6 фаз вместо простой модели «macrotask → microtasks → render». Ключевые отличия: `setImmediate` выполняется после I/O (фаза check), а `process.nextTick` обрабатывается между фазами — даже раньше microtasks. Подробности — в [документации Node.js](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick).
 
 </DeepDive>
 

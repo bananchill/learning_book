@@ -1,5 +1,5 @@
 {
-  "topic": "Асинхронность, параллелизм и конкурентность",
+  "topic": "Асинхронность",
   "chapterId": "ch02-async",
   "subchapters": [
     {
@@ -8,15 +8,15 @@
       "keyQuestions": [
         "Почему JavaScript однопоточный?",
         "Что значит «неблокирующий»?",
-        "Чем конкурентность отличается от параллелизма?",
+        "Что делает среда выполнения (браузер, Node.js)?",
         "Зачем вообще нужна асинхронность в JS?"
       ],
-      "estimatedReadMinutes": 7,
+      "estimatedReadMinutes": 6,
       "needsVisualization": true,
       "visualizationIdeas": ["Диаграмма: синхронный vs асинхронный поток выполнения", "Аналогия с кофейней: один бариста, много заказов"],
       "depthNotes": {
-        "standard": "Определения, аналогии, блокирующий vs неблокирующий код, thread vs process",
-        "deep": "OS-level threading, libuv в Node.js, hardware parallelism, Amdahl's law"
+        "standard": "Определения, аналогии, блокирующий vs неблокирующий код, роль среды выполнения",
+        "deep": "libuv в Node.js, browser rendering pipeline, Web API internals"
       }
     },
     {
@@ -34,7 +34,7 @@
       "visualizationIdeas": ["Пошаговая анимация event loop: call stack ↔ task queue ↔ microtask queue", "Диаграмма: setTimeout vs Promise.then — порядок выполнения"],
       "depthNotes": {
         "standard": "Call stack, Web APIs, task queue, microtask queue, порядок выполнения, примеры с console.log",
-        "deep": "HTML spec event loop processing model, rendering pipeline, starvation, Node.js phases (timers, poll, check)"
+        "deep": "HTML spec event loop processing model, rendering pipeline, starvation"
       }
     },
     {
@@ -52,7 +52,7 @@
       "visualizationIdeas": ["Диаграмма состояний Promise: pending → fulfilled/rejected", "Сравнительная таблица Promise.all/race/allSettled/any"],
       "depthNotes": {
         "standard": "Создание, цепочки, error handling, Promise API (all/race/allSettled/any), антипаттерны",
-        "deep": "Promise resolution procedure (спецификация), thenable objects, microtask scheduling, custom Promise implementation"
+        "deep": "Promise resolution procedure (спецификация), thenable objects, microtask scheduling"
       }
     },
     {
@@ -61,7 +61,7 @@
       "keyQuestions": [
         "Как async/await связаны с Promise?",
         "Как правильно обрабатывать ошибки: try/catch vs .catch()?",
-        "Как запускать промисы параллельно с await?",
+        "Как запускать промисы одновременно с await?",
         "Что такое top-level await?",
         "Async iterators и for await...of — когда нужны?"
       ],
@@ -69,7 +69,7 @@
       "needsVisualization": false,
       "visualizationIdeas": [],
       "depthNotes": {
-        "standard": "Синтаксис, error handling, последовательный vs параллельный await, top-level await",
+        "standard": "Синтаксис, error handling, последовательный vs одновременный await, top-level await",
         "deep": "Генераторы как основа async/await, desugaring в спецификации, V8 async stack traces"
       }
     },
@@ -78,61 +78,30 @@
       "title": "Паттерны и реальные задачи",
       "keyQuestions": [
         "Как реализовать retry с exponential backoff?",
-        "Как ограничить количество параллельных запросов (concurrency limit)?",
+        "Как ограничить количество одновременных запросов?",
         "Как работают debounce и throttle?",
         "Как отменить асинхронную операцию (AbortController)?",
-        "Паттерны в React, Node.js, Express"
+        "Что такое race condition и как его избежать?"
       ],
       "estimatedReadMinutes": 10,
       "needsVisualization": false,
       "visualizationIdeas": [],
       "depthNotes": {
         "standard": "retry, parallel limit, debounce/throttle, AbortController, race condition fixes",
-        "deep": "Web Workers, SharedArrayBuffer, Atomics, structured clone, Transferable objects"
+        "deep": "Async iterators, generator-based streams, structured concurrency"
       }
     }
   ],
-  "researchDirections": [
-    { "query": "MDN JavaScript event loop concurrency model", "purpose": "Каноническое описание модели конкурентности JS", "priority": "high" },
-    { "query": "MDN Promise JavaScript", "purpose": "Полный справочник по Promise API", "priority": "high" },
-    { "query": "MDN async await JavaScript", "purpose": "Документация по async/await", "priority": "high" },
-    { "query": "Jake Archibald tasks microtasks queues schedules", "purpose": "Лучшая визуализация event loop и microtasks", "priority": "high" },
-    { "query": "JavaScript.info async promises", "purpose": "Подробное объяснение с примерами", "priority": "high" },
-    { "query": "Node.js event loop phases", "purpose": "Event loop в Node.js — отличия от браузера", "priority": "medium" },
-    { "query": "Promise.allSettled Promise.any use cases", "purpose": "Практическое применение новых Promise методов", "priority": "medium" },
-    { "query": "AbortController fetch cancel JavaScript", "purpose": "Отмена асинхронных операций", "priority": "medium" },
-    { "query": "JavaScript async patterns retry backoff", "purpose": "Продвинутые асинхронные паттерны", "priority": "medium" }
-  ],
   "crossLinks": [
-    { "chapterId": "ch01-closures", "relationship": "Замыкания — основа callbacks и async-функций, stale closure в асинхронном коде" },
-    { "chapterId": "ch03-generators", "relationship": "Генераторы — основа async/await под капотом" },
-    { "chapterId": "ch05-this", "relationship": "Контекст this в callbacks vs стрелочные функции" }
-  ],
-  "taskIdeas": [
-    { "title": "Delay-промис", "difficulty": "easy", "concept": "создание Promise", "briefDescription": "Создать функцию delay(ms), возвращающую промис, который резолвится через ms миллисекунд" },
-    { "title": "Последовательное выполнение", "difficulty": "easy", "concept": "цепочки промисов", "briefDescription": "Выполнить массив async-функций последовательно, собрав результаты" },
-    { "title": "Угадай порядок", "difficulty": "easy", "concept": "event loop, microtasks", "briefDescription": "Определить порядок console.log в коде с setTimeout, Promise.then, queueMicrotask" },
-    { "title": "Promise.all вручную", "difficulty": "medium", "concept": "Promise API", "briefDescription": "Реализовать свой promiseAll(promises), который работает как Promise.all" },
-    { "title": "Retry с backoff", "difficulty": "medium", "concept": "async паттерны", "briefDescription": "Написать retry(fn, maxAttempts, delay) — повторяет fn при ошибке с увеличивающейся задержкой" },
-    { "title": "Parallel limit", "difficulty": "hard", "concept": "конкурентность", "briefDescription": "Реализовать parallelLimit(tasks, limit) — выполняет не более limit задач одновременно" },
-    { "title": "Async очередь", "difficulty": "hard", "concept": "очередь задач", "briefDescription": "Создать AsyncQueue с методами enqueue(task), где задачи выполняются последовательно" },
-    { "title": "Timeout-обёртка", "difficulty": "medium", "concept": "Promise.race", "briefDescription": "Написать withTimeout(promise, ms), которая реджектит при превышении таймаута" }
-  ],
-  "interviewAngles": [
-    { "question": "Что такое event loop и как он работает?", "level": "junior", "keyInsight": "Цикл проверяет call stack (пуст ли) → берёт задачу из microtask queue → потом из task queue" },
-    { "question": "В каком порядке выполнятся setTimeout(0), Promise.resolve().then(), console.log?", "level": "junior", "keyInsight": "console.log (синхронно) → Promise.then (microtask) → setTimeout (macrotask)" },
-    { "question": "Чем Promise.all отличается от Promise.allSettled?", "level": "middle", "keyInsight": "all — reject при первой ошибке; allSettled — ждёт все, возвращает статусы" },
-    { "question": "Как избежать последовательного выполнения промисов при await в цикле?", "level": "middle", "keyInsight": "Собрать промисы в массив, использовать Promise.all — await в цикле = последовательно" },
-    { "question": "Чем конкурентность отличается от параллелизма?", "level": "senior", "keyInsight": "Конкурентность — структурирование (переключение), параллелизм — одновременное выполнение. JS конкурентен, но не параллелен (кроме Workers)" },
-    { "question": "Как работает event loop в Node.js? Чем отличается от браузера?", "level": "senior", "keyInsight": "Node.js: libuv, 6 фаз (timers, pending, idle, poll, check, close). Браузер: task + microtask + render" }
+    { "chapterId": "ch01-closures", "relationship": "Замыкания — основа callbacks и async-функций, stale closure в асинхронном коде" }
   ],
   "antipatterns": [
-    "await в цикле for — последовательное выполнение вместо параллельного",
+    "await в цикле for — последовательное выполнение вместо одновременного",
     "Забытый await — функция возвращает Promise, а не значение",
     "Promise constructor antipattern — оборачивание уже Promise-based API в new Promise",
     "Глотание ошибок — .catch(() => {}) без обработки",
     "Mixing callbacks and promises — непоследовательный стиль асинхронного кода",
-    "Неограниченный параллелизм — 1000 fetch запросов одновременно вместо batching"
+    "1000 fetch запросов одновременно вместо batching"
   ],
   "realWorldUsage": [
     "fetch API — все HTTP-запросы в браузере",
@@ -140,7 +109,6 @@
     "React useEffect + async — загрузка данных с cleanup",
     "Express async middleware — обработка запросов",
     "Database queries — все ORM (Prisma, Sequelize) возвращают Promise",
-    "Web Workers + postMessage — настоящий параллелизм в браузере",
     "AbortController — отмена fetch, event listeners"
   ]
 }

@@ -31,7 +31,7 @@ await Promise.any([p1, p2, p3])
 ## async/await
 
 ```js
-// Параллельно
+// Одновременно
 const [a, b] = await Promise.all([fetchA(), fetchB()])
 
 // Последовательно (если b зависит от a)
@@ -66,7 +66,7 @@ await Promise.all(items.map(item => process(item)))
 // ❌ Последовательный await для независимых операций
 const a = await fetchA(); const b = await fetchB()
 
-// ✅ Параллельно
+// ✅ Одновременно
 const [a, b] = await Promise.all([fetchA(), fetchB()])
 
 // ❌ Promise constructor antipattern
