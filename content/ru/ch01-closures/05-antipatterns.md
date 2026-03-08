@@ -1,46 +1,39 @@
 ---
-title: "Антипаттерны и как их избежать"
+title: "Антипаттерны"
 parent: "ch01-closures"
 order: 5
 ---
 
-## Антипаттерн 1: Замыкание вместо параметра
+## Замыкание вместо параметра
 
 ```js
-// ❌ Скрытая зависимость
+// ❌ Скрытая зависимость от внешнего состояния
 let currentUser = null
 
 function greet() {
   console.log(`Привет, ${currentUser.name}`)
 }
-
-currentUser = { name: 'Алекс' }
-greet() // работает, но функция зависит от внешнего состояния
 ```
 
 ```js
-// ✅ Явный параметр
+// ✅ Явный параметр — чистая функция
 function greet(user) {
   console.log(`Привет, ${user.name}`)
 }
-
-greet({ name: 'Алекс' }) // чистая функция, без скрытых зависимостей
 ```
 
-**Правило:** если данные можно передать как аргумент — передавай как аргумент. Замыкание не должно заменять параметры.
+Если данные можно передать аргументом — передавай аргументом.
 
-## Антипаттерн 2: Чрезмерная вложенность
+## Чрезмерная вложенность
 
 ```js
-// ❌ 4 уровня вложенности — нечитаемо
+// ❌ 4 уровня — нечитаемо
 function createApp(config) {
   return function createRouter(routes) {
     return function createMiddleware(middleware) {
       return function handleRequest(req) {
-        // config, routes, middleware, req — всё в замыкании
-        middleware.forEach((m) => m(req))
-        const route = routes.find((r) => r.path === req.path)
-        return route?.handler(req) ?? config.notFound
+        middleware.forEach(m => m(req))
+        return routes.find(r => r.path === req.path)?.handler(req)
       }
     }
   }
@@ -48,7 +41,7 @@ function createApp(config) {
 ```
 
 ```js
-// ✅ Объект или класс
+// ✅ Объект вместо вложенности
 function createApp(config) {
   const routes = []
   const middleware = []
@@ -57,30 +50,26 @@ function createApp(config) {
     addRoute(path, handler) { routes.push({ path, handler }) },
     use(m) { middleware.push(m) },
     handle(req) {
-      middleware.forEach((m) => m(req))
-      const route = routes.find((r) => r.path === req.path)
-      return route?.handler(req) ?? config.notFound
+      middleware.forEach(m => m(req))
+      return routes.find(r => r.path === req.path)?.handler(req)
     },
   }
 }
 ```
 
-**Правило:** 2 уровня замыканий — нормально. 3 — подумай. 4+ — рефактори.
+2 уровня — нормально. 3 — подумай. 4+ — рефактори.
 
-## Антипаттерн 3: Замыкание над мутабельным состоянием в async
+## Замыкание над мутабельным состоянием в async
 
 ```js
-// ❌ Stale closure — data может измениться между вызовами
+// ❌ data может быть null к моменту вызова setTimeout
 function loadAndProcess() {
   let data = null
 
   fetch('/api/data')
-    .then((res) => res.json())
-    .then((json) => {
-      data = json
-    })
+    .then(res => res.json())
+    .then(json => { data = json })
 
-  // Этот коллбэк замкнулся на data
   setTimeout(() => {
     console.log(data.length) // data может быть null!
   }, 100)
@@ -88,25 +77,22 @@ function loadAndProcess() {
 ```
 
 ```js
-// ✅ Используй цепочку промисов или async/await
+// ✅ async/await гарантирует порядок
 async function loadAndProcess() {
-  const data = await fetch('/api/data').then((res) => res.json())
-  console.log(data.length) // data точно загружена
+  const data = await fetch('/api/data').then(res => res.json())
+  console.log(data.length)
 }
 ```
 
-## Антипаттерн 4: Ненужное замыкание
+## Ненужное замыкание
 
 ```js
-// ❌ Замыкание не нужно — функция ничего не захватывает
+// ❌ Замыкание ничего не захватывает — бессмысленная обёртка
 function createFormatter() {
   return function format(date) {
     return date.toLocaleDateString('ru-RU')
   }
 }
-
-const formatter = createFormatter()
-formatter(new Date())
 ```
 
 ```js
@@ -114,30 +100,27 @@ formatter(new Date())
 function formatDate(date) {
   return date.toLocaleDateString('ru-RU')
 }
-
-formatDate(new Date())
 ```
 
-**Правило:** если возвращаемая функция не использует переменные из внешнего окружения — замыкание не нужно.
+Если возвращаемая функция не использует переменные из внешнего окружения — замыкание не нужно.
 
-## Антипаттерн 5: Захват DOM-элементов
+## Захват DOM-элементов без очистки
 
 ```js
-// ❌ Элемент удалён из DOM, но замыкание держит ссылку → утечка
+// ❌ Элемент удалён из DOM, но замыкание держит ссылку
 function initTooltip(element) {
   const tooltip = document.createElement('div')
   document.body.appendChild(tooltip)
 
   element.addEventListener('mouseenter', () => {
-    tooltip.style.display = 'block' // замыкание держит tooltip
+    tooltip.style.display = 'block'
   })
-
-  // Если element удалён из DOM — обработчик и tooltip остаются в памяти
+  // element удалён → обработчик и tooltip утекли
 }
 ```
 
 ```js
-// ✅ Возвращай функцию очистки
+// ✅ Функция очистки
 function initTooltip(element) {
   const tooltip = document.createElement('div')
   document.body.appendChild(tooltip)
@@ -156,21 +139,20 @@ function initTooltip(element) {
 }
 ```
 
-## Замыкание vs класс: когда что
+## Замыкание vs класс
 
 | Критерий | Замыкание | Класс |
 |----------|-----------|-------|
-| Простой случай (1-3 метода) | ✅ Проще, меньше кода | Избыточно |
-| Много методов (5+) | Неудобно | ✅ Удобнее организовать |
-| Наследование | Невозможно | ✅ `extends` |
-| Настоящая приватность | ✅ По умолчанию | `#private` (ES2022) |
-| Производительность | ≈ одинаково | ≈ одинаково |
-| Тестируемость | Сложнее мокать | ✅ Проще через DI |
+| Простой случай (1-3 метода) | Проще | Избыточно |
+| Много методов (5+) | Неудобно | Удобнее |
+| Наследование | Нет | `extends` |
+| Приватность | По умолчанию | `#private` (ES2022) |
+| Тестируемость | Сложнее мокать | Проще через DI |
 
-## Правила большого пальца
+## Правила
 
-1. **Используй замыкание** для фабрик, каррирования, мемоизации, debounce/throttle
-2. **Используй класс** для сущностей с состоянием и множеством методов
-3. **Не замыкай то, что можно передать параметром**
-4. **Не вкладывай больше 2 уровней**
-5. **Всегда думай об очистке** — если замыкание живёт долго, убедись, что оно не держит лишнее
+1. Замыкание — для фабрик, мемоизации, debounce/throttle
+2. Класс — для сущностей с состоянием и множеством методов
+3. Не замыкай то, что можно передать параметром
+4. Не больше 2 уровней вложенности
+5. Всегда думай об очистке — если замыкание живёт долго, убедись, что оно не держит лишнее
