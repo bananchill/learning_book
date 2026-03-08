@@ -1,0 +1,87 @@
+{
+  "chapter": "ch03-parallelism",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "В чём разница между конкурентностью и параллелизмом в JavaScript?",
+      "level": "junior",
+      "goodAnswer": "Конкурентность — это способность обрабатывать несколько задач, переключаясь между ними в одном потоке. В JS это event loop: пока ждём ответ от сервера, обрабатываем другие события. Параллелизм — буквально одновременное выполнение на разных ядрах. В JS это Web Workers и worker_threads. Event loop — конкурентность, Workers — параллелизм.",
+      "whatInterviewerWants": "Понимание, что event loop ≠ параллелизм. Знание, что JS однопоточный, но может использовать дополнительные потоки через Workers.",
+      "commonMistakes": [
+        "Путают конкурентность с параллелизмом",
+        "Думают, что async/await создаёт параллелизм",
+        "Не знают про Web Workers"
+      ],
+      "followUps": [
+        "Когда event loop недостаточно?",
+        "Что такое CPU-bound vs I/O-bound задачи?"
+      ]
+    },
+    {
+      "id": "i2",
+      "question": "Как работают Web Workers и какие у них ограничения?",
+      "level": "junior",
+      "goodAnswer": "Web Worker — отдельный поток в браузере. Создаётся через new Worker('file.js'). Обмен данными — через postMessage (данные клонируются). Ограничения: нет доступа к DOM, window, localStorage. Есть fetch, setTimeout, indexedDB. Для больших данных можно использовать Transferable — zero-copy передача ArrayBuffer.",
+      "whatInterviewerWants": "Практическое знание Workers: создание, обмен данными, ограничения. Понимание, зачем они нужны (CPU-bound задачи).",
+      "commonMistakes": [
+        "Не знают про Transferable и копируют большие данные",
+        "Думают, что воркер имеет доступ к DOM",
+        "Не знают разницу между Dedicated, Shared и Service Worker"
+      ],
+      "followUps": [
+        "Что такое structured clone algorithm?",
+        "Чем Transferable отличается от обычной передачи?"
+      ]
+    },
+    {
+      "id": "i3",
+      "question": "Что такое SharedArrayBuffer и зачем нужны Atomics?",
+      "level": "middle",
+      "goodAnswer": "SharedArrayBuffer — общая область памяти, доступная нескольким потокам без копирования. Проблема: два потока могут одновременно писать в одну ячейку — data race. Atomics предоставляют атомарные операции (add, load, store, compareExchange), которые гарантированно неделимы. Atomics.wait/notify позволяют потокам ждать и уведомлять друг друга. В браузере SAB требует заголовков COOP/COEP из-за Spectre.",
+      "whatInterviewerWants": "Понимание проблемы общей памяти (data race). Знание Atomics как решения. Осведомлённость о Spectre и COOP/COEP.",
+      "commonMistakes": [
+        "Используют SAB без Atomics и получают data race",
+        "Не знают про COOP/COEP",
+        "Вызывают Atomics.wait в main thread"
+      ],
+      "followUps": [
+        "Что такое compare-and-exchange?",
+        "Почему Atomics.wait нельзя в main thread?",
+        "Что такое Spectre?"
+      ]
+    },
+    {
+      "id": "i4",
+      "question": "Чем worker_threads отличается от child_process? Когда что использовать?",
+      "level": "middle",
+      "goodAnswer": "worker_threads создаёт поток внутри процесса Node.js — быстрый запуск (~5ms), поддержка SharedArrayBuffer, общий event loop parent'а не блокируется. child_process (fork/spawn) создаёт отдельный процесс ОС — полная изоляция, свой PID, обмен через IPC. worker_threads — для CPU-bound задач внутри приложения. child_process — для запуска внешних программ или когда нужна crash-изоляция. cluster — для масштабирования HTTP-серверов.",
+      "whatInterviewerWants": "Чёткое понимание разницы между потоками и процессами. Умение выбрать правильный инструмент для задачи.",
+      "commonMistakes": [
+        "Путают worker_threads и Web Workers",
+        "Не знают про cluster",
+        "Используют child_process для CPU-задач, где worker_threads эффективнее"
+      ],
+      "followUps": [
+        "Когда падение worker_threads роняет весь процесс?",
+        "Как cluster распределяет входящие соединения?"
+      ]
+    },
+    {
+      "id": "i5",
+      "question": "Как реализовать worker pool и когда он нужен?",
+      "level": "senior",
+      "goodAnswer": "Worker pool — N предсозданных воркеров + очередь задач. Новая задача отправляется свободному воркеру; если все заняты — встаёт в очередь. Когда воркер завершает задачу, берёт следующую из очереди. Нужен когда: CPU-bound задачи приходят часто, создание воркера на каждый запрос дорого (~5ms overhead). Реализация: массив воркеров, очередь промисов, round-robin или free-list. В продакшене — piscina (Node.js) или workerpool. Размер пула = количество ядер (os.availableParallelism()).",
+      "whatInterviewerWants": "Понимание паттерна pool. Знание overhead создания воркера. Способность реализовать или хотя бы описать архитектуру. Знание production-решений.",
+      "commonMistakes": [
+        "Создают воркер на каждый запрос",
+        "Не ограничивают размер пула",
+        "Не обрабатывают ошибки воркеров (dead worker в пуле)"
+      ],
+      "followUps": [
+        "Как обрабатывать crash воркера в пуле?",
+        "Что такое backpressure в контексте worker pool?",
+        "Расскажите про piscina"
+      ]
+    }
+  ]
+}

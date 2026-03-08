@@ -1,0 +1,125 @@
+{
+  "chapter": "ch03-parallelism",
+  "tasks": [
+    {
+      "id": "01-easy-create-worker",
+      "title": "Создай Web Worker",
+      "difficulty": "easy",
+      "description": "Создай функцию createInlineWorker(code), которая принимает строку с JS-кодом и возвращает Web Worker, созданный из Blob. Воркер должен выполнять переданный код.",
+      "file": "01-easy-create-worker.js",
+      "testFile": "01-easy-create-worker.test.js",
+      "concepts": ["web-worker", "blob", "inline-worker"],
+      "hints": [
+        "Web Worker можно создать не только из файла, но и из Blob URL.",
+        "Создай Blob из строки кода с типом 'application/javascript', затем URL.createObjectURL.",
+        "const blob = new Blob([code], { type: 'application/javascript' }); return new Worker(URL.createObjectURL(blob))"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-heavy-computation",
+      "title": "Вынеси вычисление в воркер",
+      "difficulty": "easy",
+      "description": "Создай функцию computeInWorker(fn, arg), которая принимает чистую функцию (без замыканий) и аргумент. Функция должна выполниться в Web Worker и вернуть промис с результатом. Используй inline worker через Blob.",
+      "file": "02-easy-heavy-computation.js",
+      "testFile": "02-easy-heavy-computation.test.js",
+      "concepts": ["web-worker", "postMessage", "offloading"],
+      "hints": [
+        "Передай функцию в воркер как строку: fn.toString(). В воркере: self.onmessage + postMessage.",
+        "Код воркера: `self.onmessage = (e) => { const fn = ${fn.toString()}; self.postMessage(fn(e.data)) }`",
+        "Верни new Promise, внутри: worker.onmessage = (e) => resolve(e.data); worker.postMessage(arg)"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-easy-shared-counter",
+      "title": "Атомарный счётчик",
+      "difficulty": "easy",
+      "description": "Создай функцию atomicIncrement(sharedView, index), которая атомарно увеличивает значение в Int32Array (на SharedArrayBuffer) по указанному индексу на 1 и возвращает новое значение.",
+      "file": "03-easy-shared-counter.js",
+      "testFile": "03-easy-shared-counter.test.js",
+      "concepts": ["shared-array-buffer", "atomics"],
+      "hints": [
+        "Используй Atomics.add — атомарное сложение, которое возвращает старое значение.",
+        "Atomics.add(view, index, 1) прибавляет 1 и возвращает значение ДО прибавления.",
+        "return Atomics.add(sharedView, index, 1) + 1"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "04-medium-parallel-sum",
+      "title": "Параллельная сумма массива",
+      "difficulty": "medium",
+      "description": "Создай функцию parallelSum(numbers, workerCount), которая разбивает массив на workerCount частей, суммирует каждую часть в отдельном inline-воркере и возвращает промис с общей суммой. Воркеры должны работать параллельно.",
+      "file": "04-medium-parallel-sum.js",
+      "testFile": "04-medium-parallel-sum.test.js",
+      "concepts": ["web-worker", "data-partitioning", "parallel-execution"],
+      "hints": [
+        "Раздели массив на workerCount частей: chunk = Math.ceil(numbers.length / workerCount).",
+        "Создай workerCount inline-воркеров, каждый суммирует свой кусок. Дождись всех через Promise.all.",
+        "Каждый воркер: self.onmessage = (e) => self.postMessage(e.data.reduce((a,b) => a+b, 0)). Финальный результат: partialSums.reduce((a,b) => a+b, 0)"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "05-medium-node-worker-hash",
+      "title": "Хеширование в worker_thread",
+      "difficulty": "medium",
+      "description": "Создай функцию hashInWorker(text, algorithm), которая вычисляет хеш строки в отдельном worker_thread Node.js и возвращает промис с hex-строкой результата. Используй isMainThread для dual-mode файла.",
+      "file": "05-medium-node-worker-hash.js",
+      "testFile": "05-medium-node-worker-hash.test.js",
+      "concepts": ["worker-threads", "crypto", "workerData"],
+      "hints": [
+        "Используй isMainThread для разделения: main создаёт Worker(import.meta.url, { workerData }), worker считает хеш.",
+        "В воркере: crypto.createHash(algorithm).update(text).digest('hex'). Результат — parentPort.postMessage.",
+        "import { Worker, isMainThread, parentPort, workerData } from 'node:worker_threads'; import crypto from 'node:crypto'"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "06-hard-worker-pool",
+      "title": "Пул воркеров",
+      "difficulty": "hard",
+      "description": "Реализуй класс WorkerPool с методами: constructor(workerFile, size) — создаёт пул из size воркеров; exec(data) — отправляет задачу свободному воркеру (или в очередь) и возвращает промис с результатом; destroy() — завершает все воркеры.",
+      "file": "06-hard-worker-pool.js",
+      "testFile": "06-hard-worker-pool.test.js",
+      "concepts": ["worker-pool", "queue", "resource-management"],
+      "hints": [
+        "Храни два списка: свободные воркеры (free) и очередь задач (queue). exec() берёт воркер из free или ставит задачу в queue.",
+        "Когда воркер завершает задачу — проверь queue. Если есть задача — отдай воркеру. Если нет — верни в free.",
+        "Каждая задача = { data, resolve, reject }. На worker.onmessage → resolve, на worker.onerror → reject. После — release(worker)."
+      ],
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "07-hard-shared-ringbuffer",
+      "title": "Lock-free кольцевой буфер",
+      "difficulty": "hard",
+      "description": "Реализуй SPSC (single-producer, single-consumer) кольцевой буфер на SharedArrayBuffer. Класс RingBuffer с методами: constructor(capacity) — создаёт буфер; push(value) — записывает значение (false если полон); pop() — читает значение (undefined если пуст); get size(). Используй Atomics для head/tail указателей.",
+      "file": "07-hard-shared-ringbuffer.js",
+      "testFile": "07-hard-shared-ringbuffer.test.js",
+      "concepts": ["shared-array-buffer", "atomics", "lock-free", "ring-buffer"],
+      "hints": [
+        "Структура SAB: [head, tail, ...data]. Head — индекс записи (producer), tail — индекс чтения (consumer). Используй Atomics.load/store.",
+        "push: newHead = (head + 1) % capacity. Если newHead === tail — буфер полон. Иначе: data[head] = value, Atomics.store(headView, 0, newHead).",
+        "pop: если head === tail — пусто. Иначе: value = data[tail], Atomics.store(tailView, 0, (tail + 1) % capacity). Size = (head - tail + capacity) % capacity."
+      ],
+      "estimatedMinutes": 25
+    },
+    {
+      "id": "08-hard-parallel-map",
+      "title": "Параллельный map с пулом",
+      "difficulty": "hard",
+      "description": "Создай функцию parallelMap(items, workerFile, poolSize), которая обрабатывает массив items через пул из poolSize воркеров и возвращает массив результатов в исходном порядке. Каждый воркер получает один элемент, обрабатывает и возвращает результат.",
+      "file": "08-hard-parallel-map.js",
+      "testFile": "08-hard-parallel-map.test.js",
+      "concepts": ["worker-pool", "ordered-results", "parallel-execution"],
+      "hints": [
+        "Используй worker pool паттерн: N воркеров, очередь задач. Каждая задача хранит оригинальный индекс для сохранения порядка.",
+        "Создай results[items.length]. При получении ответа от воркера — results[originalIndex] = result.",
+        "Запусти poolSize 'воркер-функций': каждая берёт задачу из общей очереди (nextIndex++), отправляет в воркер, ждёт ответ, берёт следующую. Promise.all(workers)."
+      ],
+      "estimatedMinutes": 20
+    }
+  ]
+}

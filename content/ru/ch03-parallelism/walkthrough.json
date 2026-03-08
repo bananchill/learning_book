@@ -1,0 +1,62 @@
+{
+  "title": "Web Worker: обмен сообщениями между потоками",
+  "code": "// === main.js ===\nconst worker = new Worker('worker.js')\n\nworker.postMessage({ type: 'compute', n: 5 })\nconsole.log('Сообщение отправлено')\n\nworker.onmessage = (event) => {\n  console.log('Результат:', event.data)\n}\n\n// === worker.js ===\nself.onmessage = (event) => {\n  const { type, n } = event.data\n  if (type === 'compute') {\n    let sum = 0\n    for (let i = 1; i <= n; i++) sum += i\n    self.postMessage(sum)\n  }\n}",
+  "steps": [
+    {
+      "line": 2,
+      "description": "Создаём Web Worker. Браузер загружает worker.js и создаёт новый поток. Два потока теперь работают параллельно.",
+      "variables": { "worker": "Worker instance" },
+      "callStack": ["global", "new Worker('worker.js')"],
+      "threads": { "main": "active", "worker": "initializing" }
+    },
+    {
+      "line": 4,
+      "description": "Отправляем сообщение воркеру через postMessage. Объект { type: 'compute', n: 5 } клонируется (structured clone) и помещается в очередь сообщений воркера.",
+      "variables": { "message": "{ type: 'compute', n: 5 }" },
+      "callStack": ["global", "worker.postMessage()"],
+      "threads": { "main": "active", "worker": "waiting for messages" }
+    },
+    {
+      "line": 5,
+      "description": "console.log выполняется сразу — postMessage асинхронный. Main thread не ждёт воркер. Выводит 'Сообщение отправлено'.",
+      "variables": { "output": "['Сообщение отправлено']" },
+      "callStack": ["global", "console.log()"],
+      "threads": { "main": "active", "worker": "processing message" }
+    },
+    {
+      "line": 13,
+      "description": "Воркер получает сообщение: срабатывает self.onmessage. Деструктуризация: type = 'compute', n = 5. Это происходит в отдельном потоке — параллельно с main thread.",
+      "variables": { "type": "'compute'", "n": 5 },
+      "callStack": ["worker: onmessage"],
+      "threads": { "main": "idle", "worker": "active" }
+    },
+    {
+      "line": 16,
+      "description": "Воркер считает сумму 1+2+3+4+5 = 15 в цикле. Это CPU-bound вычисление, но оно в отдельном потоке — main thread свободен.",
+      "variables": { "sum": 15, "i": 6 },
+      "callStack": ["worker: onmessage", "for loop"],
+      "threads": { "main": "idle", "worker": "computing" }
+    },
+    {
+      "line": 17,
+      "description": "Воркер отправляет результат (15) обратно в main thread через self.postMessage. Значение клонируется и помещается в очередь сообщений main thread.",
+      "variables": { "result": 15 },
+      "callStack": ["worker: self.postMessage(15)"],
+      "threads": { "main": "idle", "worker": "sending result" }
+    },
+    {
+      "line": 8,
+      "description": "Main thread получает сообщение от воркера: срабатывает worker.onmessage. event.data = 15. Выводит 'Результат: 15'.",
+      "variables": { "output": "['Сообщение отправлено', 'Результат: 15']", "event.data": 15 },
+      "callStack": ["worker.onmessage"],
+      "threads": { "main": "active", "worker": "idle" }
+    },
+    {
+      "line": 9,
+      "description": "Итоговый вывод: 'Сообщение отправлено' (синхронно), затем 'Результат: 15' (асинхронно, из воркера). Main thread не блокировался ни на одном шаге.",
+      "variables": { "output": "['Сообщение отправлено', 'Результат: 15']" },
+      "callStack": [],
+      "threads": { "main": "idle", "worker": "idle" }
+    }
+  ]
+}

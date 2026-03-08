@@ -1,0 +1,42 @@
+[
+  {
+    "title": "MDN: Web Workers API",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полное руководство по Web Workers: Dedicated, Shared, Service Worker",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "MDN: SharedArrayBuffer",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+    "type": "documentation",
+    "language": "en",
+    "description": "Общая память между потоками, ограничения безопасности, COOP/COEP",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Node.js: worker_threads",
+    "url": "https://nodejs.org/api/worker_threads.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация worker_threads: Worker, parentPort, workerData, SharedArrayBuffer",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Surma: When should you be using Web Workers?",
+    "url": "https://surma.dev/things/when-workers/",
+    "type": "article",
+    "language": "en",
+    "description": "Практическое руководство: когда воркер оправдан, правило 100ms, off-main-thread архитектура",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "piscina — worker pool для Node.js",
+    "url": "https://github.com/piscinajs/piscina",
+    "type": "documentation",
+    "language": "en",
+    "description": "Production-ready worker pool: автоматическое управление потоками, очереди, backpressure",
+    "difficulty": "advanced"
+  }
+]

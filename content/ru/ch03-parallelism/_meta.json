@@ -1,0 +1,9 @@
+{
+  "id": "ch03-parallelism",
+  "title": "Параллелизм и конкурентность",
+  "description": "Конкурентность vs параллелизм, Web Workers, SharedArrayBuffer, Atomics, worker_threads, паттерны многопоточности",
+  "section": "javascript",
+  "order": 3,
+  "estimatedMinutes": 55,
+  "topics": ["concurrency", "parallelism", "web-workers", "shared-array-buffer", "atomics", "worker-threads", "child-process", "cluster"]
+}

@@ -33,6 +33,20 @@
             { "id": "04-async-await", "title": "Async/Await", "order": 4 },
             { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
           ]
+        },
+        {
+          "id": "ch03-parallelism",
+          "title": "Параллелизм и конкурентность",
+          "description": "Конкурентность vs параллелизм, Web Workers, SharedArrayBuffer, Atomics, worker_threads, паттерны многопоточности",
+          "order": 3,
+          "contentPath": "content/ru/ch03-parallelism",
+          "subchapters": [
+            { "id": "01-concepts", "title": "Конкурентность vs параллелизм", "order": 1 },
+            { "id": "02-web-workers", "title": "Web Workers", "order": 2 },
+            { "id": "03-shared-memory", "title": "SharedArrayBuffer и Atomics", "order": 3 },
+            { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
+            { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
+          ]
         }
       ]
     },

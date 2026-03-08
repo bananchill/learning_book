@@ -1,0 +1,112 @@
+{
+  "chapter": "ch03-parallelism",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "В чём разница между конкурентностью и параллелизмом?",
+      "type": "multiple-choice",
+      "options": [
+        "Конкурентность — это параллелизм на одном ядре",
+        "Конкурентность — переключение между задачами, параллелизм — одновременное выполнение на нескольких ядрах",
+        "Параллелизм — синоним конкурентности в JavaScript",
+        "Конкурентность возможна только с Web Workers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Конкурентность (concurrency) — способность обрабатывать несколько задач, переключаясь между ними (event loop). Параллелизм (parallelism) — буквально одновременное выполнение на разных ядрах/потоках (Web Workers, worker_threads).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Какие данные НЕЛЬЗЯ передать через postMessage?",
+      "type": "multiple-choice",
+      "options": [
+        "Объекты и массивы",
+        "Map и Set",
+        "Функции и замыкания",
+        "ArrayBuffer и TypedArray"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Structured Clone Algorithm не может клонировать функции, DOM-элементы, Symbol, WeakMap. Функции (и замыкания) содержат ссылки на scope, который невозможно перенести в другой поток.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что произойдёт после transfer ArrayBuffer в воркер?\n```js\nconst buf = new ArrayBuffer(1024)\nworker.postMessage(buf, [buf])\nconsole.log(buf.byteLength)\n```",
+      "type": "code-output",
+      "options": ["1024", "0", "undefined", "TypeError"],
+      "correctAnswer": 1,
+      "explanation": "При transfer владение буфером передаётся воркеру. В отправляющем потоке буфер нейтрализуется — его byteLength становится 0. Данные не копируются, а перемещаются (zero-copy).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Зачем нужны Atomics при работе с SharedArrayBuffer?",
+      "type": "multiple-choice",
+      "options": [
+        "Для шифрования данных в памяти",
+        "Для предотвращения data race — гарантия неделимости операций чтения-модификации-записи",
+        "Для ускорения доступа к памяти",
+        "Для автоматической синхронизации всех потоков"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Без Atomics операция view[0]++ состоит из трёх шагов (read, modify, write), и два потока могут выполнить их одновременно — один результат потеряется. Atomics.add() выполняет всё атомарно — гонки данных исключены.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Почему Atomics.wait() нельзя вызывать в main thread браузера?",
+      "type": "multiple-choice",
+      "options": [
+        "Он не реализован для main thread",
+        "Он блокирует поток, что заморозит UI и сделает страницу неотзывчивой",
+        "Main thread не имеет доступа к SharedArrayBuffer",
+        "Это ограничение COOP/COEP"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Atomics.wait() блокирует поток до получения notify. В main thread это заморозит весь UI — клики, скролл, анимации. Браузер выбросит TypeError. Для main thread есть Atomics.waitAsync(), который возвращает промис.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "question": "Чем worker_threads отличается от child_process.fork?",
+      "type": "multiple-choice",
+      "options": [
+        "worker_threads работает только в браузере",
+        "worker_threads создаёт поток в том же процессе (общая память через SAB), fork — отдельный процесс ОС",
+        "child_process.fork быстрее запускается",
+        "worker_threads не поддерживает postMessage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "worker_threads создаёт поток внутри текущего процесса Node.js — быстрый запуск (~5ms), возможность общей памяти через SharedArrayBuffer. fork создаёт отдельный процесс ОС (~30-100ms), полная изоляция, обмен только через IPC.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q7",
+      "question": "Какой антипаттерн здесь?\n```js\nasync function processImage(imageData) {\n  const worker = new Worker('image-worker.js')\n  return new Promise((resolve) => {\n    worker.onmessage = (e) => {\n      resolve(e.data)\n      worker.terminate()\n    }\n    worker.postMessage(imageData)\n  })\n}\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Нельзя создавать промис внутри async-функции",
+        "Воркер создаётся и уничтожается на каждый вызов — нужен worker pool",
+        "imageData нельзя передать через postMessage",
+        "Нет обработки ошибок воркера"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Создание воркера (~5ms) на каждый вызов — расточительно. При частых вызовах overhead накопится. Правильно: создать пул воркеров один раз и переиспользовать. Хотя отсутствие обработки ошибок тоже проблема.",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q8",
+      "question": "Что делает Atomics.compareExchange(view, 0, 5, 10)?",
+      "type": "multiple-choice",
+      "options": [
+        "Всегда записывает 10 в view[0]",
+        "Записывает 10 в view[0] только если текущее значение === 5, иначе ничего не делает",
+        "Меняет местами значения 5 и 10",
+        "Сравнивает view[0] и view[5], записывает 10"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Compare-and-Exchange (CAS): атомарно проверяет, что view[0] === 5, и только тогда записывает 10. Возвращает старое значение. Это основа lock-free алгоритмов — позволяет безопасно обновлять данные без блокировок.",
+      "difficulty": "hard"
+    }
+  ]
+}

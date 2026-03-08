@@ -1,0 +1,111 @@
+{
+  "topic": "Параллелизм и конкурентность",
+  "chapterId": "ch03-parallelism",
+  "subchapters": [
+    {
+      "id": "01-concepts",
+      "title": "Конкурентность vs параллелизм",
+      "keyQuestions": [
+        "В чём разница между конкурентностью и параллелизмом?",
+        "Как JavaScript реализует конкурентность?",
+        "Когда event loop недостаточно?",
+        "Какие задачи требуют настоящего параллелизма?"
+      ],
+      "estimatedReadMinutes": 8,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма: один бариста (concurrency) vs два бариста (parallelism)", "Timeline: event loop vs параллельные потоки"],
+      "depthNotes": {
+        "standard": "Определения, аналогии, модель JS, CPU-bound vs I/O-bound",
+        "deep": "Модели конкурентности (CSP, Actor model), формальные определения"
+      }
+    },
+    {
+      "id": "02-web-workers",
+      "title": "Web Workers",
+      "keyQuestions": [
+        "Как создать Web Worker?",
+        "Как передавать данные через postMessage?",
+        "Что такое structured clone и Transferable?",
+        "Какие ограничения у воркеров (нет DOM, нет window)?"
+      ],
+      "estimatedReadMinutes": 12,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма: main thread ↔ worker thread через postMessage"],
+      "depthNotes": {
+        "standard": "Создание, обмен сообщениями, structured clone, Transferable, terminate",
+        "deep": "Inline workers через Blob, SharedWorker, Service Worker overview"
+      }
+    },
+    {
+      "id": "03-shared-memory",
+      "title": "SharedArrayBuffer и Atomics",
+      "keyQuestions": [
+        "Зачем нужна общая память, если есть postMessage?",
+        "Что такое data race и как Atomics их предотвращают?",
+        "Как работают Atomics.wait и Atomics.notify?",
+        "Что такое COOP/COEP и зачем они нужны?"
+      ],
+      "estimatedReadMinutes": 12,
+      "needsVisualization": false,
+      "visualizationIdeas": [],
+      "depthNotes": {
+        "standard": "SharedArrayBuffer, Atomics.add/load/store/compareExchange, wait/notify, заголовки безопасности",
+        "deep": "Модель памяти JS (спецификация), Spectre и side-channel атаки, memory ordering"
+      }
+    },
+    {
+      "id": "04-node-parallelism",
+      "title": "Параллелизм в Node.js",
+      "keyQuestions": [
+        "Чем worker_threads отличается от child_process?",
+        "Когда использовать cluster?",
+        "Как передавать данные между потоками в Node.js?",
+        "Какой инструмент выбрать для конкретной задачи?"
+      ],
+      "estimatedReadMinutes": 10,
+      "needsVisualization": false,
+      "visualizationIdeas": [],
+      "depthNotes": {
+        "standard": "worker_threads, child_process (fork/spawn/exec), cluster, сравнение",
+        "deep": "libuv thread pool, N-API worker-safe, IPC channels"
+      }
+    },
+    {
+      "id": "05-patterns-and-decisions",
+      "title": "Паттерны и решения",
+      "keyQuestions": [
+        "Как реализовать пул воркеров?",
+        "Когда воркер оправдан, а когда нет?",
+        "Какие готовые решения существуют (piscina, Comlink, workerpool)?",
+        "Как выбрать между postMessage, SAB и child_process?"
+      ],
+      "estimatedReadMinutes": 10,
+      "needsVisualization": false,
+      "visualizationIdeas": [],
+      "depthNotes": {
+        "standard": "Worker pool pattern, чеклист выбора, готовые библиотеки, антипаттерны",
+        "deep": "Off-main-thread architecture, WASM threads"
+      }
+    }
+  ],
+  "crossLinks": [
+    { "chapterId": "ch01-closures", "relationship": "Замыкания не передаются через postMessage — функции нельзя клонировать" },
+    { "chapterId": "ch02-async", "relationship": "Event loop = concurrency, не parallelism; worker pool расширяет parallel limit из ch02" }
+  ],
+  "antipatterns": [
+    "Создание воркера на каждый запрос вместо пула",
+    "Передача огромных данных через postMessage без Transferable",
+    "Использование SharedArrayBuffer без Atomics — data race",
+    "Воркер для задачи на 1мс — overhead больше выигрыша",
+    "Блокировка main thread через Atomics.wait в браузере",
+    "Общая мутабельная память без синхронизации"
+  ],
+  "realWorldUsage": [
+    "Обработка изображений/видео в браузере (WebCodecs + Worker)",
+    "Парсинг больших CSV/JSON в фоне",
+    "Криптография и хеширование (Web Crypto в Worker)",
+    "Node.js: параллельная обработка запросов через cluster",
+    "Node.js: CPU-bound задачи (компрессия, ML inference) через worker_threads",
+    "piscina — production-ready worker pool для Node.js"
+  ]
+}
