@@ -5,7 +5,7 @@
 set -e
 
 DOMAIN="interactive-code.ru"
-EMAIL="admin@interactive-code.ru"
+EMAIL="maks.maksim010607@yandex.ru"
 
 echo "=== Получение SSL-сертификата для $DOMAIN ==="
 
