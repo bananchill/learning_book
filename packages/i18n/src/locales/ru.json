@@ -126,7 +126,8 @@
     "go_playground": "Открыть песочницу",
     "tasks_for": "Задачи: {chapter}",
     "playground_for": "Песочница: {chapter}",
-    "back_to_tasks": "Назад к задачам"
+    "back_to_tasks": "Назад к задачам",
+    "next_task": "Следующая задача"
   },
   "content": {
     "coming_soon": "Скоро здесь будет контент",

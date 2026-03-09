@@ -28,8 +28,20 @@ const { starterCode, testCode, isLoading: isCodeLoading } = useTaskCode(
   () => selectedTask.value?.testFile,
 )
 
+const nextTask = computed(() => {
+  if (!selectedTaskId.value) return null
+  const idx = tasks.value.findIndex(t => t.id === selectedTaskId.value)
+  return idx >= 0 && idx < tasks.value.length - 1 ? tasks.value[idx + 1] : null
+})
+
 function handleSelect(taskId: string) {
   selectedTaskId.value = taskId
+}
+
+function goToNext() {
+  if (nextTask.value) {
+    selectedTaskId.value = nextTask.value.id
+  }
 }
 
 function handleSolved(taskId: string) {
@@ -68,15 +80,23 @@ function handleSolved(taskId: string) {
         @select="handleSelect"
       />
 
-      <BaseButton
-        v-if="selectedTask"
-        variant="ghost"
-        size="sm"
-        class="mt-4"
-        @click="selectedTaskId = null"
-      >
-        &larr; {{ t('chapter.back_to_tasks') }}
-      </BaseButton>
+      <div v-if="selectedTask" class="mt-4 flex items-center justify-between">
+        <BaseButton
+          variant="ghost"
+          size="sm"
+          @click="selectedTaskId = null"
+        >
+          &larr; {{ t('chapter.back_to_tasks') }}
+        </BaseButton>
+        <BaseButton
+          v-if="nextTask"
+          variant="ghost"
+          size="sm"
+          @click="goToNext"
+        >
+          {{ t('chapter.next_task') }} &rarr;
+        </BaseButton>
+      </div>
     </template>
 
     <ContentPlaceholder v-else />

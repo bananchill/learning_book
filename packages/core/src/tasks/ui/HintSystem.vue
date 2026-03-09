@@ -24,12 +24,12 @@ const levelBg = ['bg-success-light', 'bg-warning-light', 'bg-danger-light']
 </script>
 
 <template>
-  <div class="space-y-3">
+  <div class="space-y-4">
     <!-- Открытые подсказки -->
     <div
       v-for="(hint, i) in currentHints"
       :key="i"
-      class="rounded-lg border-l-4 px-4 py-3 text-sm"
+      class="rounded-lg  px-4 py-3 text-sm"
       :class="[levelColors[i], levelBg[i]]"
     >
       <span class="font-medium text-text-secondary">
