@@ -29,6 +29,50 @@ const props = withDefaults(defineProps<{
   showConsole: true,
 })
 
+// Расширение редактора
+const isExpanded = ref(false)
+const editorHeight = ref(0)
+const MIN_HEIGHT = 150
+const MAX_HEIGHT = 800
+
+onMounted(() => {
+  editorHeight.value = parseInt(props.height) || 300
+})
+
+const currentHeight = computed(() =>
+  isExpanded.value ? `${MAX_HEIGHT}px` : `${editorHeight.value}px`
+)
+
+function toggleExpand() {
+  isExpanded.value = !isExpanded.value
+}
+
+// Ресайз перетаскиванием
+let startY = 0
+let startHeight = 0
+
+function onResizeStart(e: PointerEvent) {
+  if (isExpanded.value) return
+  startY = e.clientY
+  startHeight = editorHeight.value
+  document.addEventListener('pointermove', onResizeMove)
+  document.addEventListener('pointerup', onResizeEnd)
+  document.body.style.userSelect = 'none'
+  document.body.style.cursor = 'row-resize'
+}
+
+function onResizeMove(e: PointerEvent) {
+  const delta = e.clientY - startY
+  editorHeight.value = Math.min(MAX_HEIGHT, Math.max(MIN_HEIGHT, startHeight + delta))
+}
+
+function onResizeEnd() {
+  document.removeEventListener('pointermove', onResizeMove)
+  document.removeEventListener('pointerup', onResizeEnd)
+  document.body.style.userSelect = ''
+  document.body.style.cursor = ''
+}
+
 const emit = defineEmits<{
   'code-change': [code: string]
   'test-results': [results: TestResult[]]
@@ -177,6 +221,28 @@ watch(testResults, (results) => {
         <BaseButton size="sm" variant="primary" :disabled="isRunning" @click="onRun">
           {{ isRunning ? t('sandbox.running') : t('sandbox.run') }}
         </BaseButton>
+
+        <div class="w-px h-4 bg-border mx-1" />
+
+        <!-- Развернуть / Свернуть -->
+        <BaseButton
+          size="sm"
+          variant="ghost"
+          :title="isExpanded ? t('sandbox.collapse') : t('sandbox.expand')"
+          @click="toggleExpand"
+        >
+          <svg
+            class="w-4 h-4 transition-transform"
+            :class="{ 'rotate-180': isExpanded }"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M3 10L8 5L13 10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 14L8 9L13 14" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </BaseButton>
       </div>
     </div>
 
@@ -185,9 +251,19 @@ watch(testResults, (results) => {
       :model-value="code"
       :language="language"
       :read-only="readOnly"
-      :height="height"
+      :height="currentHeight"
       @update:model-value="onCodeChange"
     />
+
+    <!-- Ручка ресайза -->
+    <div
+      v-if="!isExpanded"
+      class="h-1.5 cursor-row-resize bg-surface hover:bg-primary/20 transition-colors flex items-center justify-center group"
+      :title="t('sandbox.resize')"
+      @pointerdown="onResizeStart"
+    >
+      <div class="w-8 h-0.5 rounded-full bg-border group-hover:bg-primary/50 transition-colors" />
+    </div>
 
     <!-- Ошибка -->
     <div
