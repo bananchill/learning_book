@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { memoize } from './02-easy-memoize'
 
 describe('memoize', () => {
@@ -8,20 +8,22 @@ describe('memoize', () => {
   })
 
   it('не вызывает функцию повторно для того же аргумента', () => {
-    const fn = vi.fn((x) => x * 2)
+    let callCount = 0
+    const fn = (x) => { callCount++; return x * 2 }
     const memoized = memoize(fn)
     memoized(5)
     memoized(5)
     memoized(5)
-    expect(fn).toHaveBeenCalledTimes(1)
+    expect(callCount).toBe(1)
   })
 
   it('вызывает функцию для разных аргументов', () => {
-    const fn = vi.fn((x) => x * 2)
+    let callCount = 0
+    const fn = (x) => { callCount++; return x * 2 }
     const memoized = memoize(fn)
     memoized(1)
     memoized(2)
-    expect(fn).toHaveBeenCalledTimes(2)
+    expect(callCount).toBe(2)
   })
 
   it('корректно кэширует разные значения', () => {
