@@ -1,54 +1,66 @@
 #!/bin/bash
-# Первичное получение Let's Encrypt сертификата для interactive-code.ru
-# Запустить один раз на сервере перед основным docker compose up
+# Настройка Let's Encrypt для interactive-code.ru
+# Хостовый nginx как reverse proxy → Docker-контейнер на порту 3000
 
 set -e
 
 DOMAIN="interactive-code.ru"
 EMAIL="maks.maksim010607@yandex.ru"
 
-echo "=== Получение SSL-сертификата для $DOMAIN ==="
+echo "=== Настройка SSL для $DOMAIN ==="
 
-# 1. Запускаем nginx с временным self-signed сертификатом (для certbot challenge)
-echo "1/4 Создаём временный сертификат..."
-docker compose up -d book
+# 1. Установка certbot
+echo "1/5 Установка certbot..."
+sudo apt update
+sudo apt install -y certbot python3-certbot-nginx
 
-# Ждём пока nginx поднимется
-sleep 5
+# 2. Создаём директорию для certbot challenge
+sudo mkdir -p /var/www/certbot
 
-# Создаём временные сертификаты чтобы nginx мог стартовать
-docker compose exec book sh -c "
-  mkdir -p /etc/letsencrypt/live/$DOMAIN
-  openssl req -x509 -nodes -days 1 -newkey rsa:2048 \
-    -keyout /etc/letsencrypt/live/$DOMAIN/privkey.pem \
-    -out /etc/letsencrypt/live/$DOMAIN/fullchain.pem \
-    -subj '/CN=localhost'
-"
+# 3. Копируем конфиг nginx (без SSL-блока для первичного получения)
+echo "2/5 Настройка nginx..."
+sudo tee /etc/nginx/sites-available/interactive-code.ru > /dev/null <<'NGINX'
+server {
+    listen 80;
+    listen [::]:80;
+    server_name interactive-code.ru www.interactive-code.ru;
 
-# Перезапускаем nginx с временным сертификатом
-docker compose exec book nginx -s reload
-sleep 2
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
 
-# 2. Получаем настоящий сертификат
-echo "2/4 Запрашиваем сертификат у Let's Encrypt..."
-docker compose run --rm certbot certonly \
-  --webroot \
-  --webroot-path=/var/www/certbot \
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+NGINX
+
+sudo ln -sf /etc/nginx/sites-available/interactive-code.ru /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+
+# 4. Запускаем Docker-контейнер
+echo "3/5 Запуск контейнера..."
+docker compose up -d --build
+
+# 5. Получаем сертификат
+echo "4/5 Получение сертификата Let's Encrypt..."
+sudo certbot --nginx \
   --email "$EMAIL" \
   --agree-tos \
   --no-eff-email \
   -d "$DOMAIN" \
   -d "www.$DOMAIN"
 
-# 3. Перезапускаем nginx с настоящим сертификатом
-echo "3/4 Перезапускаем nginx..."
-docker compose exec book nginx -s reload
-
-# 4. Запускаем certbot для автообновления
-echo "4/4 Запускаем автообновление..."
-docker compose up -d certbot
+# 6. Заменяем конфиг на полный (с SSL)
+echo "5/5 Применяем финальный конфиг..."
+sudo cp "$(dirname "$0")/host-nginx.conf" /etc/nginx/sites-available/interactive-code.ru
+sudo nginx -t && sudo systemctl reload nginx
 
 echo ""
 echo "=== Готово! ==="
 echo "Сайт доступен: https://$DOMAIN"
-echo "Сертификат будет автоматически обновляться каждые 12 часов."
+echo "Автообновление сертификата: sudo certbot renew --dry-run"

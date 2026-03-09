@@ -34,9 +34,6 @@ COPY --from=build /app/apps/book/dist /usr/share/nginx/html
 # Копируем конфиг nginx
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Директория для certbot challenge
-RUN mkdir -p /var/www/certbot
-
-EXPOSE 80 443
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
