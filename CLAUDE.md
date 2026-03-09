@@ -134,6 +134,12 @@ Use `"workspace:*"` for internal dependencies.
 }
 ```
 
+## Component Library Rule
+
+Every UI block must be a reusable component in `@book/ui`. Every component in `packages/ui/src/ui/` MUST have a `.test.ts` file next to it. Components are composed from smaller primitives (BaseCard + DifficultyBadge, not standalone div-soup). All components re-exported from `packages/ui/src/index.ts`.
+
+**Naming:** component names must NOT collide with shared type names. Use `QuizView` (not `Quiz`), `CodeReviewView` (not `CodeReview`), `ChapterProgressCard` (not `ChapterProgress`).
+
 ## FSD Structure
 
 Applies inside `apps/book/src/` and within each feature in `packages/core/src/`:
@@ -179,7 +185,7 @@ content/ru/chXX-topic/
 - On "копай глубже": full expansion.
 - Do NOT over-explain by default.
 
-## Agents — 19 Total
+## Agents — 20 Total
 
 No separate orchestrator app. **Claude Code reads agent prompts directly and executes the pipelines.**
 
@@ -190,12 +196,13 @@ agents/
   shared/
     stack-context.md              # Vue 3 + FSD + monorepo context (prepended to core agents)
     orchestrator.md               # Pipeline reference for Claude Code
-  content/                        # Research & content generation (6)
+  content/                        # Research & content generation (7)
     planner.md
     searcher.md
     reader.md
     analyzer.md
     writer.md
+    assembler.md                  # 📦 Converts Analyzer specs → JSON/TS files (_meta, quiz, tasks, etc.)
     visualizer.md
   core/                           # Core Engine components + QA + git + design + types (13)
     layout-agent.md
@@ -218,13 +225,14 @@ agents/
 Claude Code runs agents sequentially, user approves each step:
 
 ```
-Topic → Planner → Searcher → Reader → Analyzer → Writer → Visualizer → chapter files
+Topic → Planner → Searcher → Reader → Analyzer → Writer → Assembler → Visualizer → chapter files
 ```
 
 ### Pipeline 2: Core Engine Development
 
 ```
 Core Agent → TesterAgent → ReviewerAgent → CommitterAgent
+DesignerAgent → ReviewerAgent → CommitterAgent (skips TesterAgent — CSS only)
                               │
                     approve → commit ✅
                     request_changes → fix → re-test → re-review (max 2 cycles)
@@ -252,7 +260,7 @@ Core agent execution order (dependencies):
 
 1. Create `.md` in `agents/content/`, `agents/core/`, or `agents/shared/`
 2. Core agents: `stack-context.md` is always prepended
-3. Core agents: always go through QA (Tester → Reviewer → Committer)
+3. Core agents: always go through QA (Tester → Reviewer → Committer). Exception: DesignerAgent skips TesterAgent (CSS-only output)
 
 ## Configuration
 
@@ -280,6 +288,7 @@ Core agent execution order (dependencies):
    - `agents/content/reader.md`
    - `agents/content/analyzer.md`
    - `agents/content/writer.md`
+   - `agents/content/assembler.md`
    - `agents/content/visualizer.md`
 3. After all content → read `agents/core/committer-agent.md` and commit
 
@@ -293,7 +302,7 @@ Core agent execution order (dependencies):
 | Task | Read these files |
 |------|-----------------|
 | Build core feature | `stack-context.md` + `<feature>-agent.md` + `tester-agent.md` + `reviewer-agent.md` + `committer-agent.md` |
-| Generate chapter | `orchestrator.md` + all `content/*.md` in order + `committer-agent.md` |
+| Generate chapter | `orchestrator.md` + all `content/*.md` in order (planner → searcher → reader → analyzer → writer → assembler → visualizer) + `committer-agent.md` |
 | Write tests only | `stack-context.md` + `tester-agent.md` |
 | Review code only | `stack-context.md` + `reviewer-agent.md` |
 | Commit changes | `committer-agent.md` |
