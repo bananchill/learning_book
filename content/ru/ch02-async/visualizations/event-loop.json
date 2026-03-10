@@ -1,64 +1,163 @@
 {
   "id": "event-loop",
-  "title": "Event Loop: microtasks vs macrotasks",
+  "title": "Event Loop: полный цикл выполнения",
   "type": "sequence",
-  "description": "Визуализация порядка выполнения: синхронный код → microtask queue → macrotask queue",
+  "description": "Пошаговая визуализация: call stack, Web APIs, microtask queue, macrotask queue. Пример: console.log('1'), setTimeout(fn, 0), Promise.then(fn), queueMicrotask(fn), console.log('5')",
+  "code": "console.log('1')\nsetTimeout(() => console.log('2'), 0)\nPromise.resolve().then(() => console.log('3'))\nqueueMicrotask(() => console.log('4'))\nconsole.log('5')\n// Вывод: 1, 5, 3, 4, 2",
+  "components": {
+    "callStack": "Стек вызовов — JavaScript выполняет только то, что на вершине",
+    "webApis": "Web APIs — среда выполнения (браузер/Node.js) обрабатывает асинхронные операции",
+    "microtaskQueue": "Microtask Queue — Promise.then, queueMicrotask. ВСЕ выполняются после каждой задачи",
+    "macrotaskQueue": "Macrotask Queue — setTimeout, события, I/O. ОДНА задача за итерацию event loop"
+  },
   "frames": [
     {
+      "step": 0,
       "label": "Начальное состояние",
+      "phase": "idle",
       "callStack": [],
+      "webApis": [],
       "microtaskQueue": [],
       "macrotaskQueue": [],
       "output": [],
-      "note": "Event loop ожидает задачи"
+      "note": "Event loop готов. Скрипт — это первая macrotask"
     },
     {
-      "label": "console.log('1')",
-      "callStack": ["console.log('1')"],
+      "step": 1,
+      "label": "Выполнение скрипта (macrotask)",
+      "phase": "sync",
+      "highlight": "line-1",
+      "callStack": ["<script>", "console.log('1')"],
+      "webApis": [],
       "microtaskQueue": [],
       "macrotaskQueue": [],
       "output": ["1"],
-      "note": "Синхронный код выполняется сразу"
+      "note": "Синхронный вызов → сразу в call stack → выполняется → выводит '1'"
     },
     {
+      "step": 2,
       "label": "setTimeout(fn, 0)",
-      "callStack": ["setTimeout()"],
+      "phase": "sync",
+      "highlight": "line-2",
+      "callStack": ["<script>", "setTimeout()"],
+      "webApis": ["Timer (0ms) → fn: log('2')"],
+      "microtaskQueue": [],
+      "macrotaskQueue": [],
+      "output": ["1"],
+      "note": "setTimeout регистрирует таймер в Web API. Колбэк ещё НЕ в очереди"
+    },
+    {
+      "step": 3,
+      "label": "Таймер завершён → колбэк в macrotask queue",
+      "phase": "sync",
+      "callStack": ["<script>"],
+      "webApis": [],
       "microtaskQueue": [],
       "macrotaskQueue": ["fn → log('2')"],
       "output": ["1"],
-      "note": "Колбэк ставится в macrotask queue"
+      "note": "Web API завершил таймер (0ms) и переместил колбэк в macrotask queue. Но он не выполнится, пока стек не опустеет"
     },
     {
+      "step": 4,
       "label": "Promise.resolve().then(fn)",
-      "callStack": [],
+      "phase": "sync",
+      "highlight": "line-3",
+      "callStack": ["<script>", "Promise.resolve()", ".then()"],
+      "webApis": [],
       "microtaskQueue": ["fn → log('3')"],
       "macrotaskQueue": ["fn → log('2')"],
       "output": ["1"],
-      "note": "Колбэк .then() ставится в microtask queue"
+      "note": "Promise.resolve() создаёт resolved promise. Колбэк .then() → microtask queue"
     },
     {
+      "step": 5,
+      "label": "queueMicrotask(fn)",
+      "phase": "sync",
+      "highlight": "line-4",
+      "callStack": ["<script>", "queueMicrotask()"],
+      "webApis": [],
+      "microtaskQueue": ["fn → log('3')", "fn → log('4')"],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1"],
+      "note": "queueMicrotask() добавляет колбэк напрямую в microtask queue"
+    },
+    {
+      "step": 6,
       "label": "console.log('5')",
-      "callStack": ["console.log('5')"],
-      "microtaskQueue": ["fn → log('3')"],
+      "phase": "sync",
+      "highlight": "line-5",
+      "callStack": ["<script>", "console.log('5')"],
+      "webApis": [],
+      "microtaskQueue": ["fn → log('3')", "fn → log('4')"],
       "macrotaskQueue": ["fn → log('2')"],
       "output": ["1", "5"],
-      "note": "Синхронный код завершён, стек пуст"
+      "note": "Последний синхронный вызов → выводит '5'"
     },
     {
-      "label": "Microtask: log('3')",
-      "callStack": ["then callback"],
-      "microtaskQueue": [],
+      "step": 7,
+      "label": "Скрипт завершён. Call stack пуст",
+      "phase": "checkpoint",
+      "callStack": [],
+      "webApis": [],
+      "microtaskQueue": ["fn → log('3')", "fn → log('4')"],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1", "5"],
+      "note": "⚡ Macrotask (скрипт) завершена. Event loop переходит к microtask queue — выполняет ВСЕ микрозадачи до следующей macrotask"
+    },
+    {
+      "step": 8,
+      "label": "Microtask 1: log('3')",
+      "phase": "microtasks",
+      "callStack": ["Promise.then callback"],
+      "webApis": [],
+      "microtaskQueue": ["fn → log('4')"],
       "macrotaskQueue": ["fn → log('2')"],
       "output": ["1", "5", "3"],
-      "note": "Event loop обрабатывает ВСЕ microtasks до macrotask"
+      "note": "Event loop берёт первую микрозадачу из очереди. Promise.then колбэк → call stack → выводит '3'"
     },
     {
-      "label": "Macrotask: log('2')",
-      "callStack": ["setTimeout callback"],
+      "step": 9,
+      "label": "Microtask 2: log('4')",
+      "phase": "microtasks",
+      "callStack": ["queueMicrotask callback"],
+      "webApis": [],
+      "microtaskQueue": [],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1", "5", "3", "4"],
+      "note": "Вторая микрозадача. queueMicrotask колбэк → call stack → выводит '4'. Microtask queue пуста"
+    },
+    {
+      "step": 10,
+      "label": "Все микрозадачи выполнены → рендеринг (если нужен)",
+      "phase": "render",
+      "callStack": [],
+      "webApis": [],
+      "microtaskQueue": [],
+      "macrotaskQueue": ["fn → log('2')"],
+      "output": ["1", "5", "3", "4"],
+      "note": "Microtask queue пуста. Браузер может обновить UI (rAF, layout, paint). Затем event loop берёт следующую macrotask"
+    },
+    {
+      "step": 11,
+      "label": "Macrotask: setTimeout callback → log('2')",
+      "phase": "macrotask",
+      "callStack": ["setTimeout callback", "console.log('2')"],
+      "webApis": [],
       "microtaskQueue": [],
       "macrotaskQueue": [],
-      "output": ["1", "5", "3", "2"],
-      "note": "Только теперь выполняется macrotask"
+      "output": ["1", "5", "3", "4", "2"],
+      "note": "Event loop взял ОДНУ macrotask из очереди. setTimeout колбэк → call stack → выводит '2'"
+    },
+    {
+      "step": 12,
+      "label": "Цикл завершён",
+      "phase": "idle",
+      "callStack": [],
+      "webApis": [],
+      "microtaskQueue": [],
+      "macrotaskQueue": [],
+      "output": ["1", "5", "3", "4", "2"],
+      "note": "Все очереди пусты, call stack пуст. Event loop ожидает новых задач. Итого: 1 → 5 → 3 → 4 → 2"
     }
   ]
 }

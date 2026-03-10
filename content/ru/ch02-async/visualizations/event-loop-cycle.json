@@ -1,0 +1,94 @@
+{
+  "id": "event-loop-cycle",
+  "title": "Алгоритм Event Loop",
+  "type": "flowchart",
+  "description": "Цикл event loop по спецификации HTML: macrotask → microtasks → render → повторить",
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "label": "Event Loop",
+      "description": "Бесконечный цикл — сердце асинхронности JavaScript"
+    },
+    {
+      "id": "check-macrotask",
+      "type": "decision",
+      "label": "Есть macrotask?",
+      "description": "Проверяем macrotask queue: setTimeout, setInterval, события, I/O, парсинг HTML"
+    },
+    {
+      "id": "run-macrotask",
+      "type": "action",
+      "label": "Выполнить ОДНУ macrotask",
+      "description": "Берём одну задачу из macrotask queue → помещаем в call stack → выполняем до конца (run-to-completion). Внутри могут появиться новые micro/macrotasks",
+      "examples": ["setTimeout callback", "click handler", "I/O callback", "Выполнение <script>"]
+    },
+    {
+      "id": "check-microtasks",
+      "type": "decision",
+      "label": "Microtask queue пуста?",
+      "description": "Проверяем microtask queue: Promise.then/catch/finally, queueMicrotask, MutationObserver"
+    },
+    {
+      "id": "run-all-microtasks",
+      "type": "action",
+      "label": "Выполнить ВСЕ microtasks",
+      "description": "Выполняем ВСЕ микрозадачи из очереди. Если микрозадача добавляет новую микрозадачу — она тоже выполнится в этом же цикле. Выходим только когда очередь полностью пуста",
+      "examples": ["Promise.then callback", "queueMicrotask callback", "MutationObserver callback"],
+      "warning": "Рекурсивные микрозадачи заблокируют рендеринг навсегда!"
+    },
+    {
+      "id": "check-render",
+      "type": "decision",
+      "label": "Нужен рендеринг?",
+      "description": "Браузер решает, нужно ли обновить UI (~60fps = каждые ~16.6ms). Не каждая итерация event loop приводит к рендерингу"
+    },
+    {
+      "id": "run-raf",
+      "type": "action",
+      "label": "requestAnimationFrame",
+      "description": "Выполняем все колбэки rAF, зарегистрированные до этого момента. Новые rAF-колбэки откладываются до следующего кадра"
+    },
+    {
+      "id": "render",
+      "type": "action",
+      "label": "Рендеринг: Style → Layout → Paint",
+      "description": "Браузер пересчитывает стили (Style), раскладку (Layout) и рисует пиксели (Paint). Пользователь видит обновлённый UI"
+    },
+    {
+      "id": "idle",
+      "type": "action",
+      "label": "Idle (ожидание)",
+      "description": "Если нет задач — event loop ждёт. Здесь могут выполняться requestIdleCallback"
+    }
+  ],
+  "edges": [
+    { "from": "start", "to": "check-macrotask" },
+    { "from": "check-macrotask", "to": "run-macrotask", "label": "Да" },
+    { "from": "check-macrotask", "to": "idle", "label": "Нет" },
+    { "from": "idle", "to": "check-macrotask", "label": "Новая задача" },
+    { "from": "run-macrotask", "to": "check-microtasks" },
+    { "from": "check-microtasks", "to": "run-all-microtasks", "label": "Не пуста" },
+    { "from": "check-microtasks", "to": "check-render", "label": "Пуста" },
+    { "from": "run-all-microtasks", "to": "check-microtasks", "label": "Проверить снова" },
+    { "from": "check-render", "to": "run-raf", "label": "Да" },
+    { "from": "check-render", "to": "check-macrotask", "label": "Нет → следующая итерация" },
+    { "from": "run-raf", "to": "render" },
+    { "from": "render", "to": "check-macrotask", "label": "Следующая итерация" }
+  ],
+  "annotations": [
+    {
+      "target": "run-macrotask",
+      "text": "Только ОДНА macrotask за итерацию — это даёт браузеру шанс обновить UI между задачами"
+    },
+    {
+      "target": "run-all-microtasks",
+      "text": "ВСЕ microtasks за итерацию — поэтому Promise.then всегда выполняется раньше setTimeout"
+    },
+    {
+      "target": "check-render",
+      "text": "Рендеринг НЕ обязателен каждую итерацию. Браузер оптимизирует — обычно ~60fps"
+    }
+  ],
+  "summary": "Macrotask (одна) → Microtasks (все) → Render (если нужно) → Повторить"
+}

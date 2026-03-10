@@ -16,6 +16,7 @@ export { default as CheatsheetModal } from './ui/CheatsheetModal.vue'
 export { default as CodeBlock } from './ui/CodeBlock.vue'
 export { default as TabGroup } from './ui/TabGroup.vue'
 export { default as TabPanel } from './ui/TabPanel.vue'
+export { default as EventLoopSimulator } from './ui/EventLoopSimulator.vue'
 
 // Composables
 export { useCollapsible } from './lib/useCollapsible'
