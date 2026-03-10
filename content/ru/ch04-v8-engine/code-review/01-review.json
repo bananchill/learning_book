@@ -1,0 +1,37 @@
+{
+  "id": "01-review",
+  "title": "Найди проблемы с производительностью V8",
+  "codeFile": "01-review.js",
+  "issues": [
+    {
+      "line": 7,
+      "type": "performance",
+      "description": "Условное добавление свойств создаёт объекты с разными hidden classes. user может иметь {age}, {age, name}, {age, name, email}, {name, email} и т.д. — до 8 разных shape.",
+      "fix": "Всегда инициализировать все свойства: { name: data[i].name || null, age: data[i].age || null, email: data[i].email || null }"
+    },
+    {
+      "line": 18,
+      "type": "performance",
+      "description": "delete result.label переводит объект в медленный режим (dictionary mode), разрушая hidden class. Все последующие операции с этим объектом будут медленнее.",
+      "fix": "Вместо delete присвоить undefined: result.label = undefined. Или создавать объект без label с самого начала: item.deprecated ? { value: item.value } : { value: item.value, label: item.label }"
+    },
+    {
+      "line": 24,
+      "type": "performance",
+      "description": "getProperty вызывается с массивом объектов совершенно разных shape ({x,y}, {a,b}, {foo}, {z,w,q}). Inline cache переключится в megamorphic — поиск свойства через хеш-таблицу на каждом объекте.",
+      "fix": "Передавать объекты с одинаковой структурой. Если нужны разные shape — это нормально, но функция не будет оптимизирована"
+    },
+    {
+      "line": 29,
+      "type": "memory_leak",
+      "description": "Массив data (~100 МБ) хранится в замыкании. Метод getSize() использует только data.length, но замыкание удерживает весь массив в памяти.",
+      "fix": "Сохранить data.length в отдельную переменную: const size = data.length. Или для get() — использовать Set вместо find()"
+    },
+    {
+      "line": 41,
+      "type": "performance",
+      "description": "eval() внутри замыкания полностью ломает escape analysis V8. Все переменные (config, buffer, temp) попадают в Context, даже если не нужны. V8 не может оптимизировать эту функцию.",
+      "fix": "Убрать eval. Заменить eval('temp = input') на temp = input"
+    }
+  ]
+}

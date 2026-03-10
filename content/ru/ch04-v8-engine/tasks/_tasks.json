@@ -1,0 +1,125 @@
+{
+  "chapter": "ch04-v8-engine",
+  "tasks": [
+    {
+      "id": "01-easy-hidden-class",
+      "title": "Предскажи hidden class",
+      "difficulty": "easy",
+      "description": "Реализуй функцию sameHiddenClass(objA, objB), которая возвращает true, если два объекта имеют одинаковый hidden class (одинаковые свойства в одинаковом порядке). Сравни только ключи и их порядок.",
+      "file": "01-easy-hidden-class.js",
+      "testFile": "01-easy-hidden-class.test.js",
+      "concepts": ["hidden-classes", "shape"],
+      "hints": [
+        "Hidden class определяется набором свойств и порядком их добавления.",
+        "Сравни Object.keys() двух объектов: одинаковые ключи в одинаковом порядке = один hidden class.",
+        "const keysA = Object.keys(objA); const keysB = Object.keys(objB); return keysA.length === keysB.length && keysA.every((k, i) => k === keysB[i])"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-inline-cache",
+      "title": "Inline cache hit/miss",
+      "difficulty": "easy",
+      "description": "Реализуй функцию classifyIC(objects), которая принимает массив объектов и возвращает состояние inline cache: 'monomorphic' (все объекты одного shape), 'polymorphic' (2-4 разных shape), 'megamorphic' (5+ shape). Shape определяется набором ключей в одинаковом порядке.",
+      "file": "02-easy-inline-cache.js",
+      "testFile": "02-easy-inline-cache.test.js",
+      "concepts": ["inline-cache", "monomorphic", "polymorphic", "megamorphic"],
+      "hints": [
+        "Подсчитай количество уникальных shape в массиве. Shape — это строка из ключей объекта.",
+        "Используй Set для хранения уникальных shape. Shape = Object.keys(obj).join(',').",
+        "const shapes = new Set(objects.map(o => Object.keys(o).join(','))); if (shapes.size === 1) return 'monomorphic'; if (shapes.size <= 4) return 'polymorphic'; return 'megamorphic'"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-easy-stack-vs-heap",
+      "title": "Stack vs Heap",
+      "difficulty": "easy",
+      "description": "Реализуй функцию classifyStorage(value), которая возвращает 'stack', если значение (предположительно) хранится на стеке, или 'heap', если в куче. Примитивы (number, boolean, string, undefined, null, bigint, symbol) → 'stack'. Объекты, массивы, функции → 'heap'.",
+      "file": "03-easy-stack-vs-heap.js",
+      "testFile": "03-easy-stack-vs-heap.test.js",
+      "concepts": ["stack", "heap", "memory-model"],
+      "hints": [
+        "Подумай, какие типы в JS — примитивные, а какие — ссылочные.",
+        "Используй typeof. Примитивы: 'number', 'string', 'boolean', 'undefined', 'bigint', 'symbol'. null — особый случай (typeof === 'object', но это примитив).",
+        "if (value === null) return 'stack'; return typeof value === 'object' || typeof value === 'function' ? 'heap' : 'stack'"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "04-medium-optimize-shape",
+      "title": "Оптимизация объекта",
+      "difficulty": "medium",
+      "description": "Функция createUsers(rawData) получает массив объектов с полями name, age, email (но в произвольном порядке и с возможными дополнительными полями). Верни новый массив объектов, где каждый объект имеет ровно три свойства (name, age, email) в одинаковом порядке — чтобы все разделяли один hidden class.",
+      "file": "04-medium-optimize-shape.js",
+      "testFile": "04-medium-optimize-shape.test.js",
+      "concepts": ["hidden-classes", "shape-optimization"],
+      "hints": [
+        "Чтобы все объекты имели один hidden class, создавай их с одинаковыми свойствами в одинаковом порядке.",
+        "Используй деструктуризацию или явное создание нового объекта: { name: item.name, age: item.age, email: item.email }.",
+        "return rawData.map(({ name, age, email }) => ({ name, age, email }))"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "05-medium-deopt",
+      "title": "Деоптимизация",
+      "difficulty": "medium",
+      "description": "Функция findDeoptRisk(fn, testCases) принимает функцию и массив тестовых аргументов. Верни true, если вызовы могут вызвать деоптимизацию (аргументы имеют разные типы), или false, если все аргументы одного типа. Проверяй typeof каждого аргумента в каждом тестовом вызове.",
+      "file": "05-medium-deopt.js",
+      "testFile": "05-medium-deopt.test.js",
+      "concepts": ["deoptimization", "type-feedback"],
+      "hints": [
+        "Деоптимизация происходит, когда типы аргументов меняются от вызова к вызову.",
+        "Для каждой позиции аргумента проверь, одинаков ли typeof во всех тестовых вызовах.",
+        "if (testCases.length <= 1) return false; const firstTypes = testCases[0].map(a => typeof a); return testCases.some(args => args.some((a, i) => typeof a !== firstTypes[i]))"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "06-hard-memory-leak",
+      "title": "Memory leak detection",
+      "difficulty": "hard",
+      "description": "Реализуй функцию createLeakDetector(), которая возвращает объект с методами: track(key, obj) — отслеживает объект через WeakRef, check() — возвращает массив ключей, чьи объекты ещё живы (deref() !== undefined), getLeaked() — возвращает массив ключей, чьи объекты были собраны GC (deref() === undefined).",
+      "file": "06-hard-memory-leak.js",
+      "testFile": "06-hard-memory-leak.test.js",
+      "concepts": ["weakref", "garbage-collection", "memory-leak"],
+      "hints": [
+        "Используй Map для хранения пар key → WeakRef(obj).",
+        "track: создаёт WeakRef и кладёт в Map. check: фильтрует ключи по deref() !== undefined. getLeaked: фильтрует по deref() === undefined.",
+        "const refs = new Map(); return { track(key, obj) { refs.set(key, new WeakRef(obj)) }, check() { return [...refs.keys()].filter(k => refs.get(k).deref() !== undefined) }, getLeaked() { return [...refs.keys()].filter(k => refs.get(k).deref() === undefined) } }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "07-hard-gc-friendly",
+      "title": "GC-friendly структура",
+      "difficulty": "hard",
+      "description": "Реализуй функцию createObjectPool(factory, maxSize), которая возвращает пул объектов с методами: acquire() — возвращает объект из пула (или создаёт новый через factory()), release(obj) — возвращает объект в пул (если пул не полон, иначе отбрасывает), size() — текущий размер пула, clear() — очистить пул. Пул уменьшает pressure на GC, переиспользуя объекты.",
+      "file": "07-hard-gc-friendly.js",
+      "testFile": "07-hard-gc-friendly.test.js",
+      "concepts": ["object-pool", "gc-optimization"],
+      "hints": [
+        "Храни свободные объекты в массиве. acquire() берёт последний элемент, release() добавляет обратно.",
+        "acquire: если пул не пуст — pop(), иначе factory(). release: если pool.length < maxSize — push(obj).",
+        "const pool = []; return { acquire() { return pool.length > 0 ? pool.pop() : factory() }, release(obj) { if (pool.length < maxSize) pool.push(obj) }, size() { return pool.length }, clear() { pool.length = 0 } }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "08-hard-context-quiz",
+      "title": "Context allocation quiz",
+      "difficulty": "hard",
+      "description": "Реализуй функцию analyzeCaptures(outerVars, innerUsedVars), которая моделирует escape analysis V8. outerVars — массив имён переменных внешней функции, innerUsedVars — массив имён переменных, используемых во вложенной функции. Верни объект { context: [...], stack: [...] }, где context — переменные, попадающие в Context (куча), stack — остающиеся на стеке.",
+      "file": "08-hard-context-quiz.js",
+      "testFile": "08-hard-context-quiz.test.js",
+      "concepts": ["context-allocation", "escape-analysis"],
+      "hints": [
+        "Переменная попадает в Context, если она есть и в outerVars, и в innerUsedVars.",
+        "context = пересечение outerVars и innerUsedVars. stack = outerVars минус context.",
+        "const context = outerVars.filter(v => innerUsedVars.includes(v)); const stack = outerVars.filter(v => !innerUsedVars.includes(v)); return { context, stack }"
+      ],
+      "estimatedMinutes": 10
+    }
+  ]
+}

@@ -13,17 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy proxy
-        run: |
-          if [ -d ~/proxy ]; then
-            cd ~/proxy && git pull origin main
-          else
-            git clone https://github.com/bananchill/proxy.git ~/proxy
-          fi
-          cd ~/proxy
-          docker compose pull
-          docker compose up -d --force-recreate --remove-orphans
-
       - name: Build and deploy
         run: |
           docker compose build --no-cache

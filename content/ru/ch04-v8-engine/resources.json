@@ -1,0 +1,69 @@
+{
+  "chapter": "ch04-v8-engine",
+  "resources": [
+    {
+      "title": "V8 Blog",
+      "url": "https://v8.dev/blog",
+      "type": "article",
+      "language": "en",
+      "description": "Официальный блог V8 с подробными статьями об архитектуре, оптимизациях и новых фичах",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "JavaScript engine fundamentals: Shapes and Inline Caches",
+      "url": "https://mathiasbynens.be/notes/shapes-ics",
+      "type": "article",
+      "language": "en",
+      "description": "Матиас Байненс объясняет hidden classes (shapes) и inline caches с диаграммами",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "JavaScript engine fundamentals: optimizing prototypes",
+      "url": "https://mathiasbynens.be/notes/prototypes",
+      "type": "article",
+      "language": "en",
+      "description": "Продолжение серии: как V8 оптимизирует доступ к свойствам через прототипы",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "mrale.ph — V8 Internals",
+      "url": "https://mrale.ph/",
+      "type": "article",
+      "language": "en",
+      "description": "Блог Вячеслава Егорова (ex-V8 team) с глубокими статьями о внутренностях V8",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "Trash talk: the Orinoco garbage collector",
+      "url": "https://v8.dev/blog/trash-talk",
+      "type": "article",
+      "language": "en",
+      "description": "Официальная статья V8 о сборщике мусора Orinoco: Scavenge, Mark-Compact, concurrent marking",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "An Introduction to Speculative Optimization in V8",
+      "url": "https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8",
+      "type": "article",
+      "language": "en",
+      "description": "Спекулятивные оптимизации TurboFan: type feedback, деоптимизация, практические примеры",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "Understanding V8's Bytecode",
+      "url": "https://medium.com/nicholasgoldman/understanding-v8s-bytecode-a67fb40cfd",
+      "type": "article",
+      "language": "en",
+      "description": "Разбор байткода Ignition: как читать и интерпретировать вывод --print-bytecode",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "Memory Management — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_management",
+      "type": "documentation",
+      "language": "en",
+      "description": "Базовое описание управления памятью в JavaScript: стек, куча, сборка мусора",
+      "difficulty": "beginner"
+    }
+  ]
+}

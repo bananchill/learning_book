@@ -1,0 +1,139 @@
+{
+  "topic": "Движок V8 (V8 Engine)",
+  "chapterId": "ch04-v8-engine",
+  "subchapters": [
+    {
+      "id": "01-architecture",
+      "title": "Архитектура V8: от исходного кода до машинного",
+      "keyQuestions": [
+        "Что такое JS-движок и зачем нужен V8?",
+        "Какой pipeline проходит код от текста до исполнения?",
+        "Чем Ignition отличается от TurboFan?",
+        "Как V8 сравнивается с другими движками?"
+      ],
+      "estimatedReadMinutes": 8,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма pipeline: Source → Parser → AST → Ignition → TurboFan"],
+      "depthNotes": {
+        "standard": "Pipeline V8, роль каждого этапа, сравнение с SpiderMonkey и JavaScriptCore",
+        "deep": "WebAssembly pipeline в V8, Liftoff compiler, streaming compilation"
+      }
+    },
+    {
+      "id": "02-memory-model",
+      "title": "Память: стек, куча, объекты",
+      "keyQuestions": [
+        "Что хранится на стеке, а что в куче?",
+        "Что такое hidden classes (Maps) в V8?",
+        "Как работают inline caches?",
+        "Что такое shape transitions?"
+      ],
+      "estimatedReadMinutes": 12,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма Stack vs Heap", "Цепочка hidden class transitions"],
+      "depthNotes": {
+        "standard": "Stack vs Heap, hidden classes, inline caches, shape transitions",
+        "deep": "Pointer tagging, SMI optimization, pointer compression"
+      }
+    },
+    {
+      "id": "03-jit-optimization",
+      "title": "JIT-компиляция и оптимизации",
+      "keyQuestions": [
+        "Как работает Ignition — интерпретатор байткода?",
+        "Когда и зачем V8 запускает TurboFan?",
+        "Что такое type feedback и спекулятивные оптимизации?",
+        "Когда происходит деоптимизация?"
+      ],
+      "estimatedReadMinutes": 12,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма: cold → warm → hot code", "Цикл оптимизации / деоптимизации"],
+      "depthNotes": {
+        "standard": "Ignition, TurboFan, Maglev, type feedback, деоптимизация",
+        "deep": "OSR (On-Stack Replacement), inlining budgets, escape analysis"
+      }
+    },
+    {
+      "id": "04-context-allocation",
+      "title": "Context Allocation и замыкания в V8",
+      "keyQuestions": [
+        "Как V8 решает: переменная на стеке или в куче?",
+        "Что такое Context object в V8?",
+        "Как scope chain реализован в V8?",
+        "Как eval/with влияют на оптимизации?"
+      ],
+      "estimatedReadMinutes": 10,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма: stack allocation vs context allocation"],
+      "depthNotes": {
+        "standard": "Context object, escape analysis, влияние eval/with, практические советы",
+        "deep": "--trace-opt / --trace-deopt флаги, дебаг оптимизаций"
+      }
+    },
+    {
+      "id": "05-garbage-collection",
+      "title": "Сборка мусора",
+      "keyQuestions": [
+        "Как работает generational GC в V8?",
+        "Что такое Scavenge и Mark-Sweep-Compact?",
+        "Какие частые причины утечек памяти в JS?",
+        "Как работают WeakRef и FinalizationRegistry?"
+      ],
+      "estimatedReadMinutes": 10,
+      "needsVisualization": true,
+      "visualizationIdeas": ["Диаграмма Young Generation / Old Generation", "Цикл жизни объекта в памяти"],
+      "depthNotes": {
+        "standard": "Generational GC, Scavenge, Mark-Sweep-Compact, утечки памяти, WeakRef",
+        "deep": "Orinoco GC, idle-time scheduling, concurrent marking"
+      }
+    }
+  ],
+  "researchDirections": [
+    { "query": "V8 blog architecture pipeline", "purpose": "Официальное описание архитектуры V8", "priority": "high" },
+    { "query": "V8 hidden classes inline caches", "purpose": "Как V8 оптимизирует доступ к свойствам объектов", "priority": "high" },
+    { "query": "V8 TurboFan optimization deoptimization", "purpose": "Спекулятивные JIT-оптимизации и деоптимизация", "priority": "high" },
+    { "query": "V8 context allocation closures", "purpose": "Как V8 реализует замыкания и context allocation", "priority": "high" },
+    { "query": "V8 garbage collection Orinoco", "purpose": "Generational GC, Scavenge, Mark-Sweep-Compact", "priority": "high" },
+    { "query": "mrale.ph V8 internals hidden classes", "purpose": "Глубокие статьи Вячеслава Егорова о V8", "priority": "medium" },
+    { "query": "Mathias Bynens V8 optimization tips", "purpose": "Практические советы по оптимизации для V8", "priority": "medium" },
+    { "query": "V8 Maglev compiler mid-tier", "purpose": "Новый промежуточный уровень JIT-компиляции", "priority": "low" }
+  ],
+  "crossLinks": [
+    { "chapterId": "ch01-closures", "relationship": "Context allocation — как V8 реализует замыкания" },
+    { "chapterId": "ch02-async", "relationship": "Event loop и оптимизации асинхронного кода в V8" },
+    { "chapterId": "ch03-parallelism", "relationship": "Isolates V8 и Web Workers" }
+  ],
+  "taskIdeas": [
+    { "title": "Предскажи hidden class", "difficulty": "easy", "concept": "hidden classes", "briefDescription": "Определить, создаст ли код новый hidden class или использует существующий" },
+    { "title": "Inline cache hit/miss", "difficulty": "easy", "concept": "inline caches", "briefDescription": "Объяснить почему мономорфный код быстрее полиморфного" },
+    { "title": "Stack vs Heap", "difficulty": "easy", "concept": "memory model", "briefDescription": "Определить, где живёт каждая переменная — на стеке или в куче" },
+    { "title": "Оптимизация объекта", "difficulty": "medium", "concept": "shape optimization", "briefDescription": "Переписать код, чтобы все объекты имели одинаковый hidden class" },
+    { "title": "Деоптимизация", "difficulty": "medium", "concept": "deoptimization", "briefDescription": "Найти причину деоптимизации и исправить код" },
+    { "title": "Memory leak detection", "difficulty": "hard", "concept": "garbage collection", "briefDescription": "Найти и устранить утечку памяти в коде с замыканиями" },
+    { "title": "GC-friendly структура", "difficulty": "hard", "concept": "gc optimization", "briefDescription": "Переписать структуру данных для минимизации GC pressure" },
+    { "title": "Context allocation quiz", "difficulty": "hard", "concept": "context allocation", "briefDescription": "Предсказать, какие переменные попадут в Context для вложенных замыканий" }
+  ],
+  "interviewAngles": [
+    { "question": "Что такое hidden classes в V8?", "level": "middle", "keyInsight": "V8 создаёт скрытые классы для оптимизации доступа к свойствам, объекты с одинаковой структурой разделяют один класс" },
+    { "question": "Чем JIT-компиляция отличается от интерпретации?", "level": "junior", "keyInsight": "Интерпретатор выполняет байткод построчно, JIT компилирует горячий код в машинный для скорости" },
+    { "question": "Что такое деоптимизация и когда она происходит?", "level": "middle", "keyInsight": "V8 откатывает оптимизированный код, если предположения (типы, shapes) оказались неверными" },
+    { "question": "Как V8 реализует замыкания?", "level": "senior", "keyInsight": "Context allocation — только используемые переменные попадают в heap, остальное на стеке" },
+    { "question": "Как работает GC в V8?", "level": "senior", "keyInsight": "Generational: Young (Scavenge) + Old (Mark-Sweep-Compact), с incremental и concurrent marking" }
+  ],
+  "antipatterns": [
+    "Создание объектов с разным порядком свойств — ломает hidden classes",
+    "Полиморфный код в горячих путях — мешает inline caching",
+    "Использование delete для удаления свойств объекта — деоптимизирует hidden class",
+    "eval/with в замыканиях — полностью отключает оптимизации V8",
+    "Хранение больших объектов в замыканиях — увеличивает pressure на GC",
+    "Создание объектов в горячих циклах — перегружает Young Generation"
+  ],
+  "realWorldUsage": [
+    "Chrome DevTools Performance tab — профилирование JIT-компиляции",
+    "Node.js --inspect — дебаг V8 оптимизаций",
+    "React reconciliation — скорость сравнения зависит от hidden classes",
+    "Webpack/Vite — бандлинг влияет на парсинг и компиляцию V8",
+    "Server-side rendering — прогрев V8 для быстрого первого ответа",
+    "WebAssembly — дополнительный pipeline для высокопроизводительного кода"
+  ]
+}

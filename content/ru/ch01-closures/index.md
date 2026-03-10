@@ -28,6 +28,7 @@ description: "Полный разбор замыканий: от основ до
 ## Связанные темы
 
 - [Асинхронность](/javascript/ch02-async) — замыкания в callbacks и async-функциях
+- [Движок V8](/javascript/ch04-v8-engine) — context allocation и оптимизации замыканий в V8
 
 ## Задания
 

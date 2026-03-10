@@ -47,6 +47,20 @@
             { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
             { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
           ]
+        },
+        {
+          "id": "ch04-v8-engine",
+          "title": "Движок V8",
+          "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и сборка мусора",
+          "order": 4,
+          "contentPath": "content/ru/ch04-v8-engine",
+          "subchapters": [
+            { "id": "01-architecture", "title": "Архитектура V8", "order": 1 },
+            { "id": "02-memory-model", "title": "Память: стек, куча, объекты", "order": 2 },
+            { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
+            { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
+            { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 }
+          ]
         }
       ]
     },

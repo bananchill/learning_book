@@ -1,0 +1,135 @@
+{
+  "chapter": "ch04-v8-engine",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Какой компонент V8 первым исполняет JavaScript-код?",
+      "type": "multiple-choice",
+      "options": [
+        "TurboFan",
+        "Ignition",
+        "Maglev",
+        "Parser"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ignition — интерпретатор байткода V8. Он первым исполняет код, одновременно собирая type feedback. TurboFan подключается позже для оптимизации горячих функций.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Что произойдёт, если создать два объекта с одинаковыми свойствами, но в разном порядке?",
+      "type": "multiple-choice",
+      "options": [
+        "Они получат один hidden class",
+        "Они получат разные hidden classes",
+        "V8 автоматически выровняет порядок",
+        "Порядок свойств не влияет на hidden classes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 создаёт hidden class на основе порядка добавления свойств. { x: 1, y: 2 } и { y: 1, x: 2 } получат разные hidden classes, что ломает inline caching.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Деоптимизация — это процесс, при котором V8 переключает исполнение с TurboFan обратно на Ignition.",
+      "type": "true-false",
+      "options": ["Верно", "Неверно"],
+      "correctAnswer": 0,
+      "explanation": "Верно. Когда спекулятивные предположения TurboFan (о типах, hidden classes и т.д.) оказываются неверными, V8 выполняет деоптимизацию — откат к интерпретации байткода в Ignition.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Что такое inline cache в состоянии monomorphic?",
+      "type": "multiple-choice",
+      "options": [
+        "Кэш, который хранит один вариант hidden class для доступа к свойству",
+        "Кэш, который хранит все возможные hidden classes",
+        "Кэш, который отключён для оптимизации",
+        "Кэш, использующий хеш-таблицу"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Monomorphic IC — когда все объекты в данной точке кода имеют один hidden class. V8 кэширует один вариант доступа, что даёт максимальную скорость. При 2-4 вариантах IC становится polymorphic, при 5+ — megamorphic (хеш-таблица).",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Какая переменная попадёт в Context (кучу) в этом коде?\n\nfunction outer() {\n  let a = 1\n  let b = 2\n  let c = 3\n  return function inner() {\n    return a + c\n  }\n}",
+      "type": "multiple-choice",
+      "options": [
+        "Только a",
+        "Только a и c",
+        "Все три: a, b и c",
+        "Ни одна — всё на стеке"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 использует escape analysis на этапе парсинга. Только переменные, реально используемые в замыкании (a и c), попадают в Context. Переменная b остаётся на стеке.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "question": "Почему eval внутри функции ломает оптимизации V8?",
+      "type": "multiple-choice",
+      "options": [
+        "eval выполняется синхронно и блокирует event loop",
+        "V8 не может предсказать, какие переменные eval использует, и помещает ВСЕ в Context",
+        "eval создаёт новый V8 isolate",
+        "eval компилируется TurboFan без type feedback"
+      ],
+      "correctAnswer": 1,
+      "explanation": "eval может обратиться к любой переменной в текущей области видимости. V8 не может выполнить escape analysis, поэтому все локальные переменные помещаются в Context (кучу), даже если они не нужны замыканию.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q7",
+      "question": "В каком поколении GC создаются новые объекты?",
+      "type": "multiple-choice",
+      "options": [
+        "Old Generation",
+        "Young Generation",
+        "Code Space",
+        "Large Object Space"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Новые объекты создаются в Young Generation. Scavenge быстро собирает короткоживущие объекты. Объекты, пережившие два цикла Scavenge, перемещаются в Old Generation (promotion).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q8",
+      "question": "Что произойдёт при вызове deref() на WeakRef, если объект уже собран GC?",
+      "type": "code-output",
+      "options": ["Ошибка ReferenceError", "undefined", "null", "Пустой объект {}"],
+      "correctAnswer": 1,
+      "explanation": "WeakRef.deref() возвращает undefined, если объект уже собран сборщиком мусора. Слабая ссылка не предотвращает GC, поэтому объект может быть собран в любой момент.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q9",
+      "question": "Что такое OSR (On-Stack Replacement)?",
+      "type": "multiple-choice",
+      "options": [
+        "Замена стека при переключении потоков",
+        "Замена интерпретируемого кода на оптимизированный прямо в середине исполнения",
+        "Перезапуск функции с оптимизированной версией",
+        "Удаление стека при сборке мусора"
+      ],
+      "correctAnswer": 1,
+      "explanation": "OSR позволяет V8 заменить интерпретируемый код (Ignition) на оптимизированный (TurboFan) прямо в середине исполнения горячего цикла, не дожидаясь следующего вызова функции.",
+      "difficulty": "hard"
+    },
+    {
+      "id": "q10",
+      "question": "Какая операция с объектом наиболее вредна для hidden classes?",
+      "type": "multiple-choice",
+      "options": [
+        "Добавление нового свойства",
+        "Чтение существующего свойства",
+        "Удаление свойства через delete",
+        "Изменение значения существующего свойства"
+      ],
+      "correctAnswer": 2,
+      "explanation": "delete переводит объект в «медленный» режим (dictionary mode), разрушая hidden class. Добавление свойств создаёт предсказуемые transitions. Чтение и изменение значений не меняют hidden class. Вместо delete лучше присвоить undefined.",
+      "difficulty": "hard"
+    }
+  ]
+}
