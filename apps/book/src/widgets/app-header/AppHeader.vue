@@ -13,16 +13,16 @@ const isChapterPage = computed(() => !!route.params.chapter)
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 bg-[var(--color-bg)]/80 backdrop-blur-md border-b border-[var(--color-border)]">
+  <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md border-b border-border">
     <div class="flex items-center h-14 px-4 gap-3">
       <!-- Переключатель боковой панели -->
       <button
         v-if="isChapterPage"
-        class="p-2 rounded-lg hover:bg-[var(--color-surface-muted)] transition-colors"
+        class="p-2 rounded-lg hover:bg-surface-muted transition-colors"
         :aria-label="t('nav.toggle_sidebar')"
         @click="sidebar.toggle()"
       >
-        <svg class="w-5 h-5 text-[var(--color-text-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -30,7 +30,7 @@ const isChapterPage = computed(() => !!route.params.chapter)
       <!-- Логотип -->
       <router-link
         to="/"
-        class="font-semibold text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors"
+        class="font-semibold text-text hover:text-primary transition-colors"
       >
         {{ t('nav.title') }}
       </router-link>
@@ -38,18 +38,18 @@ const isChapterPage = computed(() => !!route.params.chapter)
       <!-- Хлебные крошки -->
       <nav
         v-if="breadcrumbs.length > 0"
-        class="hidden sm:flex items-center gap-1 text-sm text-[var(--color-text-muted)]"
+        class="hidden sm:flex items-center gap-1 text-sm text-text-muted"
       >
         <template v-for="(crumb, i) in breadcrumbs" :key="i">
           <span class="mx-1">/</span>
           <router-link
             v-if="crumb.to"
             :to="crumb.to"
-            class="hover:text-[var(--color-primary)] transition-colors truncate max-w-48"
+            class="hover:text-primary transition-colors truncate max-w-48"
           >
             {{ crumb.label }}
           </router-link>
-          <span v-else class="text-[var(--color-text-secondary)] truncate max-w-48">
+          <span v-else class="text-text-secondary truncate max-w-48">
             {{ crumb.label }}
           </span>
         </template>

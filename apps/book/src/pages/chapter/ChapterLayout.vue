@@ -50,10 +50,10 @@ onUnmounted(() => {
         <!-- Глава не найдена -->
         <div v-else class="flex flex-col items-center justify-center py-20 text-center">
           <div class="text-5xl mb-4">🔍</div>
-          <h2 class="text-xl font-semibold text-[var(--color-text)] mb-2">
+          <h2 class="text-xl font-semibold text-text mb-2">
             {{ t('content.not_found_title') }}
           </h2>
-          <p class="text-[var(--color-text-secondary)]">
+          <p class="text-text-secondary">
             {{ t('content.not_found_desc') }}
           </p>
         </div>

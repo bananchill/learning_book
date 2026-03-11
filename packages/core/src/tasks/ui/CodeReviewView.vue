@@ -83,16 +83,16 @@ function lineClass(lineNum: number) {
     <!-- Результаты после отправки -->
     <div v-if="isSubmitted" class="border-t border-border p-4 space-y-3">
       <div v-for="issue in foundIssues" :key="issue.line" class="text-sm">
-        <span class="text-success">✅ Строка {{ issue.line }}:</span>
+        <span class="text-success">{{ t('code_review.found_line', { line: issue.line }) }}</span>
         <span class="text-text-secondary ml-1">{{ issue.description }}</span>
       </div>
       <div v-for="issue in missedIssues" :key="issue.line" class="text-sm">
-        <span class="text-danger">❌ Строка {{ issue.line }}:</span>
+        <span class="text-danger">{{ t('code_review.missed_line', { line: issue.line }) }}</span>
         <span class="text-text-secondary ml-1">{{ issue.description }}</span>
         <span class="text-text-muted ml-1">({{ issue.fix }})</span>
       </div>
       <div v-for="line in falsePositives" :key="line" class="text-sm text-warning">
-        ⚠️ Строка {{ line }}: ложное срабатывание
+        {{ t('code_review.false_positive', { line }) }}
       </div>
     </div>
 

@@ -25,7 +25,9 @@
     "submit": "Ответить",
     "next": "Следующий",
     "retry": "Пройти заново",
-    "results_title": "Результаты квиза"
+    "results_title": "Результаты квиза",
+    "true_label": "Верно",
+    "false_label": "Неверно"
   },
   "task": {
     "hint": "Подсказка",
@@ -35,13 +37,17 @@
     "tests_passed": "Тесты пройдены: {passed} из {total}",
     "tasks_title": "Задачи",
     "completed": "Выполнено",
-    "not_started": "Не начато"
+    "not_started": "Не начато",
+    "estimated_minutes": "~{n} мин"
   },
   "code_review": {
     "title": "Code Review",
     "submit": "Проверить",
     "found": "Найдено {found} из {total} проблем",
-    "mark_issue": "Отметьте строки с проблемами"
+    "mark_issue": "Отметьте строки с проблемами",
+    "found_line": "✅ Строка {line}:",
+    "missed_line": "❌ Строка {line}:",
+    "false_positive": "⚠️ Строка {line}: ложное срабатывание"
   },
   "chat": {
     "title": "AI Помощник",
@@ -59,7 +65,11 @@
     "completed": "Завершено",
     "in_progress": "В процессе",
     "not_started": "Не начато",
-    "overall": "Общий прогресс"
+    "overall": "Общий прогресс",
+    "chapters_started": "глав начато",
+    "tasks_completed": "задач решено",
+    "quizzes_passed": "квизов пройдено",
+    "streak_days": "дней подряд"
   },
   "interview": {
     "title": "Подготовка к собеседованию",
@@ -119,6 +129,7 @@
   "nav": {
     "title": "Learning Book",
     "toggle_sidebar": "Переключить боковую панель",
+    "github": "GitHub",
     "tasks": "Задачи",
     "playground": "Песочница",
     "no_chapters": "Главы скоро появятся",
@@ -219,6 +230,19 @@
       "empty": "Ты ещё не начал читать",
       "empty_cta": "Начать с первой главы"
     }
+  },
+  "event_loop": {
+    "subtitle": "Напиши JS → пошаговая визуализация",
+    "code_tab": "Код",
+    "viz_tab": "Визуализация",
+    "nesting_supported": "вложенность поддерживается!",
+    "run": "Запустить симуляцию",
+    "empty": "пусто",
+    "checking_queues": "проверяю очереди...",
+    "observing": "наблюдаю",
+    "waiting": "ожидание...",
+    "pause": "Пауза",
+    "auto": "Авто"
   },
   "admin": {
     "title": "Панель управления",

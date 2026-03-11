@@ -93,18 +93,15 @@ const features = [
             <!-- Статистика -->
             <div class="flex flex-wrap gap-6">
               <div class="text-center">
-                <div class="text-2xl font-bold text-primary">39</div>
-                <div class="text-sm text-text-secondary">глав</div>
+                <div class="text-2xl font-bold text-primary">{{ t('home.hero.stats.chapters') }}</div>
               </div>
               <div class="w-px bg-border" />
               <div class="text-center">
-                <div class="text-2xl font-bold text-primary">120+</div>
-                <div class="text-sm text-text-secondary">задач</div>
+                <div class="text-2xl font-bold text-primary">{{ t('home.hero.stats.tasks') }}</div>
               </div>
               <div class="w-px bg-border" />
               <div class="text-center">
-                <div class="text-2xl font-bold text-primary">60+</div>
-                <div class="text-sm text-text-secondary">квизов</div>
+                <div class="text-2xl font-bold text-primary">{{ t('home.hero.stats.quizzes') }}</div>
               </div>
             </div>
           </div>

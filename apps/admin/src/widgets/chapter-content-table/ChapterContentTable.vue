@@ -14,11 +14,11 @@ const { t } = useI18n()
   <div class="overflow-x-auto">
     <table v-if="rows.length" class="w-full text-sm">
       <thead>
-        <tr class="border-b border-[var(--color-border)]">
+        <tr class="border-b border-border">
           <th
             v-for="col in columns"
             :key="col.key"
-            class="text-left py-2 px-3 font-medium text-[var(--color-text-secondary)]"
+            class="text-left py-2 px-3 font-medium text-text-secondary"
           >
             {{ col.label }}
           </th>
@@ -28,7 +28,7 @@ const { t } = useI18n()
         <tr
           v-for="(row, i) in rows"
           :key="i"
-          class="border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-surface-muted)]"
+          class="border-b border-border last:border-0 hover:bg-surface-muted"
         >
           <td v-for="col in columns" :key="col.key" class="py-2 px-3">
             <slot :name="col.key" :value="row[col.key]" :row="row">
@@ -38,7 +38,7 @@ const { t } = useI18n()
         </tr>
       </tbody>
     </table>
-    <p v-else class="text-center py-8 text-[var(--color-text-secondary)]">
+    <p v-else class="text-center py-8 text-text-secondary">
       {{ emptyText ?? t('admin.chapter_detail.no_data') }}
     </p>
   </div>

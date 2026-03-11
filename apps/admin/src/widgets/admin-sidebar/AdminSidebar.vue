@@ -20,9 +20,9 @@ function isActive(item: { to: string; name: string }) {
 </script>
 
 <template>
-  <aside class="w-60 shrink-0 bg-[var(--color-surface)] border-r border-[var(--color-border)] min-h-screen">
+  <aside class="w-60 shrink-0 bg-surface border-r border-border min-h-screen">
     <div class="p-4">
-      <router-link to="/" class="block font-semibold text-lg text-[var(--color-text)] mb-6">
+      <router-link to="/" class="block font-semibold text-lg text-text mb-6">
         {{ t('admin.title') }}
       </router-link>
       <nav class="space-y-1">
@@ -33,8 +33,8 @@ function isActive(item: { to: string; name: string }) {
           class="block px-3 py-2 rounded-lg text-sm font-medium transition-colors"
           :class="[
             isActive(item)
-              ? 'bg-[var(--color-primary)] text-white'
-              : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)] hover:text-[var(--color-text)]',
+              ? 'bg-primary text-white'
+              : 'text-text-secondary hover:bg-surface-muted hover:text-text',
           ]"
         >
           {{ t(item.labelKey) }}

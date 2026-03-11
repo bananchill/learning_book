@@ -10,7 +10,8 @@
   },
   "scripts": {
     "typecheck": "vue-tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@book/i18n": "workspace:*",

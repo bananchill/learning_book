@@ -53,15 +53,15 @@ onMounted(() => {
 <template>
   <div class="space-y-6">
     <!-- Табы -->
-    <div class="flex gap-1 border-b border-[var(--color-border)]">
+    <div class="flex gap-1 border-b border-border">
       <button
         v-for="tab in tabs"
         :key="tab.id"
         class="px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px"
         :class="[
           activeTab === tab.id
-            ? 'border-[var(--color-primary)] text-[var(--color-primary)]'
-            : 'border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text)]',
+            ? 'border-primary text-primary'
+            : 'border-transparent text-text-secondary hover:text-text',
         ]"
         @click="activeTab = tab.id"
       >
@@ -69,7 +69,7 @@ onMounted(() => {
       </button>
     </div>
 
-    <div v-if="chaptersStore.isLoading" class="text-[var(--color-text-secondary)]">
+    <div v-if="chaptersStore.isLoading" class="text-text-secondary">
       {{ t('common.loading') }}
     </div>
 
@@ -78,14 +78,14 @@ onMounted(() => {
       <BaseCard v-if="activeTab === 'meta'">
         <div v-if="chapter.meta" class="space-y-3">
           <div v-for="(value, key) in chapter.meta" :key="String(key)" class="flex gap-4">
-            <span class="text-sm font-medium text-[var(--color-text-secondary)] w-40 shrink-0">{{ String(key) }}</span>
+            <span class="text-sm font-medium text-text-secondary w-40 shrink-0">{{ String(key) }}</span>
             <span class="text-sm">
               <template v-if="Array.isArray(value)">{{ (value as unknown[]).join(', ') }}</template>
               <template v-else>{{ String(value) }}</template>
             </span>
           </div>
         </div>
-        <p v-else class="text-[var(--color-text-secondary)]">{{ t('admin.chapter_detail.no_data') }}</p>
+        <p v-else class="text-text-secondary">{{ t('admin.chapter_detail.no_data') }}</p>
       </BaseCard>
 
       <!-- Подглавы -->
@@ -94,12 +94,12 @@ onMounted(() => {
           <div
             v-for="file in chapter.subchapterFiles"
             :key="file"
-            class="px-3 py-2 rounded-lg bg-[var(--color-surface-muted)] text-sm font-mono"
+            class="px-3 py-2 rounded-lg bg-surface-muted text-sm font-mono"
           >
             {{ file }}.md
           </div>
         </div>
-        <p v-else class="text-[var(--color-text-secondary)]">{{ t('admin.chapter_detail.no_data') }}</p>
+        <p v-else class="text-text-secondary">{{ t('admin.chapter_detail.no_data') }}</p>
       </BaseCard>
 
       <!-- Задачи -->
@@ -147,9 +147,9 @@ onMounted(() => {
             <span class="font-medium">{{ t('admin.chapter_detail.steps') }}:</span>
             {{ chapter.walkthrough.steps.length }}
           </p>
-          <pre class="text-xs bg-[var(--color-surface-muted)] p-4 rounded-lg overflow-x-auto font-mono">{{ chapter.walkthrough.code }}</pre>
+          <pre class="text-xs bg-surface-muted p-4 rounded-lg overflow-x-auto font-mono">{{ chapter.walkthrough.code }}</pre>
         </div>
-        <p v-else class="text-[var(--color-text-secondary)]">{{ t('admin.chapter_detail.no_data') }}</p>
+        <p v-else class="text-text-secondary">{{ t('admin.chapter_detail.no_data') }}</p>
       </BaseCard>
 
       <!-- Ресурсы -->
@@ -158,13 +158,13 @@ onMounted(() => {
           <div
             v-for="(res, i) in (chapter.resources as Record<string, unknown>[])"
             :key="i"
-            class="px-3 py-2 rounded-lg bg-[var(--color-surface-muted)] text-sm"
+            class="px-3 py-2 rounded-lg bg-surface-muted text-sm"
           >
             <p class="font-medium">{{ res.title ?? res.name }}</p>
-            <p v-if="res.url" class="text-[var(--color-text-secondary)] text-xs truncate">{{ res.url }}</p>
+            <p v-if="res.url" class="text-text-secondary text-xs truncate">{{ res.url }}</p>
           </div>
         </div>
-        <p v-else class="text-[var(--color-text-secondary)]">{{ t('admin.chapter_detail.no_data') }}</p>
+        <p v-else class="text-text-secondary">{{ t('admin.chapter_detail.no_data') }}</p>
       </BaseCard>
     </template>
   </div>

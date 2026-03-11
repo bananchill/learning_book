@@ -21,19 +21,19 @@ const stats = computed(() => {
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
     <div class="text-center p-4 rounded-lg bg-surface-elevated border border-border">
       <div class="text-2xl font-bold text-primary">{{ stats.chaptersStarted }}</div>
-      <div class="text-xs text-text-muted mt-1">глав начато</div>
+      <div class="text-xs text-text-muted mt-1">{{ t('progress.chapters_started') }}</div>
     </div>
     <div class="text-center p-4 rounded-lg bg-surface-elevated border border-border">
       <div class="text-2xl font-bold text-success">{{ stats.tasksCompleted }}</div>
-      <div class="text-xs text-text-muted mt-1">задач решено</div>
+      <div class="text-xs text-text-muted mt-1">{{ t('progress.tasks_completed') }}</div>
     </div>
     <div class="text-center p-4 rounded-lg bg-surface-elevated border border-border">
       <div class="text-2xl font-bold text-accent">{{ stats.quizzesPassed }}</div>
-      <div class="text-xs text-text-muted mt-1">квизов пройдено</div>
+      <div class="text-xs text-text-muted mt-1">{{ t('progress.quizzes_passed') }}</div>
     </div>
     <div class="text-center p-4 rounded-lg bg-surface-elevated border border-border">
       <div class="text-2xl font-bold text-deep">{{ stats.streak }}</div>
-      <div class="text-xs text-text-muted mt-1">дней подряд</div>
+      <div class="text-xs text-text-muted mt-1">{{ t('progress.streak_days') }}</div>
     </div>
   </div>
 </template>

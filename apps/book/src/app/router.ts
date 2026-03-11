@@ -7,6 +7,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/home/HomePage.vue'),
   },
   {
+    // group не включён в URL для краткости — chapter.id уникален внутри subsection
     path: '/:section/:subsection/:chapter',
     component: () => import('@/pages/chapter/ChapterLayout.vue'),
     children: [

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch, onBeforeUnmount } from 'vue'
+import { useI18n } from '@book/i18n'
+
+const { t } = useI18n()
 
 /* ═══════════════════════════════════════════════════════════
    Типы
@@ -340,7 +343,7 @@ onBeforeUnmount(() => {
           <span style="color: #50fa7b;">&#9654;</span> Event Loop Simulator
         </div>
         <div style="margin-top: 2px; font-size: 10px; color: rgba(255,255,255,0.25);">
-          Напиши JS → пошаговая визуализация
+          {{ t('event_loop.subtitle') }}
         </div>
       </div>
       <div style="display: flex; gap: 6px;">
@@ -351,7 +354,7 @@ onBeforeUnmount(() => {
             : { border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)' }"
           @click="mode = 'edit'; playing = false"
         >
-          &#10000; Код
+          &#10000; {{ t('event_loop.code_tab') }}
         </button>
         <button
           style="cursor: pointer; border-radius: 6px; padding: 4px 10px; font-size: 10px; font-weight: 600; transition: all 0.2s;"
@@ -360,7 +363,7 @@ onBeforeUnmount(() => {
             : { border: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)' }"
           @click="mode === 'edit' ? run() : null"
         >
-          &#9654; Визуализация
+          &#9654; {{ t('event_loop.viz_tab') }}
         </button>
       </div>
     </div>
@@ -384,7 +387,7 @@ onBeforeUnmount(() => {
         <span style="color: #bd93f9;">setTimeout</span> ·
         <span style="color: #50fa7b;">Promise.resolve().then</span> ·
         <span style="color: #8be9fd;">requestAnimationFrame</span>
-        — вложенность поддерживается!
+        — {{ t('event_loop.nesting_supported') }}
       </div>
       <textarea
         v-model="code"
@@ -401,7 +404,7 @@ onBeforeUnmount(() => {
         style="cursor: pointer; border-radius: 9px; border: 1.5px solid rgba(80,250,123,0.25); background: linear-gradient(135deg, rgba(80,250,123,0.12), rgba(189,147,249,0.12)); padding: 11px; font-size: 13px; font-weight: 700; color: #50fa7b;"
         @click="run"
       >
-        &#9654; Запустить симуляцию
+        &#9654; {{ t('event_loop.run') }}
       </button>
     </div>
 
@@ -466,7 +469,7 @@ onBeforeUnmount(() => {
               v-if="!cur.callStack.length"
               style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-style: italic; color: rgba(255,255,255,0.10);"
             >
-              пусто
+              {{ t('event_loop.empty') }}
             </div>
             <div
               v-for="(item, idx) in cur.callStack"
@@ -503,7 +506,7 @@ onBeforeUnmount(() => {
               v-if="cur.highlight !== 'webapi' || !cur.macroQueue.length"
               style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-style: italic; color: rgba(255,255,255,0.10);"
             >
-              пусто
+              {{ t('event_loop.empty') }}
             </div>
             <template v-else>
               <div
@@ -549,7 +552,7 @@ onBeforeUnmount(() => {
               v-if="!cur.microQueue.length"
               style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-style: italic; color: rgba(255,255,255,0.10);"
             >
-              пусто
+              {{ t('event_loop.empty') }}
             </div>
             <div
               v-for="(item, idx) in cur.microQueue"
@@ -593,7 +596,7 @@ onBeforeUnmount(() => {
               v-if="!cur.macroQueue.length"
               style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-style: italic; color: rgba(255,255,255,0.10);"
             >
-              пусто
+              {{ t('event_loop.empty') }}
             </div>
             <div
               v-for="(item, idx) in cur.macroQueue"
@@ -647,7 +650,7 @@ onBeforeUnmount(() => {
           Event Loop
         </span>
         <span style="margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.2);">
-          {{ cur.highlight === 'eventloop' ? 'проверяю очереди...' : 'наблюдаю' }}
+          {{ cur.highlight === 'eventloop' ? t('event_loop.checking_queues') : t('event_loop.observing') }}
         </span>
       </div>
 
@@ -661,7 +664,7 @@ onBeforeUnmount(() => {
             v-if="!cur.output.length"
             style="font-size: 10px; font-style: italic; color: rgba(255,255,255,0.08);"
           >
-            ожидание...
+            {{ t('event_loop.waiting') }}
           </span>
           <span
             v-for="(item, idx) in cur.output"
@@ -696,7 +699,7 @@ onBeforeUnmount(() => {
             : { border: '1px solid rgba(80,250,123,0.25)', background: 'rgba(80,250,123,0.10)', color: '#50fa7b' }"
           @click="togglePlay"
         >
-          {{ playing ? '&#9208; Пауза' : '&#9654; Авто' }}
+          {{ playing ? `&#9208; ${t('event_loop.pause')}` : `&#9654; ${t('event_loop.auto')}` }}
         </button>
         <button
           style="border-radius: 6px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.04); padding: 6px 12px; font-size: 11px; font-weight: 600;"

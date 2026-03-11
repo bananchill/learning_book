@@ -89,14 +89,14 @@ function tfClass(value: boolean) {
         :disabled="isAnswered"
         @click="emit('select', true)"
       >
-        Верно
+        {{ t('quiz.true_label') }}
       </button>
       <button
         :class="tfClass(false)"
         :disabled="isAnswered"
         @click="emit('select', false)"
       >
-        Неверно
+        {{ t('quiz.false_label') }}
       </button>
     </div>
 

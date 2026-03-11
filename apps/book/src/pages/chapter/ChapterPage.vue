@@ -26,8 +26,8 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
   <ChapterView :chapter="chapter" :section-id="sectionId">
     <!-- Заголовок главы -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-[var(--color-text)] mb-3">{{ chapter.title }}</h1>
-      <p class="text-[var(--color-text-secondary)] text-lg">{{ chapter.description }}</p>
+      <h1 class="text-3xl font-bold text-text mb-3">{{ chapter.title }}</h1>
+      <p class="text-text-secondary text-lg">{{ chapter.description }}</p>
     </div>
 
     <!-- MDX контент -->
@@ -46,7 +46,7 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
 
     <!-- Содержание подглав -->
     <div v-if="chapter.subchapters.length > 0" class="mt-10">
-      <h2 class="text-xl font-semibold text-[var(--color-text)] mb-4">
+      <h2 class="text-xl font-semibold text-text mb-4">
         {{ t('chapter.contents') }}
       </h2>
       <div class="space-y-2">
@@ -56,10 +56,10 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
           :to="`${basePath}/${sub.id}`"
           class="block"
         >
-          <BaseCard :padding="false" class="p-4 hover:bg-[var(--color-surface-muted)] transition-colors">
+          <BaseCard :padding="false" class="p-4 hover:bg-surface-muted transition-colors">
             <div class="flex items-center gap-3">
-              <span class="text-sm font-medium text-[var(--color-primary)]">{{ sub.order }}.</span>
-              <span class="text-sm font-medium text-[var(--color-text)]">{{ sub.title }}</span>
+              <span class="text-sm font-medium text-primary">{{ sub.order }}.</span>
+              <span class="text-sm font-medium text-text">{{ sub.title }}</span>
             </div>
           </BaseCard>
         </router-link>

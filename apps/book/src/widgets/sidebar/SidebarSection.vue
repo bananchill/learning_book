@@ -19,8 +19,8 @@ const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
     <button
       class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
       :class="isActive
-        ? 'bg-[var(--color-primary-light)] text-[var(--color-primary)]'
-        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-muted)]'"
+        ? 'bg-primary-light text-primary'
+        : 'text-text-secondary hover:bg-surface-muted'"
       @click="isExpanded = !isExpanded"
     >
       <span class="flex-1 text-left">{{ section.title }}</span>
@@ -46,7 +46,7 @@ const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
 
       <div
         v-if="section.subsections.length === 0"
-        class="px-3 py-2 text-xs text-[var(--color-text-muted)] italic"
+        class="px-3 py-2 text-xs text-text-muted italic"
       >
         {{ t('nav.no_chapters') }}
       </div>

@@ -5,7 +5,7 @@ import { AdminHeader } from '@/widgets/admin-header'
 </script>
 
 <template>
-  <div class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] flex">
+  <div class="min-h-screen bg-bg text-text flex">
     <AdminSidebar />
     <div class="flex-1 flex flex-col min-w-0">
       <AdminHeader />

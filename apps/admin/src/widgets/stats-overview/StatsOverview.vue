@@ -13,20 +13,20 @@ const { t } = useI18n()
 <template>
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     <BaseCard>
-      <p class="text-3xl font-bold text-[var(--color-primary)]">{{ stats.totalChapters }}</p>
-      <p class="text-sm text-[var(--color-text-secondary)] mt-1">{{ t('admin.dashboard.total_chapters') }}</p>
+      <p class="text-3xl font-bold text-primary">{{ stats.totalChapters }}</p>
+      <p class="text-sm text-text-secondary mt-1">{{ t('admin.dashboard.total_chapters') }}</p>
     </BaseCard>
     <BaseCard>
-      <p class="text-3xl font-bold text-[var(--color-accent)]">{{ stats.totalTasks }}</p>
-      <p class="text-sm text-[var(--color-text-secondary)] mt-1">{{ t('admin.dashboard.total_tasks') }}</p>
+      <p class="text-3xl font-bold text-accent">{{ stats.totalTasks }}</p>
+      <p class="text-sm text-text-secondary mt-1">{{ t('admin.dashboard.total_tasks') }}</p>
     </BaseCard>
     <BaseCard>
-      <p class="text-3xl font-bold text-[var(--color-success)]">{{ stats.totalQuizQuestions }}</p>
-      <p class="text-sm text-[var(--color-text-secondary)] mt-1">{{ t('admin.dashboard.total_quiz') }}</p>
+      <p class="text-3xl font-bold text-success">{{ stats.totalQuizQuestions }}</p>
+      <p class="text-sm text-text-secondary mt-1">{{ t('admin.dashboard.total_quiz') }}</p>
     </BaseCard>
     <BaseCard>
-      <p class="text-3xl font-bold text-[var(--color-info)]">{{ stats.totalInterviewQuestions }}</p>
-      <p class="text-sm text-[var(--color-text-secondary)] mt-1">{{ t('admin.dashboard.total_interview') }}</p>
+      <p class="text-3xl font-bold text-info">{{ stats.totalInterviewQuestions }}</p>
+      <p class="text-sm text-text-secondary mt-1">{{ t('admin.dashboard.total_interview') }}</p>
     </BaseCard>
   </div>
 </template>

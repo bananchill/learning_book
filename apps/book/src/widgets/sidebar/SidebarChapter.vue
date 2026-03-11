@@ -29,12 +29,12 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
       :to="basePath"
       class="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors"
       :class="isActive
-        ? 'bg-[var(--color-surface-muted)] text-[var(--color-text)] font-medium'
-        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-muted)]/50'"
+        ? 'bg-surface-muted text-text font-medium'
+        : 'text-text-secondary hover:text-text hover:bg-surface-muted/50'"
       @click="isExpanded = !isExpanded"
     >
       <span class="flex-1 truncate">{{ chapter.title }}</span>
-      <span v-if="percent > 0" class="text-xs text-[var(--color-text-muted)]">{{ percent }}%</span>
+      <span v-if="percent > 0" class="text-xs text-text-muted">{{ percent }}%</span>
     </router-link>
 
     <!-- Подглавы -->
@@ -45,21 +45,21 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
         :to="`${basePath}/${sub.id}`"
         class="block px-3 py-1 rounded text-xs transition-colors"
         :class="currentSubchapter === sub.id
-          ? 'text-[var(--color-primary)] font-medium'
-          : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]'"
+          ? 'text-primary font-medium'
+          : 'text-text-muted hover:text-text-secondary'"
       >
         {{ sub.title }}
       </router-link>
 
       <router-link
         :to="`${basePath}/tasks`"
-        class="block px-3 py-1 rounded text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+        class="block px-3 py-1 rounded text-xs text-text-muted hover:text-text-secondary transition-colors"
       >
         {{ t('nav.tasks') }}
       </router-link>
       <router-link
         :to="`${basePath}/playground`"
-        class="block px-3 py-1 rounded text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors"
+        class="block px-3 py-1 rounded text-xs text-text-muted hover:text-text-secondary transition-colors"
       >
         {{ t('nav.playground') }}
       </router-link>

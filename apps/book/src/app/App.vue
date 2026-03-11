@@ -4,7 +4,7 @@ import { AppHeader } from '@/widgets/app-header'
 </script>
 
 <template>
-  <div class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+  <div class="min-h-screen bg-bg text-text">
     <AppHeader />
     <RouterView />
   </div>

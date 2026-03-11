@@ -50,13 +50,13 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
 <template>
   <div>
     <div v-if="subchapter" class="mb-8">
-      <h1 class="text-2xl font-bold text-[var(--color-text)] mb-2">{{ subchapter.title }}</h1>
+      <h1 class="text-2xl font-bold text-text mb-2">{{ subchapter.title }}</h1>
     </div>
 
     <!-- Контент -->
     <div v-if="isLoading" class="animate-pulse space-y-4">
-      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-3/4" />
-      <div class="h-4 bg-[var(--color-surface-muted)] rounded w-1/2" />
+      <div class="h-4 bg-surface-muted rounded w-3/4" />
+      <div class="h-4 bg-surface-muted rounded w-1/2" />
     </div>
 
     <div v-else-if="contentComponent" class="book-prose">
@@ -67,7 +67,7 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
     <ContentPlaceholder v-else />
 
     <!-- Навигация назад/вперёд -->
-    <div class="flex items-center justify-between mt-12 pt-6 border-t border-[var(--color-border)]">
+    <div class="flex items-center justify-between mt-12 pt-6 border-t border-border">
       <router-link v-if="prevSub" :to="`${basePath}/${prevSub.id}`">
         <BaseButton variant="ghost" size="sm">
           &larr; {{ prevSub.title }}

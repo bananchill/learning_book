@@ -9,6 +9,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "test": "vitest run",
+    "lint": "eslint src/",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {

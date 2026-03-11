@@ -52,18 +52,18 @@ function handleSolved(taskId: string) {
 
 <template>
   <div>
-    <h1 class="text-2xl font-bold text-[var(--color-text)] mb-6">
+    <h1 class="text-2xl font-bold text-text mb-6">
       {{ t('chapter.tasks_for', { chapter: chapter.title }) }}
     </h1>
 
     <div v-if="isLoading" class="animate-pulse space-y-4">
-      <div class="h-20 bg-[var(--color-surface-muted)] rounded-xl" />
-      <div class="h-20 bg-[var(--color-surface-muted)] rounded-xl" />
+      <div class="h-20 bg-surface-muted rounded-xl" />
+      <div class="h-20 bg-surface-muted rounded-xl" />
     </div>
 
     <template v-else-if="tasks.length > 0">
       <div v-if="isCodeLoading && selectedTask" class="animate-pulse space-y-4">
-        <div class="h-64 bg-[var(--color-surface-muted)] rounded-xl" />
+        <div class="h-64 bg-surface-muted rounded-xl" />
       </div>
 
       <TaskView

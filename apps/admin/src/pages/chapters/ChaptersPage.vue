@@ -26,13 +26,13 @@ const groupedChapters = computed(() => {
 
 <template>
   <div class="space-y-6">
-    <div v-if="chaptersStore.isLoading" class="text-[var(--color-text-secondary)]">
+    <div v-if="chaptersStore.isLoading" class="text-text-secondary">
       {{ t('common.loading') }}
     </div>
 
     <template v-else-if="chaptersStore.chapters.length">
       <div v-for="[sectionId, group] in groupedChapters" :key="sectionId" class="space-y-3">
-        <h2 class="text-lg font-semibold text-[var(--color-text)]">{{ group.sectionTitle }}</h2>
+        <h2 class="text-lg font-semibold text-text">{{ group.sectionTitle }}</h2>
 
         <div class="grid gap-3">
           <BaseCard v-for="ch in group.chapters" :key="ch.id">
@@ -43,30 +43,30 @@ const groupedChapters = computed(() => {
               <div class="flex items-start justify-between">
                 <div>
                   <h3 class="font-medium">{{ ch.title }}</h3>
-                  <p class="text-sm text-[var(--color-text-secondary)] mt-1">{{ ch.description }}</p>
+                  <p class="text-sm text-text-secondary mt-1">{{ ch.description }}</p>
                 </div>
                 <div class="flex items-center gap-2 ml-4 shrink-0">
                   <span
                     v-if="ch.hasTasks"
-                    class="text-xs px-2 py-0.5 rounded-full bg-[var(--color-success)]/10 text-[var(--color-success)]"
+                    class="text-xs px-2 py-0.5 rounded-full bg-success/10 text-success"
                   >
                     {{ ch.taskCount }} {{ t('admin.chapters.tasks').toLowerCase() }}
                   </span>
                   <span
                     v-if="ch.hasQuiz"
-                    class="text-xs px-2 py-0.5 rounded-full bg-[var(--color-info)]/10 text-[var(--color-info)]"
+                    class="text-xs px-2 py-0.5 rounded-full bg-info/10 text-info"
                   >
                     {{ t('admin.chapters.quiz') }}
                   </span>
                   <span
                     v-if="ch.hasInterview"
-                    class="text-xs px-2 py-0.5 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                    class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent"
                   >
                     {{ t('admin.chapters.interview') }}
                   </span>
                   <span
                     v-if="ch.hasWalkthrough"
-                    class="text-xs px-2 py-0.5 rounded-full bg-[var(--color-warning)]/10 text-[var(--color-warning)]"
+                    class="text-xs px-2 py-0.5 rounded-full bg-warning/10 text-warning"
                   >
                     {{ t('admin.chapters.walkthrough') }}
                   </span>
@@ -78,7 +78,7 @@ const groupedChapters = computed(() => {
       </div>
     </template>
 
-    <p v-else class="text-center py-12 text-[var(--color-text-secondary)]">
+    <p v-else class="text-center py-12 text-text-secondary">
       {{ t('admin.chapters.no_chapters') }}
     </p>
   </div>

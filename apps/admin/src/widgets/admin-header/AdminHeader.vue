@@ -19,9 +19,9 @@ const pageTitle = computed(() => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-[var(--z-sticky)] bg-[var(--color-bg)]/80 backdrop-blur-md border-b border-[var(--color-border)]">
+  <header class="sticky top-0 z-[var(--z-sticky)] bg-bg/80 backdrop-blur-md border-b border-border">
     <div class="flex items-center h-14 px-6">
-      <h1 class="text-lg font-semibold text-[var(--color-text)]">{{ pageTitle }}</h1>
+      <h1 class="text-lg font-semibold text-text">{{ pageTitle }}</h1>
     </div>
   </header>
 </template>

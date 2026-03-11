@@ -19,7 +19,7 @@ const starterCode = `// ${props.chapter.title}
 
 <template>
   <div>
-    <h1 class="text-2xl font-bold text-[var(--color-text)] mb-6">
+    <h1 class="text-2xl font-bold text-text mb-6">
       {{ t('chapter.playground_for', { chapter: chapter.title }) }}
     </h1>
 

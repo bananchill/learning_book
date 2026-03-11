@@ -18,8 +18,8 @@ const isExpanded = ref(props.isActive)
     <button
       class="w-full flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
       :class="isActive
-        ? 'text-[var(--color-text)]'
-        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-muted)]/50'"
+        ? 'text-text'
+        : 'text-text-secondary hover:text-text hover:bg-surface-muted/50'"
       @click="isExpanded = !isExpanded"
     >
       <span class="flex-1 text-left">{{ subsection.title }}</span>

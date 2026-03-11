@@ -22,8 +22,8 @@ const isExpanded = ref(hasActiveChapter)
     <button
       class="w-full flex items-center gap-1.5 px-3 py-1 rounded text-xs font-medium uppercase tracking-wide transition-colors"
       :class="hasActiveChapter
-        ? 'text-[var(--color-text-secondary)]'
-        : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)]'"
+        ? 'text-text-secondary'
+        : 'text-text-muted hover:text-text-secondary'"
       @click="isExpanded = !isExpanded"
     >
       <svg

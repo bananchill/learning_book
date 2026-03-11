@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Task } from '@book/shared'
 import { DifficultyBadge } from '@book/ui'
+import { useI18n } from '@book/i18n'
 
 defineProps<{
   task: Task
@@ -10,6 +11,8 @@ defineProps<{
 const emit = defineEmits<{
   select: [taskId: string]
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -26,7 +29,7 @@ const emit = defineEmits<{
     <p class="text-xs text-text-secondary mb-3 line-clamp-2">{{ task.description }}</p>
 
     <div class="flex items-center justify-between">
-      <span class="text-xs text-text-muted">~{{ task.estimatedMinutes }} мин</span>
+      <span class="text-xs text-text-muted">{{ t('task.estimated_minutes', { n: task.estimatedMinutes }) }}</span>
       <span v-if="solved" class="text-xs text-success font-medium">✅</span>
     </div>
   </div>
