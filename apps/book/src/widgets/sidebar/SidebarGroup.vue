@@ -36,7 +36,7 @@ const isExpanded = ref(hasActiveChapter)
       </svg>
       <span>{{ group.title }}</span>
     </button>
-    <div v-show="isExpanded" class="space-y-0.5">
+    <div v-show="isExpanded" class="ml-3 space-y-0.5">
       <SidebarChapter
         v-for="chapter in group.chapters"
         :key="chapter.id"
