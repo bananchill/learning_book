@@ -6,6 +6,7 @@ import { CodeSandbox } from '@book/core'
 const props = defineProps<{
   chapter: ChapterMeta
   sectionId: string
+  subsectionId: string
 }>()
 
 const { t } = useI18n()

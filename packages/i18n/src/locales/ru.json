@@ -121,7 +121,12 @@
     "toggle_sidebar": "Переключить боковую панель",
     "tasks": "Задачи",
     "playground": "Песочница",
-    "no_chapters": "Главы скоро появятся"
+    "no_chapters": "Главы скоро появятся",
+    "no_subsections": "Подсекции скоро появятся",
+    "level": {
+      "basics": "Основы",
+      "advanced": "Продвинутый"
+    }
   },
   "chapter": {
     "contents": "Содержание",
@@ -161,9 +166,9 @@
     },
     "sections": {
       "title": "Что внутри",
-      "js": {
-        "title": "JavaScript / TypeScript",
-        "description": "Замыкания, прототипы, async/await, типы и дженерики — от основ до продвинутых паттернов.",
+      "frontend": {
+        "title": "Frontend",
+        "description": "JavaScript, TypeScript, React — замыкания, async/await, типы, дженерики и продвинутые паттерны.",
         "chapters": "18 глав"
       },
       "architecture": {

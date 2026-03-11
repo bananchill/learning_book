@@ -11,8 +11,11 @@ const sidebar = useSidebarStore()
 const { findChapter } = useBookConfig()
 
 const sectionId = computed(() => route.params.section as string)
+const subsectionId = computed(() => route.params.subsection as string)
 const chapterId = computed(() => route.params.chapter as string)
-const chapter = computed(() => findChapter(sectionId.value, chapterId.value))
+const chapter = computed(() =>
+  findChapter(sectionId.value, subsectionId.value, chapterId.value),
+)
 
 function checkMobile() {
   sidebar.setMobile(window.innerWidth < 1024)
@@ -41,6 +44,7 @@ onUnmounted(() => {
           v-if="chapter"
           :chapter="chapter"
           :section-id="sectionId"
+          :subsection-id="subsectionId"
         />
 
         <!-- Глава не найдена -->

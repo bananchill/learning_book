@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useI18n } from '@book/i18n'
 import { BaseCard, BaseButton } from '@book/ui'
 import { useBookConfigAdmin } from '@/features/admin-api'
+import type { SectionMeta, ChapterMeta } from '@book/shared'
 
 const { t } = useI18n()
 const { config, sections, isLoading, loadConfig, saveConfig } = useBookConfigAdmin()
@@ -11,6 +12,28 @@ const saveStatus = ref<'idle' | 'saving' | 'saved' | 'error'>('idle')
 onMounted(() => {
   loadConfig()
 })
+
+/** Подсчёт всех глав в секции */
+function countChapters(section: SectionMeta): number {
+  let count = 0
+  for (const sub of section.subsections) {
+    for (const group of sub.groups) {
+      count += group.chapters.length
+    }
+  }
+  return count
+}
+
+/** Плоский список глав секции */
+function flatChapters(section: SectionMeta): ChapterMeta[] {
+  const result: ChapterMeta[] = []
+  for (const sub of section.subsections) {
+    for (const group of sub.groups) {
+      result.push(...group.chapters)
+    }
+  }
+  return result
+}
 
 async function handleSave() {
   saveStatus.value = 'saving'
@@ -57,13 +80,13 @@ async function handleSave() {
                 <p class="text-xs text-[var(--color-text-secondary)]">{{ section.id }}</p>
               </div>
               <span class="text-sm text-[var(--color-text-secondary)]">
-                {{ t('admin.settings.chapters_count', { n: section.chapters.length }) }}
+                {{ t('admin.settings.chapters_count', { n: countChapters(section) }) }}
               </span>
             </div>
 
-            <div v-if="section.chapters.length" class="space-y-2 ml-4">
+            <div v-if="flatChapters(section).length" class="space-y-2 ml-4">
               <div
-                v-for="ch in section.chapters"
+                v-for="ch in flatChapters(section)"
                 :key="ch.id"
                 class="flex items-center justify-between px-3 py-2 rounded bg-[var(--color-surface-muted)] text-sm"
               >

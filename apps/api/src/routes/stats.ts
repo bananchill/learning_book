@@ -19,7 +19,9 @@ statsRouter.get('/', async (_req, res, next) => {
     const coverage = { tasks: 0, quiz: 0, interview: 0, walkthrough: 0, codeReview: 0 }
 
     for (const section of config.sections) {
-      for (const chapter of section.chapters) {
+      for (const subsection of section.subsections) {
+      for (const group of subsection.groups) {
+      for (const chapter of group.chapters) {
         totalChapters++
         const dir = resolve(CONTENT_DIR, chapter.id)
         let hasAny = false
@@ -58,6 +60,8 @@ statsRouter.get('/', async (_req, res, next) => {
         } catch { /* нет файла */ }
 
         if (hasAny) chaptersWithContent++
+      }
+      }
       }
     }
 

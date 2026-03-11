@@ -9,6 +9,7 @@ import { ChapterView } from '@/widgets/chapter-view'
 const props = defineProps<{
   chapter: ChapterMeta
   sectionId: string
+  subsectionId: string
 }>()
 
 const { t } = useI18n()
@@ -17,6 +18,8 @@ const contentPath = computed(() => `${props.chapter.contentPath}/index.md`)
 const { component: contentComponent, isLoading, error } = useChapterContent(
   () => contentPath.value,
 )
+
+const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
 </script>
 
 <template>
@@ -50,7 +53,7 @@ const { component: contentComponent, isLoading, error } = useChapterContent(
         <router-link
           v-for="sub in chapter.subchapters"
           :key="sub.id"
-          :to="`/${sectionId}/${chapter.id}/${sub.id}`"
+          :to="`${basePath}/${sub.id}`"
           class="block"
         >
           <BaseCard :padding="false" class="p-4 hover:bg-[var(--color-surface-muted)] transition-colors">
@@ -65,10 +68,10 @@ const { component: contentComponent, isLoading, error } = useChapterContent(
 
     <!-- Быстрые ссылки -->
     <div class="flex flex-wrap gap-3 mt-8">
-      <router-link :to="`/${sectionId}/${chapter.id}/tasks`">
+      <router-link :to="`${basePath}/tasks`">
         <BaseButton variant="secondary" size="sm">{{ t('chapter.go_tasks') }}</BaseButton>
       </router-link>
-      <router-link :to="`/${sectionId}/${chapter.id}/playground`">
+      <router-link :to="`${basePath}/playground`">
         <BaseButton variant="secondary" size="sm">{{ t('chapter.go_playground') }}</BaseButton>
       </router-link>
     </div>

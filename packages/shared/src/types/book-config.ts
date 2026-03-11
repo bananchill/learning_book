@@ -15,13 +15,30 @@ export interface ChapterMeta {
   subchapters: SubchapterMeta[]
 }
 
-/** Метаданные секции */
+/** Группа глав по уровню сложности */
+export interface ChapterGroupMeta {
+  id: string
+  title: string
+  order: number
+  chapters: ChapterMeta[]
+}
+
+/** Подсекция (JS, TS, React...) */
+export interface SubsectionMeta {
+  id: string
+  title: string
+  icon?: string
+  order: number
+  groups: ChapterGroupMeta[]
+}
+
+/** Метаданные секции — содержит subsections */
 export interface SectionMeta {
   id: string
   title: string
   icon: string
   order: number
-  chapters: ChapterMeta[]
+  subsections: SubsectionMeta[]
 }
 
 /** Конфигурация книги */

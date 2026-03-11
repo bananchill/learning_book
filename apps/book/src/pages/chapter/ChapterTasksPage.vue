@@ -9,6 +9,7 @@ import { useChapterData, useTaskCode, ContentPlaceholder } from '@/features/cont
 const props = defineProps<{
   chapter: ChapterMeta
   sectionId: string
+  subsectionId: string
 }>()
 
 const { t } = useI18n()

@@ -2,7 +2,9 @@
   "id": "ch04-v8-engine",
   "title": "Движок V8",
   "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и сборка мусора",
-  "section": "javascript",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "advanced",
   "order": 4,
   "estimatedMinutes": 50,
   "topics": ["v8", "engine", "jit", "turbofan", "hidden-classes", "inline-cache", "context-allocation", "garbage-collection"]

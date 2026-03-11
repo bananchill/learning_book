@@ -2,7 +2,9 @@
   "id": "ch02-async",
   "title": "Асинхронность",
   "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
-  "section": "javascript",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "basics",
   "order": 2,
   "estimatedMinutes": 50,
   "topics": ["async", "event-loop", "promises", "async-await", "microtasks", "macrotasks"]

@@ -11,6 +11,7 @@ import { useBookConfig } from '@/features/navigation'
 const props = defineProps<{
   chapter: ChapterMeta
   sectionId: string
+  subsectionId: string
 }>()
 
 const route = useRoute()
@@ -20,7 +21,7 @@ const { findSubchapter } = useBookConfig()
 
 const subchapterId = computed(() => route.params.subchapter as string)
 const subchapter = computed(() =>
-  findSubchapter(props.sectionId, props.chapter.id, subchapterId.value),
+  findSubchapter(props.sectionId, props.subsectionId, props.chapter.id, subchapterId.value),
 )
 
 const { component: contentComponent, isLoading, error } = useChapterContent(
@@ -35,6 +36,8 @@ watch(contentComponent, (comp) => {
     progress.markSubchapterRead(props.chapter.id, subchapterId.value)
   }
 })
+
+const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
 
 // Навигация: предыдущая / следующая подглава
 const currentIndex = computed(() =>
@@ -65,7 +68,7 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
 
     <!-- Навигация назад/вперёд -->
     <div class="flex items-center justify-between mt-12 pt-6 border-t border-[var(--color-border)]">
-      <router-link v-if="prevSub" :to="`/${sectionId}/${chapter.id}/${prevSub.id}`">
+      <router-link v-if="prevSub" :to="`${basePath}/${prevSub.id}`">
         <BaseButton variant="ghost" size="sm">
           &larr; {{ prevSub.title }}
         </BaseButton>
@@ -74,7 +77,7 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
 
       <router-link
         v-if="nextSub"
-        :to="`/${sectionId}/${chapter.id}/${nextSub.id}`"
+        :to="`${basePath}/${nextSub.id}`"
       >
         <BaseButton variant="ghost" size="sm">
           {{ nextSub.title }} &rarr;
@@ -82,7 +85,7 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
       </router-link>
       <router-link
         v-else
-        :to="`/${sectionId}/${chapter.id}/tasks`"
+        :to="`${basePath}/tasks`"
       >
         <BaseButton variant="primary" size="sm">
           {{ t('chapter.go_tasks') }} &rarr;

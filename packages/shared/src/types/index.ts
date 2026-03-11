@@ -26,4 +26,11 @@ export type { TestResult, ConsoleEntry } from './sandbox'
 export type { ChapterContext, ChatMessage } from './chat'
 
 // Конфиг книги
-export type { BookConfig, SectionMeta, ChapterMeta, SubchapterMeta } from './book-config'
+export type {
+  BookConfig,
+  SectionMeta,
+  SubsectionMeta,
+  ChapterGroupMeta,
+  ChapterMeta,
+  SubchapterMeta,
+} from './book-config'

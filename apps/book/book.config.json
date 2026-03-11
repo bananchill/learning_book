@@ -1,65 +1,86 @@
 {
   "sections": [
     {
-      "id": "javascript",
-      "title": "JavaScript / TypeScript",
+      "id": "frontend",
+      "title": "Frontend",
       "icon": "lightning",
       "order": 1,
-      "chapters": [
+      "subsections": [
         {
-          "id": "ch01-closures",
-          "title": "Замыкания",
-          "description": "Полный разбор замыканий: от основ до внутренностей V8",
+          "id": "javascript",
+          "title": "JavaScript",
           "order": 1,
-          "contentPath": "content/ru/ch01-closures",
-          "subchapters": [
-            { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
-            { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
-            { "id": "03-common-problems", "title": "Частые проблемы", "order": 3 },
-            { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
-            { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
-          ]
-        },
-        {
-          "id": "ch02-async",
-          "title": "Асинхронность",
-          "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
-          "order": 2,
-          "contentPath": "content/ru/ch02-async",
-          "subchapters": [
-            { "id": "01-what-and-why", "title": "Синхронный vs асинхронный код", "order": 1 },
-            { "id": "02-event-loop", "title": "Event Loop", "order": 2 },
-            { "id": "03-promises", "title": "Promises", "order": 3 },
-            { "id": "04-async-await", "title": "Async/Await", "order": 4 },
-            { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
-          ]
-        },
-        {
-          "id": "ch03-parallelism",
-          "title": "Параллелизм и конкурентность",
-          "description": "Конкурентность vs параллелизм, Web Workers, SharedArrayBuffer, Atomics, worker_threads, паттерны многопоточности",
-          "order": 3,
-          "contentPath": "content/ru/ch03-parallelism",
-          "subchapters": [
-            { "id": "01-concepts", "title": "Конкурентность vs параллелизм", "order": 1 },
-            { "id": "02-web-workers", "title": "Web Workers", "order": 2 },
-            { "id": "03-shared-memory", "title": "SharedArrayBuffer и Atomics", "order": 3 },
-            { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
-            { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
-          ]
-        },
-        {
-          "id": "ch04-v8-engine",
-          "title": "Движок V8",
-          "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и сборка мусора",
-          "order": 4,
-          "contentPath": "content/ru/ch04-v8-engine",
-          "subchapters": [
-            { "id": "01-architecture", "title": "Архитектура V8", "order": 1 },
-            { "id": "02-memory-model", "title": "Память: стек, куча, объекты", "order": 2 },
-            { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
-            { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
-            { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 }
+          "groups": [
+            {
+              "id": "basics",
+              "title": "Основы",
+              "order": 1,
+              "chapters": [
+                {
+                  "id": "ch01-closures",
+                  "title": "Замыкания",
+                  "description": "Полный разбор замыканий: от основ до внутренностей V8",
+                  "order": 1,
+                  "contentPath": "content/ru/ch01-closures",
+                  "subchapters": [
+                    { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
+                    { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
+                    { "id": "03-common-problems", "title": "Частые проблемы", "order": 3 },
+                    { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
+                    { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
+                  ]
+                },
+                {
+                  "id": "ch02-async",
+                  "title": "Асинхронность",
+                  "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
+                  "order": 2,
+                  "contentPath": "content/ru/ch02-async",
+                  "subchapters": [
+                    { "id": "01-what-and-why", "title": "Синхронный vs асинхронный код", "order": 1 },
+                    { "id": "02-event-loop", "title": "Event Loop", "order": 2 },
+                    { "id": "03-promises", "title": "Promises", "order": 3 },
+                    { "id": "04-async-await", "title": "Async/Await", "order": 4 },
+                    { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "advanced",
+              "title": "Продвинутый",
+              "order": 2,
+              "chapters": [
+                {
+                  "id": "ch03-parallelism",
+                  "title": "Параллелизм и конкурентность",
+                  "description": "Конкурентность vs параллелизм, Web Workers, SharedArrayBuffer, Atomics, worker_threads, паттерны многопоточности",
+                  "order": 3,
+                  "contentPath": "content/ru/ch03-parallelism",
+                  "subchapters": [
+                    { "id": "01-concepts", "title": "Конкурентность vs параллелизм", "order": 1 },
+                    { "id": "02-web-workers", "title": "Web Workers", "order": 2 },
+                    { "id": "03-shared-memory", "title": "SharedArrayBuffer и Atomics", "order": 3 },
+                    { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
+                    { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
+                  ]
+                },
+                {
+                  "id": "ch04-v8-engine",
+                  "title": "Движок V8",
+                  "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и сборка мусора",
+                  "order": 4,
+                  "contentPath": "content/ru/ch04-v8-engine",
+                  "subchapters": [
+                    { "id": "01-architecture", "title": "Архитектура V8", "order": 1 },
+                    { "id": "02-memory-model", "title": "Память: стек, куча, объекты", "order": 2 },
+                    { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
+                    { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
+                    { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]
@@ -69,21 +90,21 @@
       "title": "Архитектура",
       "icon": "building",
       "order": 2,
-      "chapters": []
+      "subsections": []
     },
     {
       "id": "databases",
       "title": "Базы данных",
       "icon": "database",
       "order": 3,
-      "chapters": []
+      "subsections": []
     },
     {
       "id": "devops",
       "title": "DevOps",
       "icon": "rocket",
       "order": 4,
-      "chapters": []
+      "subsections": []
     }
   ]
 }

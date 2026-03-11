@@ -8,30 +8,30 @@ import { useBookConfig } from '@/features/navigation'
 
 const { t } = useI18n()
 const router = useRouter()
-const { sections: bookSections, firstAvailableChapter } = useBookConfig()
+const { sections: bookSections, firstAvailableChapter, firstChapter } = useBookConfig()
 const progress = useProgressStore()
 
 const hasProgress = computed(() => Object.keys(progress.allChapters).length > 0)
 
 // Маппинг section.id → визуальные данные
 const sectionVisuals: Record<string, { key: string; icon: string; bg: string }> = {
-  javascript: { key: 'js', icon: '⚡', bg: 'bg-accent-light' },
+  frontend: { key: 'frontend', icon: '⚡', bg: 'bg-accent-light' },
   architecture: { key: 'architecture', icon: '🏛', bg: 'bg-deep-light' },
   databases: { key: 'databases', icon: '🗄', bg: 'bg-success-light' },
   devops: { key: 'devops', icon: '🚀', bg: 'bg-info-light' },
 }
 
 function navigateToSection(sectionId: string) {
-  const section = bookSections.value.find(s => s.id === sectionId)
-  if (section?.chapters[0]) {
-    router.push(`/${sectionId}/${section.chapters[0].id}`)
+  const first = firstChapter(sectionId)
+  if (first) {
+    router.push(`/${sectionId}/${first.subsectionId}/${first.chapter.id}`)
   }
 }
 
 function navigateToFirstChapter() {
   const first = firstAvailableChapter()
   if (first) {
-    router.push(`/${first.sectionId}/${first.chapter.id}`)
+    router.push(`/${first.sectionId}/${first.subsectionId}/${first.chapter.id}`)
   }
 }
 

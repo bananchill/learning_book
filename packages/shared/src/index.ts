@@ -15,5 +15,5 @@ export type {
   // Chat
   ChapterContext, ChatMessage,
   // Конфиг книги
-  BookConfig, SectionMeta, ChapterMeta, SubchapterMeta,
+  BookConfig, SectionMeta, SubsectionMeta, ChapterGroupMeta, ChapterMeta, SubchapterMeta,
 } from './types'

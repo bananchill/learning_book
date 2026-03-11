@@ -20,34 +20,42 @@ chaptersRouter.get('/', async (_req, res, next) => {
     const chapters = []
 
     for (const section of config.sections) {
-      for (const chapter of section.chapters) {
-        const chapterDir = resolve(CONTENT_DIR, chapter.id)
+      for (const subsection of section.subsections) {
+        for (const group of subsection.groups) {
+          for (const chapter of group.chapters) {
+            const chapterDir = resolve(CONTENT_DIR, chapter.id)
 
-        const [tasks, quiz, interview, walkthrough] = await Promise.allSettled([
-          readJsonFile<{ tasks: unknown[] }>(resolve(chapterDir, 'tasks', '_tasks.json')),
-          readJsonFile<{ questions: unknown[] }>(resolve(chapterDir, 'quiz.json')),
-          readJsonFile<{ questions: unknown[] }>(resolve(chapterDir, 'interview.json')),
-          readJsonFile(resolve(chapterDir, 'walkthrough.json')),
-        ])
+            const [tasks, quiz, interview, walkthrough] = await Promise.allSettled([
+              readJsonFile<{ tasks: unknown[] }>(resolve(chapterDir, 'tasks', '_tasks.json')),
+              readJsonFile<{ questions: unknown[] }>(resolve(chapterDir, 'quiz.json')),
+              readJsonFile<{ questions: unknown[] }>(resolve(chapterDir, 'interview.json')),
+              readJsonFile(resolve(chapterDir, 'walkthrough.json')),
+            ])
 
-        const taskList = extractSettled(tasks)
-        const quizData = extractSettled(quiz)
-        const interviewData = extractSettled(interview)
+            const taskList = extractSettled(tasks)
+            const quizData = extractSettled(quiz)
+            const interviewData = extractSettled(interview)
 
-        chapters.push({
-          id: chapter.id,
-          title: chapter.title,
-          description: chapter.description,
-          section: section.id,
-          sectionTitle: section.title,
-          order: chapter.order,
-          hasQuiz: quizData !== null,
-          hasTasks: taskList !== null,
-          hasInterview: interviewData !== null,
-          hasWalkthrough: extractSettled(walkthrough) !== null,
-          taskCount: taskList?.tasks?.length ?? 0,
-          quizQuestionCount: quizData?.questions?.length ?? 0,
-        })
+            chapters.push({
+              id: chapter.id,
+              title: chapter.title,
+              description: chapter.description,
+              section: section.id,
+              sectionTitle: section.title,
+              subsection: subsection.id,
+              subsectionTitle: subsection.title,
+              group: group.id,
+              groupTitle: group.title,
+              order: chapter.order,
+              hasQuiz: quizData !== null,
+              hasTasks: taskList !== null,
+              hasInterview: interviewData !== null,
+              hasWalkthrough: extractSettled(walkthrough) !== null,
+              taskCount: taskList?.tasks?.length ?? 0,
+              quizQuestionCount: quizData?.questions?.length ?? 0,
+            })
+          }
+        }
       }
     }
 

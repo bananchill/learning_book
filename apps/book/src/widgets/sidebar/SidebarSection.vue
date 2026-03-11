@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useI18n } from '@book/i18n'
 import type { SectionMeta } from '@book/shared'
-import SidebarChapter from './SidebarChapter.vue'
+import SidebarSubsection from './SidebarSubsection.vue'
 
 const props = defineProps<{
   section: SectionMeta
@@ -11,7 +11,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
-const isExpanded = ref(props.isActive || props.section.chapters.length > 0)
+const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
 </script>
 
 <template>
@@ -35,16 +35,17 @@ const isExpanded = ref(props.isActive || props.section.chapters.length > 0)
     </button>
 
     <div v-show="isExpanded" class="ml-3 mt-1 space-y-0.5">
-      <SidebarChapter
-        v-for="chapter in section.chapters"
-        :key="chapter.id"
-        :chapter="chapter"
+      <SidebarSubsection
+        v-for="sub in section.subsections"
+        :key="sub.id"
+        :subsection="sub"
         :section-id="section.id"
-        :is-active="chapter.id === activeChapterId"
+        :is-active="isActive"
+        :active-chapter-id="activeChapterId"
       />
 
       <div
-        v-if="section.chapters.length === 0"
+        v-if="section.subsections.length === 0"
         class="px-3 py-2 text-xs text-[var(--color-text-muted)] italic"
       >
         {{ t('nav.no_chapters') }}

@@ -2,7 +2,9 @@
   "id": "ch01-closures",
   "title": "Замыкания",
   "description": "Полный разбор замыканий: от основ до внутренностей V8",
-  "section": "javascript",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "basics",
   "order": 1,
   "estimatedMinutes": 45,
   "topics": ["closure", "scope", "lexical-environment", "garbage-collection", "memory"]
