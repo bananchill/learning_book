@@ -1,4 +1,5 @@
-import type { ChapterProgress } from '@book/shared'
+import type { ChapterProgress, ChapterStatus } from '@book/shared'
+import { calcPercent } from '@book/shared'
 
 // Расчёт процента завершения главы
 export function chapterCompletionPercent(progress: ChapterProgress): number {
@@ -20,12 +21,11 @@ export function chapterCompletionPercent(progress: ChapterProgress): number {
   }
 
   if (parts.length === 0) return 0
-  return Math.round((parts.reduce((a, b) => a + b, 0) / parts.length) * 100)
+  const sum = parts.reduce((a, b) => a + b, 0)
+  return calcPercent(sum, parts.length)
 }
 
 // Статус главы
-export type ChapterStatus = 'not_started' | 'in_progress' | 'completed'
-
 export function chapterStatus(progress: ChapterProgress): ChapterStatus {
   const percent = chapterCompletionPercent(progress)
   if (percent === 0) return 'not_started'
@@ -42,5 +42,5 @@ export function bookCompletionPercent(
   const completedCount = Object.values(chapters).filter(
     (ch) => chapterStatus(ch) === 'completed',
   ).length
-  return Math.round((completedCount / totalChapters) * 100)
+  return calcPercent(completedCount, totalChapters)
 }

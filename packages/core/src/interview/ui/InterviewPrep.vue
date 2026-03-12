@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from '@book/i18n'
-import type { Interview } from '@book/shared'
-import { useInterview, type SelfAssessment } from '../model/useInterview'
+import type { Interview, SelfAssessment } from '@book/shared'
+import { useInterview } from '../model/useInterview'
 import InterviewCard from './InterviewCard.vue'
 
 const props = defineProps<{
@@ -32,14 +32,19 @@ const {
     </div>
 
     <!-- Вопросы -->
-    <InterviewCard
-      v-for="q in questions"
-      :key="q.id"
-      :question="q"
-      :is-revealed="isRevealed(q.id)"
-      :assessment="getAssessment(q.id)"
-      @reveal="reveal(q.id)"
-      @assess="assess(q.id, $event)"
-    />
+    <template v-if="questions.length > 0">
+      <InterviewCard
+        v-for="q in questions"
+        :key="q.id"
+        :question="q"
+        :is-revealed="isRevealed(q.id)"
+        :assessment="getAssessment(q.id)"
+        @reveal="reveal(q.id)"
+        @assess="assess(q.id, $event)"
+      />
+    </template>
+    <div v-else class="text-center text-text-muted text-sm py-8">
+      {{ t('interview.no_questions') }}
+    </div>
   </div>
 </template>

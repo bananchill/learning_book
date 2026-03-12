@@ -1,9 +1,12 @@
+/// <reference types="vite-ssg" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { resolve } from 'path'
 import { readFileSync } from 'fs'
+import { generateRoutes } from './ssg-routes'
+import { generateSitemap } from './ssg-sitemap'
 
 /**
  * Vite не прогоняет плагины для файлов за пределами project root (/@fs/ пути).
@@ -78,6 +81,20 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => '/v1/messages',
       },
+    },
+  },
+  ssgOptions: {
+    entry: 'src/app/main.ts',
+    script: 'async',
+    formatting: 'minify',
+    beastiesOptions: {
+      preload: 'swap',
+    },
+    includedRoutes(_paths, _routes) {
+      return generateRoutes()
+    },
+    onFinished() {
+      generateSitemap(resolve(__dirname, 'dist'))
     },
   },
 })

@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
-import type { Quiz, QuizQuestion } from '@book/shared'
-import { calculateScore, isAnswerCorrect, type QuizAnswer, type QuizScore } from '../lib/quizScoring'
+import type { Quiz, QuizQuestion, QuizAnswer, QuizScore } from '@book/shared'
+import { calculateScore, isAnswerCorrect } from '../lib/quizScoring'
 
 export function useQuiz(quiz: Quiz) {
   const currentIndex = ref(0)

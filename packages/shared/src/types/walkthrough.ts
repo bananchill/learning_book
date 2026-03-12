@@ -10,6 +10,8 @@ export interface WalkthroughStep {
   callStack: string[]
   /** Что подсветить в визуализации (опционально) */
   highlight?: string
+  /** Вывод консоли на этом шаге */
+  output?: string[]
 }
 
 /** Пошаговый разбор кода (debugger-like) */

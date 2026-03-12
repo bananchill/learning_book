@@ -17,6 +17,11 @@ onMounted(() => {
 
 <template>
   <div class="space-y-6">
+    <!-- Ошибки -->
+    <div v-if="statsStore.error || chaptersStore.error" class="rounded-lg bg-danger-light text-danger px-4 py-3 text-sm">
+      {{ statsStore.error || chaptersStore.error }}
+    </div>
+
     <!-- Статистика -->
     <StatsOverview v-if="statsStore.stats" :stats="statsStore.stats" />
 

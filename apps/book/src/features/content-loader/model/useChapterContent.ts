@@ -1,5 +1,6 @@
 import { ref, shallowRef, watch, type Component } from 'vue'
 import { useI18n } from '@book/i18n'
+import { normalizeContentPath } from '@book/shared'
 
 const contentModules = import.meta.glob('@content/**/*.md', {
   eager: true
@@ -37,7 +38,7 @@ export function useChapterContent(contentPath: () => string | undefined) {
 
       isLoading.value = true
 
-      const normalizedPath = path.replace(`content\/${locale}\/`, '')
+      const normalizedPath = normalizeContentPath(path, locale)
 
       const loader = moduleMap.get(normalizedPath)
 

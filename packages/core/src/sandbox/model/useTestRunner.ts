@@ -4,7 +4,7 @@ import { useCodeRunner } from './useCodeRunner'
 import { useCodeHistory } from './useCodeHistory'
 import { formatCode } from '../lib/codeFormatter'
 
-interface UseTestRunnerOptions {
+export interface UseTestRunnerOptions {
   autoRun?: boolean
   debounceMs?: number
   /** Ключ для localStorage-персистенции. Если не передан — код не сохраняется */

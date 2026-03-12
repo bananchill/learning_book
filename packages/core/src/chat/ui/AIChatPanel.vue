@@ -74,6 +74,7 @@ watch(
           </button>
           <button
             class="w-7 h-7 rounded-md flex items-center justify-center text-text-muted hover:text-text hover:bg-surface-muted transition-colors"
+            :aria-label="t('common.close')"
             @click="emit('close')"
           >
             ✕

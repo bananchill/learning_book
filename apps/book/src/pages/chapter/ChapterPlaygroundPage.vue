@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from '@book/i18n'
 import type { ChapterMeta } from '@book/shared'
 import { CodeSandbox } from '@book/core'
+import { usePageSeo } from '@/features/seo'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -10,6 +12,12 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+
+usePageSeo({
+  title: computed(() => t('chapter.playground_for', { chapter: props.chapter.title })),
+  description: computed(() => props.chapter.description),
+  path: computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}/playground`),
+})
 
 const starterCode = `// ${props.chapter.title}
 // Экспериментируй с кодом здесь

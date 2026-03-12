@@ -5,8 +5,16 @@ import { useI18n } from '@book/i18n'
 import { BaseButton, BaseCard, IconLabel } from '@book/ui'
 import { useProgressStore } from '@book/core'
 import { useBookConfig } from '@/features/navigation'
+import { usePageSeo, useCourseSchema, SITE_NAME } from '@/features/seo'
 
 const { t } = useI18n()
+
+usePageSeo({
+  title: SITE_NAME,
+  description: t('home.hero.subtitle'),
+  path: '/',
+})
+useCourseSchema()
 const router = useRouter()
 const { sections: bookSections, firstAvailableChapter, firstChapter } = useBookConfig()
 const progress = useProgressStore()

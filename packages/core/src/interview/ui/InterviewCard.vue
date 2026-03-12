@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from '@book/i18n'
 import { BaseButton, DeepDive, LevelBadge } from '@book/ui'
-import type { InterviewQuestion } from '@book/shared'
-import type { SelfAssessment } from '../model/useInterview'
+import type { InterviewQuestion, SelfAssessment } from '@book/shared'
 
 const props = defineProps<{
   question: InterviewQuestion
@@ -25,7 +24,7 @@ const assessOptions: { value: SelfAssessment; label: string; color: string }[] =
 </script>
 
 <template>
-  <div class="rounded-xl border border-border bg-surface-elevated p-5 space-y-4">
+  <div v-bind="$attrs" class="rounded-xl border border-border bg-surface-elevated p-5 space-y-4">
     <!-- Заголовок -->
     <div class="flex items-start justify-between gap-3">
       <p class="font-medium text-text leading-relaxed">{{ question.question }}</p>

@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
 import { createPinia } from 'pinia'
 import { i18n } from '@book/i18n'
-import { router } from './router'
+import { routes, scrollBehavior } from './router'
 import App from './App.vue'
 import {
   DeepDive,
@@ -14,19 +14,30 @@ import {
 } from '@book/ui'
 import './styles/main.css'
 
-const app = createApp(App)
+export const createApp = ViteSSG(
+  App,
+  { routes, scrollBehavior },
+  ({ app, initialState }) => {
+    const pinia = createPinia()
+    app.use(pinia)
+    app.use(i18n)
 
-app.use(createPinia())
-app.use(i18n)
-app.use(router)
+    // Гидрация состояния Pinia при SSG
+    if (import.meta.env.SSR) {
+      initialState.pinia = pinia.state.value
+    } else {
+      if (initialState.pinia) {
+        pinia.state.value = initialState.pinia
+      }
+    }
 
-// Глобальная регистрация компонентов для использования в markdown-контенте
-app.component('DeepDive', DeepDive)
-app.component('Callout', Callout)
-app.component('CodeBlock', CodeBlock)
-app.component('TabGroup', TabGroup)
-app.component('TabPanel', TabPanel)
-app.component('CrossLink', CrossLink)
-app.component('EventLoopSimulator', EventLoopSimulator)
-
-app.mount('#app')
+    // Глобальная регистрация компонентов для использования в markdown-контенте
+    app.component('DeepDive', DeepDive)
+    app.component('Callout', Callout)
+    app.component('CodeBlock', CodeBlock)
+    app.component('TabGroup', TabGroup)
+    app.component('TabPanel', TabPanel)
+    app.component('CrossLink', CrossLink)
+    app.component('EventLoopSimulator', EventLoopSimulator)
+  },
+)

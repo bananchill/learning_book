@@ -1,4 +1,5 @@
 import { ref, watch } from 'vue'
+import { normalizeContentPath } from '@book/shared'
 
 // Загружаем все .js файлы из контента как raw-текст
 const jsModules = import.meta.glob<string>(
@@ -60,8 +61,7 @@ export function useTaskCode(
 
       isLoading.value = true
 
-      // "content/ru/ch01-closures" → "ch01-closures"
-      const prefix = basePath.replace(/^content\/ru\//, '')
+      const prefix = normalizeContentPath(basePath)
 
       const starterLoader = jsMap.get(`${prefix}/tasks/${file}`)
       const testLoader = jsMap.get(`${prefix}/tasks/${test}`)

@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from '@book/i18n'
 import { BaseButton } from '@book/ui'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { usePageSeo } from '@/features/seo'
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
+
+usePageSeo({
+  title: t('not_found.title'),
+  description: t('not_found.description'),
+  path: route.path,
+})
 </script>
 
 <template>

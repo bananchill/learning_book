@@ -5,6 +5,7 @@ import type { ChapterMeta } from '@book/shared'
 import { BaseButton, BaseCard } from '@book/ui'
 import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
 import { ChapterView } from '@/widgets/chapter-view'
+import { usePageSeo, useArticleSchema, useBreadcrumbSchema } from '@/features/seo'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -13,6 +14,24 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+
+const chapterPath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
+
+usePageSeo({
+  title: computed(() => props.chapter.title),
+  description: computed(() => props.chapter.description),
+  path: chapterPath,
+  type: 'article',
+})
+useArticleSchema({
+  title: computed(() => props.chapter.title),
+  description: computed(() => props.chapter.description),
+  path: chapterPath,
+})
+useBreadcrumbSchema([
+  { name: t('nav.title'), path: '/' },
+  { name: computed(() => props.chapter.title), path: chapterPath },
+])
 
 const contentPath = computed(() => `${props.chapter.contentPath}/index.md`)
 const { component: contentComponent, isLoading, error } = useChapterContent(

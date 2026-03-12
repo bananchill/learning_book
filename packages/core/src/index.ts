@@ -9,6 +9,7 @@ export {
   useTestRunner,
   useCodeRunner,
 } from './sandbox'
+export type { UseTestRunnerOptions } from './sandbox'
 
 // Chat — AI-ментор с контекстом главы и кода
 export {
@@ -19,6 +20,7 @@ export {
   useAIChat,
   buildSystemPrompt,
 } from './chat'
+export type { UseAIChatOptions } from './chat'
 
 // Quiz — интерактивные квизы
 export {

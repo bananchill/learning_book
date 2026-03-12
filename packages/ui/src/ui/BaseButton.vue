@@ -24,6 +24,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 <template>
   <button
+    v-bind="$attrs"
     :class="[
       'inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-normal focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2',
       variantClasses[variant ?? 'primary'],

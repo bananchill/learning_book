@@ -1,23 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useAsyncAction } from '@book/shared'
 import { adminApi } from '../api/adminApi'
 import type { AdminStats } from '@/shared'
 
 export const useStatsStore = defineStore('admin-stats', () => {
   const stats = ref<AdminStats | null>(null)
-  const isLoading = ref(false)
-  const error = ref<string | null>(null)
+  const { isLoading, error, run } = useAsyncAction()
 
   async function fetchStats() {
-    isLoading.value = true
-    error.value = null
-    try {
-      stats.value = await adminApi.getStats()
-    } catch (e) {
-      error.value = (e as Error).message
-    } finally {
-      isLoading.value = false
-    }
+    const result = await run(() => adminApi.getStats())
+    if (result) stats.value = result
   }
 
   return { stats, isLoading, error, fetchStats }

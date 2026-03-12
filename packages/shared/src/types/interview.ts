@@ -1,3 +1,6 @@
+/** Самооценка ответа на вопрос собеседования */
+export type SelfAssessment = 'good' | 'ok' | 'bad'
+
 /** Вопрос для подготовки к собеседованию */
 export interface InterviewQuestion {
   /** Уникальный идентификатор */

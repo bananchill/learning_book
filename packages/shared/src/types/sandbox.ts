@@ -1,3 +1,6 @@
+/** Сериализуемое значение в песочнице */
+export type SerializableValue = string | number | boolean | null | object
+
 /** Результат выполнения одного теста в песочнице */
 export interface TestResult {
   /** Название теста */
@@ -5,9 +8,9 @@ export interface TestResult {
   /** Статус выполнения */
   status: 'pass' | 'fail' | 'error'
   /** Ожидаемое значение (если fail) */
-  expected?: unknown
+  expected?: SerializableValue
   /** Полученное значение (если fail) */
-  received?: unknown
+  received?: SerializableValue
   /** Сообщение об ошибке */
   message?: string
   /** Длительность выполнения в мс */
@@ -19,5 +22,5 @@ export interface ConsoleEntry {
   /** Уровень сообщения */
   level: 'log' | 'warn' | 'error'
   /** Аргументы вызова console */
-  args: unknown[]
+  args: SerializableValue[]
 }

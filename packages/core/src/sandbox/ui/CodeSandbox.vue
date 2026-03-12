@@ -238,6 +238,7 @@ watch(testResults, (results) => {
             fill="none"
             stroke="currentColor"
             stroke-width="1.5"
+            aria-hidden="true"
           >
             <path d="M3 10L8 5L13 10" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M3 14L8 9L13 14" stroke-linecap="round" stroke-linejoin="round" />

@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue'
 import type { Quiz, Task, Walkthrough, Interview } from '@book/shared'
+import { normalizeContentPath } from '@book/shared'
 
 // Динамический импорт .json файлов из контента
 const jsonModules = import.meta.glob<Record<string, unknown>>('../../../../../../content/ru/**/*.json')
@@ -33,8 +34,7 @@ export function useChapterData(contentPath: () => string | undefined) {
 
     isLoading.value = true
 
-    // "content/ru/ch01-closures" → "ch01-closures"
-    const prefix = basePath.replace(/^content\/ru\//, '')
+    const prefix = normalizeContentPath(basePath)
 
     const loaders = {
       quiz: jsonMap.get(`${prefix}/quiz.json`),

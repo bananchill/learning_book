@@ -1,21 +1,11 @@
 // Подсчёт результатов квиза
-
-export interface QuizAnswer {
-  questionId: string
-  answer: number | number[] | boolean
-  correct: boolean
-}
-
-export interface QuizScore {
-  total: number
-  correct: number
-  percentage: number
-}
+import type { QuizAnswer, QuizScore } from '@book/shared'
+import { calcPercent } from '@book/shared'
 
 export function calculateScore(answers: QuizAnswer[]): QuizScore {
   const total = answers.length
   const correct = answers.filter((a) => a.correct).length
-  const percentage = total > 0 ? Math.round((correct / total) * 100) : 0
+  const percentage = calcPercent(correct, total)
   return { total, correct, percentage }
 }
 

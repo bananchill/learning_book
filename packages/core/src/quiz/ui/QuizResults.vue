@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from '@book/i18n'
 import { BaseButton } from '@book/ui'
-import type { QuizScore } from '../lib/quizScoring'
+import type { QuizScore } from '@book/shared'
 
 defineProps<{
   score: QuizScore

@@ -7,6 +7,7 @@ import { BaseButton } from '@book/ui'
 import { useProgressStore } from '@book/core'
 import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
 import { useBookConfig } from '@/features/navigation'
+import { usePageSeo, useArticleSchema, useBreadcrumbSchema } from '@/features/seo'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -19,10 +20,35 @@ const { t } = useI18n()
 const progress = useProgressStore()
 const { findSubchapter } = useBookConfig()
 
+const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
 const subchapterId = computed(() => route.params.subchapter as string)
 const subchapter = computed(() =>
   findSubchapter(props.sectionId, props.subsectionId, props.chapter.id, subchapterId.value),
 )
+
+const subPath = computed(() => `${basePath.value}/${subchapterId.value}`)
+const subTitle = computed(() =>
+  subchapter.value
+    ? `${subchapter.value.title} — ${props.chapter.title}`
+    : props.chapter.title,
+)
+
+usePageSeo({
+  title: subTitle,
+  description: computed(() => props.chapter.description),
+  path: subPath,
+  type: 'article',
+})
+useArticleSchema({
+  title: subTitle,
+  description: computed(() => props.chapter.description),
+  path: subPath,
+})
+useBreadcrumbSchema([
+  { name: t('nav.title'), path: '/' },
+  { name: computed(() => props.chapter.title), path: basePath },
+  { name: computed(() => subchapter.value?.title ?? ''), path: subPath },
+])
 
 const { component: contentComponent, isLoading, error } = useChapterContent(
   () => subchapter.value
@@ -36,8 +62,6 @@ watch(contentComponent, (comp) => {
     progress.markSubchapterRead(props.chapter.id, subchapterId.value)
   }
 })
-
-const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
 
 // Навигация: предыдущая / следующая подглава
 const currentIndex = computed(() =>

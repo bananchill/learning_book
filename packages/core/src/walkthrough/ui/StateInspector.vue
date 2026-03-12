@@ -45,10 +45,10 @@ const { t } = useI18n()
     </div>
 
     <!-- Вывод -->
-    <div v-if="(step as any).output?.length">
+    <div v-if="step.output?.length">
       <h4 class="font-medium text-text-secondary mb-2">{{ t('walkthrough.output') }}</h4>
       <div class="bg-surface-inset rounded px-3 py-2 font-mono text-xs text-text space-y-0.5">
-        <div v-for="(line, i) in (step as any).output" :key="i">{{ line }}</div>
+        <div v-for="(line, i) in step.output" :key="i">{{ line }}</div>
       </div>
     </div>
   </div>

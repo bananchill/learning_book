@@ -6,6 +6,7 @@ defineProps<{
 
 <template>
   <div
+    v-bind="$attrs"
     :class="[
       'rounded-xl border border-border bg-surface-elevated shadow-sm',
       (padding ?? true) && 'p-6',

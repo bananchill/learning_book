@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { computed } from 'vue'
 import type { ChapterProgress, BookProgress } from '@book/shared'
+import { addIfAbsent } from '@book/shared'
 import { chapterCompletionPercent, chapterStatus, bookCompletionPercent } from './progressCalc'
 
 const DEFAULT_CHAPTER_PROGRESS: () => ChapterProgress = () => ({
@@ -34,16 +35,14 @@ export const useProgressStore = defineStore('progress', () => {
 
   function markSubchapterRead(chapterId: string, subchapterId: string) {
     const ch = getChapter(chapterId)
-    if (!ch.reading.completed.includes(subchapterId)) {
-      ch.reading.completed.push(subchapterId)
+    if (addIfAbsent(ch.reading.completed, subchapterId)) {
       ch.lastActivity = new Date().toISOString()
     }
   }
 
   function markTaskCompleted(chapterId: string, taskId: string) {
     const ch = getChapter(chapterId)
-    if (!ch.tasks.completed.includes(taskId)) {
-      ch.tasks.completed.push(taskId)
+    if (addIfAbsent(ch.tasks.completed, taskId)) {
       ch.lastActivity = new Date().toISOString()
     }
   }
@@ -56,8 +55,7 @@ export const useProgressStore = defineStore('progress', () => {
 
   function markInterviewReviewed(chapterId: string, questionId: string) {
     const ch = getChapter(chapterId)
-    if (!ch.interview.reviewed.includes(questionId)) {
-      ch.interview.reviewed.push(questionId)
+    if (addIfAbsent(ch.interview.reviewed, questionId)) {
       ch.lastActivity = new Date().toISOString()
     }
   }

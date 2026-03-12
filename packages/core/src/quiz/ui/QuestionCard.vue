@@ -61,9 +61,9 @@ function tfClass(value: boolean) {
 
     <!-- Код (для code-output) -->
     <pre
-      v-if="question.type === 'code-output' && 'code' in question"
+      v-if="question.type === 'code-output' && question.code"
       class="rounded-lg bg-surface-inset border border-border p-4 text-sm font-mono overflow-x-auto text-text"
-    ><code>{{ (question as any).code }}</code></pre>
+    ><code>{{ question.code }}</code></pre>
 
     <!-- Варианты ответов: multiple-choice / code-output -->
     <div

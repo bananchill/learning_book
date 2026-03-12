@@ -82,6 +82,7 @@
     "good": "Хорошо",
     "ok": "Средне",
     "bad": "Плохо",
+    "no_questions": "Нет вопросов для подготовки",
     "level": {
       "junior": "Junior",
       "middle": "Middle",
@@ -243,6 +244,13 @@
     "waiting": "ожидание...",
     "pause": "Пауза",
     "auto": "Авто"
+  },
+  "seo": {
+    "home_title": "Learning Book — Интерактивная книга",
+    "home_description": "Интерактивная книга по JS/TS, Архитектуре, Базам данных и DevOps. С песочницей, AI-ментором и реальными задачами.",
+    "tasks_title": "Задачи: {chapter}",
+    "playground_title": "Песочница: {chapter}",
+    "not_found_title": "Страница не найдена"
   },
   "admin": {
     "title": "Панель управления",

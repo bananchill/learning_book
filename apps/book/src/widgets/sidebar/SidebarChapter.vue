@@ -4,23 +4,23 @@ import { useRoute } from 'vue-router'
 import { useI18n } from '@book/i18n'
 import type { ChapterMeta } from '@book/shared'
 import { useProgressStore } from '@book/core'
+import { useSidebarContext } from './useSidebarContext'
 
 const props = defineProps<{
   chapter: ChapterMeta
-  sectionId: string
-  subsectionId: string
   isActive: boolean
 }>()
 
 const { t } = useI18n()
 const route = useRoute()
 const progress = useProgressStore()
+const { sectionId, subsectionId } = useSidebarContext()
 
 const percent = computed(() => progress.getChapterPercent(props.chapter.id))
 const isExpanded = ref(props.isActive)
 const currentSubchapter = computed(() => route.params.subchapter as string | undefined)
 
-const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
+const basePath = computed(() => `/${sectionId.value}/${subsectionId.value}/${props.chapter.id}`)
 </script>
 
 <template>

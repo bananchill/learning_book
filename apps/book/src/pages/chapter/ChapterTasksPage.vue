@@ -5,6 +5,7 @@ import type { ChapterMeta } from '@book/shared'
 import { BaseButton } from '@book/ui'
 import { TaskList, TaskView, useProgressStore } from '@book/core'
 import { useChapterData, useTaskCode, ContentPlaceholder } from '@/features/content-loader'
+import { usePageSeo } from '@/features/seo'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -13,6 +14,12 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+
+usePageSeo({
+  title: computed(() => t('chapter.tasks_for', { chapter: props.chapter.title })),
+  description: computed(() => props.chapter.description),
+  path: computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}/tasks`),
+})
 const progress = useProgressStore()
 
 const { tasks, isLoading } = useChapterData(() => props.chapter.contentPath)

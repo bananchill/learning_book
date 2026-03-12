@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from '@book/i18n'
+
 defineProps<{
   active?: boolean
 }>()
@@ -6,6 +8,8 @@ defineProps<{
 const emit = defineEmits<{
   toggle: []
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -14,6 +18,7 @@ const emit = defineEmits<{
     :class="active
       ? 'bg-primary text-text-inverse'
       : 'bg-surface-elevated border border-border text-text hover:border-primary'"
+    :aria-label="active ? t('common.close') : t('chat.title')"
     @click="emit('toggle')"
   >
     {{ active ? '✕' : '💬' }}

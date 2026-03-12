@@ -16,6 +16,9 @@ export interface ChapterProgress {
   lastActivity: string
 }
 
+/** Статус главы */
+export type ChapterStatus = 'not_started' | 'in_progress' | 'completed'
+
 /** Общий прогресс по всей книге */
 export interface BookProgress {
   /** Прогресс по каждой главе */

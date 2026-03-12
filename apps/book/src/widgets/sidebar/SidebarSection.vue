@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, toRef } from 'vue'
 import { useI18n } from '@book/i18n'
 import type { SectionMeta } from '@book/shared'
 import SidebarSubsection from './SidebarSubsection.vue'
+import { provideSidebarContext } from './useSidebarContext'
 
 const props = defineProps<{
   section: SectionMeta
@@ -12,6 +13,12 @@ const props = defineProps<{
 
 const { t } = useI18n()
 const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
+
+provideSidebarContext({
+  sectionId: toRef(() => props.section.id),
+  subsectionId: ref(''),
+  activeChapterId: toRef(() => props.activeChapterId),
+})
 </script>
 
 <template>
@@ -29,6 +36,7 @@ const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
         :class="isExpanded && 'rotate-90'"
         fill="currentColor"
         viewBox="0 0 20 20"
+        aria-hidden="true"
       >
         <path d="M6 4l8 6-8 6V4z" />
       </svg>
@@ -39,9 +47,6 @@ const isExpanded = ref(props.isActive || props.section.subsections.length > 0)
         v-for="sub in section.subsections"
         :key="sub.id"
         :subsection="sub"
-        :section-id="section.id"
-        :is-active="isActive"
-        :active-chapter-id="activeChapterId"
       />
 
       <div

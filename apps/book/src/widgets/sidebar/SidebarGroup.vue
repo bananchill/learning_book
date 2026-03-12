@@ -2,16 +2,16 @@
 import { ref } from 'vue'
 import type { ChapterGroupMeta } from '@book/shared'
 import SidebarChapter from './SidebarChapter.vue'
+import { useSidebarContext } from './useSidebarContext'
 
 const props = defineProps<{
   group: ChapterGroupMeta
-  sectionId: string
-  subsectionId: string
-  activeChapterId?: string
 }>()
 
-const hasActiveChapter = props.activeChapterId
-  ? props.group.chapters.some(c => c.id === props.activeChapterId)
+const { activeChapterId } = useSidebarContext()
+
+const hasActiveChapter = activeChapterId.value
+  ? props.group.chapters.some(c => c.id === activeChapterId.value)
   : false
 
 const isExpanded = ref(hasActiveChapter)
@@ -31,6 +31,7 @@ const isExpanded = ref(hasActiveChapter)
         :class="isExpanded && 'rotate-90'"
         fill="currentColor"
         viewBox="0 0 20 20"
+        aria-hidden="true"
       >
         <path d="M6 4l8 6-8 6V4z" />
       </svg>
@@ -41,8 +42,6 @@ const isExpanded = ref(hasActiveChapter)
         v-for="chapter in group.chapters"
         :key="chapter.id"
         :chapter="chapter"
-        :section-id="sectionId"
-        :subsection-id="subsectionId"
         :is-active="chapter.id === activeChapterId"
       />
     </div>

@@ -37,6 +37,7 @@ const highlightedLines = computed(() => new Set(props.highlightLines ?? []))
     <div v-if="loading" class="animate-pulse-soft p-4 text-sm text-text-muted">
       {{ t('common.loading') }}
     </div>
+    <!-- HTML сгенерирован shiki (useHighlight), XSS-безопасен -->
     <div
       v-else
       class="overflow-x-auto p-4 text-sm [&_pre]:!bg-transparent [&_pre]:!p-0 [&_code]:!bg-transparent"

@@ -40,6 +40,7 @@ function createQuiz(): Quiz {
         id: 'q2',
         question: 'let создаёт блочную область видимости',
         type: 'true-false',
+        options: [],
         correctAnswer: 0, // true is index 0
         explanation: 'Да, let создаёт блочную область видимости.',
       },
@@ -81,6 +82,23 @@ describe('calculateScore', () => {
     ])
     expect(score.percentage).toBe(100)
   })
+
+  it('возвращает 0% при всех неправильных ответах', () => {
+    const score = calculateScore([
+      { questionId: 'q1', answer: 0, correct: false },
+      { questionId: 'q2', answer: 1, correct: false },
+    ])
+    expect(score.percentage).toBe(0)
+  })
+
+  it('округляет процент (1 из 3 = 33%)', () => {
+    const score = calculateScore([
+      { questionId: 'q1', answer: 0, correct: true },
+      { questionId: 'q2', answer: 1, correct: false },
+      { questionId: 'q3', answer: 2, correct: false },
+    ])
+    expect(score.percentage).toBe(33)
+  })
 })
 
 // --- Тесты isAnswerCorrect ---
@@ -100,6 +118,19 @@ describe('isAnswerCorrect', () => {
     expect(isAnswerCorrect([1, 2], [1, 2])).toBe(true)
     expect(isAnswerCorrect([1, 2], [2, 1])).toBe(true) // порядок не важен
     expect(isAnswerCorrect([1], [1, 2])).toBe(false)
+  })
+
+  it('не путает число и массив', () => {
+    expect(isAnswerCorrect(1, [1])).toBe(false)
+    expect(isAnswerCorrect([1], 1)).toBe(false)
+  })
+
+  it('пустые массивы равны', () => {
+    expect(isAnswerCorrect([] as number[], [] as number[])).toBe(true)
+  })
+
+  it('проверяет строковый correctAnswer', () => {
+    expect(isAnswerCorrect(0, '0')).toBe(false) // число !== строка
   })
 })
 
@@ -267,6 +298,7 @@ describe('QuestionCard', () => {
       id: 'q2',
       question: 'let имеет блочную область видимости',
       type: 'true-false',
+      options: [],
       correctAnswer: 0,
       explanation: 'Верно.',
     }

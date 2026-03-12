@@ -1,7 +1,5 @@
 import { ref, computed } from 'vue'
-import type { Interview, InterviewQuestion } from '@book/shared'
-
-export type SelfAssessment = 'good' | 'ok' | 'bad'
+import type { Interview, InterviewQuestion, SelfAssessment } from '@book/shared'
 
 export function useInterview(data: Interview) {
   const revealedIds = ref<Set<string>>(new Set())

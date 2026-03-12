@@ -7,7 +7,7 @@ import { buildSystemPrompt } from './useChatContext'
 const COOLDOWN_MS = 2000
 const MAX_HISTORY = 10
 
-interface UseAIChatOptions {
+export interface UseAIChatOptions {
   chapterContext?: () => ChapterContext | undefined
   userCode?: () => string
   testResults?: () => TestResult[]
