@@ -6,7 +6,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /app
 
 # Копируем файлы зависимостей
-COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
 COPY apps/book/package.json apps/book/
 COPY packages/core/package.json packages/core/
 COPY packages/ui/package.json packages/ui/
