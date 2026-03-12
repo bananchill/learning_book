@@ -1,0 +1,125 @@
+{
+  "chapter": "ch05-currying",
+  "tasks": [
+    {
+      "id": "01-easy-curry2",
+      "title": "Простой curry для двух аргументов",
+      "difficulty": "easy",
+      "description": "Реализуй функцию curry2(fn), которая принимает функцию с двумя аргументами и возвращает каррированную версию: curry2(fn)(a)(b) === fn(a, b).",
+      "file": "01-easy-curry2.js",
+      "testFile": "01-easy-curry2.test.js",
+      "concepts": ["currying", "closure"],
+      "hints": [
+        "curry2 должна вернуть функцию, которая принимает первый аргумент и возвращает ещё одну функцию для второго.",
+        "Используй замыкание: внешняя функция захватывает a, внутренняя — вызывает fn(a, b).",
+        "return function(a) { return function(b) { return fn(a, b) } }"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "02-easy-calculator",
+      "title": "Каррированный калькулятор",
+      "difficulty": "easy",
+      "description": "Создай каррированные функции: add(a)(b) — сложение, multiply(a)(b) — умножение, subtract(a)(b) — вычитание.",
+      "file": "02-easy-calculator.js",
+      "testFile": "02-easy-calculator.test.js",
+      "concepts": ["currying", "arrow-functions"],
+      "hints": [
+        "Каждая функция — стрелочная функция, возвращающая стрелочную функцию.",
+        "Паттерн: const fn = a => b => выражение.",
+        "const add = a => b => a + b"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "03-easy-filter",
+      "title": "Каррированный фильтр",
+      "difficulty": "easy",
+      "description": "Реализуй каррированную функцию filter(predicate)(array), которая фильтрует массив по предикату.",
+      "file": "03-easy-filter.js",
+      "testFile": "03-easy-filter.test.js",
+      "concepts": ["currying", "higher-order-functions", "array-methods"],
+      "hints": [
+        "filter принимает предикат и возвращает функцию, которая принимает массив.",
+        "Внутренняя функция вызывает array.filter(predicate).",
+        "return function(array) { return array.filter(predicate) }"
+      ],
+      "estimatedMinutes": 3
+    },
+    {
+      "id": "04-medium-curry",
+      "title": "Универсальный curry",
+      "difficulty": "medium",
+      "description": "Реализуй функцию curry(fn), которая работает с любым количеством аргументов. Поддержи все варианты вызова: curry(fn)(a)(b)(c), curry(fn)(a, b)(c), curry(fn)(a)(b, c).",
+      "file": "04-medium-curry.js",
+      "testFile": "04-medium-curry.test.js",
+      "concepts": ["currying", "recursion", "fn-length", "closure"],
+      "hints": [
+        "Используй fn.length, чтобы узнать, сколько аргументов ожидает функция.",
+        "Если собранных аргументов достаточно (args.length >= fn.length), вызови fn. Иначе — верни функцию, которая добавит новые аргументы к уже собранным.",
+        "function curry(fn) { return function curried(...args) { if (args.length >= fn.length) return fn(...args); return (...more) => curried(...args, ...more) } }"
+      ],
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "05-medium-partial",
+      "title": "Частичное применение",
+      "difficulty": "medium",
+      "description": "Реализуй функцию partial(fn, ...fixedArgs), которая фиксирует первые аргументы функции и возвращает функцию для оставшихся.",
+      "file": "05-medium-partial.js",
+      "testFile": "05-medium-partial.test.js",
+      "concepts": ["partial-application", "rest-params", "closure"],
+      "hints": [
+        "partial должна вернуть новую функцию, которая склеивает fixedArgs и новые аргументы.",
+        "Используй spread: return (...rest) => fn(...fixedArgs, ...rest).",
+        "export function partial(fn, ...fixedArgs) { return (...rest) => fn(...fixedArgs, ...rest) }"
+      ],
+      "estimatedMinutes": 7
+    },
+    {
+      "id": "06-hard-compose-pipe",
+      "title": "Compose и pipe",
+      "difficulty": "hard",
+      "description": "Реализуй функции compose и pipe. compose(f, g, h)(x) выполняет функции справа налево: f(g(h(x))). pipe(f, g, h)(x) — слева направо: h(g(f(x))).",
+      "file": "06-hard-compose-pipe.js",
+      "testFile": "06-hard-compose-pipe.test.js",
+      "concepts": ["composition", "pipe", "reduce", "functional-programming"],
+      "hints": [
+        "compose — это reduceRight: применяй функции справа налево к результату.",
+        "pipe — наоборот, reduce слева направо. Или просто compose с перевёрнутым списком функций.",
+        "const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x)"
+      ],
+      "estimatedMinutes": 12
+    },
+    {
+      "id": "07-hard-curry-placeholder",
+      "title": "Curry с плейсхолдерами",
+      "difficulty": "hard",
+      "description": "Реализуй curry с поддержкой плейсхолдера _. Плейсхолдер позволяет пропустить аргумент и передать его позже: curryWithPlaceholder(fn)(_, 2)(1) === fn(1, 2).",
+      "file": "07-hard-curry-placeholder.js",
+      "testFile": "07-hard-curry-placeholder.test.js",
+      "concepts": ["currying", "placeholder", "symbol", "advanced-closures"],
+      "hints": [
+        "Используй Symbol для плейсхолдера, чтобы он не конфликтовал с реальными значениями.",
+        "При получении новых аргументов, замени плейсхолдеры в уже собранных аргументах на реальные значения.",
+        "Пройдись по массиву собранных аргументов: если элемент === _, замени его на следующий новый аргумент. Оставшиеся новые аргументы добавь в конец."
+      ],
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "08-hard-infinite-sum",
+      "title": "Бесконечное каррирование",
+      "difficulty": "hard",
+      "description": "Реализуй функцию sum, которая поддерживает бесконечное каррирование: sum(1)(2)(3)() === 6, sum(1)(2)() === 3, sum(5)() === 5. Вызов без аргументов возвращает итог.",
+      "file": "08-hard-infinite-sum.js",
+      "testFile": "08-hard-infinite-sum.test.js",
+      "concepts": ["infinite-currying", "closure", "accumulator"],
+      "hints": [
+        "Тебе нужна внутренняя функция, которая накапливает сумму и возвращает саму себя при вызове с аргументом.",
+        "Если аргумент передан — прибавь его к аккумулятору и верни функцию. Если нет — верни сумму.",
+        "function sum(a) { function inner(b) { if (b === undefined) return a; a += b; return inner }; return inner }"
+      ],
+      "estimatedMinutes": 12
+    }
+  ]
+}

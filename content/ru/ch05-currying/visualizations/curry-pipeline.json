@@ -1,0 +1,69 @@
+{
+  "id": "curry-pipeline",
+  "title": "Как curry трансформирует вызов функции",
+  "type": "sequence",
+  "description": "Пошаговая визуализация трансформации f(a, b, c) → f(a)(b)(c)",
+  "code": "const curriedSum = curry(sum)\nconst step1 = curriedSum(1)\nconst step2 = step1(2)\nconst result = step2(3)",
+  "components": {
+    "originalFunction": "Исходная функция sum(a, b, c)",
+    "curriedWrapper": "Обёртка curried — проверяет количество аргументов",
+    "closureChain": "Цепочка замыканий, хранящих аргументы"
+  },
+  "frames": [
+    {
+      "step": 0,
+      "label": "Начальное состояние",
+      "phase": "setup",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [],
+      "remaining": 3,
+      "note": "sum ожидает 3 аргумента. sum.length === 3"
+    },
+    {
+      "step": 1,
+      "label": "curry(sum) — создание обёртки",
+      "phase": "wrap",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [],
+      "remaining": 3,
+      "note": "curry оборачивает sum в функцию curried. func.length запоминается = 3"
+    },
+    {
+      "step": 2,
+      "label": "curriedSum(1) — первый аргумент",
+      "phase": "collect",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [1],
+      "remaining": 2,
+      "note": "args = [1], args.length (1) < func.length (3) → возвращаем новую функцию. Замыкание хранит [1]"
+    },
+    {
+      "step": 3,
+      "label": "step1(2) — второй аргумент",
+      "phase": "collect",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [1, 2],
+      "remaining": 1,
+      "note": "args = [1, 2], args.length (2) < func.length (3) → снова возвращаем функцию. Замыкание хранит [1, 2]"
+    },
+    {
+      "step": 4,
+      "label": "step2(3) — третий аргумент",
+      "phase": "collect",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [1, 2, 3],
+      "remaining": 0,
+      "note": "args = [1, 2, 3], args.length (3) >= func.length (3) → достаточно аргументов!"
+    },
+    {
+      "step": 5,
+      "label": "Вызов оригинала: sum(1, 2, 3)",
+      "phase": "execute",
+      "originalArgs": ["a", "b", "c"],
+      "collectedArgs": [1, 2, 3],
+      "remaining": 0,
+      "result": 6,
+      "note": "Вызываем func.apply(this, [1, 2, 3]) → sum(1, 2, 3) = 6"
+    }
+  ]
+}

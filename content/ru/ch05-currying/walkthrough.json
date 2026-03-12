@@ -1,0 +1,90 @@
+{
+  "title": "Каррирование: как работает универсальный curry",
+  "code": "function curry(func) {\n  return function curried(...args) {\n    if (args.length >= func.length) {\n      return func.apply(this, args);\n    } else {\n      return function(...args2) {\n        return curried.apply(this, args.concat(args2));\n      }\n    }\n  };\n}\n\nfunction sum(a, b, c) {\n  return a + b + c;\n}\n\nconst curriedSum = curry(sum);\nconst step1 = curriedSum(1);\nconst step2 = step1(2);\nconst result = step2(3);",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Объявляем функцию curry, которая принимает любую функцию func",
+      "variables": { "curry": "function" },
+      "callStack": ["global"],
+      "highlight": "curry"
+    },
+    {
+      "line": 13,
+      "description": "Объявляем функцию sum с тремя параметрами. sum.length === 3",
+      "variables": { "curry": "function", "sum": "function (length: 3)" },
+      "callStack": ["global"],
+      "highlight": "sum"
+    },
+    {
+      "line": 18,
+      "description": "Вызываем curry(sum). Создаётся замыкание: curried захватывает func = sum",
+      "variables": { "curry": "function", "sum": "function", "curriedSum": "function curried" },
+      "callStack": ["global", "curry"],
+      "highlight": "curriedSum"
+    },
+    {
+      "line": 19,
+      "description": "Вызываем curriedSum(1). args = [1], args.length (1) < func.length (3) → возвращаем новую функцию",
+      "variables": { "curriedSum": "function curried", "step1": "function (замыкание: args=[1])", "args": "[1]" },
+      "callStack": ["global", "curried"],
+      "highlight": "step1"
+    },
+    {
+      "line": 5,
+      "description": "Внутри curried: проверяем args.length >= func.length → 1 >= 3 → false. Переходим в else",
+      "variables": { "args": "[1]", "func.length": "3" },
+      "callStack": ["global", "curried"],
+      "highlight": "args.length >= func.length"
+    },
+    {
+      "line": 7,
+      "description": "Возвращаем новую анонимную функцию. Она замыкает args = [1] и ссылку на curried",
+      "variables": { "step1": "function (замыкание: args=[1])" },
+      "callStack": ["global"],
+      "highlight": "return function"
+    },
+    {
+      "line": 20,
+      "description": "Вызываем step1(2). Внутри: args2 = [2], вызывается curried.apply(this, [1].concat([2])) → curried(1, 2)",
+      "variables": { "args2": "[2]", "args.concat(args2)": "[1, 2]" },
+      "callStack": ["global", "anonymous", "curried"],
+      "highlight": "step2"
+    },
+    {
+      "line": 5,
+      "description": "Снова внутри curried: args = [1, 2], args.length (2) < func.length (3) → false. Возвращаем ещё одну функцию",
+      "variables": { "args": "[1, 2]", "step2": "function (замыкание: args=[1,2])" },
+      "callStack": ["global", "curried"],
+      "highlight": "args.length >= func.length"
+    },
+    {
+      "line": 21,
+      "description": "Вызываем step2(3). args2 = [3], вызывается curried(1, 2, 3)",
+      "variables": { "args2": "[3]", "args.concat(args2)": "[1, 2, 3]" },
+      "callStack": ["global", "anonymous", "curried"],
+      "highlight": "result"
+    },
+    {
+      "line": 3,
+      "description": "Внутри curried: args = [1, 2, 3], args.length (3) >= func.length (3) → true! Вызываем func.apply(this, [1, 2, 3])",
+      "variables": { "args": "[1, 2, 3]" },
+      "callStack": ["global", "curried", "sum"],
+      "highlight": "func.apply"
+    },
+    {
+      "line": 15,
+      "description": "Выполняется sum(1, 2, 3): a=1, b=2, c=3. Возвращает 1 + 2 + 3 = 6",
+      "variables": { "a": "1", "b": "2", "c": "3", "result": "6" },
+      "callStack": ["global", "curried", "sum"],
+      "highlight": "return a + b + c"
+    },
+    {
+      "line": 21,
+      "description": "Результат 6 возвращается по цепочке вызовов. result = 6. Каррирование завершено!",
+      "variables": { "result": "6" },
+      "callStack": ["global"],
+      "highlight": "result"
+    }
+  ]
+}

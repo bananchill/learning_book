@@ -1,0 +1,237 @@
+{
+  "topic": "Каррирование",
+  "chapterId": "ch05-currying",
+  "subchapters": [
+    {
+      "id": "01-what-and-why",
+      "title": "Что такое каррирование и зачем оно нужно",
+      "keyQuestions": [
+        "Что такое каррирование — формальное определение?",
+        "Откуда пришёл термин (Haskell Curry, λ-исчисление)?",
+        "Зачем каррировать функции в JavaScript?",
+        "Чем каррирование отличается от обычного вызова?",
+        "Как каррирование связано с замыканиями?"
+      ],
+      "estimatedReadMinutes": 6,
+      "needsVisualization": true,
+      "visualizationIdeas": ["пошаговая трансформация f(a,b,c) → f(a)(b)(c)"],
+      "depthNotes": {
+        "standard": "Определение, аналогия с конвейером, простой пример, связь с замыканиями",
+        "deep": "Формальное определение из λ-исчисления, Haskell Curry и Schönfinkel, каррирование в математической логике"
+      }
+    },
+    {
+      "id": "02-how-it-works",
+      "title": "Как работает каррирование изнутри",
+      "keyQuestions": [
+        "Как реализовать простейший curry вручную?",
+        "Как работает рекурсивная реализация curry?",
+        "Какую роль играет fn.length?",
+        "Как обрабатываются rest-параметры и аргументы по умолчанию?",
+        "Как curry работает с Function.prototype.bind?"
+      ],
+      "estimatedReadMinutes": 8,
+      "needsVisualization": true,
+      "visualizationIdeas": ["call stack при вызове curry(fn)(a)(b)(c)", "дерево вызовов curry с разными вариантами передачи аргументов"],
+      "depthNotes": {
+        "standard": "Ручная реализация curry для 2-3 аргументов, рекурсивный curry, роль fn.length",
+        "deep": "Сравнение bind vs closure для curry, влияние на hidden classes в V8, оптимизация JIT-компилятором"
+      }
+    },
+    {
+      "id": "03-partial-and-compose",
+      "title": "Частичное применение и compose/pipe",
+      "keyQuestions": [
+        "Чем каррирование отличается от частичного применения (partial application)?",
+        "Как реализовать partial?",
+        "Что такое compose и pipe?",
+        "Как каррирование делает compose удобнее?",
+        "Что такое pointfree стиль?"
+      ],
+      "estimatedReadMinutes": 7,
+      "needsVisualization": true,
+      "visualizationIdeas": ["pipeline данных через compose/pipe с каррированными функциями"],
+      "depthNotes": {
+        "standard": "Разница curry vs partial, compose и pipe, pointfree стиль с примерами",
+        "deep": "Теоретические основы: каждая функция в Haskell каррирована по умолчанию, связь с категориями, монады и каррирование"
+      }
+    },
+    {
+      "id": "04-real-world",
+      "title": "Каррирование в реальных проектах",
+      "keyQuestions": [
+        "Как curry используется в Lodash и Ramda?",
+        "Где каррирование встречается в React (HOC, middleware)?",
+        "Как каррирование помогает в Redux middleware?",
+        "Как использовать curry для валидации и обработки данных?",
+        "Как типизировать каррированные функции в TypeScript?"
+      ],
+      "estimatedReadMinutes": 6,
+      "needsVisualization": false,
+      "visualizationIdeas": [],
+      "depthNotes": {
+        "standard": "Lodash _.curry, Ramda R.curry, примеры в React/Redux, валидация данных",
+        "deep": "Продвинутая типизация в TypeScript: рекурсивные conditional types для автоматического каррирования"
+      }
+    },
+    {
+      "id": "05-antipatterns",
+      "title": "Антипаттерны и подводные камни",
+      "keyQuestions": [
+        "Когда каррирование вредит читаемости?",
+        "Какие проблемы с производительностью может вызвать чрезмерное каррирование?",
+        "Как избежать потери контекста this?",
+        "Какие ошибки делают новички с curry?",
+        "Когда лучше НЕ использовать каррирование?"
+      ],
+      "estimatedReadMinutes": 5,
+      "needsVisualization": false,
+      "visualizationIdeas": [],
+      "depthNotes": {
+        "standard": "Чрезмерное каррирование, потеря this, проблемы с отладкой, когда не каррировать",
+        "deep": "Бенчмарки curry vs прямой вызов, влияние на стек вызовов, проблемы с source maps"
+      }
+    }
+  ],
+  "researchDirections": [
+    {
+      "query": "JavaScript currying tutorial examples",
+      "purpose": "Базовые объяснения и примеры каррирования",
+      "priority": "high"
+    },
+    {
+      "query": "currying vs partial application JavaScript",
+      "purpose": "Разница между каррированием и частичным применением",
+      "priority": "high"
+    },
+    {
+      "query": "MDN Function.prototype.bind currying",
+      "purpose": "Как bind связан с каррированием",
+      "priority": "medium"
+    },
+    {
+      "query": "Lodash curry Ramda curry implementation",
+      "purpose": "Реализация curry в популярных библиотеках",
+      "priority": "high"
+    },
+    {
+      "query": "TypeScript curry type definition recursive",
+      "purpose": "Типизация каррированных функций в TypeScript",
+      "priority": "medium"
+    },
+    {
+      "query": "functional programming compose pipe JavaScript",
+      "purpose": "Compose и pipe — как curry делает их удобнее",
+      "priority": "high"
+    },
+    {
+      "query": "JavaScript currying performance overhead",
+      "purpose": "Влияние каррирования на производительность",
+      "priority": "low"
+    }
+  ],
+  "crossLinks": [
+    {
+      "chapterId": "ch01-closures",
+      "relationship": "Каррирование — прямое применение замыканий. Каждый вызов каррированной функции создаёт замыкание, захватывающее переданные аргументы."
+    },
+    {
+      "chapterId": "ch04-v8-engine",
+      "relationship": "V8 оптимизирует вложенные функции (инлайнинг), что влияет на производительность каррированных функций."
+    }
+  ],
+  "taskIdeas": [
+    {
+      "title": "Простой curry для двух аргументов",
+      "difficulty": "easy",
+      "concept": "базовое каррирование",
+      "briefDescription": "Реализовать функцию curry2, которая превращает f(a, b) в f(a)(b)"
+    },
+    {
+      "title": "Каррированный калькулятор",
+      "difficulty": "easy",
+      "concept": "каррирование + замыкания",
+      "briefDescription": "Создать каррированные функции add, multiply, subtract для конвейерной обработки"
+    },
+    {
+      "title": "Каррированный фильтр",
+      "difficulty": "easy",
+      "concept": "каррирование + массивы",
+      "briefDescription": "Создать каррированную функцию filter(predicate)(array)"
+    },
+    {
+      "title": "Универсальный curry",
+      "difficulty": "medium",
+      "concept": "рекурсивное каррирование",
+      "briefDescription": "Реализовать curry(fn), работающий с любым количеством аргументов, используя fn.length"
+    },
+    {
+      "title": "Partial application",
+      "difficulty": "medium",
+      "concept": "частичное применение",
+      "briefDescription": "Реализовать partial(fn, ...args), который фиксирует первые аргументы"
+    },
+    {
+      "title": "Compose и pipe",
+      "difficulty": "hard",
+      "concept": "композиция функций",
+      "briefDescription": "Реализовать compose(...fns) и pipe(...fns) для цепочки преобразований"
+    },
+    {
+      "title": "Curry с плейсхолдерами",
+      "difficulty": "hard",
+      "concept": "продвинутое каррирование",
+      "briefDescription": "Реализовать curry с поддержкой _ как плейсхолдера: curry(fn)(_, 2)(1)"
+    },
+    {
+      "title": "Бесконечный curry",
+      "difficulty": "hard",
+      "concept": "valueOf + каррирование",
+      "briefDescription": "Реализовать функцию sum, которая работает как sum(1)(2)(3)...() с произвольным числом вызовов"
+    }
+  ],
+  "interviewAngles": [
+    {
+      "question": "Что такое каррирование и зачем оно нужно?",
+      "level": "junior",
+      "keyInsight": "Понимание базовой концепции: трансформация f(a,b) → f(a)(b) и практическая польза"
+    },
+    {
+      "question": "Чем каррирование отличается от частичного применения?",
+      "level": "middle",
+      "keyInsight": "Curry всегда возвращает функцию одного аргумента, partial фиксирует N аргументов"
+    },
+    {
+      "question": "Реализуй функцию curry на доске",
+      "level": "middle",
+      "keyInsight": "Знание fn.length, рекурсии, замыканий — всё вместе"
+    },
+    {
+      "question": "Какие проблемы с типизацией каррированных функций в TypeScript?",
+      "level": "senior",
+      "keyInsight": "Рекурсивные conditional types, variadic tuple types, ограничения вывода типов"
+    },
+    {
+      "question": "Когда каррирование — антипаттерн?",
+      "level": "senior",
+      "keyInsight": "Overhead, читаемость, отладка, когда простая функция лучше"
+    }
+  ],
+  "antipatterns": [
+    "Каррирование всего подряд — overhead без пользы",
+    "Потеря контекста this при каррировании методов объекта",
+    "Чрезмерная вложенность: f(a)(b)(c)(d)(e) — нечитаемо",
+    "Каррирование функций с переменным числом аргументов (rest params)",
+    "Забыть про fn.length === 0 при использовании дефолтных параметров",
+    "Использование curry вместо bind для привязки this"
+  ],
+  "realWorldUsage": [
+    "Lodash _.curry — самая популярная реализация в JS",
+    "Ramda — вся библиотека построена на каррировании",
+    "Redux middleware — thunk/saga используют каррированный паттерн",
+    "React HOC — withRouter, connect(mapState)(Component)",
+    "Express middleware — паттерн (config) => (req, res, next) => {}",
+    "Валидация данных — каррированные валидаторы: validate(rules)(data)",
+    "Event handlers — onClick(id)(event) для передачи контекста"
+  ]
+}

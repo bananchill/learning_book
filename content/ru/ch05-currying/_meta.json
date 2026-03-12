@@ -1,0 +1,11 @@
+{
+  "id": "ch05-currying",
+  "title": "Каррирование",
+  "description": "Каррирование, частичное применение, compose и pipe — от теории к практике",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "basics",
+  "order": 5,
+  "estimatedMinutes": 32,
+  "topics": ["currying", "partial-application", "compose", "pipe", "functional-programming"]
+}

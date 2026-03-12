@@ -1,0 +1,69 @@
+{
+  "chapter": "ch05-currying",
+  "resources": [
+    {
+      "title": "Каррирование — JavaScript.info",
+      "url": "https://javascript.info/currying-partials",
+      "type": "article",
+      "language": "en",
+      "description": "Пошаговое объяснение каррирования и частичного применения с интерактивными примерами",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Closures — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures",
+      "type": "documentation",
+      "language": "en",
+      "description": "Замыкания — механизм, на котором основано каррирование. Необходимая база для понимания.",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Lodash _.curry — документация",
+      "url": "https://lodash.com/docs/4.17.15#curry",
+      "type": "documentation",
+      "language": "en",
+      "description": "Самая популярная реализация curry в JS: API, примеры, поддержка плейсхолдеров",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Curry or Partial Application? — Eric Elliott",
+      "url": "https://medium.com/javascript-scene/curry-or-partial-application-8150044c78b8",
+      "type": "article",
+      "language": "en",
+      "description": "Разбор различий между каррированием и частичным применением с практическими примерами",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Pipe and Compose in JavaScript — freeCodeCamp",
+      "url": "https://www.freecodecamp.org/news/pipe-and-compose-in-javascript-5b04004ac937/",
+      "type": "article",
+      "language": "en",
+      "description": "Композиция функций через pipe и compose — главное применение каррирования",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Currying is not idiomatic in JavaScript — Dr. Axel Rauschmayer",
+      "url": "https://2ality.com/2017/11/currying-in-js.html",
+      "type": "article",
+      "language": "en",
+      "description": "Критический взгляд на каррирование в JS: почему оно не всегда уместно",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "The Price of Currying — Anders",
+      "url": "https://dev.to/anders/the-price-of-currying-4m95",
+      "type": "article",
+      "language": "en",
+      "description": "Анализ производительности каррированных функций: бенчмарки и overhead",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "Effective TypeScript: Currying — Dan Vanderkam",
+      "url": "https://effectivetypescript.com/2020/12/04/gentips-1-curry/",
+      "type": "article",
+      "language": "en",
+      "description": "Продвинутая типизация каррированных функций в TypeScript с рекурсивными типами",
+      "difficulty": "advanced"
+    }
+  ]
+}
