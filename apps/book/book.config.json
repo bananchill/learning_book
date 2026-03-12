@@ -31,6 +31,20 @@
                   ]
                 },
                 {
+                  "id": "ch05-currying",
+                  "title": "Каррирование",
+                  "description": "Каррирование, частичное применение, compose и pipe — от теории к практике",
+                  "order": 5,
+                  "contentPath": "content/ru/ch05-currying",
+                  "subchapters": [
+                    { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
+                    { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
+                    { "id": "03-partial-and-compose", "title": "Частичное применение, compose и pipe", "order": 3 },
+                    { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
+                    { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
+                  ]
+                },
+                {
                   "id": "ch02-async",
                   "title": "Асинхронность",
                   "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
