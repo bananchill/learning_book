@@ -7,7 +7,7 @@ const props = defineProps<{
   highlightLines?: number[]
 }>()
 
-const lines = computed(() => props.code.split('\n'))
+const lines = computed(() => (props.code ?? '').split('\n'))
 
 const gutterWidth = computed(() => `${String(lines.value.length).length + 1}ch`)
 
