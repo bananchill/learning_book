@@ -1,0 +1,74 @@
+[
+  {
+    "title": "TypeScript Design Goals",
+    "url": "https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальный документ проектных целей TypeScript — почему структурная типизация, стирание типов и отказ от soundness",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TypeScript Handbook — Everyday Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник по примитивам, объектным типам, union types, литералам, интерфейсам и type alias",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript Handbook — Narrowing",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полное руководство по сужению типов: type guards, CFA, discriminated unions, exhaustiveness checking",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TypeScript Handbook — Utility Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник всех встроенных утилитарных типов: Partial, Required, Pick, Omit, Record и другие",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "The Seven Sources of Unsoundness in TypeScript",
+    "url": "https://effectivetypescript.com/2021/05/06/unsoundness/",
+    "type": "article",
+    "language": "en",
+    "description": "Анализ 7 причин, почему система типов TypeScript unsound, с практическими рекомендациями",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "Type vs Interface: Which Should You Use?",
+    "url": "https://www.totaltypescript.com/type-vs-interface-which-should-you-use",
+    "type": "article",
+    "language": "en",
+    "description": "Мэтт Покок разбирает различия type и interface с рекомендацией использовать type по умолчанию",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Nominal typing techniques in TypeScript",
+    "url": "https://michalzalecki.com/nominal-typing-in-typescript/",
+    "type": "article",
+    "language": "en",
+    "description": "4 техники эмуляции номинальной типизации: branded types, private-свойства, intersection types",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "TypeScript Handbook — Type Compatibility",
+    "url": "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация по правилам совместимости типов в структурной системе TypeScript",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Discriminated Unions and Exhaustiveness Checking",
+    "url": "https://www.fullstory.com/blog/discriminated-unions-and-exhaustiveness-checking-in-typescript/",
+    "type": "article",
+    "language": "en",
+    "description": "Практический гайд по discriminated unions с паттерном exhaustive switch через never",
+    "difficulty": "intermediate"
+  }
+]

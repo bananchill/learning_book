@@ -1,0 +1,11 @@
+{
+  "id": "ch06-ts-type-system",
+  "title": "Система типов TypeScript",
+  "description": "Что такое система типов, structural vs nominal, примитивы, литералы, объектные типы, type narrowing",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "basics",
+  "order": 6,
+  "estimatedMinutes": 38,
+  "topics": ["type-system", "structural-typing", "nominal-typing", "primitives", "literals", "any", "unknown", "never", "interface", "type-alias", "utility-types", "type-narrowing", "discriminated-unions", "type-guards"]
+}

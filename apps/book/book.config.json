@@ -10,6 +10,7 @@
           "id": "javascript",
           "title": "JavaScript",
           "order": 1,
+          "icon": "js",
           "groups": [
             {
               "id": "basics",
@@ -91,6 +92,34 @@
                     { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
                     { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
                     { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "typescript",
+          "title": "TypeScript",
+          "order": 2,
+          "groups": [
+            {
+              "id": "basics",
+              "title": "Основы",
+              "order": 1,
+              "chapters": [
+                {
+                  "id": "ch06-ts-type-system",
+                  "title": "Система типов TypeScript",
+                  "description": "Что такое система типов, structural vs nominal, примитивы, объектные типы, type narrowing",
+                  "order": 6,
+                  "contentPath": "content/ru/ch06-ts-type-system",
+                  "subchapters": [
+                    { "id": "01-what-and-why", "title": "Что такое система типов и зачем она нужна", "order": 1 },
+                    { "id": "02-structural-vs-nominal", "title": "Структурная vs номинальная типизация", "order": 2 },
+                    { "id": "03-primitives-and-literals", "title": "Примитивные типы, литералы и специальные типы", "order": 3 },
+                    { "id": "04-object-types", "title": "Объектные типы: интерфейсы, type alias, классы", "order": 4 },
+                    { "id": "05-type-narrowing", "title": "Сужение типов и контроль потока", "order": 5 }
                   ]
                 }
               ]

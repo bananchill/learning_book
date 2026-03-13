@@ -1,0 +1,54 @@
+{
+  "chapter": "ch06-ts-type-system",
+  "title": "Пошаговый разбор: от JavaScript к TypeScript",
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "JavaScript без типов — проблема",
+      "code": "function greet(user) {\n  return `Привет, ${user.name}!`\n}\n\ngreet({ name: 'Алекс' })\ngreet('Алекс')\ngreet(null)",
+      "highlight": [6, 7],
+      "explanation": "В JavaScript этот код не вызовет ошибки при объявлении. greet('Алекс') вернёт 'Привет, undefined!' — тихий баг. greet(null) упадёт только в рантайме с TypeError.",
+      "annotation": "Проблема: ошибки типов проявляются только в рантайме"
+    },
+    {
+      "id": "step-2",
+      "title": "Добавляем аннотацию типа",
+      "code": "function greet(user: { name: string }) {\n  return `Привет, ${user.name}!`\n}\n\ngreet({ name: 'Алекс' })  // ✅\ngreet('Алекс')             // ❌ Ошибка компиляции\ngreet(null)                // ❌ Ошибка компиляции",
+      "highlight": [1],
+      "explanation": "Аннотация { name: string } описывает форму (shape) объекта. TypeScript проверяет совместимость на этапе компиляции — ошибки видны в редакторе до запуска кода.",
+      "annotation": "Структурная типизация: проверяется форма объекта, а не его имя"
+    },
+    {
+      "id": "step-3",
+      "title": "Извлекаем тип в interface",
+      "code": "interface User {\n  name: string\n  age: number\n}\n\nfunction greet(user: User) {\n  return `Привет, ${user.name}! Тебе ${user.age}`\n}\n\ngreet({ name: 'Алекс', age: 25 })           // ✅\ngreet({ name: 'Алекс', age: 25, role: 'dev' }) // ❌ Excess property",
+      "highlight": [1, 2, 3, 4, 11],
+      "explanation": "Interface описывает переиспользуемую форму объекта. Строка 11 — excess property checking: при передаче литерального объекта TypeScript проверяет, нет ли лишних свойств (ловит опечатки).",
+      "annotation": "Excess property checking работает только для свежих литералов"
+    },
+    {
+      "id": "step-4",
+      "title": "Union types и type narrowing",
+      "code": "function format(value: string | number): string {\n  // value: string | number\n\n  if (typeof value === 'string') {\n    // value: string — TypeScript сузил тип\n    return value.toUpperCase()\n  }\n\n  // value: number — string исключён\n  return value.toFixed(2)\n}",
+      "highlight": [4, 5, 6, 9, 10],
+      "explanation": "TypeScript отслеживает тип переменной через control flow analysis (CFA). После typeof-проверки в строке 4 он знает: в if-ветке value — string, в else — number. Сужение происходит автоматически.",
+      "annotation": "CFA — TypeScript анализирует поток управления для сужения типов"
+    },
+    {
+      "id": "step-5",
+      "title": "Discriminated union — главный паттерн",
+      "code": "type Shape =\n  | { kind: 'circle'; radius: number }\n  | { kind: 'square'; side: number }\n\nfunction area(shape: Shape): number {\n  switch (shape.kind) {\n    case 'circle':\n      return Math.PI * shape.radius ** 2\n    case 'square':\n      return shape.side ** 2\n    default:\n      const _: never = shape\n      return _\n  }\n}",
+      "highlight": [1, 2, 3, 6, 12],
+      "explanation": "Discriminated union: каждый вариант имеет общее литеральное свойство kind (дискриминант). В switch TypeScript сужает тип по значению kind. Строка 12: never-проверка гарантирует, что при добавлении нового варианта в Shape компилятор покажет ошибку здесь.",
+      "annotation": "never в default = exhaustive check. Забытый вариант = ошибка компиляции"
+    },
+    {
+      "id": "step-6",
+      "title": "Type erasure — типы исчезают",
+      "code": "// TypeScript (исходный код)\ninterface User {\n  name: string\n  age: number\n}\nconst user: User = { name: 'Алекс', age: 25 }\n\n// JavaScript (после компиляции)\n// interface — удалён полностью\nconst user = { name: 'Алекс', age: 25 }",
+      "highlight": [2, 3, 4, 5, 9],
+      "explanation": "При компиляции TypeScript полностью удаляет все типы: interface, type alias, аннотации, generic-параметры. В рантайме работает обычный JavaScript. V8 не знает, что код был написан на TypeScript. Типы защищают только на этапе разработки.",
+      "annotation": "Type erasure: типы существуют только в compile time"
+    }
+  ]
+}

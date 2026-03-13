@@ -1,0 +1,110 @@
+{
+  "chapter": "ch06-ts-type-system",
+  "tasks": [
+    {
+      "id": "01-easy-infer-types",
+      "title": "Определи тип переменной",
+      "difficulty": "easy",
+      "description": "Даны несколько объявлений переменных. Для каждого нужно вернуть строку с названием типа, который выведет TypeScript.",
+      "file": "01-easy-infer-types.ts",
+      "testFile": "01-easy-infer-types.test.ts",
+      "concepts": ["literal-types", "widening", "as-const"],
+      "hints": [
+        "Вспомни разницу между let и const: const сохраняет литеральный тип, let расширяет до примитивного.",
+        "as const запрещает widening и делает свойства readonly. Массив с as const становится readonly кортежем.",
+        "const x = 'hello' → \"hello\"; let x = 'hello' → string; const arr = [1, 2] as const → readonly [1, 2]"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-type-guard",
+      "title": "Type guard для фильтрации массива",
+      "difficulty": "easy",
+      "description": "Напиши type guard isNotNull, который фильтрует null-значения из массива и корректно сужает тип результата.",
+      "file": "02-easy-type-guard.ts",
+      "testFile": "02-easy-type-guard.test.ts",
+      "concepts": ["type-guards", "type-predicates", "array-filter"],
+      "hints": [
+        "Type guard — это функция, возвращающая тип x is T. Это подсказка TypeScript для сужения типа.",
+        "Сигнатура: function isNotNull<T>(value: T | null): value is T. Внутри — простая проверка на !== null.",
+        "function isNotNull<T>(value: T | null): value is T { return value !== null }"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-easy-fix-types",
+      "title": "Исправь ошибки типов",
+      "difficulty": "easy",
+      "description": "Дан код с ошибками типов: any вместо корректных типов, отсутствующие проверки unknown, несовместимые присваивания. Исправь все ошибки.",
+      "file": "03-easy-fix-types.ts",
+      "testFile": "03-easy-fix-types.test.ts",
+      "concepts": ["any-vs-unknown", "type-annotations", "basic-types"],
+      "hints": [
+        "Замени все any на конкретные типы или unknown. Для unknown добавь проверку typeof перед использованием.",
+        "parseData должен принимать unknown и возвращать проверенное значение. formatUser должен принимать объект с конкретными полями.",
+        "function parseData(input: unknown): string { if (typeof input === 'string') return input; throw new Error('Expected string') }"
+      ],
+      "estimatedMinutes": 7
+    },
+    {
+      "id": "04-medium-events",
+      "title": "Обработка событий через discriminated union",
+      "difficulty": "medium",
+      "description": "Создай систему событий UI с discriminated union: Click, Hover, KeyPress, Scroll. Каждое событие имеет свои специфические поля. Напиши обработчик handleEvent с exhaustive check.",
+      "file": "04-medium-events.ts",
+      "testFile": "04-medium-events.test.ts",
+      "concepts": ["discriminated-unions", "exhaustive-check", "never"],
+      "hints": [
+        "Каждый тип события должен иметь общее поле type с литеральным типом: 'click', 'hover', 'keypress', 'scroll'.",
+        "В switch по event.type TypeScript автоматически сузит тип. В default присвой event к never для exhaustive check.",
+        "type UIEvent = ClickEvent | HoverEvent | KeyPressEvent | ScrollEvent; switch (event.type) { case 'click': ... default: const _: never = event }"
+      ],
+      "estimatedMinutes": 12
+    },
+    {
+      "id": "05-medium-api-response",
+      "title": "Типизируй API-ответ",
+      "difficulty": "medium",
+      "description": "Создай типы для API-ответа: успешный ответ с данными, ошибка с кодом и сообщением, загрузка. Напиши функции-валидаторы с type guards для безопасного доступа к данным.",
+      "file": "05-medium-api-response.ts",
+      "testFile": "05-medium-api-response.test.ts",
+      "concepts": ["discriminated-unions", "type-guards", "utility-types", "generics"],
+      "hints": [
+        "Используй discriminated union с полем status: 'success' | 'error' | 'loading'. Успешный ответ — generic ApiResponse<T>.",
+        "Type guard isSuccess должен сужать тип до { status: 'success', data: T }. Используй type predicate: response is SuccessResponse<T>.",
+        "type ApiResponse<T> = { status: 'success'; data: T } | { status: 'error'; code: number; message: string } | { status: 'loading' }"
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "06-hard-branded",
+      "title": "Branded types для доменной модели",
+      "difficulty": "hard",
+      "description": "Реализуй branded types для UserId, OrderId и Email. Они все строки, но не должны быть взаимозаменяемы. Создай конструкторы с валидацией и type guards.",
+      "file": "06-hard-branded.ts",
+      "testFile": "06-hard-branded.test.ts",
+      "concepts": ["branded-types", "nominal-typing", "type-safety", "validation"],
+      "hints": [
+        "Branded type = примитив & { readonly __brand: unique symbol }. Это phantom type — не существует в рантайме.",
+        "Конструктор: function createUserId(id: string): UserId { validate(id); return id as UserId }. as — единственный способ создать branded значение.",
+        "type Brand<T, B> = T & { readonly __brand: B }; type UserId = Brand<string, 'UserId'>; type OrderId = Brand<string, 'OrderId'>"
+      ],
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "07-hard-state-machine",
+      "title": "Типизированная state machine",
+      "difficulty": "hard",
+      "description": "Создай типизированную state machine для заказа: Draft → Confirmed → Shipped → Delivered. Невалидный переход (Draft → Shipped) должен вызывать ошибку компиляции. Реализуй функцию transition.",
+      "file": "07-hard-state-machine.ts",
+      "testFile": "07-hard-state-machine.test.ts",
+      "concepts": ["discriminated-unions", "conditional-types", "mapped-types", "type-safety"],
+      "hints": [
+        "Определи каждое состояние как тип с полем status. Определи допустимые переходы: { draft: 'confirmed'; confirmed: 'shipped'; shipped: 'delivered' }.",
+        "Функция transition принимает текущее состояние и целевой статус. Используй conditional types, чтобы целевой статус зависел от текущего.",
+        "type Transitions = { draft: 'confirmed'; confirmed: 'shipped'; shipped: 'delivered' }; function transition<S extends keyof Transitions>(state: State & { status: S }, to: Transitions[S]): State"
+      ],
+      "estimatedMinutes": 25
+    }
+  ]
+}

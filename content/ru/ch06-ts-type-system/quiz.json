@@ -1,0 +1,93 @@
+{
+  "chapter": "ch06-ts-type-system",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Какой тип выведет TypeScript для переменной?\n\nconst greeting = 'hello'",
+      "type": "multiple-choice",
+      "options": [
+        "string",
+        "\"hello\"",
+        "any",
+        "unknown"
+      ],
+      "correctAnswer": 1,
+      "explanation": "При объявлении через const TypeScript сохраняет литеральный тип — \"hello\". Если бы переменная была объявлена через let, тип расширился бы до string, потому что let допускает переприсваивание.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Чем отличается unknown от any?",
+      "type": "multiple-choice",
+      "options": [
+        "unknown — это алиас для any",
+        "unknown требует проверки типа перед использованием, any — нет",
+        "any безопаснее, чем unknown",
+        "unknown нельзя присвоить переменной"
+      ],
+      "correctAnswer": 1,
+      "explanation": "unknown — безопасный top type. Значение типа unknown нельзя использовать без предварительной проверки (typeof, instanceof, type guard). any полностью отключает проверку типов — можно вызывать любые методы без ошибок компиляции, что приводит к runtime-ошибкам.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "TypeScript использует номинальную систему типизации.",
+      "type": "true-false",
+      "options": ["Верно", "Неверно"],
+      "correctAnswer": 1,
+      "explanation": "Неверно. TypeScript использует структурную типизацию — совместимость определяется формой (shape) объекта, а не именем типа. Два интерфейса с одинаковой структурой взаимозаменяемы, даже если имеют разные имена.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Что произойдёт при компиляции этого кода?\n\ninterface User { name: string }\ninterface Admin { name: string }\n\nconst admin: Admin = { name: 'Алекс' }\nconst user: User = admin",
+      "type": "multiple-choice",
+      "options": [
+        "Ошибка: Admin не совместим с User",
+        "Код скомпилируется без ошибок",
+        "Ошибка: нельзя присвоить объект другому интерфейсу",
+        "Runtime ошибка"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Код скомпилируется без ошибок. В структурной типизации TypeScript проверяет совместимость по форме, а не по имени типа. У Admin и User одинаковая структура ({ name: string }), поэтому они взаимозаменяемы.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Что такое тип never и для чего он используется?",
+      "type": "multiple-choice",
+      "options": [
+        "Тип для функций, которые возвращают undefined",
+        "Bottom type — пустое множество значений, используется для exhaustive check",
+        "Тип для переменных, которые ещё не инициализированы",
+        "Синоним void"
+      ],
+      "correctAnswer": 1,
+      "explanation": "never — это bottom type, пустое множество. Значение типа never не может существовать. Практическое применение: exhaustive check в switch — если все варианты discriminated union обработаны, оставшееся значение имеет тип never. Присваивание ему в default гарантирует, что добавление нового варианта вызовет ошибку компиляции.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q6",
+      "question": "Какой тип будет у переменной value после проверки?\n\nfunction process(value: string | number | null) {\n  if (typeof value === 'string') {\n    // Какой тип у value здесь?\n  }\n}",
+      "type": "code-output",
+      "options": ["string | number | null", "string", "string | null", "unknown"],
+      "correctAnswer": 1,
+      "explanation": "TypeScript использует control flow analysis (CFA): после проверки typeof value === 'string' он сужает тип value до string. Остальные варианты (number, null) исключены этой проверкой.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q7",
+      "question": "В чём ключевое различие между interface и type alias?",
+      "type": "multiple-choice",
+      "options": [
+        "interface работает только с объектами, type может описывать union, кортежи и mapped types",
+        "type быстрее компилируется, чем interface",
+        "interface — устаревший синтаксис, type — современный",
+        "Различий нет, это полные синонимы"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Главное различие: interface поддерживает extends и declaration merging, но описывает только объектные типы. type alias более гибок — может описывать union-ы, кортежи, mapped types, conditional types. Также interface с extends компилируется быстрее, чем type с &.",
+      "difficulty": "medium"
+    }
+  ]
+}

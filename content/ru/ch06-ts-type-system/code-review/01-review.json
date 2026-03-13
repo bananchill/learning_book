@@ -1,0 +1,48 @@
+{
+  "id": "01-review",
+  "title": "Типичные ошибки типизации в пользовательском модуле",
+  "issues": [
+    {
+      "line": 3,
+      "type": "best_practice",
+      "description": "id типизирован как any — теряется вся информация о типе ID",
+      "fix": "Используй конкретный тип: id: number или id: string. Ещё лучше — branded type для защиты от путаницы ID разных сущностей."
+    },
+    {
+      "line": 6,
+      "type": "best_practice",
+      "description": "role типизирован как string — допускает любое значение, нет exhaustive check",
+      "fix": "Используй union литералов: role: 'admin' | 'user' | 'moderator'. Это позволит TypeScript проверять все варианты в switch."
+    },
+    {
+      "line": 9,
+      "type": "bug",
+      "description": "data типизирован как any — отсутствует проверка данных из внешнего источника",
+      "fix": "Используй unknown + type guard или Zod для валидации. Нельзя приводить unknown к User[] без проверки."
+    },
+    {
+      "line": 13,
+      "type": "bug",
+      "description": "Используется == вместо === для сравнения строк, а также user приводится к any через as",
+      "fix": "Используй === для строгого сравнения. Убери as any — User уже совместим с { name: string; email: string } структурно."
+    },
+    {
+      "line": 14,
+      "type": "best_practice",
+      "description": "as any при вызове sendAdminNotification — обходит проверку типов без причины",
+      "fix": "Убери as any. User структурно совместим с параметром sendAdminNotification (оба имеют name и email)."
+    },
+    {
+      "line": 33,
+      "type": "bug",
+      "description": "getUserRole не возвращает значение для неизвестных ролей — функция вернёт undefined, но тип обещает string",
+      "fix": "Добавь default с exhaustive check через never (если role — union литералов) или верни значение по умолчанию."
+    },
+    {
+      "line": 39,
+      "type": "bug",
+      "description": "parseApiResponse принимает any и не проверяет структуру — response.data.users может быть undefined",
+      "fix": "Тип параметра: unknown. Добавь проверку: if (response && typeof response === 'object' && 'data' in response). Или используй Zod schema."
+    }
+  ]
+}

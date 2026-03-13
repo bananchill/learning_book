@@ -1,0 +1,171 @@
+{
+  "topic": "Система типов TypeScript",
+  "chapterId": "ch06-ts-type-system",
+  "subchapters": [
+    {
+      "id": "01-what-and-why",
+      "title": "Что такое система типов и зачем она нужна",
+      "keyQuestions": [
+        "Что такое типы и зачем они существуют в языках программирования?",
+        "Какие проблемы решает статическая типизация?",
+        "Чем отличается статическая типизация от динамической?",
+        "Что происходит с типами TypeScript при компиляции (type erasure)?",
+        "Почему JavaScript — динамически типизированный язык, и какие ограничения это создаёт?"
+      ],
+      "estimatedReadMinutes": 6,
+      "needsVisualization": true,
+      "visualizationIdeas": [
+        "Сравнительная диаграмма: путь ошибки в JS (runtime crash) vs TS (compile-time error)",
+        "Таймлайн: когда типы проверяются — compile time vs runtime"
+      ],
+      "depthNotes": {
+        "standard": "Мотивация типов, сравнение JS и TS на практических примерах, type erasure — типы исчезают в рантайме, базовая ментальная модель «типы = множества значений»",
+        "deep": "Теория типов: типы как множества, связь с теорией категорий. Система типов Хиндли–Милнера. Soundness vs completeness — почему TypeScript сознательно unsound. Gradual typing и его компромиссы"
+      }
+    },
+    {
+      "id": "02-structural-vs-nominal",
+      "title": "Структурная vs номинальная типизация",
+      "keyQuestions": [
+        "Что такое структурная типизация и почему TypeScript использует именно её?",
+        "Что такое номинальная типизация и какие языки её используют (Java, C#)?",
+        "Как структурная совместимость работает на практике — duck typing на уровне типов?",
+        "Как эмулировать номинальные типы в TypeScript (branded types, unique symbol)?",
+        "Когда структурная типизация создаёт проблемы и как их решать?"
+      ],
+      "estimatedReadMinutes": 7,
+      "needsVisualization": true,
+      "visualizationIdeas": [
+        "Визуальное сравнение: структурная совместимость (совпадение формы) vs номинальная (совпадение имени)",
+        "Диаграмма Венна: какие объекты совместимы при структурной типизации",
+        "Пример branded types: UserId vs OrderId — одинаковая структура, разные типы"
+      ],
+      "depthNotes": {
+        "standard": "Определения и примеры обоих подходов, практические последствия структурной типизации, excess property checking как исключение из структурного правила",
+        "deep": "Формальное определение структурной совместимости в TypeScript (variance: covariance, contravariance, bivariance для параметров методов). Почему strictFunctionTypes меняет поведение. Row polymorphism vs structural subtyping"
+      }
+    },
+    {
+      "id": "03-primitives-and-literals",
+      "title": "Примитивные типы, литералы и специальные типы",
+      "keyQuestions": [
+        "Какие примитивные типы есть в TypeScript и как они соотносятся с JavaScript?",
+        "Что такое литеральные типы и зачем они нужны?",
+        "В чём разница между string и 'hello', number и 42 как типами?",
+        "Что такое any, unknown, never, void и когда какой использовать?",
+        "Как работает иерархия типов: top type (unknown) и bottom type (never)?",
+        "Зачем нужны enum и в чём их подводные камни?"
+      ],
+      "estimatedReadMinutes": 8,
+      "needsVisualization": true,
+      "visualizationIdeas": [
+        "Иерархия типов TypeScript: unknown (top) → конкретные типы → never (bottom)",
+        "Визуализация множеств: string ⊃ 'hello' | 'world', number ⊃ 1 | 2 | 3",
+        "Таблица-матрица: any vs unknown vs never vs void — что можно присвоить чему"
+      ],
+      "depthNotes": {
+        "standard": "Все примитивные типы, литеральные типы и const assertions, any vs unknown (когда что), never как невозможный тип, void для функций. Enum: числовые и строковые, const enum",
+        "deep": "Теория решёток (lattice theory) применительно к иерархии типов. Почему any нарушает soundness — это одновременно top и bottom type. Widening и narrowing литеральных типов: когда TS автоматически расширяет тип. Fresh object literal types и excess property checks"
+      }
+    },
+    {
+      "id": "04-object-types",
+      "title": "Объектные типы: интерфейсы, type alias, классы",
+      "keyQuestions": [
+        "В чём разница между interface и type alias — когда что использовать?",
+        "Как работает расширение интерфейсов (extends) и пересечение типов (&)?",
+        "Что такое index signatures и mapped types?",
+        "Как типизировать функции, массивы, кортежи?",
+        "Как связаны классы и типы — класс как значение и как тип одновременно?",
+        "Что такое utility types (Partial, Required, Pick, Omit, Record) и зачем они?"
+      ],
+      "estimatedReadMinutes": 9,
+      "needsVisualization": true,
+      "visualizationIdeas": [
+        "Сравнительная таблица: interface vs type alias — возможности и ограничения",
+        "Визуализация объединения (|) и пересечения (&) типов как операций над множествами",
+        "Блок-схема: «interface или type?» — дерево решений"
+      ],
+      "depthNotes": {
+        "standard": "Interface vs type alias с практическими рекомендациями, extends и &, readonly и optional свойства, index signatures, типизация функций, массивы и кортежи, основные utility types",
+        "deep": "Declaration merging для интерфейсов и его применение (расширение библиотечных типов). Рекурсивные типы. Conditional types (базовые). Variadic tuple types. Homomorphic mapped types и почему они сохраняют модификаторы. Template literal types"
+      }
+    },
+    {
+      "id": "05-type-narrowing",
+      "title": "Сужение типов (Type Narrowing) и контроль потока",
+      "keyQuestions": [
+        "Что такое type narrowing и как TypeScript отслеживает типы в потоке кода?",
+        "Какие конструкции вызывают сужение (typeof, instanceof, in, ===)?",
+        "Что такое type guards и как создавать пользовательские (is)?",
+        "Что такое discriminated unions и почему это главный паттерн TypeScript?",
+        "Как работает assertion functions (asserts x is T)?",
+        "Как never помогает проверять исчерпывающее сопоставление (exhaustive check)?"
+      ],
+      "estimatedReadMinutes": 8,
+      "needsVisualization": true,
+      "visualizationIdeas": [
+        "Блок-схема потока кода с визуализацией сужения типа на каждом шаге",
+        "Discriminated union: дерево вариантов с дискриминантом",
+        "Анимация: как TypeScript сужает тип от string | number к конкретному типу через проверки"
+      ],
+      "depthNotes": {
+        "standard": "Все встроенные guard-ы (typeof, instanceof, in, truthiness, equality), пользовательские type guards с is, discriminated unions с switch, exhaustive checks с never",
+        "deep": "Control flow analysis (CFA) — как TypeScript строит граф потока управления. Narrowing для замыканий — почему переменная теряет сужение после callback. Assertion functions и их ограничения. Nominal-like narrowing через branded types"
+      }
+    }
+  ],
+  "researchDirections": [
+    {"query": "TypeScript type system design goals structural typing", "purpose": "Философия и архитектурные решения за системой типов TypeScript", "priority": "high"},
+    {"query": "TypeScript handbook basic types primitives", "purpose": "Документация по примитивным и специальным типам", "priority": "high"},
+    {"query": "TypeScript type narrowing control flow analysis", "purpose": "Детали CFA, guard-ы, edge cases", "priority": "high"},
+    {"query": "TypeScript discriminated unions pattern matching", "purpose": "Главный паттерн TS — discriminated unions", "priority": "high"},
+    {"query": "structural typing vs nominal typing comparison", "purpose": "Теоретическое сравнение подходов", "priority": "high"},
+    {"query": "TypeScript branded types opaque types", "purpose": "Эмуляция номинальной типизации", "priority": "medium"},
+    {"query": "TypeScript interface vs type alias differences", "purpose": "Практические рекомендации", "priority": "medium"},
+    {"query": "TypeScript type erasure runtime", "purpose": "Связь с ch04-v8-engine", "priority": "medium"},
+    {"query": "TypeScript utility types mapped types", "purpose": "Встроенные утилитные типы", "priority": "medium"},
+    {"query": "TypeScript soundness unsound design", "purpose": "Почему TS сознательно unsound", "priority": "low"},
+    {"query": "TypeScript type hierarchy lattice unknown never", "purpose": "Иерархия типов как решётка", "priority": "low"},
+    {"query": "TypeScript covariance contravariance", "purpose": "Вариантность типов", "priority": "low"}
+  ],
+  "crossLinks": [
+    {"chapterId": "ch01-closures", "relationship": "Замыкания и CFA: потеря сужения типа внутри callback"},
+    {"chapterId": "ch02-async", "relationship": "Типизация Promise<T>, async/await, unknown в catch"},
+    {"chapterId": "ch04-v8-engine", "relationship": "Type erasure: типы стираются при компиляции, V8 работает с JS"},
+    {"chapterId": "ch05-currying", "relationship": "Дженерики для каррирования и композиции функций"}
+  ],
+  "taskIdeas": [
+    {"title": "Определи тип переменной", "difficulty": "easy", "concept": "Примитивные и литеральные типы", "briefDescription": "Определить тип, который выведет TypeScript для разных объявлений (let, const, as const)."},
+    {"title": "Напиши type guard для фильтрации массива", "difficulty": "easy", "concept": "Type narrowing, type guards", "briefDescription": "Написать type guard isNotNull и использовать с filter для (string | null)[] → string[]."},
+    {"title": "Исправь ошибки типов в коде", "difficulty": "easy", "concept": "Базовая типизация, any vs unknown", "briefDescription": "Заменить any на правильные типы, добавить проверки для unknown."},
+    {"title": "Обработка событий через discriminated union", "difficulty": "medium", "concept": "Discriminated unions, exhaustive check", "briefDescription": "Создать систему событий с дискриминантом type и exhaustive switch."},
+    {"title": "Типизируй API-ответ", "difficulty": "medium", "concept": "Объектные типы, utility types", "briefDescription": "Создать типы для JSON API-ответа с валидаторами и type guards."},
+    {"title": "Создай branded types для доменной модели", "difficulty": "hard", "concept": "Branded types, номинальная типизация", "briefDescription": "Реализовать UserId, OrderId, Email как branded types с валидацией."},
+    {"title": "Типизируй state machine", "difficulty": "hard", "concept": "Discriminated unions, mapped types, conditional types", "briefDescription": "State machine где невалидный переход = ошибка компиляции."}
+  ],
+  "antipatterns": [
+    "Использование any вместо unknown для данных из внешних источников",
+    "Злоупотребление type assertions (as) вместо корректного сужения типов",
+    "Использование interface для всего или type для всего без понимания разницы",
+    "Отключение strict mode или noImplicitAny",
+    "Дублирование типов вместо использования utility types",
+    "Типизация через enum там, где достаточно union литералов",
+    "Написание type guards без проверки корректности",
+    "Игнорирование exhaustive check в switch",
+    "Использование object или {} как типов",
+    "Путаница между типами TypeScript и typeof в рантайме"
+  ],
+  "realWorldUsage": [
+    "React: типизация props, state, хуков",
+    "Vue 3: defineProps<T>(), ref<T>(), generic компоненты",
+    "Redux/Pinia: discriminated unions для actions",
+    "Zod/io-ts: runtime-валидация + статические типы",
+    "Express/Fastify: типизация request/response",
+    "Prisma/Drizzle: автогенерация типов из схемы БД",
+    "tRPC: end-to-end type safety",
+    "Branded types для Id, Email, URL",
+    "as const + satisfies для конфигов",
+    "Vitest/Jest: типизация моков"
+  ]
+}
