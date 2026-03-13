@@ -16,14 +16,14 @@ const { t } = useI18n()
       <h4 class="font-medium text-text-secondary mb-2">{{ t('walkthrough.variables') }}</h4>
       <div class="space-y-1">
         <div
-          v-for="(value, name) in step.variables"
+          v-for="(value, name) in (step.variables ?? {})"
           :key="name"
           class="flex justify-between px-3 py-1.5 rounded bg-surface-muted"
         >
           <span class="font-mono text-primary">{{ name }}</span>
           <span class="font-mono text-text">{{ value }}</span>
         </div>
-        <div v-if="Object.keys(step.variables).length === 0" class="text-text-muted text-xs px-3">
+        <div v-if="!step.variables || Object.keys(step.variables).length === 0" class="text-text-muted text-xs px-3">
           —
         </div>
       </div>
