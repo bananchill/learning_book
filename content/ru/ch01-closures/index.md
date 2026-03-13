@@ -11,11 +11,11 @@ description: "Полный разбор замыканий: от основ до
 
 ## Содержание
 
-1. [Что такое замыкание и зачем оно нужно](/javascript/ch01-closures/01-what-and-why)
-2. [Как работают замыкания под капотом](/javascript/ch01-closures/02-how-it-works)
-3. [Частые проблемы и ловушки](/javascript/ch01-closures/03-common-problems)
-4. [Замыкания в реальном мире](/javascript/ch01-closures/04-real-world)
-5. [Антипаттерны](/javascript/ch01-closures/05-antipatterns)
+1. [Что такое замыкание и зачем оно нужно](/frontend/javascript/ch01-closures/01-what-and-why)
+2. [Как работают замыкания под капотом](/frontend/javascript/ch01-closures/02-how-it-works)
+3. [Частые проблемы и ловушки](/frontend/javascript/ch01-closures/03-common-problems)
+4. [Замыкания в реальном мире](/frontend/javascript/ch01-closures/04-real-world)
+5. [Антипаттерны](/frontend/javascript/ch01-closures/05-antipatterns)
 
 ## Что ты научишься делать
 
@@ -27,13 +27,13 @@ description: "Полный разбор замыканий: от основ до
 
 ## Связанные темы
 
-- [Асинхронность](/javascript/ch02-async) — замыкания в callbacks и async-функциях
-- [Движок V8](/javascript/ch04-v8-engine) — context allocation и оптимизации замыканий в V8
+- [Асинхронность](/frontend/javascript/ch02-async) — замыкания в callbacks и async-функциях
+- [Движок V8](/frontend/javascript/ch04-v8-engine) — context allocation и оптимизации замыканий в V8
 
 ## Задания
 
-[Перейти к заданиям](/javascript/ch01-closures/tasks) — 3 easy, 2 medium, 3 hard
+[Перейти к заданиям](/frontend/javascript/ch01-closures/tasks) — 3 easy, 2 medium, 3 hard
 
 ## Песочница
 
-[Открыть песочницу](/javascript/ch01-closures/playground)
+[Открыть песочницу](/frontend/javascript/ch01-closures/playground)

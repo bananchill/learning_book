@@ -11,11 +11,11 @@ description: "Каррирование, частичное применение,
 
 ## Содержание
 
-1. [Что такое каррирование и зачем оно нужно](/javascript/ch05-currying/01-what-and-why)
-2. [Как работает каррирование изнутри](/javascript/ch05-currying/02-how-it-works)
-3. [Частичное применение и compose/pipe](/javascript/ch05-currying/03-partial-and-compose)
-4. [Каррирование в реальных проектах](/javascript/ch05-currying/04-real-world)
-5. [Антипаттерны и подводные камни](/javascript/ch05-currying/05-antipatterns)
+1. [Что такое каррирование и зачем оно нужно](/frontend/javascript/ch05-currying/01-what-and-why)
+2. [Как работает каррирование изнутри](/frontend/javascript/ch05-currying/02-how-it-works)
+3. [Частичное применение и compose/pipe](/frontend/javascript/ch05-currying/03-partial-and-compose)
+4. [Каррирование в реальных проектах](/frontend/javascript/ch05-currying/04-real-world)
+5. [Антипаттерны и подводные камни](/frontend/javascript/ch05-currying/05-antipatterns)
 
 ## Что ты научишься делать
 
@@ -27,13 +27,13 @@ description: "Каррирование, частичное применение,
 
 ## Связанные темы
 
-- [Замыкания](/javascript/ch01-closures) — каждый вызов каррированной функции создаёт замыкание, захватывая аргумент
-- [Движок V8](/javascript/ch04-v8-engine) — как V8 оптимизирует вложенные функции и аллокацию контекстов
+- [Замыкания](/frontend/javascript/ch01-closures) — каждый вызов каррированной функции создаёт замыкание, захватывая аргумент
+- [Движок V8](/frontend/javascript/ch04-v8-engine) — как V8 оптимизирует вложенные функции и аллокацию контекстов
 
 ## Задания
 
-[Перейти к заданиям](/javascript/ch05-currying/tasks) — 3 easy, 2 medium, 2 hard
+[Перейти к заданиям](/frontend/javascript/ch05-currying/tasks) — 3 easy, 2 medium, 2 hard
 
 ## Песочница
 
-[Открыть песочницу](/javascript/ch05-currying/playground)
+[Открыть песочницу](/frontend/javascript/ch05-currying/playground)

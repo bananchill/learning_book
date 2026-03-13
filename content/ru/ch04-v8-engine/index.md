@@ -11,11 +11,11 @@ V8 — движок JavaScript, на котором работают Chrome и N
 
 ## Содержание
 
-1. [Архитектура V8: от исходного кода до машинного](/javascript/ch04-v8-engine/01-architecture)
-2. [Память: стек, куча, объекты](/javascript/ch04-v8-engine/02-memory-model)
-3. [JIT-компиляция и оптимизации](/javascript/ch04-v8-engine/03-jit-optimization)
-4. [Context Allocation и замыкания в V8](/javascript/ch04-v8-engine/04-context-allocation)
-5. [Сборка мусора](/javascript/ch04-v8-engine/05-garbage-collection)
+1. [Архитектура V8: от исходного кода до машинного](/frontend/javascript/ch04-v8-engine/01-architecture)
+2. [Память: стек, куча, объекты](/frontend/javascript/ch04-v8-engine/02-memory-model)
+3. [JIT-компиляция и оптимизации](/frontend/javascript/ch04-v8-engine/03-jit-optimization)
+4. [Context Allocation и замыкания в V8](/frontend/javascript/ch04-v8-engine/04-context-allocation)
+5. [Сборка мусора](/frontend/javascript/ch04-v8-engine/05-garbage-collection)
 
 ## Что ты научишься делать
 
@@ -28,14 +28,14 @@ V8 — движок JavaScript, на котором работают Chrome и N
 
 ## Связанные темы
 
-- [Замыкания](/javascript/ch01-closures) — context allocation и замыкания в V8
-- [Асинхронность](/javascript/ch02-async) — event loop и оптимизации асинхронного кода
-- [Параллелизм](/javascript/ch03-parallelism) — V8 isolates и Web Workers
+- [Замыкания](/frontend/javascript/ch01-closures) — context allocation и замыкания в V8
+- [Асинхронность](/frontend/javascript/ch02-async) — event loop и оптимизации асинхронного кода
+- [Параллелизм](/frontend/javascript/ch03-parallelism) — V8 isolates и Web Workers
 
 ## Задания
 
-[Перейти к заданиям](/javascript/ch04-v8-engine/tasks) — 3 easy, 2 medium, 3 hard
+[Перейти к заданиям](/frontend/javascript/ch04-v8-engine/tasks) — 3 easy, 2 medium, 3 hard
 
 ## Песочница
 
-[Открыть песочницу](/javascript/ch04-v8-engine/playground)
+[Открыть песочницу](/frontend/javascript/ch04-v8-engine/playground)

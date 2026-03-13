@@ -6,6 +6,7 @@ import { BaseButton, BaseCard } from '@book/ui'
 import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
 import { ChapterView } from '@/widgets/chapter-view'
 import { usePageSeo, useArticleSchema, useBreadcrumbSchema } from '@/features/seo'
+import { useRouterLinks } from '@/shared/lib/useRouterLinks'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -39,6 +40,8 @@ const { component: contentComponent, isLoading, error } = useChapterContent(
 )
 
 const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${props.chapter.id}`)
+
+const { onContentClick } = useRouterLinks()
 </script>
 
 <template>
@@ -56,7 +59,7 @@ const basePath = computed(() => `/${props.sectionId}/${props.subsectionId}/${pro
       <div class="h-4 bg-surface-muted rounded w-5/6" />
     </div>
 
-    <div v-else-if="contentComponent" class="book-prose">
+    <div v-else-if="contentComponent" class="book-prose" @click="onContentClick">
       <component :is="contentComponent" />
     </div>
 

@@ -141,7 +141,7 @@ function infinite(): never {
 }
 ```
 
-Главное практическое применение — **exhaustive check** (рассмотрим в подглаве про [сужение типов](/typescript/ch06-ts-type-system/05-type-narrowing)):
+Главное практическое применение — **exhaustive check** (рассмотрим в подглаве про [сужение типов](/frontend/typescript/ch06-ts-type-system/05-type-narrowing)):
 
 ```ts
 type Shape = 'circle' | 'square'

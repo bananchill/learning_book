@@ -8,6 +8,7 @@ import { useProgressStore } from '@book/core'
 import { useChapterContent, ContentPlaceholder, ContentError } from '@/features/content-loader'
 import { useBookConfig } from '@/features/navigation'
 import { usePageSeo, useArticleSchema, useBreadcrumbSchema } from '@/features/seo'
+import { useRouterLinks } from '@/shared/lib/useRouterLinks'
 
 const props = defineProps<{
   chapter: ChapterMeta
@@ -50,6 +51,8 @@ useBreadcrumbSchema([
   { name: computed(() => subchapter.value?.title ?? ''), path: subPath },
 ])
 
+const { onContentClick } = useRouterLinks()
+
 const { component: contentComponent, isLoading, error } = useChapterContent(
   () => subchapter.value
     ? `${props.chapter.contentPath}/${subchapterId.value}.md`
@@ -83,7 +86,7 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
       <div class="h-4 bg-surface-muted rounded w-1/2" />
     </div>
 
-    <div v-else-if="contentComponent" class="book-prose">
+    <div v-else-if="contentComponent" class="book-prose" @click="onContentClick">
       <component :is="contentComponent" />
     </div>
 

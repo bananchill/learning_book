@@ -99,7 +99,7 @@ worker.postMessage({ callback: () => {} })
 // DataCloneError: () => {} could not be cloned
 ```
 
-> Замыкания из [главы 1](/javascript/ch01-closures) не передать в воркер — функции нельзя клонировать. Это фундаментальное ограничение: воркер не имеет доступа к scope основного потока.
+> Замыкания из [главы 1](/frontend/javascript/ch01-closures) не передать в воркер — функции нельзя клонировать. Это фундаментальное ограничение: воркер не имеет доступа к scope основного потока.
 
 ## Transferable Objects
 
@@ -213,7 +213,7 @@ worker.onmessage = (event) => {
 const result = await compute({ n: 42 })
 ```
 
-Этот паттерн настолько частый, что библиотека **Comlink** делает его автоматически (подробнее в [подглаве 5](/javascript/ch03-parallelism/05-patterns-and-decisions)).
+Этот паттерн настолько частый, что библиотека **Comlink** делает его автоматически (подробнее в [подглаве 5](/frontend/javascript/ch03-parallelism/05-patterns-and-decisions)).
 
 ## Итого
 

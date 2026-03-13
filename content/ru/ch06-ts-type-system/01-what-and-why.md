@@ -81,7 +81,7 @@ function greet(user) {
 }
 ```
 
-Это называется **type erasure** — стирание типов. Интерфейсы, type alias, generic-типы — всё исчезает. В рантайме работает обычный JavaScript, и [движок V8](/javascript/ch04-v8-engine) не знает, что код был написан на TypeScript.
+Это называется **type erasure** — стирание типов. Интерфейсы, type alias, generic-типы — всё исчезает. В рантайме работает обычный JavaScript, и [движок V8](/frontend/javascript/ch04-v8-engine) не знает, что код был написан на TypeScript.
 
 > **Внимание:** TypeScript НЕ добавляет runtime-проверки. Если данные приходят из API, пользовательского ввода или JSON.parse — типы не гарантируют корректность. Для рантайм-валидации используйте Zod, io-ts или class-validator.
 

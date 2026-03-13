@@ -42,6 +42,7 @@ onUnmounted(() => {
       <div class="max-w-4xl mx-auto px-6 py-8">
         <RouterView
           v-if="chapter"
+          :key="$route.fullPath"
           :chapter="chapter"
           :section-id="sectionId"
           :subsection-id="subsectionId"
