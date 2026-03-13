@@ -93,9 +93,7 @@ interface Window {
 window.analytics.track('click')
 ```
 
-<Callout type="warning">
-Declaration merging может быть непредсказуемым в приложениях — два файла могут случайно определить один и тот же интерфейс, и они молча объединятся. Для приложений (не библиотек) предпочитайте type.
-</Callout>
+> **Внимание:** Declaration merging может быть непредсказуемым в приложениях — два файла могут случайно определить один и тот же интерфейс, и они молча объединятся. Для приложений (не библиотек) предпочитайте type.
 
 ### Рекомендация
 
@@ -134,9 +132,7 @@ const person: Person = { name: 'Алекс', age: 25 } // Нужны ОБА по
 
 Intersection — это **пересечение множеств**: объект, который принадлежит обоим типам.
 
-<Callout type="info">
-Для примитивов intersection часто даёт never: `string & number` — невозможно быть одновременно строкой и числом.
-</Callout>
+> **Заметка:** Для примитивов intersection часто даёт never: `string & number` — невозможно быть одновременно строкой и числом.
 
 ## Модификаторы свойств
 
@@ -218,9 +214,7 @@ const scores: Dictionary = {
 }
 ```
 
-<Callout type="warning">
-Index signature не проверяет, существует ли ключ: `scores['nonexistent']` вернёт `undefined`, но тип будет `number`. Включите `noUncheckedIndexedAccess` в tsconfig для безопасности.
-</Callout>
+> **Внимание:** Index signature не проверяет, существует ли ключ: `scores['nonexistent']` вернёт `undefined`, но тип будет `number`. Включите `noUncheckedIndexedAccess` в tsconfig для безопасности.
 
 ## Utility types — встроенные трансформации
 
@@ -264,7 +258,9 @@ type UpdateUser = Partial<Omit<User, 'id'>>
 // { name?: string; email?: string; age?: number }
 ```
 
-<DeepDive title="Как устроены utility types внутри">
+<details>
+<summary>Копай глубже: Как устроены utility types внутри</summary>
+
 Utility types реализованы через mapped types и conditional types. Например, `Partial`:
 
 ```ts
@@ -274,7 +270,8 @@ type Partial<T> = {
 ```
 
 `keyof T` — union всех ключей типа `T`. `[K in ...]` — mapped type, перебирающий ключи. `?` — делает свойство опциональным. `T[K]` — тип свойства `K` в `T` (indexed access type).
-</DeepDive>
+
+</details>
 
 ## Класс как тип
 

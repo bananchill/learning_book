@@ -38,9 +38,7 @@ function format(value: string | number | boolean) {
 }
 ```
 
-<Callout type="warning">
-`typeof null === 'object'` — исторический баг JavaScript. TypeScript это знает и не сужает `typeof x === 'object'` до исключения `null`.
-</Callout>
+> **Внимание:** `typeof null === 'object'` — исторический баг JavaScript. TypeScript это знает и не сужает `typeof x === 'object'` до исключения `null`.
 
 ### instanceof
 
@@ -104,9 +102,7 @@ function printName(name: string | null | undefined) {
 }
 ```
 
-<Callout type="warning">
-Truthiness check отбрасывает `""`, `0`, `NaN`, `null`, `undefined`. Если пустая строка или ноль — допустимые значения, используйте явную проверку: `if (name !== null && name !== undefined)`.
-</Callout>
+> **Внимание:** Truthiness check отбрасывает `""`, `0`, `NaN`, `null`, `undefined`. Если пустая строка или ноль — допустимые значения, используйте явную проверку: `if (name !== null && name !== undefined)`.
 
 ## Пользовательские type guards (is)
 
@@ -262,7 +258,7 @@ function example(value: string | null) {
 }
 ```
 
-Это связано с тем, как работают <CrossLink to="/ch01-closures">замыкания</CrossLink> — callback замыкается на переменную, но выполняется позже, когда значение могло измениться.
+Это связано с тем, как работают [замыкания](/javascript/ch01-closures) — callback замыкается на переменную, но выполняется позже, когда значение могло измениться.
 
 Решение — сохранить в `const`:
 
@@ -277,9 +273,12 @@ function example(value: string | null) {
 }
 ```
 
-<DeepDive title="Как работает Control Flow Analysis внутри">
+<details>
+<summary>Копай глубже: Как работает Control Flow Analysis внутри</summary>
+
 TypeScript строит **граф потока управления** (control flow graph) для каждой функции. В каждом узле графа хранится набор «фактов» о типах переменных. Ветвления (`if`, `switch`) создают новые узлы с уточнёнными фактами. При слиянии путей (после if/else) факты объединяются обратно в union. CFA — одна из самых сложных частей компилятора TypeScript и продолжает развиваться с каждой версией.
-</DeepDive>
+
+</details>
 
 ## Итого
 
