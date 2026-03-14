@@ -1,0 +1,37 @@
+{
+  "chapter": "ch05-conditions",
+  "title": "Рефакторинг вложенных условий",
+  "description": "Пошаговое превращение 'Pyramid of Doom' в читаемый код через early return",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Исходный код — вложенность 4 уровня",
+      "code": "function processUser(user) {\n  if (user) {\n    if (user.isActive) {\n      if (user.hasEmail) {\n        if (user.age >= 18) {\n          sendWelcomeEmail(user);\n          return 'success';\n        }\n      }\n    }\n  }\n  return 'failed';\n}",
+      "explanation": "4 уровня вложенности — код читается как 'лесенка'. Сложно следить за логикой."
+    },
+    {
+      "id": 2,
+      "title": "Шаг 1: инвертируем первое условие",
+      "code": "function processUser(user) {\n  if (!user) return 'failed'; // Guard clause\n  if (user.isActive) {\n    if (user.hasEmail) {\n      if (user.age >= 18) {\n        sendWelcomeEmail(user);\n        return 'success';\n      }\n    }\n  }\n  return 'failed';\n}",
+      "explanation": "Инвертируем условие и добавляем ранний возврат. Один уровень вложенности убран."
+    },
+    {
+      "id": 3,
+      "title": "Шаг 2: инвертируем второе условие",
+      "code": "function processUser(user) {\n  if (!user) return 'failed';\n  if (!user.isActive) return 'failed'; // Guard clause\n  if (user.hasEmail) {\n    if (user.age >= 18) {\n      sendWelcomeEmail(user);\n      return 'success';\n    }\n  }\n  return 'failed';\n}",
+      "explanation": "Ещё один guard clause. Продолжаем выравнивание."
+    },
+    {
+      "id": 4,
+      "title": "Шаг 3: применяем ко всем условиям",
+      "code": "function processUser(user) {\n  if (!user) return 'failed';\n  if (!user.isActive) return 'failed';\n  if (!user.hasEmail) return 'failed';\n  if (user.age < 18) return 'failed';\n\n  // Основная логика — только здесь\n  sendWelcomeEmail(user);\n  return 'success';\n}",
+      "explanation": "Все guard clauses в начале. Основная логика выполняется только при всех соблюдённых условиях. Код плоский и читаемый."
+    },
+    {
+      "id": 5,
+      "title": "Финал: можно объединить guard clauses",
+      "code": "function processUser(user) {\n  const isValid = user && user.isActive && user.hasEmail && user.age >= 18;\n  if (!isValid) return 'failed';\n\n  sendWelcomeEmail(user);\n  return 'success';\n}",
+      "explanation": "Если все условия связаны оператором AND — можно объединить в одну проверку. Это зависит от того, нужны ли разные сообщения об ошибке."
+    }
+  ]
+}

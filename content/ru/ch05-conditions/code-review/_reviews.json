@@ -1,0 +1,43 @@
+{
+  "chapter": "ch05-conditions",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Вложенные условия и отсутствие паттернов",
+      "issues": [
+        {
+          "line": 3,
+          "type": "error",
+          "description": "`var` вместо `let`. Начальное значение может измениться — используйте `let discount = 0`."
+        },
+        {
+          "line": 5,
+          "type": "warning",
+          "description": "`user != null` — нестрогое сравнение. Допустимо для проверки на null/undefined, но лучше явно: `user !== null && user !== undefined` или просто guard clause с ранним return."
+        },
+        {
+          "line": 6,
+          "type": "warning",
+          "description": "`user.isActive != false` — нестрогое сравнение и двойное отрицание. Лучше: `user.isActive === true` или просто `user.isActive`."
+        },
+        {
+          "line": 4,
+          "type": "error",
+          "description": "Глубокая вложенность (4 уровня if) — 'Pyramid of Doom'. Применить паттерн early return для выравнивания кода."
+        },
+        {
+          "line": 25,
+          "type": "style",
+          "description": "Функция getLabel — идеальный кандидат для lookup table. 4 одинаковых `if/else if` с string-возвратами заменяются объектом."
+        },
+        {
+          "line": 26,
+          "type": "warning",
+          "description": "`status == 'active'` — нестрогое сравнение. Используйте `===`."
+        }
+      ],
+      "fixedCode": "function getDiscount(user) {\n  // Guard clauses — ранний возврат\n  if (!user) return 0;\n  if (!user.isActive) return 0;\n\n  // Плоская логика вместо вложенности\n  if (user.totalPurchases > 10000) {\n    return user.memberSince < 2020 ? 20 : 15;\n  }\n  if (user.totalPurchases > 5000) return 10;\n  return 5;\n}\n\n// Lookup table вместо if/else цепочки\nconst STATUS_LABELS = {\n  active: 'Активен',\n  inactive: 'Неактивен',\n  pending: 'Ожидает',\n  banned: 'Заблокирован',\n};\n\nfunction getLabel(status) {\n  return STATUS_LABELS[status] ?? 'Неизвестно';\n}"
+    }
+  ]
+}

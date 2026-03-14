@@ -1,0 +1,35 @@
+{
+  "chapter": "ch05-conditions",
+  "resources": [
+    {
+      "title": "MDN: if...else",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else",
+      "type": "docs",
+      "description": "Документация по if/else с примерами всех форм условного оператора."
+    },
+    {
+      "title": "MDN: switch",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch",
+      "type": "docs",
+      "description": "Полная документация switch, включая fall-through и использование с блочным скоупом."
+    },
+    {
+      "title": "Replace Nested Conditional with Guard Clauses",
+      "url": "https://refactoring.guru/replace-nested-conditional-with-guard-clauses",
+      "type": "article",
+      "description": "Описание паттерна Guard Clause с примерами рефакторинга на refactoring.guru."
+    },
+    {
+      "title": "Clean Code: Meaningful Conditionals",
+      "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
+      "type": "book",
+      "description": "Глава о чистых условиях из книги Clean Code Роберта Мартина."
+    },
+    {
+      "title": "MDN: Conditional (ternary) operator",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator",
+      "type": "docs",
+      "description": "Документация тернарного оператора с примерами и особенностями."
+    }
+  ]
+}

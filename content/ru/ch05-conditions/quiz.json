@@ -1,0 +1,54 @@
+{
+  "chapter": "ch05-conditions",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst x = 5;\nswitch (x) {\n  case 5:\n    console.log('пять');\n  case 6:\n    console.log('шесть');\n    break;\n  default:\n    console.log('другое');\n}\n```",
+      "options": ["'пять'", "'пять' и 'шесть'", "'шесть'", "'пять', 'шесть' и 'другое'"],
+      "correctAnswer": 1,
+      "explanation": "Забытый `break` после `case 5` приводит к fall-through. Выполняется `case 5` (выводит 'пять'), затем проваливается в `case 6` (выводит 'шесть'), и `break` останавливает дальнейшее выполнение."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Что такое 'early return' паттерн?",
+      "options": [
+        "Возврат результата вычисления в начале функции без условий",
+        "Проверка ошибочных условий в начале функции и немедленный return",
+        "Использование return вместо else",
+        "Инициализация переменных в начале функции"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early return — паттерн, при котором функция проверяет граничные/ошибочные условия в начале и немедленно возвращается. Это уменьшает вложенность и делает основную логику очевидной."
+    },
+    {
+      "id": "q3",
+      "type": "true-false",
+      "question": "Тернарный оператор является выражением (expression), а не оператором (statement), поэтому его можно использовать в местах, где ожидается значение.",
+      "correctAnswer": true,
+      "explanation": "Да, тернарный оператор — это выражение, которое возвращает значение. Поэтому его можно использовать в шаблонных литералах, как аргумент функции, в присваивании — везде, где ожидается значение. `if/else` — это оператор, он не возвращает значение."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "В чём преимущество lookup table перед switch?",
+      "options": [
+        "Lookup table работает быстрее",
+        "Данные отделены от логики, легко добавлять варианты",
+        "Lookup table поддерживает fall-through",
+        "Lookup table использует меньше памяти"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Главное преимущество lookup table: данные (ключи и значения) отделены от логики (функция поиска). Новый вариант добавляется в объект без изменения кода функции. Можно вынести в конфиг или загрузить с сервера."
+    },
+    {
+      "id": "q5",
+      "type": "code-output",
+      "question": "Что вернёт функция?\n\n```javascript\nfunction check(n) {\n  if (n < 0) return 'negative';\n  if (n === 0) return 'zero';\n  return 'positive';\n}\ncheck(0);\n```",
+      "options": ["'negative'", "'zero'", "'positive'", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "Функция использует early return. При n=0: первый guard (n < 0) — false, второй guard (n === 0) — true, возвращается 'zero'."
+    }
+  ]
+}

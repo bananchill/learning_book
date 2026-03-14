@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-fizzbuzz.js",
+    "title": "FizzBuzz",
+    "difficulty": "easy",
+    "description": "Функция getFizzBuzz(n) реализует классическую FizzBuzz логику через if/else."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-day-name.js",
+    "title": "Название дня недели",
+    "difficulty": "easy",
+    "description": "Функция getDayName(num) возвращает название дня недели (1 = Понедельник, 7 = Воскресенье) через switch."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-classify-score.js",
+    "title": "Классификация оценок через lookup table",
+    "difficulty": "medium",
+    "description": "Функция classify(score) возвращает оценку: 90-100 = 'A', 80-89 = 'B', 70-79 = 'C', <70 = 'F' через паттерн lookup table или early return."
+  }
+]
