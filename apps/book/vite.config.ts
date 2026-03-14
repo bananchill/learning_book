@@ -21,10 +21,10 @@ function contentMdPlugin() {
       server.middlewares.use(async (req, res, next) => {
         const url = req.url ?? ''
         console.log('[md-plugin] request:', url.substring(0, 80))
-        if (!url.startsWith('/@fs/') || !url.includes('.md')) {
+        if (!url.startsWith('/@fs/') || !/\.mdx?/.test(url)) {
           return next()
         }
-        console.log('[md-plugin] intercepting .md file:', url)
+        console.log('[md-plugin] intercepting .md/.mdx file:', url)
 
         // Извлекаем реальный путь к файлу
         const fsPath = decodeURIComponent(url)
@@ -59,9 +59,9 @@ function contentMdPlugin() {
 export default defineConfig({
   plugins: [
     contentMdPlugin(),
-    vue({ include: [/\.vue$/, /\.md$/] }),
+    vue({ include: [/\.vue$/, /\.mdx?$/] }),
     Markdown({
-      include: [/\.md$/],
+      include: [/\.mdx?$/],
     }),
     tailwindcss(),
   ],

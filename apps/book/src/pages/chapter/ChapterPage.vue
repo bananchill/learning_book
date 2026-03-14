@@ -34,7 +34,7 @@ useBreadcrumbSchema([
   { name: computed(() => props.chapter.title), path: chapterPath },
 ])
 
-const contentPath = computed(() => `${props.chapter.contentPath}/index.md`)
+const contentPath = computed(() => `${props.chapter.contentPath}/index`)
 const { component: contentComponent, isLoading, error } = useChapterContent(
   () => contentPath.value,
 )

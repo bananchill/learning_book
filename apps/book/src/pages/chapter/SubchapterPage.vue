@@ -55,7 +55,7 @@ const { onContentClick } = useRouterLinks()
 
 const { component: contentComponent, isLoading, error } = useChapterContent(
   () => subchapter.value
-    ? `${props.chapter.contentPath}/${subchapterId.value}.md`
+    ? `${props.chapter.contentPath}/${subchapterId.value}`
     : undefined,
 )
 
