@@ -1,0 +1,50 @@
+{
+  "chapter": "ch13-prototypes",
+  "tasks": [
+    {
+      "id": "01-easy-create-animal",
+      "title": "Животное через Object.create",
+      "difficulty": "easy",
+      "description": "Реализуй функцию createAnimal(name, sound), которая создаёт объект через Object.create с методом speak(). speak() должен вывести в console.log строку вида 'Рекс говорит: Гав'. Метод speak должен находиться в прототипе, а не копироваться в каждый объект.",
+      "file": "01-easy-create-animal.js",
+      "testFile": "01-easy-create-animal.test.js",
+      "concepts": ["object-create", "prototype", "factory-function"],
+      "hints": [
+        "Создай прототипный объект animalPrototype с методом speak(). Затем создай объект через Object.create(animalPrototype).",
+        "В speak() используй this.name и this.sound — они будут собственными свойствами созданного объекта.",
+        "const animalPrototype = { speak() { console.log(`${this.name} говорит: ${this.sound}`) } }; const animal = Object.create(animalPrototype); animal.name = name; animal.sound = sound; return animal"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-stack-class",
+      "title": "Класс Stack",
+      "difficulty": "easy",
+      "description": "Реализуй класс Stack с методами: push(item) — добавляет элемент на вершину, pop() — удаляет и возвращает элемент с вершины (undefined если пуст), peek() — возвращает элемент с вершины без удаления, isEmpty() — проверяет, пуст ли стек, size — геттер, возвращающий количество элементов.",
+      "file": "02-easy-stack-class.js",
+      "testFile": "02-easy-stack-class.test.js",
+      "concepts": ["class", "getter", "data-structure"],
+      "hints": [
+        "Используй массив как внутреннее хранилище. push/pop массива соответствуют операциям стека.",
+        "peek() — это this.items[this.items.length - 1]. Если массив пуст — undefined.",
+        "size используй как геттер: get size() { return this.items.length }"
+      ],
+      "estimatedMinutes": 8
+    },
+    {
+      "id": "03-medium-shapes",
+      "title": "Иерархия фигур",
+      "difficulty": "medium",
+      "description": "Реализуй иерархию классов: Shape — базовый класс с конструктором (color = 'black') и методом describe(); Rectangle extends Shape — конструктор(width, height, color), метод area() возвращает площадь; Square extends Rectangle — конструктор(side, color), используй super для передачи side как ширины и высоты. Метод describe() в Shape должен возвращать строку 'Фигура: {color}'. В Rectangle переопредели describe() чтобы возвращать 'Прямоугольник: {color}, площадь {area}'.",
+      "file": "03-medium-shapes.js",
+      "testFile": "03-medium-shapes.test.js",
+      "concepts": ["class", "extends", "super", "method-override"],
+      "hints": [
+        "В Shape: constructor(color = 'black') { this.color = color }. describe() возвращает строку.",
+        "В Rectangle: super(color) вызывает конструктор Shape. area() { return this.width * this.height }.",
+        "В Square: constructor(side, color) { super(side, side, color) } — Rectangle принимает ширину и высоту, передаём side дважды."
+      ],
+      "estimatedMinutes": 12
+    }
+  ]
+}

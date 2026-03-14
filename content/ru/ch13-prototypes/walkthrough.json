@@ -1,0 +1,48 @@
+{
+  "title": "Прототипная цепочка: поиск метода",
+  "code": "class Animal {\n  constructor(name) {\n    this.name = name\n  }\n  speak() {\n    return this.name + ' говорит'\n  }\n}\n\nclass Dog extends Animal {\n  bark() {\n    return 'Гав!'\n  }\n}\n\nconst rex = new Dog('Рекс')\nrex.bark()\nrex.speak()\nrex.toString()",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Объявляем класс Animal. Под капотом создаётся функция-конструктор Animal и объект Animal.prototype с методом speak.",
+      "variables": { "Animal.prototype": "{ speak: function }" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 11,
+      "description": "Объявляем класс Dog extends Animal. Создаётся Dog.prototype с методом bark. Прототип Dog.prototype устанавливается на Animal.prototype.",
+      "variables": {
+        "Dog.prototype": "{ bark: function }",
+        "Dog.prototype[[Prototype]]": "Animal.prototype"
+      },
+      "callStack": ["global"]
+    },
+    {
+      "line": 17,
+      "description": "new Dog('Рекс') создаёт экземпляр. Вызывается конструктор (из Animal через super), устанавливается rex.name = 'Рекс'. [[Prototype]] экземпляра → Dog.prototype.",
+      "variables": { "rex": "{ name: 'Рекс' }", "rex[[Prototype]]": "Dog.prototype" },
+      "callStack": ["global", "Dog constructor"]
+    },
+    {
+      "line": 18,
+      "description": "rex.bark(): ищем bark в rex — нет. Ищем в Dog.prototype — ЕСТЬ! Вызываем.",
+      "variables": { "поиск": "rex → Dog.prototype → ✓ bark найден" },
+      "callStack": ["global", "bark()"],
+      "highlight": "Dog.prototype"
+    },
+    {
+      "line": 19,
+      "description": "rex.speak(): ищем speak в rex — нет. Ищем в Dog.prototype — нет. Ищем в Animal.prototype — ЕСТЬ!",
+      "variables": { "поиск": "rex → Dog.prototype → Animal.prototype → ✓ speak найден" },
+      "callStack": ["global", "speak()"],
+      "highlight": "Animal.prototype"
+    },
+    {
+      "line": 20,
+      "description": "rex.toString(): нет в rex, Dog.prototype, Animal.prototype. Находим в Object.prototype — конце цепочки.",
+      "variables": { "поиск": "rex → Dog.prototype → Animal.prototype → Object.prototype → ✓ toString найден" },
+      "callStack": ["global", "toString()"],
+      "highlight": "Object.prototype"
+    }
+  ]
+}

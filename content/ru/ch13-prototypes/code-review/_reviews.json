@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с прототипами",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 2,
+        "type": "bug",
+        "description": "Изменение Object.prototype: isEmpty становится свойством ВСЕХ объектов. for...in будет включать 'isEmpty' для любого объекта. Может конфликтовать с библиотеками.",
+        "fix": "Создать отдельную функцию isEmpty(obj) или использовать Object.keys(obj).length === 0 напрямую"
+      },
+      {
+        "line": 14,
+        "type": "performance",
+        "description": "Метод speak определён в конструкторе через this.speak = function. Для каждого экземпляра создаётся отдельная функция в памяти. При 1000 экземплярах — 1000 одинаковых функций.",
+        "fix": "Перенести speak в прототип: Animal.prototype.speak = function() {} или определить как метод класса (без присваивания в конструкторе)"
+      },
+      {
+        "line": 22,
+        "type": "style",
+        "description": "__proto__ — устаревший нестандартный способ установки прототипа. Хотя работает во всех браузерах, стандарт рекомендует Object.create или Object.setPrototypeOf.",
+        "fix": "Использовать Object.create: const dog = Object.create({ bark() { console.log('Гав!') } }); dog.name = name"
+      },
+      {
+        "line": 29,
+        "type": "bug",
+        "description": "instanceof Object возвращает true для массивов, функций и любых объектов. Проверка data instanceof Object для различения массивов и объектов не работает.",
+        "fix": "Использовать Array.isArray(data) для проверки массивов"
+      },
+      {
+        "line": 40,
+        "type": "bug",
+        "description": "Ссылочный тип (массив) в прототипе разделяется между всеми экземплярами. b1.items.push('a') изменяет Base.prototype.items, что видно через b2.items.",
+        "fix": "Инициализировать массив в конструкторе: constructor() { this.items = [] } — каждый экземпляр получит свой массив"
+      }
+    ]
+  }
+]

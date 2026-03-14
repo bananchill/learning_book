@@ -1,0 +1,70 @@
+{
+  "chapter": "ch13-prototypes",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что такое прототипная цепочка в JavaScript?",
+      "type": "multiple-choice",
+      "options": [
+        "Список всех методов объекта",
+        "Последовательность ссылок [[Prototype]] от объекта к Object.prototype",
+        "Стек вызовов функций",
+        "Дерево наследования классов"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Каждый объект имеет внутреннюю ссылку [[Prototype]] на другой объект. Когда свойство не найдено, JavaScript идёт по этой цепочке вверх до Object.prototype (у которого [[Prototype]] === null).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Что вернёт Object.hasOwn(child, 'method'), если method определён в прототипе?",
+      "type": "code-output",
+      "options": ["true", "false", "undefined", "ReferenceError"],
+      "correctAnswer": 1,
+      "explanation": "Object.hasOwn проверяет только собственные свойства объекта. Если method находится в прототипе, а не в самом объекте — вернёт false.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что произойдёт в конструкторе дочернего класса, если вызвать this перед super()?",
+      "type": "multiple-choice",
+      "options": [
+        "this будет undefined",
+        "ReferenceError: Must call super constructor in derived class before accessing 'this'",
+        "Код выполнится нормально",
+        "TypeError: Cannot set property"
+      ],
+      "correctAnswer": 1,
+      "explanation": "В конструкторе дочернего класса super() нужно вызвать до любого обращения к this. Это ограничение синтаксиса классов — до super() объект не инициализирован.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Класс Animal { constructor(name) { this.name = name } speak() {} }. Где живёт метод speak?",
+      "type": "multiple-choice",
+      "options": [
+        "В каждом экземпляре Animal",
+        "В Animal.prototype",
+        "В глобальном объекте",
+        "В конструкторе Animal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Методы класса размещаются в prototype класса — все экземпляры используют одну функцию через прототипную цепочку. Это экономит память по сравнению с назначением метода в конструкторе (this.speak = function(){}).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q5",
+      "question": "Почему нельзя добавлять методы в Object.prototype?",
+      "type": "multiple-choice",
+      "options": [
+        "Это вызывает синтаксическую ошибку",
+        "Это добавляет свойство ко всем объектам в программе и ломает for...in",
+        "Object.prototype является immutable",
+        "Производительность упадёт в 10 раз"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Все обычные объекты наследуют от Object.prototype. Добавление туда методов делает их видимыми во всех объектах, что ломает for...in (лишние ключи), может конфликтовать с библиотеками и будущими стандартами JavaScript.",
+      "difficulty": "medium"
+    }
+  ]
+}

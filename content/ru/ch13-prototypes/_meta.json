@@ -1,0 +1,18 @@
+{
+  "id": "ch13-prototypes",
+  "title": "Прототипы и наследование",
+  "description": "Прототипная цепочка, Object.create, классы как синтаксический сахар и антипаттерны наследования",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "intermediate",
+  "order": 13,
+  "estimatedMinutes": 40,
+  "subchapters": [
+    { "id": "01-proto-chain", "title": "Прототипная цепочка", "order": 1 },
+    { "id": "02-object-create", "title": "Object.create и прототипное наследование", "order": 2 },
+    { "id": "03-classes", "title": "Классы как синтаксический сахар", "order": 3 },
+    { "id": "04-antipatterns", "title": "Антипаттерны прототипного наследования", "order": 4 }
+  ],
+  "concepts": ["prototype-chain", "object-create", "hasownproperty", "class", "extends", "super", "static"],
+  "prerequisites": ["ch09-objects", "ch07-functions"]
+}

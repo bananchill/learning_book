@@ -1,0 +1,45 @@
+{
+  "chapter": "ch13-prototypes",
+  "resources": [
+    {
+      "title": "Inheritance and the prototype chain — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полное руководство MDN по прототипному наследованию с примерами и диаграммами",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "You Don't Know JS: this & Object Prototypes",
+      "url": "https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/objects-classes",
+      "type": "book",
+      "language": "en",
+      "description": "Кайл Симпсон опровергает мифы об ООП в JS и объясняет OLOO (Objects Linking to Other Objects)",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Classes — javascript.info",
+      "url": "https://javascript.info/classes",
+      "type": "article",
+      "language": "en",
+      "description": "Подробное объяснение синтаксиса классов, наследования, приватных полей и статических методов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "ECMAScript Spec — OrdinaryGetPrototypeOf",
+      "url": "https://tc39.es/ecma262/#sec-ordinarygetprototypeof",
+      "type": "documentation",
+      "language": "en",
+      "description": "Формальная спецификация поиска свойств по прототипной цепочке",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "V8 Hidden Classes and Inline Caches",
+      "url": "https://v8.dev/docs/hidden-classes",
+      "type": "article",
+      "language": "en",
+      "description": "Как V8 оптимизирует доступ к свойствам через скрытые классы — связано с прототипами",
+      "difficulty": "advanced"
+    }
+  ]
+}
