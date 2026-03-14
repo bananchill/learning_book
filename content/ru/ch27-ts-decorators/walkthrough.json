@@ -1,0 +1,34 @@
+{
+  "chapter": "ch27-ts-decorators",
+  "title": "Как работает декоратор @log",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Определяем декоратор",
+      "code": "function log(target, methodName, descriptor) {\n  const original = descriptor.value\n  // ...\n  return descriptor\n}",
+      "highlight": [1, 2],
+      "explanation": "Декоратор метода — это функция, получающая прототип класса, имя метода и PropertyDescriptor (описание метода)."
+    },
+    {
+      "id": 2,
+      "title": "Сохраняем оригинальный метод",
+      "code": "function log(target, methodName, descriptor) {\n  const original = descriptor.value // ← оригинальная функция\n\n  descriptor.value = function (...args) {\n    // новая обёртка\n  }\n}",
+      "highlight": [2],
+      "explanation": "Сохраняем ссылку на оригинальный метод до перезаписи. Иначе потеряем его навсегда."
+    },
+    {
+      "id": 3,
+      "title": "Создаём обёртку",
+      "code": "descriptor.value = function (...args) {\n  console.log(`Вызов ${methodName}(${JSON.stringify(args)})`)\n\n  const result = original.apply(this, args) // ← вызов оригинала\n\n  console.log(`${methodName} → ${JSON.stringify(result)}`)\n  return result\n}",
+      "highlight": [4],
+      "explanation": "Используем original.apply(this, args) для вызова оригинального метода с правильным this контекстом."
+    },
+    {
+      "id": 4,
+      "title": "Применяем декоратор",
+      "code": "class Calculator {\n  @log\n  add(a, b) {\n    return a + b\n  }\n}\n\nconst calc = new Calculator()\ncalc.add(2, 3)\n// Вызов add([2,3])\n// add → 5",
+      "highlight": [8, 9, 10],
+      "explanation": "При вызове calc.add(2, 3) сначала выполняется логирование, затем оригинальный метод, затем логирование результата."
+    }
+  ]
+}

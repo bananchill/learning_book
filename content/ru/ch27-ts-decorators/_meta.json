@@ -1,0 +1,22 @@
+{
+  "id": "ch27-ts-decorators",
+  "title": "Декораторы TypeScript",
+  "section": "typescript",
+  "order": 27,
+  "estimatedMinutes": 45,
+  "subchapters": [
+    { "id": "01-what-are-decorators", "title": "Что такое декораторы", "order": 1 },
+    { "id": "02-class-method-property", "title": "Декораторы классов, методов, свойств", "order": 2 },
+    { "id": "03-reflect-metadata", "title": "reflect-metadata", "order": 3 },
+    { "id": "04-practical-decorators", "title": "Практика", "order": 4 }
+  ],
+  "concepts": [
+    "decorators",
+    "class decorators",
+    "method decorators",
+    "property decorators",
+    "reflect-metadata",
+    "dependency injection"
+  ],
+  "prerequisites": ["ch13-prototypes", "ch25-ts-generics"]
+}

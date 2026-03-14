@@ -1,0 +1,26 @@
+[
+  {
+    "title": "TypeScript Handbook: Decorators",
+    "url": "https://www.typescriptlang.org/docs/handbook/decorators.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TC39 Decorators Proposal",
+    "url": "https://github.com/tc39/proposal-decorators",
+    "type": "spec",
+    "language": "en"
+  },
+  {
+    "title": "reflect-metadata",
+    "url": "https://rbuckton.github.io/reflect-metadata/",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "NestJS — Custom Decorators",
+    "url": "https://docs.nestjs.com/custom-decorators",
+    "type": "docs",
+    "language": "en"
+  }
+]

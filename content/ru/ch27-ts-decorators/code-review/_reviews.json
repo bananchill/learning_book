@@ -1,0 +1,27 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Декораторы — типичные ошибки",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "error",
+        "message": "logMethod не возвращает descriptor — изменения могут не примениться",
+        "fix": "Добавьте return descriptor в конце функции декоратора метода"
+      },
+      {
+        "line": 13,
+        "severity": "error",
+        "message": "Кэш создаётся один для всех экземпляров класса. Два разных экземпляра будут делить кэш — это баг при разных состояниях this",
+        "fix": "Используйте WeakMap<object, Map<string, any>> с this как ключом: const allCaches = new WeakMap()"
+      },
+      {
+        "line": 27,
+        "severity": "warning",
+        "message": "Декоратор singleton теряет аргументы конструктора — new MyClass('arg') будет игнорировать аргументы",
+        "fix": "return function (...args) { if (!instance) instance = new constructor(...args); return instance }"
+      }
+    ]
+  }
+]

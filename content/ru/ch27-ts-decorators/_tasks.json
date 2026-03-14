@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-readonly.js",
+    "title": "@readonly декоратор свойства",
+    "description": "Реализуйте функцию-декоратор readonly(target, propertyKey), которая делает свойство класса нередактируемым через Object.defineProperty.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте Object.defineProperty(target, propertyKey, { writable: false })",
+      "Также установите configurable: false чтобы нельзя было переопределить дескриптор",
+      "В строгом режиме попытка записи бросает TypeError"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-log.js",
+    "title": "@log декоратор метода",
+    "description": "Реализуйте декоратор-фабрику log(prefix) для методов. Должен логировать: имя метода, аргументы перед вызовом, и результат после вызова.",
+    "difficulty": "easy",
+    "hints": [
+      "Декоратор метода получает (target, propertyKey, descriptor)",
+      "Оберните descriptor.value в новую функцию",
+      "Используйте originalMethod.apply(this, args) для вызова оригинала"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-memoize.js",
+    "title": "@memoize декоратор с кэшированием",
+    "description": "Реализуйте декоратор memoize для методов. Должен кэшировать результаты по JSON.stringify аргументов. Кэш должен быть отдельным для каждого экземпляра класса.",
+    "difficulty": "medium",
+    "hints": [
+      "Создайте WeakMap<object, Map<string, any>> для хранения кэшей по экземплярам",
+      "Ключ кэша = JSON.stringify(args)",
+      "При каждом вызове: получите или создайте кэш для this, потом проверьте/запишите"
+    ]
+  }
+]
