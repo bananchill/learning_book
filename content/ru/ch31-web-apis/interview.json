@@ -1,0 +1,23 @@
+{
+  "chapter": "ch31-web-apis",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Как реализовать fetch с таймаутом и правильной обработкой ошибок?",
+      "answer": "Используем AbortController для таймаута: создаём контроллер, передаём signal в fetch, через setTimeout вызываем controller.abort(). В catch: если error.name === 'AbortError' — это таймаут. Также всегда проверяем response.ok — fetch не выбрасывает исключение при 4xx/5xx. Полный паттерн: async function fetchWithTimeout(url, timeout=5000) { const ctrl = new AbortController(); const id = setTimeout(() => ctrl.abort(), timeout); try { const res = await fetch(url, { signal: ctrl.signal }); if (!res.ok) throw new Error(`HTTP ${res.status}`); return await res.json(); } catch(e) { if (e.name === 'AbortError') throw new Error('Timeout'); throw e; } finally { clearTimeout(id) } }",
+      "level": "middle"
+    },
+    {
+      "id": "i2",
+      "question": "Как использовать IntersectionObserver для lazy loading изображений?",
+      "answer": "Паттерн: 1) В HTML: <img data-src='real.jpg' src='placeholder.jpg'>; 2) Создать IntersectionObserver с rootMargin: '50px' (загружаем за 50px до viewport); 3) В callback: для каждого пересекающегося entry — взять img.dataset.src, присвоить img.src, удалить data-src атрибут, вызвать observer.unobserve(img); 4) Применить observer.observe() ко всем img[data-src]. Преимущества перед scroll+getBoundingClientRect: нет forced reflow, работает в фоновом потоке, учитывает невидимые родители, поддерживает rootMargin.",
+      "level": "junior"
+    },
+    {
+      "id": "i3",
+      "question": "Чем IndexedDB отличается от localStorage и когда использовать каждый?",
+      "answer": "localStorage: синхронный, только строки, 5-10МБ, простой key-value API, данные персистентны. Подходит для настроек, токенов, небольших кэшей. IndexedDB: асинхронный, поддерживает любые типы JS (включая бинарные), практически неограниченный размер, транзакционный, поддерживает индексы и сложные запросы. Подходит для: оффлайн приложений (в Service Worker), больших наборов данных, сложных запросов, файлов. Библиотека idb значительно упрощает работу с IndexedDB (Promise-based API вместо событий). sessionStorage — то же что localStorage, но хранится только пока открыта вкладка.",
+      "level": "middle"
+    }
+  ]
+}

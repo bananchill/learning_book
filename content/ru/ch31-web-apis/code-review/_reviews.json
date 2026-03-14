@@ -1,0 +1,33 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Web APIs — типичные ошибки",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "error",
+        "message": "Не проверяется response.ok — при 404/500 код продолжит работу как будто всё ок, а JSON.parse может сломаться",
+        "fix": "if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json()"
+      },
+      {
+        "line": 9,
+        "severity": "warning",
+        "message": "Нет таймаута — если сервер не отвечает, промис никогда не разрешится",
+        "fix": "Использовать AbortController + setTimeout: const ctrl = new AbortController(); setTimeout(() => ctrl.abort(), 5000); fetch(url, { signal: ctrl.signal })"
+      },
+      {
+        "line": 16,
+        "severity": "error",
+        "message": "Race condition: при быстром наборе несколько запросов выполняются параллельно, результаты приходят в случайном порядке",
+        "fix": "Использовать AbortController для отмены предыдущего запроса: if (prevController) prevController.abort(); prevController = new AbortController()"
+      },
+      {
+        "line": 25,
+        "severity": "warning",
+        "message": "localStorage.setItem может выбросить QuotaExceededError если хранилище переполнено",
+        "fix": "try { localStorage.setItem(key, JSON.stringify(data)) } catch (e) { console.error('Storage full:', e) }"
+      }
+    ]
+  }
+]

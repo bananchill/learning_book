@@ -1,0 +1,34 @@
+{
+  "chapter": "ch31-web-apis",
+  "title": "fetch: от запроса до данных",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Отправляем запрос",
+      "code": "const response = await fetch('/api/users/42')\n// Создаётся AbortController если нужен таймаут\n// Браузер отправляет HTTP GET запрос",
+      "highlight": [1],
+      "explanation": "fetch возвращает Promise<Response>. На этом шаге браузер отправил запрос и ждёт ответ сервера."
+    },
+    {
+      "id": 2,
+      "title": "Получаем Response",
+      "code": "const response = await fetch('/api/users/42')\n// response — объект Response\nconsole.log(response.status)  // 200\nconsole.log(response.ok)      // true (200-299)\nconsole.log(response.headers.get('Content-Type'))",
+      "highlight": [3, 4, 5],
+      "explanation": "Response содержит метаданные ответа: статус, заголовки. Тело ещё не прочитано! Это важно — тело загружается отдельно."
+    },
+    {
+      "id": 3,
+      "title": "Проверяем статус",
+      "code": "const response = await fetch('/api/users/42')\n\nif (!response.ok) {\n  // HTTP ошибка — 404, 500 и т.д.\n  throw new Error(`HTTP ${response.status}: ${response.statusText}`)\n}",
+      "highlight": [3, 4, 5],
+      "explanation": "ВАЖНО: fetch НЕ выбрасывает исключение при 4xx/5xx! Всегда проверяем response.ok вручную."
+    },
+    {
+      "id": 4,
+      "title": "Читаем тело ответа",
+      "code": "const response = await fetch('/api/users/42')\nif (!response.ok) throw new Error(`HTTP ${response.status}`)\n\n// Читаем JSON из тела ответа\nconst user = await response.json()\n// { id: 42, name: 'Иван', email: '...' }",
+      "highlight": [5],
+      "explanation": "response.json() — ещё один await! Тело читается отдельно от заголовков. Каждый метод (json, text, blob) можно вызвать только ОДИН раз."
+    }
+  ]
+}

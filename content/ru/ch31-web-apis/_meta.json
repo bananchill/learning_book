@@ -1,0 +1,23 @@
+{
+  "id": "ch31-web-apis",
+  "title": "Web APIs",
+  "section": "browser",
+  "order": 31,
+  "estimatedMinutes": 50,
+  "subchapters": [
+    { "id": "01-fetch-api", "title": "Fetch API", "order": 1 },
+    { "id": "02-websocket", "title": "WebSocket", "order": 2 },
+    { "id": "03-observers", "title": "IntersectionObserver и ResizeObserver", "order": 3 },
+    { "id": "04-storage", "title": "Web Storage и IndexedDB", "order": 4 }
+  ],
+  "concepts": [
+    "Fetch API",
+    "AbortController",
+    "WebSocket",
+    "IntersectionObserver",
+    "ResizeObserver",
+    "localStorage",
+    "IndexedDB"
+  ],
+  "prerequisites": ["ch02-async", "ch29-events"]
+}

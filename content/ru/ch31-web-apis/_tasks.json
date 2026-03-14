@@ -1,0 +1,39 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-fetch-timeout.js",
+    "title": "fetchWithTimeout — fetch с таймаутом",
+    "description": "Реализуйте функцию fetchWithTimeout(url, timeout), которая выполняет fetch запрос с таймаутом через AbortController.",
+    "difficulty": "easy",
+    "hints": [
+      "Создайте AbortController и setTimeout для вызова abort()",
+      "Передайте signal в fetch опции",
+      "В catch проверьте error.name === 'AbortError' для определения таймаута",
+      "Не забудьте clearTimeout если запрос завершился успешно"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-websocket.js",
+    "title": "createWebSocket — WebSocket с авто-переподключением",
+    "description": "Реализуйте функцию createWebSocket(url, onMessage), возвращающую объект с методами send и close. При неожиданном закрытии — автоматически переподключаться.",
+    "difficulty": "easy",
+    "hints": [
+      "В onclose проверяйте event.wasClean — если false, переподключайтесь",
+      "Используйте setTimeout с задержкой (например 1000мс) перед переподключением",
+      "Метод close должен устанавливать флаг 'намеренное закрытие' чтобы не переподключаться"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-lazy-load.js",
+    "title": "lazyLoad — IntersectionObserver для изображений",
+    "description": "Реализуйте функцию lazyLoad(selector), которая использует IntersectionObserver для ленивой загрузки изображений с атрибутом data-src.",
+    "difficulty": "medium",
+    "hints": [
+      "Создайте IntersectionObserver с rootMargin: '100px'",
+      "При isIntersecting: скопируйте data-src в src, удалите data-src, вызовите observer.unobserve",
+      "Наблюдайте за всеми элементами с data-src атрибутом"
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "chapter": "ch31-web-apis",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "fetch('/api/users') вернул response со статусом 404. Будет ли выброшено исключение?",
+      "options": [
+        "Да, fetch автоматически выбрасывает исключение при 4xx и 5xx",
+        "Нет, исключение выбрасывается только при сетевых ошибках. Нужно проверять response.ok",
+        "Да, только при статусах 4xx, не 5xx",
+        "Зависит от настроек браузера"
+      ],
+      "correctIndex": 1,
+      "explanation": "fetch выбрасывает TypeError только при сетевых ошибках (нет соединения, CORS). HTTP ошибки 4xx/5xx НЕ вызывают исключение — нужно самому проверять response.ok или response.status."
+    },
+    {
+      "id": "q2",
+      "text": "Какое главное преимущество IntersectionObserver перед getBoundingClientRect() в scroll handler?",
+      "options": [
+        "IntersectionObserver более точный",
+        "Работает в фоновом потоке, не вызывает forced reflow, значительно эффективнее",
+        "Поддерживается во всех браузерах",
+        "Проще в использовании"
+      ],
+      "correctIndex": 1,
+      "explanation": "IntersectionObserver работает на уровне браузерного движка, не вызывает reflow и не блокирует основной поток. scroll+getBoundingClientRect вызывает forced reflow при каждом событии скролла."
+    },
+    {
+      "id": "q3",
+      "text": "В чём разница между localStorage и sessionStorage?",
+      "options": [
+        "localStorage быстрее sessionStorage",
+        "localStorage хранится до явного удаления, sessionStorage — до закрытия вкладки",
+        "sessionStorage доступен из разных вкладок, localStorage — нет",
+        "localStorage шифрует данные, sessionStorage — нет"
+      ],
+      "correctIndex": 1,
+      "explanation": "localStorage сохраняется между сессиями — данные остаются после закрытия браузера. sessionStorage привязан к вкладке и уничтожается при её закрытии. Оба хранят только строки."
+    },
+    {
+      "id": "q4",
+      "text": "Когда следует использовать IndexedDB вместо localStorage?",
+      "options": [
+        "Всегда — IndexedDB лучше по всем параметрам",
+        "Для больших объёмов данных (>5МБ), бинарных данных, сложных запросов и оффлайн работы",
+        "Только при работе с Service Worker",
+        "Когда нужна автоматическая синхронизация между вкладками"
+      ],
+      "correctIndex": 1,
+      "explanation": "localStorage прост, но ограничен (5-10МБ, только строки, синхронный). IndexedDB сложнее, но поддерживает: большие объёмы, бинарные данные, транзакции, индексы, асинхронный API. Используйте для приложений с оффлайн поддержкой."
+    },
+    {
+      "id": "q5",
+      "text": "Как правильно реализовать автоматическое переподключение WebSocket?",
+      "options": [
+        "Использовать setInterval для периодической проверки соединения",
+        "В onclose — проверить wasClean, если false — переподключиться с exponential backoff",
+        "Использовать keep-alive пинги",
+        "Переподключаться только при явной ошибке в onerror"
+      ],
+      "correctIndex": 1,
+      "explanation": "Правильный паттерн: в onclose проверить event.wasClean. Если false (неожиданное закрытие) — переподключиться. Exponential backoff (задержка удваивается) предотвращает перегрузку сервера при массовых переподключениях."
+    }
+  ]
+}

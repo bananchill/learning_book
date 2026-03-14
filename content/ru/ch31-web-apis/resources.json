@@ -1,0 +1,26 @@
+[
+  {
+    "title": "MDN: Fetch API",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "MDN: WebSocket",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSocket",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "MDN: IntersectionObserver",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "idb — IndexedDB library",
+    "url": "https://github.com/jakearchibald/idb",
+    "type": "library",
+    "language": "en"
+  }
+]
