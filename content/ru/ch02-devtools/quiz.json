@@ -1,0 +1,64 @@
+{
+  "chapter": "ch02-devtools",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "Какое расширение VS Code автоматически форматирует код при сохранении файла?",
+      "options": [
+        "ESLint",
+        "Prettier",
+        "GitLens",
+        "Error Lens"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prettier — форматтер кода. При настройке `\"editor.formatOnSave\": true` и `\"editor.defaultFormatter\": \"esbenp.prettier-vscode\"` код форматируется автоматически при сохранении."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Что делает флаг `-D` при установке пакета через npm?",
+      "options": [
+        "Устанавливает пакет глобально",
+        "Удаляет пакет",
+        "Устанавливает как devDependency",
+        "Отключает проверку версий"
+      ],
+      "correctAnswer": 2,
+      "explanation": "`npm install -D package` (или `--save-dev`) добавляет пакет в `devDependencies`. Такие пакеты не устанавливаются в продакшн-окружении."
+    },
+    {
+      "id": "q3",
+      "type": "true-false",
+      "question": "Файл `.vscode/settings.json` можно добавить в репозиторий, чтобы все члены команды использовали одинаковые настройки редактора.",
+      "correctAnswer": true,
+      "explanation": "Да, это рекомендуемая практика. Workspace настройки VS Code хранятся в `.vscode/settings.json` и применяются для всех, кто откроет проект."
+    },
+    {
+      "id": "q4",
+      "type": "code-output",
+      "question": "Что выведет следующий код в Node.js?\n\n```javascript\nconst args = process.argv.slice(2);\nconsole.log(args.length);\n```\n\nПри запуске: `node script.js hello world`",
+      "options": [
+        "0",
+        "2",
+        "4",
+        "undefined"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`process.argv` содержит `['/path/node', '/path/script.js', 'hello', 'world']`. После `slice(2)` остаётся `['hello', 'world']`, длина которого равна 2."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Какой инструмент запускает линтер автоматически перед каждым git commit?",
+      "options": [
+        "ESLint",
+        "Prettier",
+        "Husky",
+        "EditorConfig"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Husky позволяет настраивать Git хуки. С помощью `.husky/pre-commit` файла можно запускать любые команды (линтер, тесты) перед коммитом."
+    }
+  ]
+}

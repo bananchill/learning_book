@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-eslintrc.js",
+    "title": "Настройка ESLint конфига",
+    "difficulty": "easy",
+    "description": "Создайте функцию createEslintConfig, которая возвращает объект конфигурации ESLint с заданными правилами. Функция принимает опции и должна включать базовые правила качества кода."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-argv.js",
+    "title": "Чтение аргументов командной строки",
+    "difficulty": "easy",
+    "description": "Напишите функцию parseArgs, которая парсит process.argv и возвращает объект с именованными аргументами вида --key=value или --flag."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-package-scripts.js",
+    "title": "Генератор package.json scripts",
+    "difficulty": "medium",
+    "description": "Создайте функцию generatePackageScripts, которая принимает конфигурацию проекта и генерирует раздел scripts для package.json с командами для lint, format и test."
+  }
+]

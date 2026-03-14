@@ -1,0 +1,15 @@
+{
+  "id": "ch02-devtools",
+  "title": "Среда разработки",
+  "description": "Настройка профессиональной среды разработки: VS Code, браузерный DevTools, Node.js и инструменты качества кода.",
+  "order": 2,
+  "estimatedTime": 45,
+  "difficulty": "beginner",
+  "tags": ["vscode", "devtools", "nodejs", "eslint", "prettier"],
+  "subchapters": [
+    { "id": "01-vscode", "title": "VS Code — редактор кода", "file": "01-vscode.mdx" },
+    { "id": "02-browser-devtools", "title": "Браузерный DevTools", "file": "02-browser-devtools.mdx" },
+    { "id": "03-nodejs-npm", "title": "Node.js и npm/pnpm", "file": "03-nodejs-npm.mdx" },
+    { "id": "04-linting", "title": "Линтинг и форматирование", "file": "04-linting.mdx" }
+  ]
+}

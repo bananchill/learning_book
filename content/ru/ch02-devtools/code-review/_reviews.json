@@ -1,0 +1,55 @@
+{
+  "chapter": "ch02-devtools",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Плохие практики в настройке проекта",
+      "issues": [
+        {
+          "line": 3,
+          "type": "error",
+          "rule": "no-var",
+          "description": "Использование `var` вместо `const`. Константы конфигурации никогда не переназначаются, поэтому используйте `const PORT = 3000`."
+        },
+        {
+          "line": 10,
+          "type": "error",
+          "rule": "no-var",
+          "description": "Снова `var` вместо `const`. Переменная `server` не переназначается после создания."
+        },
+        {
+          "line": 12,
+          "type": "warning",
+          "rule": "no-console",
+          "description": "Использование `console.log` в продакшн-коде. Используйте специализированный логгер (winston, pino) или убедитесь, что логи нужны."
+        },
+        {
+          "line": 13,
+          "type": "warning",
+          "rule": "no-console",
+          "description": "Debug console.log с чувствительной информацией о конфигурации сервера не должен попадать в продакшн."
+        },
+        {
+          "line": 18,
+          "type": "warning",
+          "rule": "no-console",
+          "description": "Вывод конфигурационных данных в консоль может раскрыть чувствительные параметры."
+        },
+        {
+          "line": 22,
+          "type": "error",
+          "rule": "no-unused-vars",
+          "description": "Переменная `unusedVariable` объявлена, но никогда не используется. ESLint правило `no-unused-vars` должно поймать это."
+        },
+        {
+          "line": 3,
+          "type": "style",
+          "rule": "prettier",
+          "description": "Отсутствуют точки с запятой (если конфигурация Prettier требует `semi: true`). Код должен быть единообразен."
+        }
+      ],
+      "fixedCode": "const PORT = 3000;\nconst HOST = 'localhost';\n\nfunction startServer(port, host) {\n  const server = require('http').createServer();\n  server.listen(port, host, () => {\n    // Используем более структурированный вывод для отладки\n    console.log(`Сервер запущен: http://${host}:${port}`);\n  });\n  return server;\n}\n\nfunction loadConfig() {\n  const fs = require('fs');\n  const config = JSON.parse(fs.readFileSync('./config.json'));\n  return config;\n}\n\nstartServer(PORT, HOST);"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "chapter": "ch02-devtools",
+  "resources": [
+    {
+      "title": "VS Code Documentation",
+      "url": "https://code.visualstudio.com/docs",
+      "type": "docs",
+      "description": "Официальная документация VS Code — горячие клавиши, настройки, расширения."
+    },
+    {
+      "title": "Chrome DevTools Documentation",
+      "url": "https://developer.chrome.com/docs/devtools",
+      "type": "docs",
+      "description": "Полное руководство по Chrome DevTools от Google."
+    },
+    {
+      "title": "Node.js Official Documentation",
+      "url": "https://nodejs.org/en/docs",
+      "type": "docs",
+      "description": "Официальная документация Node.js, включая API process, fs и другие модули."
+    },
+    {
+      "title": "ESLint Getting Started",
+      "url": "https://eslint.org/docs/latest/use/getting-started",
+      "type": "guide",
+      "description": "Руководство по настройке ESLint с нуля, включая Flat Config формат."
+    },
+    {
+      "title": "Prettier Documentation",
+      "url": "https://prettier.io/docs/en/index.html",
+      "type": "docs",
+      "description": "Документация Prettier — все опции конфигурации и интеграция с линтерами."
+    }
+  ]
+}

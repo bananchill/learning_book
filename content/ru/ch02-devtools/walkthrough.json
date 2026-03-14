@@ -1,0 +1,48 @@
+{
+  "chapter": "ch02-devtools",
+  "title": "Отладка с помощью DevTools",
+  "description": "Пошаговая демонстрация отладки функции с ошибкой через точки останова",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Исходный код с ошибкой",
+      "code": "function calculateAverage(numbers) {\n  let sum = 0;\n  for (let i = 0; i <= numbers.length; i++) {\n    sum += numbers[i];\n  }\n  return sum / numbers.length;\n}\n\nconst result = calculateAverage([10, 20, 30]);\nconsole.log(result);",
+      "highlight": [1, 9],
+      "explanation": "Функция вычисляет среднее, но в ней есть баг. Запустим отладчик."
+    },
+    {
+      "id": 2,
+      "title": "Установка breakpoint",
+      "code": "function calculateAverage(numbers) {\n  let sum = 0;\n  for (let i = 0; i <= numbers.length; i++) { // <- breakpoint здесь\n    sum += numbers[i];\n  }\n  return sum / numbers.length;\n}",
+      "highlight": [3],
+      "explanation": "Устанавливаем breakpoint на строку с циклом. Обратите внимание: условие `i <= numbers.length` — это подозрительно."
+    },
+    {
+      "id": 3,
+      "title": "Наблюдение за переменными",
+      "variables": {
+        "numbers": "[10, 20, 30]",
+        "sum": "0",
+        "i": "0"
+      },
+      "explanation": "На первой итерации: i=0, numbers[0]=10. Всё корректно."
+    },
+    {
+      "id": 4,
+      "title": "Обнаружение бага",
+      "variables": {
+        "numbers": "[10, 20, 30]",
+        "sum": "60",
+        "i": "3"
+      },
+      "explanation": "На четвёртой итерации: i=3, numbers[3]=undefined. Сложение с undefined даёт NaN! Условие должно быть `i < numbers.length`."
+    },
+    {
+      "id": 5,
+      "title": "Исправленный код",
+      "code": "function calculateAverage(numbers) {\n  let sum = 0;\n  for (let i = 0; i < numbers.length; i++) { // < вместо <=\n    sum += numbers[i];\n  }\n  return sum / numbers.length;\n}\n\nconst result = calculateAverage([10, 20, 30]);\nconsole.log(result); // 20",
+      "highlight": [3],
+      "explanation": "Изменяем `<=` на `<`. Теперь цикл корректно обходит все элементы без выхода за границы массива."
+    }
+  ]
+}
