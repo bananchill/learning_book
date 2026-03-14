@@ -1,0 +1,23 @@
+{
+  "id": "ch30-performance",
+  "title": "Производительность браузера",
+  "section": "browser",
+  "order": 30,
+  "estimatedMinutes": 45,
+  "subchapters": [
+    { "id": "01-critical-rendering-path", "title": "Critical Rendering Path", "order": 1 },
+    { "id": "02-repaint-reflow", "title": "Repaint и Reflow", "order": 2 },
+    { "id": "03-raf-ric", "title": "requestAnimationFrame и requestIdleCallback", "order": 3 },
+    { "id": "04-profiling", "title": "Профилирование", "order": 4 }
+  ],
+  "concepts": [
+    "critical rendering path",
+    "reflow",
+    "repaint",
+    "requestAnimationFrame",
+    "requestIdleCallback",
+    "Performance API",
+    "Long Tasks"
+  ],
+  "prerequisites": ["ch28-dom", "ch04-v8-engine"]
+}

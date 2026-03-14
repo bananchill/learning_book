@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-debounce.js",
+    "title": "debounce — откладывает вызов",
+    "description": "Реализуйте функцию debounce(fn, delay), которая откладывает вызов fn на delay мс. Если вызов происходит снова до истечения задержки, таймер сбрасывается.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте setTimeout для откладывания и clearTimeout для сброса",
+      "Сохраняйте таймер в переменной в замыкании",
+      "Передавайте аргументы через ...args в setTimeout callback"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-throttle.js",
+    "title": "throttle — ограничивает частоту вызовов",
+    "description": "Реализуйте функцию throttle(fn, interval), которая гарантирует что fn вызывается не чаще одного раза за interval мс.",
+    "difficulty": "easy",
+    "hints": [
+      "Сохраняйте время последнего вызова",
+      "Если прошло меньше interval мс — пропустить вызов",
+      "Обновляйте lastCallTime при каждом выполнении fn"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-animate-value.js",
+    "title": "animateValue — анимация числа через rAF",
+    "description": "Реализуйте функцию animateValue(element, from, to, duration), которая анимирует числовое значение в element.textContent от from до to за duration мс через requestAnimationFrame.",
+    "difficulty": "medium",
+    "hints": [
+      "Используйте requestAnimationFrame для плавной анимации",
+      "Вычисляйте progress = (currentTime - startTime) / duration",
+      "Вычисляйте текущее значение через easing: Math.round(from + (to - from) * progress)"
+    ]
+  }
+]

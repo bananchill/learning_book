@@ -1,0 +1,23 @@
+{
+  "chapter": "ch30-performance",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Что такое Critical Rendering Path и как его оптимизировать?",
+      "answer": "Critical Rendering Path — последовательность шагов, которые браузер выполняет для отрисовки первого кадра: парсинг HTML→DOM, парсинг CSS→CSSOM, Render Tree, Layout, Paint, Composite. Оптимизация: 1) Минимизировать блокирующие ресурсы — CSS в <head>, JS с defer/async или в конце <body>; 2) Уменьшить размер Critical CSS — инлайнить стили для above-the-fold контента; 3) Устранить render-blocking JavaScript; 4) Оптимизировать изображения — правильные форматы (WebP/AVIF), lazy loading; 5) Использовать link rel=preload для критических ресурсов; 6) Server-side rendering для быстрого FCP.",
+      "level": "middle"
+    },
+    {
+      "id": "i2",
+      "question": "Как правильно реализовать плавную анимацию через requestAnimationFrame?",
+      "answer": "Правила: 1) Используйте rAF вместо setTimeout/setInterval — он синхронизируется с 60fps браузера; 2) Сохраняйте ID для отмены через cancelAnimationFrame; 3) Считайте прогресс через timestamp параметра, не счётчики кадров; 4) Используйте CSS transform вместо left/top — только Composite, без Layout; 5) Не делайте геометрические чтения внутри rAF callback если это не нужно. Паттерн: `function animate(ts) { progress = (ts-start)/duration; el.style.transform = ...; if(progress < 1) rafId = requestAnimationFrame(animate) }`. Для сложных анимаций — CSS @keyframes или Web Animations API.",
+      "level": "middle"
+    },
+    {
+      "id": "i3",
+      "question": "Как измерить производительность JavaScript кода в браузере?",
+      "answer": "Инструменты: 1) DevTools Performance — запись + анализ Flame Chart, видны Long Tasks (>50мс), reflow, paint; 2) performance.mark/measure — маркируем точки кода, измеряем интервалы; 3) console.time/timeEnd — простые измерения; 4) PerformanceObserver — наблюдаем за longtask, resource, navigation entries; 5) Web Vitals — LCP, FID/INP, CLS через web-vitals библиотеку. Важно: профилировать с CPU throttling (6x) и на реальных устройствах — производительность десктопа обманчива. Правило: сначала измерить, потом оптимизировать. Не оптимизировать вслепую.",
+      "level": "middle"
+    }
+  ]
+}

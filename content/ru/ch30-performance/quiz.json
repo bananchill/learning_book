@@ -1,0 +1,65 @@
+{
+  "chapter": "ch30-performance",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Какое CSS свойство анимируется быстрее всего (без Layout и Repaint)?",
+      "options": [
+        "width",
+        "opacity и transform",
+        "background-color",
+        "top и left"
+      ],
+      "correctIndex": 1,
+      "explanation": "opacity и transform обрабатываются только на стадии Composite, которую выполняет GPU. Изменение width вызывает Layout+Paint, background-color вызывает Repaint, top/left (без absolute/fixed) вызывают Layout."
+    },
+    {
+      "id": "q2",
+      "text": "Что такое Layout Thrashing?",
+      "options": [
+        "Слишком много CSS правил",
+        "Чередование операций чтения и записи геометрии DOM, приводящее к множеству forced reflow",
+        "Переполнение стека при рекурсивном обходе DOM",
+        "Медленная загрузка стилей"
+      ],
+      "correctIndex": 1,
+      "explanation": "Layout Thrashing — когда код поочерёдно читает (offsetHeight, getBoundingClientRect) и записывает (style.top) геометрические свойства. Каждое чтение после записи вынуждает браузер немедленно пересчитать раскладку."
+    },
+    {
+      "id": "q3",
+      "text": "Когда НЕ вызывается requestAnimationFrame?",
+      "options": [
+        "При высокой загрузке CPU",
+        "Когда вкладка неактивна (в фоне)",
+        "Когда нет pending DOM изменений",
+        "При использовании Worker"
+      ],
+      "correctIndex": 1,
+      "explanation": "Когда вкладка находится в фоне, rAF автоматически приостанавливается (паузы между вызовами). Это экономит CPU и батарею. При возврате вкладки рAF возобновляется."
+    },
+    {
+      "id": "q4",
+      "text": "Для чего используется requestIdleCallback?",
+      "options": [
+        "Для анимаций без janking",
+        "Для выполнения не срочных задач в периоды простоя браузера",
+        "Для отложенной загрузки скриптов",
+        "Для debounce событий"
+      ],
+      "correctIndex": 1,
+      "explanation": "requestIdleCallback запускает callback когда браузер не занят рендерингом. Идеально для аналитики, сохранения черновиков, предзагрузки — задач, которые не нужны немедленно и не должны блокировать UI."
+    },
+    {
+      "id": "q5",
+      "text": "Что измеряет Core Web Vital LCP?",
+      "options": [
+        "Задержку первого клика пользователя",
+        "Суммарный сдвиг раскладки",
+        "Время до отрисовки наибольшего видимого элемента",
+        "Скорость загрузки JavaScript"
+      ],
+      "correctIndex": 2,
+      "explanation": "LCP (Largest Contentful Paint) — время до отрисовки самого большого видимого элемента (обычно hero image или H1). Хорошее значение: < 2.5 секунды. Плохое: > 4 секунды."
+    }
+  ]
+}

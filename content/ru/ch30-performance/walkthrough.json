@@ -1,0 +1,34 @@
+{
+  "chapter": "ch30-performance",
+  "title": "requestAnimationFrame: анимация числового счётчика",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Запускаем анимацию",
+      "code": "const start = performance.now()\nconst duration = 1000  // 1 секунда\n\nfunction frame(timestamp) {\n  // timestamp — текущее время в мс\n}",
+      "highlight": [4],
+      "explanation": "Сохраняем время начала через performance.now(). Наш callback frame будет вызываться каждый кадр."
+    },
+    {
+      "id": 2,
+      "title": "Вычисляем прогресс",
+      "code": "function frame(timestamp) {\n  const elapsed = timestamp - start\n  const progress = Math.min(elapsed / duration, 1)\n  // progress: от 0 (начало) до 1 (конец)\n}",
+      "highlight": [2, 3],
+      "explanation": "Вычисляем прогресс 0..1 делением прошедшего времени на длительность. Math.min защищает от > 1 в последнем кадре."
+    },
+    {
+      "id": 3,
+      "title": "Обновляем значение",
+      "code": "function frame(timestamp) {\n  const progress = Math.min((timestamp - start) / duration, 1)\n\n  const current = Math.round(from + (to - from) * progress)\n  element.textContent = current\n\n  if (progress < 1) {\n    requestAnimationFrame(frame)  // следующий кадр\n  }\n}",
+      "highlight": [4, 5, 7, 8],
+      "explanation": "Интерполируем значение: from + (to - from) * progress. Если анимация не завершена — запрашиваем следующий кадр."
+    },
+    {
+      "id": 4,
+      "title": "Запуск",
+      "code": "// Запускаем первый кадр\nconst rafId = requestAnimationFrame(frame)\n\n// Отмена анимации при необходимости\nfunction cancel() {\n  cancelAnimationFrame(rafId)\n}",
+      "highlight": [2],
+      "explanation": "requestAnimationFrame запускает анимацию синхронизированную с 60fps. cancelAnimationFrame позволяет остановить её в любой момент."
+    }
+  ]
+}

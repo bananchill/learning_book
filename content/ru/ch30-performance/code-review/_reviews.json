@@ -1,0 +1,27 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Производительность — типичные ошибки",
+    "issues": [
+      {
+        "line": 5,
+        "severity": "warning",
+        "message": "el.style.left вызывает Layout каждый кадр (медленно). Используйте transform: translateX()",
+        "fix": "el.style.transform = `translateX(${x}px)` — только Composite, не вызывает Layout"
+      },
+      {
+        "line": 14,
+        "severity": "error",
+        "message": "Scroll обработчик без throttle — вызывается при каждом пикселе скролла. Также querySelectorAll + getBoundingClientRect = Layout Thrashing",
+        "fix": "1) throttle(handler, 100) или 2) используйте IntersectionObserver — он эффективнее для анимаций при скролле"
+      },
+      {
+        "line": 22,
+        "severity": "info",
+        "message": "Date.now() имеет точность до 1 мс. Для профилирования используйте performance.now() — float мс",
+        "fix": "const start = performance.now(); fn(); return performance.now() - start"
+      }
+    ]
+  }
+]

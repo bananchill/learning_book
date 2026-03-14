@@ -1,0 +1,26 @@
+[
+  {
+    "title": "MDN: Critical rendering path",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "What forces layout/reflow",
+    "url": "https://gist.github.com/paulirish/5d52fb081b3570c81e3a",
+    "type": "article",
+    "language": "en"
+  },
+  {
+    "title": "web.dev: Rendering performance",
+    "url": "https://web.dev/articles/rendering-performance",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "web.dev: Core Web Vitals",
+    "url": "https://web.dev/articles/vitals",
+    "type": "docs",
+    "language": "en"
+  }
+]
