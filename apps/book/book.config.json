@@ -372,6 +372,119 @@
                   ]
                 }
               ]
+            },
+            {
+              "id": "advanced",
+              "title": "Продвинутый",
+              "order": 2,
+              "chapters": [
+                {
+                  "id": "ch25-ts-generics",
+                  "title": "Дженерики TypeScript",
+                  "description": "Обобщённое программирование: type parameters, ограничения, infer, условные типы и утилитарные паттерны",
+                  "order": 25,
+                  "contentPath": "content/ru/ch25-ts-generics",
+                  "subchapters": [
+                    { "id": "01-what-are-generics", "title": "Что такое дженерики и зачем они нужны", "order": 1 },
+                    { "id": "02-generic-functions-classes", "title": "Дженерик-функции и классы", "order": 2 },
+                    { "id": "03-infer-conditional", "title": "infer и условные типы", "order": 3 },
+                    { "id": "04-real-patterns", "title": "Реальные паттерны с дженериками", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch26-ts-advanced",
+                  "title": "Продвинутые типы TypeScript",
+                  "description": "Mapped Types, Conditional Types, Template Literal Types, встроенные утилитарные типы",
+                  "order": 26,
+                  "contentPath": "content/ru/ch26-ts-advanced",
+                  "subchapters": [
+                    { "id": "01-mapped-types", "title": "Mapped Types: трансформация типов", "order": 1 },
+                    { "id": "02-conditional-types", "title": "Conditional Types в глубину", "order": 2 },
+                    { "id": "03-template-literal", "title": "Template Literal Types", "order": 3 },
+                    { "id": "04-utility-types", "title": "Утилитарные типы: полный разбор", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch27-ts-decorators",
+                  "title": "Декораторы TypeScript",
+                  "description": "Декораторы классов, методов и свойств, reflect-metadata, практические паттерны DI",
+                  "order": 27,
+                  "contentPath": "content/ru/ch27-ts-decorators",
+                  "subchapters": [
+                    { "id": "01-what-are-decorators", "title": "Что такое декораторы и как они работают", "order": 1 },
+                    { "id": "02-class-method-property", "title": "Декораторы классов, методов и свойств", "order": 2 },
+                    { "id": "03-reflect-metadata", "title": "Reflect Metadata API", "order": 3 },
+                    { "id": "04-practical-decorators", "title": "Практические паттерны: DI, валидация, логирование", "order": 4 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "browser",
+          "title": "DOM и браузер",
+          "order": 3,
+          "icon": "globe",
+          "groups": [
+            {
+              "id": "basics",
+              "title": "Основы",
+              "order": 1,
+              "chapters": [
+                {
+                  "id": "ch28-dom",
+                  "title": "DOM API",
+                  "description": "DOM-дерево, querySelector, создание и изменение элементов, атрибуты, классы, DocumentFragment",
+                  "order": 28,
+                  "contentPath": "content/ru/ch28-dom",
+                  "subchapters": [
+                    { "id": "01-dom-tree", "title": "DOM-дерево и навигация", "order": 1 },
+                    { "id": "02-query-manipulation", "title": "Поиск и изменение элементов", "order": 2 },
+                    { "id": "03-attributes-classes-styles", "title": "Атрибуты, классы и стили", "order": 3 },
+                    { "id": "04-documentfragment-performance", "title": "DocumentFragment и производительность DOM", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch29-events",
+                  "title": "События и делегирование",
+                  "description": "Модель событий, всплытие и перехват, делегирование, CustomEvent, оптимизация обработчиков",
+                  "order": 29,
+                  "contentPath": "content/ru/ch29-events",
+                  "subchapters": [
+                    { "id": "01-event-model", "title": "Модель событий: всплытие и захват", "order": 1 },
+                    { "id": "02-delegation", "title": "Делегирование событий", "order": 2 },
+                    { "id": "03-custom-events", "title": "CustomEvent и собственные события", "order": 3 },
+                    { "id": "04-optimization", "title": "Оптимизация обработчиков событий", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch30-performance",
+                  "title": "Производительность браузера",
+                  "description": "Critical Rendering Path, reflow и repaint, requestAnimationFrame, requestIdleCallback, Performance API",
+                  "order": 30,
+                  "contentPath": "content/ru/ch30-performance",
+                  "subchapters": [
+                    { "id": "01-critical-rendering-path", "title": "Critical Rendering Path", "order": 1 },
+                    { "id": "02-repaint-reflow", "title": "Repaint, Reflow и батчинг", "order": 2 },
+                    { "id": "03-raf-ric", "title": "requestAnimationFrame и requestIdleCallback", "order": 3 },
+                    { "id": "04-profiling", "title": "Performance API и профилирование", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch31-web-apis",
+                  "title": "Web APIs",
+                  "description": "Fetch API, WebSocket, IntersectionObserver, ResizeObserver, localStorage и IndexedDB",
+                  "order": 31,
+                  "contentPath": "content/ru/ch31-web-apis",
+                  "subchapters": [
+                    { "id": "01-fetch-api", "title": "Fetch API: запросы, ответы и AbortController", "order": 1 },
+                    { "id": "02-websocket", "title": "WebSocket: двусторонняя связь", "order": 2 },
+                    { "id": "03-observers", "title": "Observer API: Intersection, Resize, Mutation", "order": 3 },
+                    { "id": "04-storage", "title": "Хранилища: localStorage, sessionStorage и IndexedDB", "order": 4 }
+                  ]
+                }
+              ]
             }
           ]
         }
