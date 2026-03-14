@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с модулями",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 3,
+        "type": "performance",
+        "description": "Экспорт объекта как default делает tree shaking невозможным. Бандлер не может определить что из объекта используется, и включит весь объект в бандл. Если потребитель использует только formatDate, formatCurrency и capitalize всё равно попадут в бандл.",
+        "fix": "export function formatDate(date) { ... }\nexport function formatCurrency(n) { ... }\nexport function capitalize(s) { ... }"
+      },
+      {
+        "line": 13,
+        "type": "bug",
+        "description": "В модуле может быть только один default export. Два `export default` в одном файле — SyntaxError. Если нужно экспортировать два класса — используй именованные экспорты.",
+        "fix": "export class UserService { ... }\nexport class AuthService { ... }"
+      },
+      {
+        "line": 20,
+        "type": "bug",
+        "description": "`export default from` — неверный синтаксис. Для реэкспорта default-экспорта как именованного нужна другая форма.",
+        "fix": "export { default as moduleName } from './module.js'"
+      },
+      {
+        "line": 27,
+        "type": "bug",
+        "description": "В ESM-контексте (`\"type\": \"module\"`) `require` не является глобальной функцией. Нужно использовать `import` или `createRequire` из `node:module` для CJS-модулей.",
+        "fix": "// Статический импорт JSON (Vite/Node.js 22+):\nimport config from './config.json' assert { type: 'json' }\n// Или динамический:\nconst config = await import('./config.json', { assert: { type: 'json' } })"
+      },
+      {
+        "line": 32,
+        "type": "bug",
+        "description": "Циклическая зависимость с константой: когда a.js инициализируется, B_VALUE ещё не установлен (undefined), потому что b.js тоже импортирует из a.js. A_VALUE станет 'undefined_A'. Решение: использовать функции (тела выполняются лениво) или вынести B_VALUE в отдельный модуль без зависимостей.",
+        "fix": "// Вынести общее в shared.js:\nexport const B_VALUE = 'B'\n// Тогда оба файла импортируют из shared.js, не друг из друга"
+      }
+    ]
+  }
+]

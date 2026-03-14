@@ -1,0 +1,45 @@
+{
+  "chapter": "ch20-modules",
+  "resources": [
+    {
+      "title": "JavaScript modules — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полное руководство по ESM: export, import, динамический импорт, import.meta",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Modules — javascript.info",
+      "url": "https://javascript.info/modules-intro",
+      "type": "article",
+      "language": "en",
+      "description": "Введение в модули с объяснением живых привязок и области видимости",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "CommonJS vs ESM — Node.js docs",
+      "url": "https://nodejs.org/api/esm.html",
+      "type": "documentation",
+      "language": "en",
+      "description": "Официальная документация Node.js по ESM, interop с CJS, package.json exports",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Tree shaking — webpack docs",
+      "url": "https://webpack.js.org/guides/tree-shaking/",
+      "type": "documentation",
+      "language": "en",
+      "description": "Как настроить tree shaking, sideEffects, лучшие практики",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Circular dependencies in JavaScript — Andrica et al.",
+      "url": "https://medium.com/visual-development/how-to-fix-nasty-circular-dependency-issues-once-and-for-all-in-javascript-typescript-a04c987cf0de",
+      "type": "article",
+      "language": "en",
+      "description": "Как выявлять и устранять циклические зависимости в JS/TS проектах",
+      "difficulty": "intermediate"
+    }
+  ]
+}

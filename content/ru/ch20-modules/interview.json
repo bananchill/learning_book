@@ -1,0 +1,26 @@
+{
+  "chapter": "ch20-modules",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Объясни разницу между ESM и CommonJS. Когда использовать каждый?",
+      "answer": "**CommonJS** (CJS): `require()`/`module.exports`, синхронный, динамический анализ (runtime), экспортирует копии, только Node.js. **ESM**: `import`/`export`, асинхронный, статический анализ (parse-time), живые привязки, работает в браузере нативно и Node.js 12+. **Когда CJS**: старые Node.js-проекты, библиотеки требующие обратной совместимости. **Когда ESM**: новые проекты, фронтенд, библиотеки с tree shaking, Vite/modern build tools. При написании библиотеки сейчас — ESM с dual package (генерируй CJS-совместимую версию через сборщик).",
+      "difficulty": "medium",
+      "tags": ["ESM", "CommonJS", "modules"]
+    },
+    {
+      "id": "i2",
+      "question": "Что такое tree shaking и почему это важно?",
+      "answer": "Tree shaking — статический анализ и удаление неиспользуемых экспортов из финального бандла. Работает только с ESM, потому что импорты статичны — бандлер строит граф зависимостей до выполнения кода. **Почему важно**: современные библиотеки (lodash-es, date-fns, Vue) содержат много функций. Без tree shaking `import { add } from 'lodash-es'` включит в бандл весь lodash (~500KB). С tree shaking — только `add` (~1KB). Для эффективного tree shaking: используй именованные экспорты (не default), избегай side effects, объявляй `\"sideEffects\": false` в package.json.",
+      "difficulty": "medium",
+      "tags": ["tree shaking", "bundler", "optimization"]
+    },
+    {
+      "id": "i3",
+      "question": "Как работает динамический import() и где его применять?",
+      "answer": "`import('./module.js')` — функция-подобный синтаксис, возвращающий `Promise<Module>`. В отличие от статического import, выполняется в runtime и загружает модуль по требованию. **Применение**: 1) **Code splitting** — в SPA каждая страница загружается только при переходе: `component: () => import('./Page.vue')`; 2) **Условная загрузка** — только если пользователь дал согласие на аналитику; 3) **Полифиллы** — только для браузеров без поддержки фичи; 4) **Тяжёлые библиотеки** — PDF-генератор, видеоплеер загружаются только когда нужны. Результат: меньше начальный бандл, быстрее TTI (Time to Interactive).",
+      "difficulty": "medium",
+      "tags": ["dynamic import", "code splitting", "lazy loading"]
+    }
+  ]
+}

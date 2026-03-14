@@ -1,0 +1,37 @@
+{
+  "title": "ESM: порядок загрузки модулей",
+  "code": "// main.js\nimport { greeting } from './greet.js'\nimport { name } from './user.js'\n\nconsole.log(greeting + ', ' + name + '!')\n\n// greet.js\nexport const greeting = 'Привет'\n\n// user.js\nexport const name = 'Алиса'",
+  "steps": [
+    {
+      "line": 2,
+      "description": "JavaScript парсит main.js и находит статические импорты. Строит граф зависимостей: main → greet, main → user. Загрузка модулей ещё не началась.",
+      "variables": {},
+      "callStack": ["parse phase"]
+    },
+    {
+      "line": 6,
+      "description": "Фаза инстанциирования: создаются 'живые привязки' для всех экспортов. greeting и name существуют как слоты, но ещё не инициализированы (TDZ).",
+      "variables": { "greeting": "<TDZ>", "name": "<TDZ>" },
+      "callStack": ["instantiation phase"]
+    },
+    {
+      "line": 6,
+      "description": "Фаза выполнения: greet.js выполняется первым. greeting инициализируется значением 'Привет'.",
+      "variables": { "greeting": "'Привет'" },
+      "callStack": ["evaluation: greet.js"]
+    },
+    {
+      "line": 9,
+      "description": "user.js выполняется. name инициализируется значением 'Алиса'.",
+      "variables": { "name": "'Алиса'" },
+      "callStack": ["evaluation: user.js"]
+    },
+    {
+      "line": 5,
+      "description": "Наконец выполняется main.js. Все импорты уже инициализированы. console.log выводит результат.",
+      "variables": {},
+      "callStack": ["evaluation: main.js"],
+      "output": "Привет, Алиса!"
+    }
+  ]
+}

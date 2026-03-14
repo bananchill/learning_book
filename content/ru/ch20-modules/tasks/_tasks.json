@@ -1,0 +1,26 @@
+{
+  "chapter": "ch20-modules",
+  "tasks": [
+    {
+      "id": "01-easy-named-exports",
+      "title": "Именованные экспорты",
+      "difficulty": "easy",
+      "file": "01-easy-named-exports.js",
+      "description": "Реализуй модуль с именованными экспортами: функции formatDate, formatCurrency и константу LOCALE."
+    },
+    {
+      "id": "02-easy-re-export",
+      "title": "Агрегирующий модуль",
+      "difficulty": "easy",
+      "file": "02-easy-re-export.js",
+      "description": "Создай агрегирующий модуль index.js, реэкспортирующий всё из нескольких подмодулей с нужными псевдонимами."
+    },
+    {
+      "id": "03-medium-lazy-loader",
+      "title": "Ленивый загрузчик",
+      "difficulty": "medium",
+      "file": "03-medium-lazy-loader.js",
+      "description": "Реализуй createLazyLoader(importFn), возвращающий объект с методом load(), который загружает модуль только один раз и кэширует результат."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "ch20-modules",
+  "title": "Модульная система JavaScript",
+  "description": "ESM vs CommonJS, статический и динамический импорт, tree shaking и циклические зависимости",
+  "section": "javascript",
+  "subsection": "advanced",
+  "group": "intermediate",
+  "order": 20,
+  "estimatedMinutes": 30,
+  "subchapters": [
+    { "id": "01-esm-basics", "title": "ESM: import и export", "order": 1 },
+    { "id": "02-cjs-vs-esm", "title": "CommonJS vs ESM", "order": 2 },
+    { "id": "03-dynamic-import", "title": "Динамический import()", "order": 3 },
+    { "id": "04-tree-shaking", "title": "Tree shaking и циклические зависимости", "order": 4 }
+  ],
+  "concepts": [
+    "ESM",
+    "import/export",
+    "named export",
+    "default export",
+    "CommonJS",
+    "require/module.exports",
+    "динамический import()",
+    "tree shaking",
+    "циклические зависимости",
+    "живые привязки"
+  ],
+  "prerequisites": ["ch07-functions", "ch09-objects"]
+}
