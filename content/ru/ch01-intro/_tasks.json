@@ -1,0 +1,47 @@
+[
+  {
+    "id": "01-easy-greet",
+    "title": "Функция приветствия",
+    "difficulty": "easy",
+    "description": "Напиши функцию `greet(name)`, которая принимает имя и возвращает строку приветствия: 'Привет, {name}!'. Если имя не передано, используй 'Мир'.",
+    "file": "01-easy-greet.js",
+    "testFile": "01-easy-greet.test.js",
+    "concepts": ["functions", "template-literals", "default-parameters"],
+    "hints": [
+      "Функция должна возвращать строку. Используй шаблонный литерал с backtick (`)",
+      "Для значения по умолчанию используй параметр по умолчанию: function greet(name = 'Мир')",
+      "function greet(name = 'Мир') { return `Привет, ${name}!` }"
+    ],
+    "estimatedMinutes": 3
+  },
+  {
+    "id": "02-easy-typeof",
+    "title": "Определение типов",
+    "difficulty": "easy",
+    "description": "Напиши функцию `getTypeInfo(value)`, которая возвращает объект с двумя полями: `type` (результат typeof) и `isNull` (true, если значение строго равно null).",
+    "file": "02-easy-typeof.js",
+    "testFile": "02-easy-typeof.test.js",
+    "concepts": ["typeof", "null", "strict-equality"],
+    "hints": [
+      "typeof возвращает строку: 'number', 'string', 'boolean', 'undefined', 'object', 'function'",
+      "Особенность JS: typeof null === 'object', поэтому нужно отдельно проверять null через === null",
+      "return { type: typeof value, isNull: value === null }"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-medium-strict-mode",
+    "title": "Найди проблему со strict mode",
+    "difficulty": "medium",
+    "description": "Дан код, который работает без strict mode, но сломается с ним. Исправь его так, чтобы он корректно работал в строгом режиме. Функция `calculateTotal` должна суммировать все числа из массива.",
+    "file": "03-medium-strict-mode.js",
+    "testFile": "03-medium-strict-mode.test.js",
+    "concepts": ["strict-mode", "variables", "scope"],
+    "hints": [
+      "В строгом режиме нельзя использовать переменные без объявления. Найди все места, где используется переменная без let/const/var",
+      "Переменная total используется без объявления — это создаёт глобальную переменную без strict, и выбрасывает ошибку с strict",
+      "Добавь 'use strict' в начало и объяви все переменные через let: let total = 0"
+    ],
+    "estimatedMinutes": 10
+  }
+]

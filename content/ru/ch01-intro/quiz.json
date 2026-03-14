@@ -1,0 +1,71 @@
+{
+  "chapter": "ch01-intro",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "Какой официальный стандарт описывает язык JavaScript?",
+      "options": [
+        "ISO-9001",
+        "ECMAScript (ECMA-262)",
+        "W3C JavaScript Standard",
+        "IEEE 754"
+      ],
+      "correctAnswer": 1,
+      "explanation": "JavaScript стандартизирован организацией Ecma International под названием ECMAScript (стандарт ECMA-262). Oracle владеет торговой маркой «JavaScript», поэтому официальное название стандарта — ECMAScript.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Какой движок JavaScript используется в браузере Chrome и среде Node.js?",
+      "options": [
+        "SpiderMonkey",
+        "JavaScriptCore",
+        "V8",
+        "Chakra"
+      ],
+      "correctAnswer": 2,
+      "explanation": "V8 — движок JavaScript от Google, используется в браузере Chrome, Edge и в Node.js. SpiderMonkey — движок Firefox, JavaScriptCore — движок Safari.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "type": "code-output",
+      "question": "Что выведет этот код?",
+      "code": "'use strict'\n\nfunction showThis() {\n  console.log(this)\n}\n\nshowThis()",
+      "options": [
+        "window (объект браузера)",
+        "undefined",
+        "null",
+        "Ошибка: ReferenceError"
+      ],
+      "correctAnswer": 1,
+      "explanation": "В строгом режиме `this` внутри обычной функции, вызванной без контекста, равен `undefined`. Без `'use strict'` было бы `window` (в браузере) или `global` (в Node.js).",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "Какой атрибут тега <script> загружает скрипт параллельно с HTML и выполняет его после полной загрузки DOM?",
+      "options": [
+        "async",
+        "defer",
+        "lazy",
+        "preload"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`defer` — загружает скрипт параллельно, но выполняет его только после того, как весь HTML-документ разобран. `async` тоже загружает параллельно, но выполняет сразу после загрузки, не дожидаясь DOM.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "type": "true-false",
+      "question": "ES-модули (файлы с import/export) автоматически работают в строгом режиме без явного указания 'use strict'.",
+      "options": ["Верно", "Неверно"],
+      "correctAnswer": 0,
+      "explanation": "Верно. По спецификации ECMAScript, все ES-модули выполняются в строгом режиме автоматически. Поэтому в проектах с Vite, webpack или любым другим сборщиком модулей писать 'use strict' не нужно.",
+      "difficulty": "easy"
+    }
+  ]
+}

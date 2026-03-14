@@ -1,0 +1,15 @@
+{
+  "id": "ch01-intro",
+  "title": "Введение в JavaScript",
+  "section": "javascript",
+  "order": 1,
+  "estimatedMinutes": 25,
+  "subchapters": [
+    { "id": "01-what-is-js", "title": "Что такое JavaScript" },
+    { "id": "02-first-steps", "title": "Первые шаги" },
+    { "id": "03-how-it-works", "title": "Как работает JavaScript" },
+    { "id": "04-strict-mode", "title": "Строгий режим и современный JS" }
+  ],
+  "concepts": ["javascript", "ecmascript", "v8", "strict-mode", "es6"],
+  "prerequisites": []
+}

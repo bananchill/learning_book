@@ -1,0 +1,34 @@
+{
+  "title": "Строгий режим: что меняется",
+  "code": "'use strict'\n\nfunction showContext() {\n  console.log(this) // undefined в strict\n}\n\nshowContext()\n\n// Без strict: window\n// С strict: undefined",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Включаем строгий режим для всего файла. Эта строка должна быть первой в файле.",
+      "variables": {},
+      "callStack": ["(global)"],
+      "highlight": "'use strict'"
+    },
+    {
+      "line": 3,
+      "description": "Объявляем функцию showContext. Пока просто объявление — код внутри не выполняется.",
+      "variables": { "showContext": "function showContext()" },
+      "callStack": ["(global)"],
+      "highlight": "function showContext()"
+    },
+    {
+      "line": 7,
+      "description": "Вызываем функцию без явного контекста. В обычном режиме this был бы window (браузер) или global (Node.js).",
+      "variables": {},
+      "callStack": ["(global)", "showContext"],
+      "highlight": "showContext()"
+    },
+    {
+      "line": 4,
+      "description": "Выполняется тело функции. В строгом режиме this при вызове без контекста = undefined. Это помогает поймать ошибки с потерей контекста.",
+      "variables": { "this": "undefined" },
+      "callStack": ["(global)", "showContext"],
+      "highlight": "console.log(this)"
+    }
+  ]
+}

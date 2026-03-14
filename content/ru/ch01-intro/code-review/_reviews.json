@@ -1,0 +1,21 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы в коде приветствий",
+    "file": "01-review.js",
+    "issues": [
+      {
+        "line": 6,
+        "type": "bug",
+        "description": "Условие цикла i <= users.length вместо i < users.length. При i === 3 users[3] будет undefined, и приветствие выведет 'Привет, undefined!'",
+        "fix": "Заменить <= на <: for (var i = 0; i < users.length; i++)"
+      },
+      {
+        "line": 7,
+        "type": "bug",
+        "description": "Переменная greeting используется без объявления (нет let/const/var). Без строгого режима создаётся глобальная переменная, что является антипаттерном и может привести к трудноуловимым ошибкам.",
+        "fix": "Объявить переменную: const greeting = 'Привет, ' + users[i] + '!'"
+      }
+    ]
+  }
+]

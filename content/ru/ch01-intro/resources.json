@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Introduction — JavaScript | MDN",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальное введение в JavaScript от MDN: что это такое, как подключить к странице, как использовать консоль браузера.",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "JavaScript | MDN",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    "type": "documentation",
+    "language": "en",
+    "description": "Главная страница документации JavaScript на MDN. Точка входа для изучения всего языка.",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "ECMAScript, TC39, and the History of JavaScript",
+    "url": "https://fireship.dev/ecmascript",
+    "type": "article",
+    "language": "en",
+    "description": "Краткая и понятная история ECMAScript: от ES1 до наших дней, роль TC39 в развитии языка.",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "ECMAScript® 2026 Language Specification",
+    "url": "https://tc39.es/ecma262/",
+    "type": "spec",
+    "language": "en",
+    "description": "Официальная спецификация ECMAScript. Используй для поиска точного поведения языка в неочевидных случаях.",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "ECMAScript version history — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/ECMAScript_version_history",
+    "type": "article",
+    "language": "en",
+    "description": "Полная история версий ECMAScript с ключевыми нововведениями каждой версии.",
+    "difficulty": "beginner"
+  }
+]
