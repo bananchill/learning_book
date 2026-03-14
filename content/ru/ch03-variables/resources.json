@@ -1,0 +1,35 @@
+{
+  "chapter": "ch03-variables",
+  "resources": [
+    {
+      "title": "MDN: JavaScript data types and data structures",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures",
+      "type": "docs",
+      "description": "Исчерпывающая документация по типам данных JavaScript от MDN."
+    },
+    {
+      "title": "MDN: let",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
+      "type": "docs",
+      "description": "Документация по let, включая подробное объяснение TDZ."
+    },
+    {
+      "title": "You Don't Know JS: Types & Grammar",
+      "url": "https://github.com/getify/You-Dont-Know-JS/tree/1st-ed/types%20%26%20grammar",
+      "type": "book",
+      "description": "Классическая книга Kyle Simpson о системе типов JavaScript — очень глубокое погружение."
+    },
+    {
+      "title": "MDN: Equality comparisons and sameness",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness",
+      "type": "docs",
+      "description": "Полное сравнение ==, === и Object.is() с таблицей результатов."
+    },
+    {
+      "title": "structuredClone: загрузка глубокого копирования",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/structuredClone",
+      "type": "docs",
+      "description": "Документация по современному API глубокого копирования объектов."
+    }
+  ]
+}

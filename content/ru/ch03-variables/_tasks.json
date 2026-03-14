@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-classify.js",
+    "title": "Классификация значений",
+    "difficulty": "easy",
+    "description": "Функция classifyValue(value) возвращает строку с типом значения: 'number', 'string', 'boolean', 'null', 'undefined', или 'other'."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-safe-add.js",
+    "title": "Безопасное сложение",
+    "difficulty": "easy",
+    "description": "Функция safeAdd(a, b) возвращает сумму, если оба аргумента — числа. Иначе возвращает NaN."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-deep-equal.js",
+    "title": "Глубокое сравнение примитивов",
+    "difficulty": "medium",
+    "description": "Функция deepEqual(a, b) строго сравнивает два значения. Особый случай: NaN должен быть равен NaN (в отличие от ===)."
+  }
+]

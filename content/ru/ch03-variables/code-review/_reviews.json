@@ -1,0 +1,47 @@
+{
+  "chapter": "ch03-variables",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Проблемы с типами и переменными",
+      "issues": [
+        {
+          "line": 3,
+          "type": "error",
+          "description": "Использование `var` вместо `const`. Константы конфигурации не меняются — используйте `const`."
+        },
+        {
+          "line": 4,
+          "type": "warning",
+          "description": "Возраст хранится как строка '25', хотя семантически это число. Нужно преобразовать: `const userAge = Number(rawAge)` или валидировать при получении из формы."
+        },
+        {
+          "line": 5,
+          "type": "warning",
+          "description": "`isAdmin` хранится как число 1, хотя должен быть boolean. Используйте `const isAdmin = true`."
+        },
+        {
+          "line": 8,
+          "type": "style",
+          "description": "`user == null` — единственное допустимое использование ==. Проверяет и на null, и на undefined. Но стоит добавить комментарий для ясности."
+        },
+        {
+          "line": 12,
+          "type": "error",
+          "description": "`userAge * 10` — неявное приведение строки к числу. Сначала нужно `Number(userAge)`. Хотя умножение приведёт строку к числу, это неявно и опасно."
+        },
+        {
+          "line": 15,
+          "type": "error",
+          "description": "`isAdmin == true` — нестрогое сравнение. Поскольку `isAdmin = 1`, JavaScript приведёт `true` к `1` и сравнение пройдёт. Используйте `if (isAdmin)` или строгое `=== true` с boolean типом."
+        },
+        {
+          "line": 20,
+          "type": "error",
+          "description": "Повторное объявление `var result` — не ошибка для `var`, но это явный запах кода. С `const` это была бы ошибка, которую хотелось бы поймать."
+        }
+      ]
+    }
+  ]
+}

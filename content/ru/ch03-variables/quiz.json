@@ -1,0 +1,54 @@
+{
+  "chapter": "ch03-variables",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет следующий код?\n\n```javascript\nlet x = 1;\n{\n  let x = 2;\n  console.log(x);\n}\nconsole.log(x);\n```",
+      "options": ["1, 2", "2, 1", "2, 2", "1, 1"],
+      "correctAnswer": 1,
+      "explanation": "`let` имеет блочный скоуп. Внутри `{}` создаётся новая переменная `x = 2`, которая не влияет на внешнюю `x = 1`."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Какое из утверждений о `const` верно?",
+      "options": [
+        "const переменная полностью неизменяема",
+        "const нельзя переназначить, но содержимое объекта изменить можно",
+        "const имеет функциональный скоуп",
+        "const не поддерживает примитивные типы"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`const` запрещает переназначение переменной, но не мутацию объекта. `const obj = {}; obj.x = 1` — корректно. `obj = {}` — TypeError."
+    },
+    {
+      "id": "q3",
+      "type": "code-output",
+      "question": "Что вернёт `typeof null`?",
+      "options": ["'null'", "'undefined'", "'object'", "'boolean'"],
+      "correctAnswer": 2,
+      "explanation": "`typeof null === 'object'` — исторический баг JavaScript из 1995 года. Правило не исправлено для сохранения обратной совместимости."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "Какие из следующих значений являются falsy?",
+      "options": [
+        "[], {}, 0",
+        "0, '', null, undefined",
+        "false, [], NaN",
+        "null, {}, undefined"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Falsy значения: `false`, `0`, `-0`, `0n`, `''`, `null`, `undefined`, `NaN`. Пустой массив `[]` и объект `{}` — TRUTHY!"
+    },
+    {
+      "id": "q5",
+      "type": "true-false",
+      "question": "При присваивании объекта в новую переменную (`const b = a`) создаётся глубокая копия объекта.",
+      "correctAnswer": false,
+      "explanation": "Нет! При присваивании объекта создаётся копия ССЫЛКИ, а не самого объекта. Обе переменные будут ссылаться на один и тот же объект в памяти."
+    }
+  ]
+}
