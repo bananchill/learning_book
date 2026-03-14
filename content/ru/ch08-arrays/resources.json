@@ -1,0 +1,35 @@
+{
+  "chapter": "ch08-arrays",
+  "resources": [
+    {
+      "title": "MDN: Array",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      "type": "docs",
+      "description": "Полная документация Array — все методы с примерами."
+    },
+    {
+      "title": "JavaScript Array Explorer",
+      "url": "https://arrayexplorer.netlify.app/",
+      "type": "tool",
+      "description": "Интерактивный инструмент: опишите что хотите сделать — получите подходящий метод."
+    },
+    {
+      "title": "MDN: Array.prototype.reduce()",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+      "type": "docs",
+      "description": "Документация reduce с множеством примеров использования."
+    },
+    {
+      "title": "Immutable Update Patterns (Redux docs)",
+      "url": "https://redux.js.org/usage/structuring-reducers/immutable-update-patterns",
+      "type": "guide",
+      "description": "Паттерны иммутабельных обновлений массивов и объектов — полезно для React/Redux."
+    },
+    {
+      "title": "JavaScript.info: Array methods",
+      "url": "https://javascript.info/array-methods",
+      "type": "article",
+      "description": "Подробное руководство по всем методам массива с задачами."
+    }
+  ]
+}

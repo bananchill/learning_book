@@ -1,0 +1,15 @@
+{
+  "id": "ch08-arrays",
+  "title": "Массивы",
+  "description": "Полное руководство по массивам JavaScript: создание, мутирующие методы, итерационные методы, сортировка и паттерны иммутабельности.",
+  "order": 8,
+  "estimatedTime": 65,
+  "difficulty": "beginner",
+  "tags": ["arrays", "map", "filter", "reduce", "sort", "immutability"],
+  "subchapters": [
+    { "id": "01-basics", "title": "Создание и базовые методы", "file": "01-basics.mdx" },
+    { "id": "02-iteration", "title": "Итерационные методы", "file": "02-iteration.mdx" },
+    { "id": "03-sort-search", "title": "Сортировка и поиск", "file": "03-sort-search.mdx" },
+    { "id": "04-patterns", "title": "Паттерны работы с массивами", "file": "04-patterns.mdx" }
+  ]
+}

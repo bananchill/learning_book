@@ -1,0 +1,37 @@
+{
+  "chapter": "ch08-arrays",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Проблемы с работой с массивами",
+      "issues": [
+        {
+          "line": 4,
+          "type": "error",
+          "description": "`ages.sort()` без функции сравнения сортирует числа как строки! [10, 2, 1] → [1, 10, 2]. Исправление: `ages.sort((a, b) => a - b)`."
+        },
+        {
+          "line": 7,
+          "type": "error",
+          "description": "`users.push(...)` мутирует входной массив — это side effect! Код, вызывающий функцию, не ожидает изменения своего массива. Создайте копию: `const result = [...users, newAdmin]`."
+        },
+        {
+          "line": 11,
+          "type": "warning",
+          "description": "`arr.indexOf('admin') != -1` — нестрогое неравенство. Используйте `!==`. Также для проверки существования — `arr.includes('admin')` читается лучше."
+        },
+        {
+          "line": 16,
+          "type": "error",
+          "description": "`users.map()` мутирует объекты в массиве через `user.displayName = ...`. map должен возвращать новые данные, не изменять существующие. Исправление: `return { ...user, displayName: user.name.toUpperCase() }`."
+        },
+        {
+          "line": 22,
+          "type": "warning",
+          "description": "`names.sort()` для строк с числами может давать неожиданные результаты. Для правильной сортировки используйте: `names.sort((a, b) => a.localeCompare(b, 'ru', { numeric: true }))`."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "chapter": "ch08-arrays",
+  "title": "map → filter → reduce пошагово",
+  "description": "Трансформация массива через цепочку методов",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Исходные данные",
+      "code": "const products = [\n  { name: 'Яблоко', price: 50, inStock: true },\n  { name: 'Банан', price: 30, inStock: false },\n  { name: 'Вишня', price: 100, inStock: true },\n  { name: 'Груша', price: 70, inStock: true }\n];\n// Задача: получить сумму цен доступных товаров дороже 40р",
+      "explanation": "Массив из 4 товаров. Нам нужны только те, что в наличии и дороже 40р, и их суммарная стоимость."
+    },
+    {
+      "id": 2,
+      "title": "Шаг 1: filter по inStock",
+      "code": "const inStock = products.filter(p => p.inStock);\n// [\n//   { name: 'Яблоко', price: 50, inStock: true },\n//   { name: 'Вишня', price: 100, inStock: true },\n//   { name: 'Груша', price: 70, inStock: true }\n// ]",
+      "explanation": "filter оставил только 3 товара — Банан не в наличии и убран."
+    },
+    {
+      "id": 3,
+      "title": "Шаг 2: filter по цене > 40",
+      "code": "const expensive = inStock.filter(p => p.price > 40);\n// [\n//   { name: 'Яблоко', price: 50, ... },\n//   { name: 'Вишня', price: 100, ... },\n//   { name: 'Груша', price: 70, ... }\n// ]",
+      "explanation": "Все 3 товара дороже 40р, поэтому все прошли фильтр."
+    },
+    {
+      "id": 4,
+      "title": "Шаг 3: map для извлечения цен",
+      "code": "const prices = expensive.map(p => p.price);\n// [50, 100, 70]",
+      "explanation": "map трансформирует объекты в числа — только цены."
+    },
+    {
+      "id": 5,
+      "title": "Шаг 4: reduce для суммы",
+      "code": "const total = prices.reduce((sum, price) => sum + price, 0);\n// 220",
+      "explanation": "reduce суммирует: 0 + 50 = 50, 50 + 100 = 150, 150 + 70 = 220."
+    },
+    {
+      "id": 6,
+      "title": "Итог: красивая цепочка",
+      "code": "const total = products\n  .filter(p => p.inStock)\n  .filter(p => p.price > 40)\n  .map(p => p.price)\n  .reduce((sum, p) => sum + p, 0);\n// 220",
+      "explanation": "Или в одном filter и map: .filter(p => p.inStock && p.price > 40).reduce((s, p) => s + p.price, 0)"
+    }
+  ]
+}

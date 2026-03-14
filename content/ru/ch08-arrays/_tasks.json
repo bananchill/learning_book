@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-unique.js",
+    "title": "Уникальные элементы массива",
+    "difficulty": "easy",
+    "description": "Функция unique(arr) возвращает новый массив без дубликатов, сохраняя первое вхождение каждого значения."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-group-by.js",
+    "title": "Группировка по полю",
+    "difficulty": "easy",
+    "description": "Функция groupBy(arr, key) группирует массив объектов по значению указанного поля."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-pipeline.js",
+    "title": "Pipeline функций",
+    "difficulty": "medium",
+    "description": "Функция pipeline(...fns) возвращает функцию, которая применяет все функции в массиве последовательно к значению."
+  }
+]

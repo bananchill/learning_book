@@ -1,0 +1,26 @@
+{
+  "chapter": "ch08-arrays",
+  "questions": [
+    {
+      "id": "i1",
+      "level": "junior",
+      "question": "Объясните разницу между map, filter и reduce. Когда что использовать?",
+      "answer": "`map(fn)` — трансформирует каждый элемент, возвращает новый массив той же длины. Используется для преобразования формата данных. `filter(fn)` — оставляет элементы, для которых fn вернула true, возвращает массив меньшей или равной длины. Используется для отбора данных. `reduce(fn, init)` — сворачивает массив в одно значение любого типа. Используется для суммирования, группировки, преобразования в объект, любого накопления. Ключевое: все три немутирующие, возвращают новое значение, принимают чистую функцию.",
+      "tags": ["map", "filter", "reduce", "functional"]
+    },
+    {
+      "id": "i2",
+      "level": "junior",
+      "question": "Почему `[10, 1, 5, 2].sort()` возвращает неправильный результат для чисел?",
+      "answer": "`Array.sort()` без аргументов конвертирует элементы в строки и сортирует лексикографически. Строка '10' < '2' потому что '1' < '2' (сравниваются коды символов). Для числовой сортировки нужна функция сравнения: `arr.sort((a, b) => a - b)`. Функция сравнения возвращает: отрицательное — a перед b, положительное — b перед a, 0 — порядок сохраняется. Важно: sort мутирует исходный массив. Иммутабельная версия: `arr.toSorted()` (ES2023) или `[...arr].sort()`.",
+      "tags": ["sort", "comparison-function", "lexicographic"]
+    },
+    {
+      "id": "i3",
+      "level": "middle",
+      "question": "Как реализовать функцию groupBy без использования Object.groupBy?",
+      "answer": "Через reduce: `const groupBy = (arr, key) => arr.reduce((groups, item) => { const groupKey = typeof key === 'function' ? key(item) : item[key]; if (!groups[groupKey]) groups[groupKey] = []; groups[groupKey].push(item); return groups; }, {})`. Или с nullish coalescing: `groups[groupKey] ??= []; groups[groupKey].push(item)`. Применение: `groupBy(users, 'role')` или `groupBy(users, u => u.age >= 18 ? 'adult' : 'minor')`. Object.groupBy — стандартная версия в ES2024, работает аналогично.",
+      "tags": ["groupBy", "reduce", "Object.groupBy"]
+    }
+  ]
+}
