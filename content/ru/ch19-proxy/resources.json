@@ -1,0 +1,45 @@
+{
+  "chapter": "ch19-proxy",
+  "resources": [
+    {
+      "title": "Proxy — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полная документация Proxy со списком всех ловушек и их инвариантов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Reflect — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+      "type": "documentation",
+      "language": "en",
+      "description": "Документация Reflect API — все статические методы с примерами",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Proxy and Reflect — javascript.info",
+      "url": "https://javascript.info/proxy",
+      "type": "article",
+      "language": "en",
+      "description": "Подробная статья с примерами всех ловушек и паттернами применения",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Vue 3 Reactivity in Depth",
+      "url": "https://vuejs.org/guide/extras/reactivity-in-depth",
+      "type": "documentation",
+      "language": "en",
+      "description": "Официальная документация Vue 3 о реализации реактивности через Proxy",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "ES6 Proxies in Depth — Ponyfoo",
+      "url": "https://ponyfoo.com/articles/es6-proxies-in-depth",
+      "type": "article",
+      "language": "en",
+      "description": "Глубокий разбор всех аспектов Proxy включая invariants",
+      "difficulty": "advanced"
+    }
+  ]
+}

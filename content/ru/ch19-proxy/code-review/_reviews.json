@@ -1,0 +1,33 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с Proxy",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 5,
+        "type": "bug",
+        "description": "Ловушка set не возвращает true после успешной записи. В строгом режиме ('use strict') это вызовет TypeError при каждом присваивании. Ловушка set ВСЕГДА должна явно возвращать boolean.",
+        "fix": "target[prop] = value\nreturn true // обязательно!"
+      },
+      {
+        "line": 22,
+        "type": "bug",
+        "description": "target[prop] в ловушке get игнорирует receiver. Если у target (или его прототипа) есть геттер, он выполнится с this = target, не this = proxy. Это нарушает реактивность и корректное делегирование.",
+        "fix": "get(target, prop, receiver) {\n  return Reflect.get(target, prop, receiver)\n}"
+      },
+      {
+        "line": 33,
+        "type": "bug",
+        "description": "proxy3[prop] внутри ловушки get снова триггерит ловушку get на том же proxy — бесконечная рекурсия. В теле ловушки нужно работать с target, а не с proxy.",
+        "fix": "get(target, prop, receiver) {\n  console.log('get:', prop)\n  return Reflect.get(target, prop, receiver) // читаем из target!\n}"
+      },
+      {
+        "line": 42,
+        "type": "bug",
+        "description": "Proxy работает только с объектами. Попытка создать Proxy для примитива ('hello') вызывает TypeError: Cannot create proxy with a non-object as target or handler.",
+        "fix": "// Оборачиваем в объект если нужно:\nconst proxiedStr = new Proxy(new String(str), handler)\n// Или используй Proxy только с объектами/функциями"
+      }
+    ]
+  }
+]

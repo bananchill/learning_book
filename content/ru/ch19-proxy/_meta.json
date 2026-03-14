@@ -1,0 +1,27 @@
+{
+  "id": "ch19-proxy",
+  "title": "Proxy и Reflect",
+  "description": "Перехват операций с объектами через Proxy, метапрограммирование с Reflect и реактивность на их основе",
+  "section": "javascript",
+  "subsection": "advanced",
+  "group": "intermediate",
+  "order": 19,
+  "estimatedMinutes": 30,
+  "subchapters": [
+    { "id": "01-proxy-basics", "title": "Proxy: ловушки и handler", "order": 1 },
+    { "id": "02-reflect", "title": "Reflect API", "order": 2 },
+    { "id": "03-practical-proxy", "title": "Практические паттерны", "order": 3 },
+    { "id": "04-reactivity", "title": "Реактивность: Vue 3 под капотом", "order": 4 }
+  ],
+  "concepts": [
+    "Proxy",
+    "handler",
+    "ловушки (traps)",
+    "get/set/has/deleteProperty",
+    "Reflect",
+    "метапрограммирование",
+    "реактивность",
+    "валидация данных"
+  ],
+  "prerequisites": ["ch09-objects", "ch13-prototypes"]
+}

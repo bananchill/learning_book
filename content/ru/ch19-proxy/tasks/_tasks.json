@@ -1,0 +1,26 @@
+{
+  "chapter": "ch19-proxy",
+  "tasks": [
+    {
+      "id": "01-easy-readonly",
+      "title": "Иммутабельный объект",
+      "difficulty": "easy",
+      "file": "01-easy-readonly.js",
+      "description": "Реализуй функцию readonly(obj), возвращающую Proxy, который запрещает запись и удаление свойств."
+    },
+    {
+      "id": "02-easy-defaults",
+      "title": "Объект со значениями по умолчанию",
+      "difficulty": "easy",
+      "file": "02-easy-defaults.js",
+      "description": "Реализуй функцию withDefaults(obj, defaults), возвращающую Proxy: при обращении к несуществующему свойству возвращает значение из defaults."
+    },
+    {
+      "id": "03-medium-validator",
+      "title": "Валидирующий Proxy",
+      "difficulty": "medium",
+      "file": "03-medium-validator.js",
+      "description": "Реализуй createValidated(target, schema), где schema — объект {prop: validatorFn}. Ловушка set должна вызывать validator перед записью и бросать TypeError при неудаче."
+    }
+  ]
+}

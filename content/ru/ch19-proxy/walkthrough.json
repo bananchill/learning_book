@@ -1,0 +1,39 @@
+{
+  "title": "Proxy get/set: поток данных",
+  "code": "const target = { count: 0 }\n\nconst proxy = new Proxy(target, {\n  get(target, prop, receiver) {\n    console.log('get:', prop)\n    return Reflect.get(target, prop, receiver)\n  },\n  set(target, prop, value, receiver) {\n    console.log('set:', prop, '=', value)\n    return Reflect.set(target, prop, value, receiver)\n  }\n})\n\nproxy.count        // чтение\nproxy.count = 5    // запись\nproxy.count        // чтение нового значения",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Создаём целевой объект target с count: 0. Это обычный объект, без ловушек.",
+      "variables": { "target": "{ count: 0 }" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 3,
+      "description": "new Proxy(target, handler) — создаём прокси. target не меняется, proxy — новый объект-обёртка.",
+      "variables": { "proxy": "Proxy { count: 0 }" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 14,
+      "description": "proxy.count — обращение к свойству через прокси. Срабатывает ловушка get. Выводит 'get: count'. Reflect.get возвращает target.count = 0.",
+      "variables": {},
+      "callStack": ["global", "[[get]] trap"],
+      "output": "get: count"
+    },
+    {
+      "line": 15,
+      "description": "proxy.count = 5 — запись через прокси. Срабатывает ловушка set. Выводит 'set: count = 5'. Reflect.set записывает в target.",
+      "variables": { "target.count": "5" },
+      "callStack": ["global", "[[set]] trap"],
+      "output": "set: count = 5"
+    },
+    {
+      "line": 16,
+      "description": "proxy.count — снова читаем. Ловушка get срабатывает, выводит 'get: count'. Возвращает 5 — новое значение из target.",
+      "variables": {},
+      "callStack": ["global", "[[get]] trap"],
+      "output": "get: count"
+    }
+  ]
+}
