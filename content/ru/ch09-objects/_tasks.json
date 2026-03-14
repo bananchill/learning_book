@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-pick.js",
+    "title": "Функция pick",
+    "difficulty": "easy",
+    "description": "Функция pick(obj, keys) возвращает новый объект только с указанными ключами."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-omit.js",
+    "title": "Функция omit",
+    "difficulty": "easy",
+    "description": "Функция omit(obj, keys) возвращает новый объект без указанных ключей."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-deep-clone.js",
+    "title": "Глубокое клонирование объекта",
+    "difficulty": "medium",
+    "description": "Функция deepClone(obj) создаёт полную независимую копию объекта (без использования structuredClone)."
+  }
+]

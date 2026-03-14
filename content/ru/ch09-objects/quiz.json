@@ -1,0 +1,59 @@
+{
+  "chapter": "ch09-objects",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst a = { x: 1 };\nconst b = a;\nb.x = 99;\nconsole.log(a.x);\n```",
+      "options": ["1", "99", "undefined", "ReferenceError"],
+      "correctAnswer": 1,
+      "explanation": "`b = a` не копирует объект — обе переменные ссылаются на один и тот же объект. Изменение через `b.x` изменяет тот же объект, что видит `a`."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Какой метод создаёт объект из массива пар `[ключ, значение]`?",
+      "options": [
+        "Object.assign()",
+        "Object.fromEntries()",
+        "Object.create()",
+        "Object.keys()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`Object.fromEntries([['a', 1], ['b', 2]])` создаёт `{ a: 1, b: 2 }`. Это обратная операция к `Object.entries()`."
+    },
+    {
+      "id": "q3",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst user = { name: 'Иван', age: 25 };\nconst { name: n, city = 'Москва' } = user;\nconsole.log(n, city);\n```",
+      "options": [
+        "undefined Москва",
+        "Иван undefined",
+        "Иван Москва",
+        "ReferenceError"
+      ],
+      "correctAnswer": 2,
+      "explanation": "`name: n` — переименование: значение `'Иван'` кладётся в переменную `n`. `city = 'Москва'` — дефолт: свойства нет в объекте, используется `'Москва'`."
+    },
+    {
+      "id": "q4",
+      "type": "true-false",
+      "question": "`Object.freeze()` замораживает вложенные объекты рекурсивно.",
+      "correctAnswer": false,
+      "explanation": "`Object.freeze()` выполняет поверхностную заморозку: свойства верхнего уровня нельзя изменить, но вложенные объекты остаются изменяемыми. Для глубокой заморозки нужна рекурсивная функция."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Что вернёт `Object.hasOwn({ a: 1 }, 'toString')`?",
+      "options": [
+        "true — toString есть в объекте",
+        "false — toString унаследован от прототипа",
+        "TypeError",
+        "undefined"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`Object.hasOwn` проверяет только **собственные** свойства объекта, не унаследованные. `toString` находится в `Object.prototype`, поэтому возвращается `false`. В отличие от `'toString' in obj`, которое вернуло бы `true`."
+    }
+  ]
+}

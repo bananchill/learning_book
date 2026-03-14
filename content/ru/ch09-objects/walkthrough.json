@@ -1,0 +1,65 @@
+{
+  "chapter": "ch09-objects",
+  "title": "Деструктуризация с дефолтными значениями",
+  "description": "Пошаговый разбор деструктуризации объекта с переименованием и значениями по умолчанию",
+  "code": "const user = { name: 'Иван', role: 'admin' };\n\nconst {\n  name: displayName,\n  role = 'user',\n  age = 0,\n  city: location = 'Москва'\n} = user;\n\nconsole.log(displayName); // 'Иван'\nconsole.log(role);        // 'admin'\nconsole.log(age);         // 0\nconsole.log(location);   // 'Москва'",
+  "steps": [
+    {
+      "line": 1,
+      "highlight": [1],
+      "description": "Создаём объект user с двумя полями: name и role.",
+      "state": {
+        "user": "{ name: 'Иван', role: 'admin' }"
+      }
+    },
+    {
+      "line": 5,
+      "highlight": [5],
+      "description": "`name: displayName` — берём свойство name из user и кладём в переменную displayName. Переменной name не создаётся.",
+      "state": {
+        "displayName": "'Иван'"
+      }
+    },
+    {
+      "line": 6,
+      "highlight": [6],
+      "description": "`role = 'user'` — свойство role есть в объекте и равно 'admin'. Дефолт 'user' НЕ применяется. Берём значение из объекта.",
+      "state": {
+        "displayName": "'Иван'",
+        "role": "'admin'"
+      }
+    },
+    {
+      "line": 7,
+      "highlight": [7],
+      "description": "`age = 0` — свойства age нет в объекте (undefined). Дефолт применяется: age = 0.",
+      "state": {
+        "displayName": "'Иван'",
+        "role": "'admin'",
+        "age": "0"
+      }
+    },
+    {
+      "line": 8,
+      "highlight": [8],
+      "description": "`city: location = 'Москва'` — свойства city нет (undefined). Применяется дефолт 'Москва'. Переменная называется location, не city.",
+      "state": {
+        "displayName": "'Иван'",
+        "role": "'admin'",
+        "age": "0",
+        "location": "'Москва'"
+      }
+    },
+    {
+      "line": 10,
+      "highlight": [10, 11, 12, 13],
+      "description": "Выводим все переменные. Ключ city существует только как паттерн — переменной city нет.",
+      "state": {
+        "displayName": "'Иван'",
+        "role": "'admin'",
+        "age": "0",
+        "location": "'Москва'"
+      }
+    }
+  ]
+}

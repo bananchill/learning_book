@@ -1,0 +1,34 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Мутация объекта при обновлении профиля",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "critical",
+        "description": "Функция мутирует исходный объект `user`. Вызывающий код не ожидает изменения своего объекта.",
+        "fix": "Создать новый объект: `return { ...user, ...updates }` или использовать `Object.assign({}, user, updates)`."
+      },
+      {
+        "line": 5,
+        "severity": "major",
+        "description": "Перезаписывает `user.name` значением из `updates.name`, которое может быть `undefined` — это затрёт существующее значение.",
+        "fix": "Использовать spread: поля с `undefined` в updates тоже перезапишут существующие. Лучше фильтровать: `Object.fromEntries(Object.entries(updates).filter(([,v]) => v !== undefined))`."
+      },
+      {
+        "line": 9,
+        "severity": "major",
+        "description": "Специальная обработка `settings` вручную — несогласованно с остальными полями. При добавлении нового поля-объекта нужно помнить добавить такую же проверку.",
+        "fix": "Использовать единый подход: `return { ...user, ...updates }` автоматически обработает все поля."
+      },
+      {
+        "line": 28,
+        "severity": "info",
+        "description": "`user.age` становится `undefined` после вызова, хотя обновление не трогало возраст — это происходит потому, что `updates.age` равен `undefined` и перезаписывает существующее значение.",
+        "fix": "Демонстрирует почему мутация исходника опасна. Иммутабельный подход (spread) решает эту проблему."
+      }
+    ],
+    "refactored": "function updateUserProfile(user, updates) {\n  // Создаём новый объект, не мутируя исходный\n  // undefined-поля в updates перезапишут существующие — фильтруем\n  const cleanUpdates = Object.fromEntries(\n    Object.entries(updates).filter(([, v]) => v !== undefined)\n  );\n  return { ...user, ...cleanUpdates };\n}\n\n// Теперь user не изменяется\nconst updated = updateUserProfile(user, { name: 'Мария', email: 'maria@example.com' });\nconsole.log(user === updated); // false — разные объекты\nconsole.log(user.name);       // 'Иван' — не изменился\nconsole.log(updated.name);    // 'Мария'\nconsole.log(updated.age);     // 25 — сохранено из оригинала"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Working with objects — MDN",
+    "url": "https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Working_with_Objects",
+    "type": "docs",
+    "level": "beginner",
+    "description": "Официальная документация по работе с объектами в JavaScript."
+  },
+  {
+    "title": "Object.keys/values/entries — javascript.info",
+    "url": "https://javascript.info/keys-values-entries",
+    "type": "article",
+    "level": "beginner",
+    "description": "Практическое объяснение методов Object.keys, values, entries с примерами."
+  },
+  {
+    "title": "Деструктуризация — javascript.info",
+    "url": "https://javascript.info/destructuring-assignment",
+    "type": "article",
+    "level": "beginner",
+    "description": "Подробное руководство по деструктуризации объектов и массивов."
+  },
+  {
+    "title": "structuredClone — MDN",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/structuredClone",
+    "type": "docs",
+    "level": "intermediate",
+    "description": "Современный глобальный метод для глубокого копирования объектов."
+  },
+  {
+    "title": "You Don't Know JS: Objects & Classes",
+    "url": "https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/objects-classes/README.md",
+    "type": "book",
+    "level": "advanced",
+    "description": "Глубокое погружение в объектную модель JavaScript от Kyle Simpson."
+  }
+]
