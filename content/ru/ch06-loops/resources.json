@@ -1,0 +1,35 @@
+{
+  "chapter": "ch06-loops",
+  "resources": [
+    {
+      "title": "MDN: Loops and iteration",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+      "type": "docs",
+      "description": "Исчерпывающее руководство MDN по всем видам циклов в JavaScript."
+    },
+    {
+      "title": "MDN: for...of",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of",
+      "type": "docs",
+      "description": "Документация for...of с примерами для всех итерируемых типов."
+    },
+    {
+      "title": "MDN: Iteration protocols",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols",
+      "type": "docs",
+      "description": "Протоколы итерируемых объектов — как сделать свой объект итерируемым."
+    },
+    {
+      "title": "You Don't Know JS: Async & Performance — Chapter 5: Program Performance",
+      "url": "https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/async%20%26%20performance/ch5.md",
+      "type": "book",
+      "description": "Глава о производительности программ, включая Web Workers и chunking."
+    },
+    {
+      "title": "JavaScript.info: Loops",
+      "url": "https://javascript.info/while-for",
+      "type": "article",
+      "description": "Подробное объяснение циклов с интерактивными примерами от javascript.info."
+    }
+  ]
+}

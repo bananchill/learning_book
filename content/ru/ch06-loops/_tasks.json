@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-sum-to.js",
+    "title": "Сумма от 1 до n",
+    "difficulty": "easy",
+    "description": "Функция sumTo(n) возвращает сумму 1+2+...+n через цикл."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-count-occurrences.js",
+    "title": "Подсчёт вхождений",
+    "difficulty": "easy",
+    "description": "Функция countOccurrences(arr, value) считает сколько раз value встречается в arr."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-flatten.js",
+    "title": "Разворачивание массива (без flat())",
+    "difficulty": "medium",
+    "description": "Функция flatten(arr) разворачивает вложенный массив на один уровень глубины, не используя Array.prototype.flat()."
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "chapter": "ch06-loops",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nfor (let i = 0; i < 5; i++) {\n  if (i === 3) continue;\n  if (i === 4) break;\n  console.log(i);\n}\n```",
+      "options": ["0 1 2 4", "0 1 2", "0 1 2 3", "0 1 2 3 4"],
+      "correctAnswer": 1,
+      "explanation": "При i=3: continue пропускает вывод, переходит к i=4. При i=4: break выходит из цикла до вывода. Итог: выводятся 0, 1, 2."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "В чём главное отличие `for...of` от `for...in`?",
+      "options": [
+        "for...of быстрее for...in",
+        "for...of итерирует по значениям, for...in — по ключам",
+        "for...in работает только с массивами",
+        "for...of включает унаследованные свойства"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`for...of` итерирует по значениям итерируемых объектов (Array, String, Map, Set). `for...in` итерирует по именам свойств объекта, включая унаследованные от прототипа."
+    },
+    {
+      "id": "q3",
+      "type": "true-false",
+      "question": "do...while гарантирует выполнение тела цикла хотя бы один раз, даже если условие изначально ложно.",
+      "correctAnswer": true,
+      "explanation": "Да. В do...while тело выполняется сначала, условие проверяется после. При `do { code } while (false)` — код выполнится один раз."
+    },
+    {
+      "id": "q4",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst obj = { a: 1, b: 2, c: 3 };\nfor (const key in obj) {\n  console.log(key);\n}\n```",
+      "options": ["1, 2, 3", "'a', 'b', 'c'", "['a', 1], ['b', 2], ['c', 3]", "TypeError"],
+      "correctAnswer": 1,
+      "explanation": "`for...in` итерирует по ключам объекта. Выведет строки 'a', 'b', 'c'. Для значений нужно `obj[key]`."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Когда следует использовать `break` в цикле?",
+      "options": [
+        "Когда нужно пропустить текущую итерацию",
+        "Когда нужно выйти из цикла досрочно",
+        "Когда нужно перейти к следующей итерации внешнего цикла",
+        "Когда нужно начать цикл заново"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`break` полностью прекращает выполнение цикла. Для пропуска итерации — `continue`. `break` типично используется при нахождении нужного элемента в поиске или при возникновении ошибки."
+    }
+  ]
+}

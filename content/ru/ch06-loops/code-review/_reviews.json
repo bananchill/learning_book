@@ -1,0 +1,42 @@
+{
+  "chapter": "ch06-loops",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Проблемы с циклами",
+      "issues": [
+        {
+          "line": 5,
+          "type": "error",
+          "description": "`i <= users.length` — off-by-one ошибка! При i === users.length обращение к users[i] вернёт undefined. Должно быть `i < users.length`."
+        },
+        {
+          "line": 4,
+          "type": "error",
+          "description": "`var i` в цикле for — использовать `let`. var создаёт функциональный скоуп, let — блочный (правильный для счётчика цикла)."
+        },
+        {
+          "line": 9,
+          "type": "warning",
+          "description": "`user.isActive == true` — нестрогое сравнение. Используйте `user.isActive === true` или просто `user.isActive`."
+        },
+        {
+          "line": 8,
+          "type": "style",
+          "description": "Тройная вложенность if внутри цикла — pyramid of doom. Рефакторинг через continue: `if (!user.isActive) continue; if (user.age < criteria.minAge) continue;`"
+        },
+        {
+          "line": 21,
+          "type": "error",
+          "description": "`for...in` без `Object.hasOwn()` — может захватить свойства прототипа. Используйте `for (const key of Object.keys(obj))` или `if (Object.hasOwn(obj, key))` внутри цикла."
+        },
+        {
+          "line": 28,
+          "type": "error",
+          "description": "`var j` в for создаёт одну переменную для всех callback. К моменту выполнения setTimeout j = 5. Замените на `let j` — каждая итерация получит свою копию."
+        }
+      ]
+    }
+  ]
+}
