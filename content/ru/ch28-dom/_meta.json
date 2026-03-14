@@ -1,0 +1,24 @@
+{
+  "id": "ch28-dom",
+  "title": "DOM API",
+  "section": "browser",
+  "order": 28,
+  "estimatedMinutes": 40,
+  "subchapters": [
+    { "id": "01-dom-tree", "title": "DOM-дерево", "order": 1 },
+    { "id": "02-query-manipulation", "title": "Поиск и манипуляции", "order": 2 },
+    { "id": "03-attributes-classes-styles", "title": "Атрибуты, классы, стили", "order": 3 },
+    { "id": "04-documentfragment-performance", "title": "DocumentFragment и производительность", "order": 4 }
+  ],
+  "concepts": [
+    "DOM tree",
+    "querySelector",
+    "createElement",
+    "classList",
+    "dataset",
+    "DocumentFragment",
+    "reflow",
+    "repaint"
+  ],
+  "prerequisites": ["ch09-objects", "ch13-prototypes"]
+}

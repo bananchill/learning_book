@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-create-element.js",
+    "title": "createElement с атрибутами и детьми",
+    "description": "Реализуйте функцию createElement(tag, attrs, children) — создаёт DOM-элемент с атрибутами и дочерними элементами.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте document.createElement(tag) для создания элемента",
+      "Для attrs итерируйтесь по Object.entries(attrs) и вызывайте el.setAttribute(key, value)",
+      "children может быть строкой (textContent) или массивом элементов/строк"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-toggle-class.js",
+    "title": "toggleClass — управление CSS классами",
+    "description": "Реализуйте функцию toggleClass(el, className, force), аналогичную classList.toggle с поддержкой force параметра.",
+    "difficulty": "easy",
+    "hints": [
+      "Если force === true — только добавить класс",
+      "Если force === false — только удалить класс",
+      "Если force не передан — переключить (добавить если нет, удалить если есть)"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-render-list.js",
+    "title": "renderList с DocumentFragment",
+    "description": "Реализуйте функцию renderList(container, items, renderItem), которая эффективно обновляет список через DocumentFragment, очищая контейнер перед вставкой.",
+    "difficulty": "medium",
+    "hints": [
+      "Создайте DocumentFragment через document.createDocumentFragment()",
+      "Для каждого item вызовите renderItem(item) и добавьте результат во fragment",
+      "Очистите container (innerHTML = '' или replaceChildren()), потом append(fragment)"
+    ]
+  }
+]

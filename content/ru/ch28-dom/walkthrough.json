@@ -1,0 +1,34 @@
+{
+  "chapter": "ch28-dom",
+  "title": "DocumentFragment: батчинг DOM-вставок",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Проблема: reflow при каждой вставке",
+      "code": "const list = document.querySelector('ul')\n\nfor (let i = 0; i < 100; i++) {\n  const li = document.createElement('li')\n  li.textContent = `Элемент ${i}`\n  list.appendChild(li)  // ← 100 reflow!\n}",
+      "highlight": [6],
+      "explanation": "Каждый appendChild добавляет элемент прямо в DOM. Браузер может пересчитать раскладку после каждой вставки — 100 потенциальных reflow."
+    },
+    {
+      "id": 2,
+      "title": "Создаём DocumentFragment",
+      "code": "const fragment = document.createDocumentFragment()\n// fragment — не часть DOM, изменения в нём\n// не вызывают reflow",
+      "highlight": [1],
+      "explanation": "DocumentFragment — виртуальный контейнер вне DOM. Операции с ним не вызывают перерасчёт страницы."
+    },
+    {
+      "id": 3,
+      "title": "Накапливаем элементы во fragment",
+      "code": "const fragment = document.createDocumentFragment()\n\nfor (let i = 0; i < 100; i++) {\n  const li = document.createElement('li')\n  li.textContent = `Элемент ${i}`\n  fragment.appendChild(li)  // ← 0 reflow!\n}",
+      "highlight": [6],
+      "explanation": "Все 100 элементов добавляются во fragment. Нет reflow — fragment не виден браузеру."
+    },
+    {
+      "id": 4,
+      "title": "Одна вставка — один reflow",
+      "code": "const list = document.querySelector('ul')\nlist.appendChild(fragment)  // ← 1 reflow!\n// Все 100 элементов вставлены за одну операцию\n// fragment теперь пустой (все дети перемещены в list)",
+      "highlight": [2],
+      "explanation": "Один append переносит всех детей fragment в DOM. Один reflow вместо 100."
+    }
+  ]
+}

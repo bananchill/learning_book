@@ -1,0 +1,26 @@
+[
+  {
+    "title": "MDN: Introduction to the DOM",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "MDN: Locating DOM elements using selectors",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "What forces layout / reflow",
+    "url": "https://gist.github.com/paulirish/5d52fb081b3570c81e3a",
+    "type": "article",
+    "language": "en"
+  },
+  {
+    "title": "JavaScript.info: Document",
+    "url": "https://javascript.info/document",
+    "type": "tutorial",
+    "language": "ru"
+  }
+]

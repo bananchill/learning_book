@@ -1,0 +1,65 @@
+{
+  "chapter": "ch28-dom",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Чем отличается `el.children` от `el.childNodes`?",
+      "options": [
+        "children быстрее childNodes",
+        "children содержит только Element узлы, childNodes — все узлы включая текстовые",
+        "childNodes не поддерживается в современных браузерах",
+        "Разница только в типе возвращаемого значения"
+      ],
+      "correctIndex": 1,
+      "explanation": "childNodes возвращает NodeList со всеми дочерними узлами, включая текстовые (пробелы, переносы строк). children — HTMLCollection только Element узлов."
+    },
+    {
+      "id": "q2",
+      "text": "Почему `innerHTML = userInput` опасно?",
+      "options": [
+        "Это медленно",
+        "Браузер парсит HTML и может выполнить вредоносные скрипты (XSS)",
+        "Это устаревший API",
+        "innerHTML не поддерживает вложенные элементы"
+      ],
+      "correctIndex": 1,
+      "explanation": "innerHTML интерпретирует строку как HTML. Если пользователь передаст <script>...</script> или inline обработчики событий, они будут выполнены. Используйте textContent для безопасной вставки текста."
+    },
+    {
+      "id": "q3",
+      "text": "Что такое DocumentFragment и зачем он нужен?",
+      "options": [
+        "Легковесный документ для хранения HTML строк",
+        "Виртуальный контейнер для DOM-узлов, позволяющий минимизировать количество reflow",
+        "Кэш для часто используемых элементов",
+        "Способ создать iframe без src"
+      ],
+      "correctIndex": 1,
+      "explanation": "DocumentFragment — виртуальный узел, не являющийся частью DOM. Операции с ним не вызывают reflow. При вставке fragment в DOM все его дети вставляются за одну операцию — один reflow вместо N."
+    },
+    {
+      "id": "q4",
+      "text": "Как правильно установить значение `data-user-id` через JavaScript?",
+      "options": [
+        "el.setAttribute('data-user-id', '42')",
+        "el.dataset.userId = '42'",
+        "Оба варианта правильны",
+        "el.data.userId = '42'"
+      ],
+      "correctIndex": 2,
+      "explanation": "Оба варианта работают. dataset.userId автоматически конвертирует camelCase в kebab-case (userId → user-id). setAttribute более явный. dataset удобнее при множественных операциях."
+    },
+    {
+      "id": "q5",
+      "text": "Что такое 'Layout Thrashing'?",
+      "options": [
+        "Ошибка памяти при большом количестве DOM-элементов",
+        "Чередование операций чтения и записи геометрии, вызывающее много forced reflow",
+        "Медленная работа CSS анимаций",
+        "Переполнение стека вызовов при рекурсивном обходе DOM"
+      ],
+      "correctIndex": 1,
+      "explanation": "Layout Thrashing происходит когда читаем (offsetHeight, getBoundingClientRect) и пишем (style.top) в DOM поочерёдно. Каждое чтение после записи вынуждает браузер выполнить принудительный reflow."
+    }
+  ]
+}

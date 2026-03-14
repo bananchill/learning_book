@@ -1,0 +1,33 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "DOM манипуляции — найдите проблемы",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "error",
+        "message": "div.innerHTML = `<span>${user.name}</span>` — XSS если user.name содержит HTML теги или скрипты",
+        "fix": "const span = document.createElement('span'); span.textContent = user.name; div.appendChild(span)"
+      },
+      {
+        "line": 10,
+        "severity": "error",
+        "message": "Layout Thrashing — offsetHeight (чтение) и style.marginBottom (запись) чередуются в цикле. Каждая итерация вызывает forced reflow",
+        "fix": "Сначала собрать все heights: const heights = elements.map(el => el.offsetHeight), затем применить: elements.forEach((el, i) => el.style.marginBottom = heights[i] + 'px')"
+      },
+      {
+        "line": 17,
+        "severity": "warning",
+        "message": "Многократные appendChild без DocumentFragment вызывают reflow при каждой вставке",
+        "fix": "const fragment = document.createDocumentFragment(); users.forEach(u => fragment.appendChild(renderUser(u))); container.appendChild(fragment)"
+      },
+      {
+        "line": 24,
+        "severity": "error",
+        "message": "Итерация по живой коллекции (children) с удалением — пропускает каждый второй элемент",
+        "fix": "container.replaceChildren() — удаляет всех детей за одну операцию. Или: while (container.firstChild) container.removeChild(container.firstChild)"
+      }
+    ]
+  }
+]
