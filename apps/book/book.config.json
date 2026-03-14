@@ -13,15 +13,159 @@
           "icon": "js",
           "groups": [
             {
+              "id": "intro",
+              "title": "Введение",
+              "order": 1,
+              "chapters": [
+                {
+                  "id": "ch01-intro",
+                  "title": "Введение в JavaScript",
+                  "description": "Что такое JavaScript, где он работает и как начать писать код",
+                  "order": 1,
+                  "contentPath": "content/ru/ch01-intro",
+                  "subchapters": [
+                    { "id": "01-what-is-js", "title": "Что такое JavaScript", "order": 1 },
+                    { "id": "02-first-steps", "title": "Первые шаги", "order": 2 },
+                    { "id": "03-how-it-works", "title": "Как работает JavaScript", "order": 3 },
+                    { "id": "04-strict-mode", "title": "Строгий режим и современный JS", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch02-devtools",
+                  "title": "Среда разработки",
+                  "description": "VS Code, браузерный DevTools, Node.js, линтинг и форматирование",
+                  "order": 2,
+                  "contentPath": "content/ru/ch02-devtools",
+                  "subchapters": [
+                    { "id": "01-vscode", "title": "VS Code — редактор кода", "order": 1 },
+                    { "id": "02-browser-devtools", "title": "Браузерный DevTools", "order": 2 },
+                    { "id": "03-nodejs-npm", "title": "Node.js и npm/pnpm", "order": 3 },
+                    { "id": "04-linting", "title": "Линтинг и форматирование", "order": 4 }
+                  ]
+                }
+              ]
+            },
+            {
               "id": "basics",
               "title": "Основы",
-              "order": 1,
+              "order": 2,
+              "chapters": [
+                {
+                  "id": "ch03-variables",
+                  "title": "Переменные и типы данных",
+                  "description": "var, let, const, примитивные типы, typeof и приведение типов",
+                  "order": 3,
+                  "contentPath": "content/ru/ch03-variables",
+                  "subchapters": [
+                    { "id": "01-var-let-const", "title": "var, let, const", "order": 1 },
+                    { "id": "02-primitives", "title": "Примитивные типы", "order": 2 },
+                    { "id": "03-typeof-coercion", "title": "typeof и приведение типов", "order": 3 },
+                    { "id": "04-values", "title": "Работа со значениями", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch04-operators",
+                  "title": "Операторы и выражения",
+                  "description": "Арифметика, сравнение, логика, деструктуризация и spread/rest",
+                  "order": 4,
+                  "contentPath": "content/ru/ch04-operators",
+                  "subchapters": [
+                    { "id": "01-arithmetic", "title": "Арифметические и строковые операторы", "order": 1 },
+                    { "id": "02-comparison", "title": "Операторы сравнения", "order": 2 },
+                    { "id": "03-logical", "title": "Логические операторы", "order": 3 },
+                    { "id": "04-destructuring", "title": "Деструктуризация и spread/rest", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch05-conditions",
+                  "title": "Условные операторы",
+                  "description": "if/else, switch/case, тернарный оператор и паттерны условий",
+                  "order": 5,
+                  "contentPath": "content/ru/ch05-conditions",
+                  "subchapters": [
+                    { "id": "01-if-else", "title": "if / else if / else", "order": 1 },
+                    { "id": "02-switch", "title": "switch / case", "order": 2 },
+                    { "id": "03-ternary", "title": "Тернарный оператор", "order": 3 },
+                    { "id": "04-patterns", "title": "Паттерны условий", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch06-loops",
+                  "title": "Циклы",
+                  "description": "for, while, for...of, for...in, break/continue и производительность",
+                  "order": 6,
+                  "contentPath": "content/ru/ch06-loops",
+                  "subchapters": [
+                    { "id": "01-for-while", "title": "for, while, do...while", "order": 1 },
+                    { "id": "02-for-of-in", "title": "for...of и for...in", "order": 2 },
+                    { "id": "03-break-continue", "title": "break, continue, метки", "order": 3 },
+                    { "id": "04-performance", "title": "Производительность циклов", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch07-functions",
+                  "title": "Функции",
+                  "description": "Объявление, параметры, стрелочные функции и рекурсия",
+                  "order": 7,
+                  "contentPath": "content/ru/ch07-functions",
+                  "subchapters": [
+                    { "id": "01-declaration", "title": "Объявление функций", "order": 1 },
+                    { "id": "02-parameters", "title": "Параметры и аргументы", "order": 2 },
+                    { "id": "03-arrow", "title": "Стрелочные функции", "order": 3 },
+                    { "id": "04-recursion", "title": "Рекурсия", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch08-arrays",
+                  "title": "Массивы",
+                  "description": "Создание, map/filter/reduce, сортировка, поиск и паттерны",
+                  "order": 8,
+                  "contentPath": "content/ru/ch08-arrays",
+                  "subchapters": [
+                    { "id": "01-basics", "title": "Создание и базовые методы", "order": 1 },
+                    { "id": "02-iteration", "title": "Итерационные методы", "order": 2 },
+                    { "id": "03-sort-search", "title": "Сортировка и поиск", "order": 3 },
+                    { "id": "04-patterns", "title": "Паттерны работы с массивами", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch09-objects",
+                  "title": "Объекты",
+                  "description": "Создание, методы Object, деструктуризация, ссылки и копирование",
+                  "order": 9,
+                  "contentPath": "content/ru/ch09-objects",
+                  "subchapters": [
+                    { "id": "01-creation", "title": "Создание и доступ к свойствам", "order": 1 },
+                    { "id": "02-methods", "title": "Методы Object", "order": 2 },
+                    { "id": "03-destructuring", "title": "Деструктуризация объектов", "order": 3 },
+                    { "id": "04-references", "title": "Ссылки и копирование", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch10-strings",
+                  "title": "Строки",
+                  "description": "Методы строк, шаблонные литералы, Unicode и регулярные выражения",
+                  "order": 10,
+                  "contentPath": "content/ru/ch10-strings",
+                  "subchapters": [
+                    { "id": "01-basics", "title": "Строки и Unicode", "order": 1 },
+                    { "id": "02-methods", "title": "Методы строк", "order": 2 },
+                    { "id": "03-template-literals", "title": "Шаблонные литералы", "order": 3 },
+                    { "id": "04-regex", "title": "Регулярные выражения", "order": 4 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "intermediate",
+              "title": "Intermediate",
+              "order": 3,
               "chapters": [
                 {
                   "id": "ch01-closures",
                   "title": "Замыкания",
                   "description": "Полный разбор замыканий: от основ до внутренностей V8",
-                  "order": 1,
+                  "order": 11,
                   "contentPath": "content/ru/ch01-closures",
                   "subchapters": [
                     { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
@@ -34,8 +178,8 @@
                 {
                   "id": "ch05-currying",
                   "title": "Каррирование",
-                  "description": "Каррирование, частичное применение, compose и pipe — от теории к практике",
-                  "order": 5,
+                  "description": "Каррирование, частичное применение, compose и pipe",
+                  "order": 17,
                   "contentPath": "content/ru/ch05-currying",
                   "subchapters": [
                     { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
@@ -49,7 +193,7 @@
                   "id": "ch02-async",
                   "title": "Асинхронность",
                   "description": "Event loop, промисы, async/await и продвинутые асинхронные паттерны",
-                  "order": 2,
+                  "order": 21,
                   "contentPath": "content/ru/ch02-async",
                   "subchapters": [
                     { "id": "01-what-and-why", "title": "Синхронный vs асинхронный код", "order": 1 },
@@ -58,19 +202,12 @@
                     { "id": "04-async-await", "title": "Async/Await", "order": 4 },
                     { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
                   ]
-                }
-              ]
-            },
-            {
-              "id": "advanced",
-              "title": "Продвинутый",
-              "order": 2,
-              "chapters": [
+                },
                 {
                   "id": "ch03-parallelism",
                   "title": "Параллелизм и конкурентность",
-                  "description": "Конкурентность vs параллелизм, Web Workers, SharedArrayBuffer, Atomics, worker_threads, паттерны многопоточности",
-                  "order": 3,
+                  "description": "Web Workers, SharedArrayBuffer, Atomics, worker_threads",
+                  "order": 22,
                   "contentPath": "content/ru/ch03-parallelism",
                   "subchapters": [
                     { "id": "01-concepts", "title": "Конкурентность vs параллелизм", "order": 1 },
@@ -79,12 +216,19 @@
                     { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
                     { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "id": "internals",
+              "title": "Internals",
+              "order": 4,
+              "chapters": [
                 {
                   "id": "ch04-v8-engine",
                   "title": "Движок V8",
-                  "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и сборка мусора",
-                  "order": 4,
+                  "description": "Архитектура V8, JIT-компиляция, hidden classes, context allocation и GC",
+                  "order": 23,
                   "contentPath": "content/ru/ch04-v8-engine",
                   "subchapters": [
                     { "id": "01-architecture", "title": "Архитектура V8", "order": 1 },
@@ -102,6 +246,7 @@
           "id": "typescript",
           "title": "TypeScript",
           "order": 2,
+          "icon": "ts",
           "groups": [
             {
               "id": "basics",
@@ -112,7 +257,7 @@
                   "id": "ch06-ts-type-system",
                   "title": "Система типов TypeScript",
                   "description": "Что такое система типов, structural vs nominal, примитивы, объектные типы, type narrowing",
-                  "order": 6,
+                  "order": 24,
                   "contentPath": "content/ru/ch06-ts-type-system",
                   "subchapters": [
                     { "id": "01-what-and-why", "title": "Что такое система типов и зачем она нужна", "order": 1 },
