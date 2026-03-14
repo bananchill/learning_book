@@ -1,0 +1,50 @@
+{
+  "chapter": "ch14-this",
+  "tasks": [
+    {
+      "id": "01-easy-bind-all",
+      "title": "bindAll — привязка всех методов",
+      "difficulty": "easy",
+      "description": "Реализуй функцию bindAll(obj), которая привязывает все методы объекта к нему самому через bind. Должны привязываться только собственные методы (функции), унаследованные — нет. Функция изменяет объект на месте и возвращает его.",
+      "file": "01-easy-bind-all.js",
+      "testFile": "01-easy-bind-all.test.js",
+      "concepts": ["bind", "this", "object-methods"],
+      "hints": [
+        "Перебери собственные ключи объекта через Object.keys(). Проверь, что значение — функция.",
+        "Для каждой функции: obj[key] = obj[key].bind(obj) — переназначаем метод привязанной версией.",
+        "Object.keys(obj).forEach(key => { if (typeof obj[key] === 'function') obj[key] = obj[key].bind(obj) })"
+      ],
+      "estimatedMinutes": 7
+    },
+    {
+      "id": "02-easy-my-bind",
+      "title": "Реализовать myBind",
+      "difficulty": "easy",
+      "description": "Реализуй функцию myBind(fn, ctx, ...preArgs) — аналог Function.prototype.bind. Должна возвращать новую функцию, которая: всегда вызывает fn с this === ctx, поддерживает частичное применение (preArgs + вызванные args объединяются).",
+      "file": "02-easy-my-bind.js",
+      "testFile": "02-easy-my-bind.test.js",
+      "concepts": ["bind", "call-apply", "partial-application", "closure"],
+      "hints": [
+        "Сохрани ссылку на fn и ctx в замыкании. Возврати новую функцию.",
+        "Внутри возвращённой функции используй fn.apply(ctx, [...preArgs, ...args]).",
+        "function myBind(fn, ctx, ...preArgs) { return function(...args) { return fn.apply(ctx, [...preArgs, ...args]) } }"
+      ],
+      "estimatedMinutes": 8
+    },
+    {
+      "id": "03-medium-timer",
+      "title": "Исправить Timer с потерянным this",
+      "difficulty": "medium",
+      "description": "Класс Timer имеет метод start() который запускает setInterval и должен каждые 100ms увеличивать this.count и вызывать this.onTick(this.count). Но this теряется в setInterval. Исправь класс так чтобы this корректно ссылался на экземпляр Timer. Также добавь метод stop() который останавливает интервал.",
+      "file": "03-medium-timer.js",
+      "testFile": "03-medium-timer.test.js",
+      "concepts": ["this", "context-loss", "setinterval", "bind-or-arrow"],
+      "hints": [
+        "Проблема: setInterval вызывает коллбэк без контекста — this теряется. Используй стрелочную функцию или bind.",
+        "Для stop() сохрани ID интервала в this.intervalId = setInterval(...), затем clearInterval(this.intervalId).",
+        "start() { this.intervalId = setInterval(() => { this.count++; this.onTick(this.count) }, 100) } — стрелка захватывает this"
+      ],
+      "estimatedMinutes": 12
+    }
+  ]
+}

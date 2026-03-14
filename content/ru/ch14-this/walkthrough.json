@@ -1,0 +1,46 @@
+{
+  "title": "Четыре правила this: диагностика",
+  "code": "const obj = {\n  name: 'Объект',\n  greet() {\n    return 'Привет от ' + this.name\n  }\n}\n\n// Тест 1: неявная привязка\nobj.greet()\n\n// Тест 2: потеря контекста\nconst fn = obj.greet\nfn()\n\n// Тест 3: явная привязка\nfn.call({ name: 'Алиса' })\n\n// Тест 4: bind\nconst bound = fn.bind({ name: 'Боб' })\nbound()",
+  "steps": [
+    {
+      "line": 9,
+      "description": "obj.greet() — правило 1: неявная привязка. Объект перед точкой — obj. this === obj.",
+      "variables": { "this": "obj", "this.name": "'Объект'" },
+      "callStack": ["global", "greet()"],
+      "output": "'Привет от Объект'"
+    },
+    {
+      "line": 12,
+      "description": "const fn = obj.greet — сохраняем функцию в переменную. Контекст ещё не потерян, просто сохранили ссылку.",
+      "variables": { "fn": "function greet()" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 13,
+      "description": "fn() — правило 4: привязка по умолчанию. Нет объекта перед точкой, нет call/apply/bind, нет new. this === undefined (strict).",
+      "variables": { "this": "undefined" },
+      "callStack": ["global", "greet()"],
+      "output": "TypeError: Cannot read properties of undefined"
+    },
+    {
+      "line": 16,
+      "description": "fn.call({ name: 'Алиса' }) — правило 2: явная привязка через call. this === { name: 'Алиса' }.",
+      "variables": { "this": "{ name: 'Алиса' }" },
+      "callStack": ["global", "greet()"],
+      "output": "'Привет от Алиса'"
+    },
+    {
+      "line": 19,
+      "description": "fn.bind({ name: 'Боб' }) — создаём новую функцию с жёстко привязанным this. bound не вызывается ещё.",
+      "variables": { "bound": "function (жёсткая привязка к { name: 'Боб' })" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 20,
+      "description": "bound() — правило 2 (bind): this всегда { name: 'Боб' }, нельзя переопределить.",
+      "variables": { "this": "{ name: 'Боб' }" },
+      "callStack": ["global", "greet()"],
+      "output": "'Привет от Боб'"
+    }
+  ]
+}

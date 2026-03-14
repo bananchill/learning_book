@@ -1,0 +1,53 @@
+{
+  "chapter": "ch14-this",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Как определяется this в JavaScript?",
+      "level": "junior",
+      "goodAnswer": "this определяется не там, где функция написана, а там, где вызвана — за исключением стрелочных функций. Четыре правила: 1) new — this === новый объект; 2) call/apply/bind — this === первый аргумент; 3) obj.method() — this === obj; 4) fn() — this === undefined в strict mode или глобальный объект. Стрелочные функции берут this лексически из внешнего контекста.",
+      "whatInterviewerWants": "Знание четырёх правил и их приоритета. Понимание разницы стрелки и обычной функции.",
+      "commonMistakes": [
+        "Думают, что this определяется местом объявления (как в стрелках — но это исключение)",
+        "Не знают порядок приоритета правил",
+        "Путают this с областью видимости"
+      ],
+      "followUps": [
+        "Что выведет: const fn = obj.method; fn()?",
+        "Как работает this в стрелочных функциях?"
+      ]
+    },
+    {
+      "id": "i2",
+      "question": "Опиши ситуацию потери контекста и способы решения",
+      "level": "junior",
+      "goodAnswer": "Потеря контекста — когда метод объекта вызывается без объекта перед точкой. Примеры: const fn = obj.method; fn() — метод оторван от объекта; setTimeout(obj.method, 100) — передача как колбэк; const { method } = obj — деструктуризация. Решения: 1) стрелочная обёртка: setTimeout(() => obj.method(), 100); 2) bind: setTimeout(obj.method.bind(obj), 100); 3) стрелочный class field: handleClick = () => {...} в классе.",
+      "whatInterviewerWants": "Понимание механизма потери и практические решения. Знание современных подходов (стрелки > bind > self).",
+      "commonMistakes": [
+        "Предлагают только self = this как решение",
+        "Не понимают, почему setTimeout вызывает без контекста",
+        "Думают, что bind изменяет оригинальную функцию"
+      ],
+      "followUps": [
+        "Чем отличается стрелочная обёртка от bind?",
+        "Когда стрелочный class field хуже обычного метода?"
+      ]
+    },
+    {
+      "id": "i3",
+      "question": "Реализуй собственный Function.prototype.bind",
+      "level": "middle",
+      "goodAnswer": "Function.prototype.myBind = function(context, ...preArgs) { const fn = this; return function(...args) { return fn.apply(context, [...preArgs, ...args]) } }. Важные детали: 1) сохраняем ссылку на оригинальную функцию (const fn = this); 2) используем apply для вызова с нужным this; 3) поддерживаем частичное применение (preArgs + args); 4) полноценная реализация должна также поддерживать new (переопределение через new).",
+      "whatInterviewerWants": "Понимание того, как bind работает внутри. Знание apply, замыканий, spread. Бонус — поддержка new.",
+      "commonMistakes": [
+        "Забывают про частичное применение (preArgs)",
+        "Не сохраняют this (const fn = this) перед возвратом функции",
+        "Не обрабатывают случай new"
+      ],
+      "followUps": [
+        "Как поддержать new в своей реализации bind?",
+        "Чем отличается apply от call?"
+      ]
+    }
+  ]
+}

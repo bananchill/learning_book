@@ -1,0 +1,27 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с this",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 22,
+        "type": "bug",
+        "description": "Деструктуризация const { emit } = bus отрывает метод от объекта. Вызов emit('test', 'data') потеряет this — this.listeners === undefined, TypeError.",
+        "fix": "Использовать bus.emit('test', 'data') или const emit = bus.emit.bind(bus)"
+      },
+      {
+        "line": 27,
+        "type": "bug",
+        "description": "Стрелочные функции как методы объекта: this в add и subtract берётся из внешнего лексического контекста (модуль/глобал), не из calculator. this.value += n обращается не к calculator.value.",
+        "fix": "Заменить стрелки на обычные методы: add(n) { this.value += n; return this }"
+      },
+      {
+        "line": 41,
+        "type": "bug",
+        "description": "Обычная function внутри map теряет this. this.prefix внутри function-колбэка — undefined в strict mode.",
+        "fix": "Использовать стрелочную функцию: items.map(item => this.prefix + ': ' + item)"
+      }
+    ]
+  }
+]

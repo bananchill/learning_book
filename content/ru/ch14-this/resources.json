@@ -1,0 +1,45 @@
+{
+  "chapter": "ch14-this",
+  "resources": [
+    {
+      "title": "this — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полное описание this с примерами для всех контекстов: глобальный, функция, метод, класс, стрелка",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "You Don't Know JS: this & Object Prototypes — Chapter 1-2",
+      "url": "https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/objects-classes/ch1.md",
+      "type": "book",
+      "language": "en",
+      "description": "Кайл Симпсон опровергает мифы о this и объясняет четыре правила привязки",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Arrow functions — javascript.info",
+      "url": "https://javascript.info/arrow-functions",
+      "type": "article",
+      "language": "en",
+      "description": "Объяснение лексического this стрелочных функций, когда их использовать и когда нет",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Function.prototype.bind — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind",
+      "type": "documentation",
+      "language": "en",
+      "description": "Документация bind с примерами частичного применения и создания привязанных методов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Understanding JavaScript Bind",
+      "url": "https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/",
+      "type": "article",
+      "language": "en",
+      "description": "Глубокое объяснение bind, реализация собственного bind, практические паттерны",
+      "difficulty": "intermediate"
+    }
+  ]
+}

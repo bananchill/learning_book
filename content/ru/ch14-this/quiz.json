@@ -1,0 +1,65 @@
+{
+  "chapter": "ch14-this",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что выведет этот код?\n\nconst obj = {\n  name: 'Объект',\n  greet() { console.log(this.name) }\n}\nconst fn = obj.greet\nfn()",
+      "type": "multiple-choice",
+      "options": ["'Объект'", "undefined", "ReferenceError", "TypeError"],
+      "correctAnswer": 1,
+      "explanation": "При присваивании const fn = obj.greet функция отрывается от объекта. При вызове fn() применяется правило привязки по умолчанию — в строгом режиме this === undefined, поэтому this.name === undefined.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Чем отличается call от bind?",
+      "type": "multiple-choice",
+      "options": [
+        "call принимает аргументы массивом, bind — через запятую",
+        "call вызывает функцию немедленно, bind возвращает новую функцию",
+        "bind работает только для стрелочных функций",
+        "call нельзя использовать с null"
+      ],
+      "correctAnswer": 1,
+      "explanation": "call(ctx, ...args) немедленно вызывает функцию с заданным this. bind(ctx, ...args) возвращает новую функцию с жёстко привязанным this — полезно для отложенных вызовов (setTimeout, обработчики событий).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что выведет стрелочная функция в методе объекта?\n\nconst obj = {\n  name: 'Obj',\n  method() {\n    const arrow = () => this.name\n    return arrow()\n  }\n}\nconsole.log(obj.method())",
+      "type": "code-output",
+      "options": ["undefined", "'Obj'", "ReferenceError", "null"],
+      "correctAnswer": 1,
+      "explanation": "Стрелочная функция захватывает this из лексического окружения — из метода method(). При вызове obj.method() this === obj (правило неявной привязки). Стрелка внутри видит тот же this.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Когда НЕ стоит использовать стрелочные функции?",
+      "type": "multiple-choice",
+      "options": [
+        "В колбэках map/filter",
+        "Как методы объекта, где нужен this === объект",
+        "В качестве аргументов setTimeout",
+        "Внутри методов класса"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Стрелочные функции не имеют своего this — они берут его из внешнего контекста. Если нужен this === объект (метод объекта, обработчик события с this === DOM-элемент), стрелка не подойдёт.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q5",
+      "question": "Как называется паттерн, когда привязанный через bind this нельзя переопределить через call?",
+      "type": "multiple-choice",
+      "options": [
+        "Hard binding — жёсткая привязка",
+        "Soft binding — мягкая привязка",
+        "Default binding",
+        "Implicit override"
+      ],
+      "correctAnswer": 0,
+      "explanation": "bind создаёт жёсткую (hard) привязку — this нельзя переопределить даже через call или apply. Единственное исключение: new может переопределить bind.",
+      "difficulty": "medium"
+    }
+  ]
+}
