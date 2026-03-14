@@ -1,0 +1,49 @@
+{
+  "chapter": "ch04-operators",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconsole.log(1 + 2 + '3');\nconsole.log('1' + 2 + 3);\n```",
+      "options": ["'33' и '123'", "'123' и '33'", "'33' и '33'", "'6' и '6'"],
+      "correctAnswer": 0,
+      "explanation": "JavaScript выполняет `+` слева направо. `1 + 2 = 3`, затем `3 + '3' = '33'`. Для второго: `'1' + 2 = '12'`, затем `'12' + 3 = '123'`."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Чем `??` отличается от `||`?",
+      "options": [
+        "Нет разницы, это синонимы",
+        "?? проверяет только null и undefined, || — все falsy значения",
+        "|| быстрее чем ??",
+        "?? работает только с объектами"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`0 || 'default'` вернёт `'default'` (0 — falsy). Но `0 ?? 'default'` вернёт `0` (0 — не null/undefined). Это критично для числовых настроек, где 0 является валидным значением."
+    },
+    {
+      "id": "q3",
+      "type": "code-output",
+      "question": "Что вернёт выражение?\n\n```javascript\nconst user = null;\nconst name = user?.profile?.name ?? 'Гость';\nconsole.log(name);\n```",
+      "options": ["TypeError", "undefined", "'Гость'", "null"],
+      "correctAnswer": 2,
+      "explanation": "Optional chaining `?.` возвращает `undefined` при обращении к свойству `null`/`undefined`. Затем `undefined ?? 'Гость'` возвращает `'Гость'`."
+    },
+    {
+      "id": "q4",
+      "type": "true-false",
+      "question": "Spread оператор создаёт глубокую копию объекта.",
+      "correctAnswer": false,
+      "explanation": "Spread создаёт ПОВЕРХНОСТНУЮ (shallow) копию. Верхний уровень копируется, но вложенные объекты по-прежнему копируются по ссылке: `const copy = { ...obj }; copy.nested === obj.nested // true`"
+    },
+    {
+      "id": "q5",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst [a, , b, c = 99] = [1, 2, 3];\nconsole.log(a, b, c);\n```",
+      "options": ["1 3 99", "1 2 3", "1 3 undefined", "1 undefined 99"],
+      "correctAnswer": 0,
+      "explanation": "Пропуск через запятую: a=1, второй элемент пропущен, b=3. c=99 — дефолтное значение, т.к. четвёртого элемента нет."
+    }
+  ]
+}

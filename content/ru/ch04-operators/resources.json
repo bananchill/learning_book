@@ -1,0 +1,35 @@
+{
+  "chapter": "ch04-operators",
+  "resources": [
+    {
+      "title": "MDN: Expressions and operators",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators",
+      "type": "docs",
+      "description": "Полный справочник всех операторов JavaScript с примерами."
+    },
+    {
+      "title": "MDN: Nullish coalescing operator (??)",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing",
+      "type": "docs",
+      "description": "Документация по оператору ??, включая отличия от ||."
+    },
+    {
+      "title": "MDN: Destructuring assignment",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+      "type": "docs",
+      "description": "Исчерпывающее руководство по деструктуризации с примерами всех паттернов."
+    },
+    {
+      "title": "MDN: Spread syntax",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax",
+      "type": "docs",
+      "description": "Документация spread оператора — массивы, объекты, вызовы функций."
+    },
+    {
+      "title": "Operator Lookup",
+      "url": "https://www.joshwcomeau.com/operator-lookup/",
+      "type": "tool",
+      "description": "Интерактивный справочник операторов JavaScript от Josh Comeau — кликайте на оператор и получайте объяснение."
+    }
+  ]
+}

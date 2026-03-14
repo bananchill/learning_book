@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-is-even.js",
+    "title": "Проверка чётности",
+    "difficulty": "easy",
+    "description": "Функция isEven(n) проверяет чётность числа через оператор %."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-merge-objects.js",
+    "title": "Слияние объектов через spread",
+    "difficulty": "easy",
+    "description": "Функция mergeObjects(...objects) сливает несколько объектов в один через spread оператор."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-parse-config.js",
+    "title": "Парсинг конфигурации с деструктуризацией",
+    "difficulty": "medium",
+    "description": "Функция parseConfig(config) деструктурирует конфиг с дефолтными значениями: { host = 'localhost', port = 3000, ssl = false }."
+  }
+]

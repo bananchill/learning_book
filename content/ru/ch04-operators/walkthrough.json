@@ -1,0 +1,40 @@
+{
+  "chapter": "ch04-operators",
+  "title": "Short-circuit evaluation пошагово",
+  "description": "Наблюдаем как JavaScript вычисляет логические выражения с short-circuit",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Выражение: isAdmin && sendEmail()",
+      "code": "const isAdmin = false;\nconst result = isAdmin && sendEmail();\n// sendEmail() не будет вызвана!",
+      "explanation": "isAdmin = false (falsy). Оператор && видит false слева и сразу возвращает false. Правая часть НЕ вычисляется."
+    },
+    {
+      "id": 2,
+      "title": "Выражение: name || 'Аноним'",
+      "code": "const name = '';\nconst display = name || 'Аноним';\nconsole.log(display); // 'Аноним'",
+      "variables": { "name": "'' (falsy)", "display": "'Аноним'" },
+      "explanation": "name = '' (falsy). || переходит к правому операнду и возвращает 'Аноним'."
+    },
+    {
+      "id": 3,
+      "title": "Ловушка: || с числом 0",
+      "code": "const count = 0;\nconst display = count || 'нет данных';\nconsole.log(display); // 'нет данных' — неправильно!",
+      "variables": { "count": "0 (falsy!)", "display": "'нет данных'" },
+      "explanation": "0 — falsy! || заменяет 0 на 'нет данных'. Но 0 — валидное значение счётчика. Это баг."
+    },
+    {
+      "id": 4,
+      "title": "Исправление через ??",
+      "code": "const count = 0;\nconst display = count ?? 'нет данных';\nconsole.log(display); // 0 — правильно!",
+      "variables": { "count": "0 (не null/undefined)", "display": "0" },
+      "explanation": "?? проверяет только null/undefined. 0 не является ни тем, ни другим — возвращается 0."
+    },
+    {
+      "id": 5,
+      "title": "Optional chaining + ??",
+      "code": "const user = null;\nconst city = user?.address?.city ?? 'Неизвестно';\nconsole.log(city); // 'Неизвестно'",
+      "explanation": "user?.address вернёт undefined (не ошибку), потом ?.city тоже undefined. Затем undefined ?? 'Неизвестно' = 'Неизвестно'."
+    }
+  ]
+}

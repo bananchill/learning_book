@@ -1,0 +1,42 @@
+{
+  "chapter": "ch04-operators",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Проблемы с операторами",
+      "issues": [
+        {
+          "line": 4,
+          "type": "warning",
+          "description": "Конкатенация через `+` — лучше использовать шаблонный литерал: `` `${user.firstName} ${user.lastName}` ``."
+        },
+        {
+          "line": 5,
+          "type": "error",
+          "description": "`user.age || 0` — баг! Если age = 0 (новорождённый), получим 0 как 'дефолт'. Правильно: `user.age ?? 0`. Нулевой возраст — валидное значение."
+        },
+        {
+          "line": 6,
+          "type": "error",
+          "description": "`user.score || 100` — тот же баг: если score = 0, получим 100. Используйте `user.score ?? 100`."
+        },
+        {
+          "line": 8,
+          "type": "error",
+          "description": "`user.role == 'admin'` — нестрогое сравнение. Используйте `===` для предсказуемого поведения."
+        },
+        {
+          "line": 12,
+          "type": "style",
+          "description": "`user.age >= 18 ? true : false` — избыточно. Само выражение `user.age >= 18` уже boolean: `const isAdult = user.age >= 18`."
+        },
+        {
+          "line": 13,
+          "type": "warning",
+          "description": "`user.isActive == true` — сравнение с true через ==. Правильно: `user.isActive === true` или просто `user.isActive` (если это всегда boolean)."
+        }
+      ]
+    }
+  ]
+}
