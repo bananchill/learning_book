@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-partial-required.js",
+    "title": "MyPartial<T> и MyRequired<T>",
+    "description": "Реализуйте функции myPartial(obj) и myRequired(obj), которые имитируют поведение Partial и Required (но в рантайме на JS объектах).",
+    "difficulty": "easy",
+    "hints": [
+      "В JS все свойства объектов уже 'опциональны' — можно просто вернуть объект",
+      "Для myRequired проверьте, что все свойства определены (не undefined)",
+      "В TypeScript сами типы: type MyPartial<T> = { [K in keyof T]?: T[K] }"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-deep-readonly.js",
+    "title": "deepFreeze — рекурсивный Object.freeze",
+    "description": "Реализуйте функцию deepFreeze(obj), которая рекурсивно замораживает объект и все его вложенные объекты через Object.freeze.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте Object.freeze() для замораживания текущего объекта",
+      "Рекурсивно вызывайте deepFreeze для каждого свойства-объекта",
+      "Проверьте typeof value === 'object' && value !== null перед рекурсией"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-event-map.js",
+    "title": "Типизированный EventEmitter",
+    "description": "Реализуйте класс TypedEventEmitter с методами on(event, handler), off(event, handler), emit(event, data). Хранилище обработчиков должно быть словарём Map.",
+    "difficulty": "medium",
+    "hints": [
+      "Храните обработчики в Map<string, Set<Function>> для эффективного on/off",
+      "emit должен вызвать все обработчики для данного события",
+      "off должен удалить конкретный обработчик, не все сразу"
+    ]
+  }
+]

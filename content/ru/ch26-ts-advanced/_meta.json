@@ -1,0 +1,22 @@
+{
+  "id": "ch26-ts-advanced",
+  "title": "Продвинутые типы TypeScript",
+  "section": "typescript",
+  "order": 26,
+  "estimatedMinutes": 50,
+  "subchapters": [
+    { "id": "01-mapped-types", "title": "Mapped Types", "order": 1 },
+    { "id": "02-conditional-types", "title": "Conditional Types", "order": 2 },
+    { "id": "03-template-literal-types", "title": "Template Literal Types", "order": 3 },
+    { "id": "04-utility-types", "title": "Utility Types разбор", "order": 4 }
+  ],
+  "concepts": [
+    "mapped types",
+    "conditional types",
+    "template literal types",
+    "utility types",
+    "keyof",
+    "in operator"
+  ],
+  "prerequisites": ["ch25-ts-generics"]
+}

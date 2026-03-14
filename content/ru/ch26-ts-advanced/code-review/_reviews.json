@@ -1,0 +1,33 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "API клиент — используйте продвинутые типы",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "warning",
+        "message": "pickFields теряет типы. В TypeScript: function pickFields<T, K extends keyof T>(obj: T, fields: K[]): Pick<T, K>",
+        "fix": "Используйте Pick<T, K> для сохранения типов выбранных полей"
+      },
+      {
+        "line": 10,
+        "severity": "error",
+        "message": "statusLabels не типизирован как Record<Status, string> — компилятор не подскажет о пропущенных ключах",
+        "fix": "type Status = 'active' | 'inactive' | 'deleted'\nconst statusLabels: Record<Status, string> = { ... } — TypeScript потребует все 3 ключа"
+      },
+      {
+        "line": 17,
+        "severity": "info",
+        "message": "Тип возвращаемого значения fetchUser — Promise<any>. Следует аннотировать: fetchUser(id: number): Promise<User>",
+        "fix": "async function fetchUser(id: number): Promise<User>"
+      },
+      {
+        "line": 23,
+        "severity": "warning",
+        "message": "createUser и updateUser дублируют поля. Используйте Omit и Pick для автоматической синхронизации",
+        "fix": "type CreateUserDto = Omit<User, 'id'>\ntype UpdateUserDto = Partial<Omit<User, 'id'>> & { id: number }"
+      }
+    ]
+  }
+]

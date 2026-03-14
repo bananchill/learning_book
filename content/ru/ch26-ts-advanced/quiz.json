@@ -1,0 +1,65 @@
+{
+  "chapter": "ch26-ts-advanced",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Что делает `[K in keyof T]-?: T[K]` в Mapped Type?",
+      "options": [
+        "Делает все свойства опциональными",
+        "Убирает знак вопроса — делает все свойства обязательными",
+        "Удаляет свойства из типа",
+        "Добавляет readonly ко всем свойствам"
+      ],
+      "correctIndex": 1,
+      "explanation": "Префикс `-` перед модификатором удаляет его. `-?` убирает опциональность, делая поля обязательными — это реализация встроенного Required<T>."
+    },
+    {
+      "id": "q2",
+      "text": "Какой тип получится: `type T = Extract<string | number | boolean, string | number>`?",
+      "options": [
+        "boolean",
+        "string | number",
+        "never",
+        "string | number | boolean"
+      ],
+      "correctIndex": 1,
+      "explanation": "Extract<T, U> оставляет только те члены T, которые совместимы с U. string и number совместимы со string | number, boolean — нет."
+    },
+    {
+      "id": "q3",
+      "text": "Что вернёт тип `type T = 'click' extends `on${infer E}` ? E : never`?",
+      "options": [
+        "'click'",
+        "never — 'click' не начинается с 'on'",
+        "'on'",
+        "string"
+      ],
+      "correctIndex": 1,
+      "explanation": "Строка 'click' не совпадает с паттерном `on${infer E}`, поэтому условие не выполняется и результат — never."
+    },
+    {
+      "id": "q4",
+      "text": "Чем отличается `T extends U ? X : Y` при `T = A | B` (дистрибутивность)?",
+      "options": [
+        "Никак не отличается — применяется к A | B целиком",
+        "Распределяется: (A extends U ? X : Y) | (B extends U ? X : Y)",
+        "Вызывает ошибку компиляции",
+        "Всегда возвращает never для union типов"
+      ],
+      "correctIndex": 1,
+      "explanation": "Дистрибутивные условные типы применяются к каждому члену union отдельно. Это ключевое свойство, делающее Extract и Exclude возможными."
+    },
+    {
+      "id": "q5",
+      "text": "Какой Utility Type следует использовать для создания объекта, где все ключи из enum, а значения — строки?",
+      "options": [
+        "Partial<Record<string, string>>",
+        "Record<EnumType, string>",
+        "Pick<{}, keyof EnumType>",
+        "Readonly<{ [key: string]: string }>"
+      ],
+      "correctIndex": 1,
+      "explanation": "Record<K, V> создаёт тип с ключами типа K и значениями типа V. Record<EnumType, string> гарантирует, что все значения enum имеют строковые значения."
+    }
+  ]
+}

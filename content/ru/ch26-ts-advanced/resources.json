@@ -1,0 +1,26 @@
+[
+  {
+    "title": "TypeScript Handbook: Mapped Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Template Literal Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Utility Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Type-Level TypeScript",
+    "url": "https://type-level-typescript.com/",
+    "type": "tutorial",
+    "language": "en"
+  }
+]
