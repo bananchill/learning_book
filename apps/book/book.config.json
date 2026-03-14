@@ -176,6 +176,71 @@
                   ]
                 },
                 {
+                  "id": "ch12-scope-hoisting",
+                  "title": "Scope, Hoisting и TDZ",
+                  "description": "Лексическое окружение, поднятие переменных и функций, временная мёртвая зона",
+                  "order": 12,
+                  "contentPath": "content/ru/ch12-scope-hoisting",
+                  "subchapters": [
+                    { "id": "01-lexical-env", "title": "Лексическое окружение и цепочка scope", "order": 1 },
+                    { "id": "02-hoisting", "title": "Hoisting: поднятие переменных и функций", "order": 2 },
+                    { "id": "03-tdz", "title": "TDZ: временная мёртвая зона", "order": 3 },
+                    { "id": "04-block-scope", "title": "Блочная область видимости и IIFE", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch13-prototypes",
+                  "title": "Прототипы и наследование",
+                  "description": "Прототипная цепочка, Object.create, классы как синтаксический сахар",
+                  "order": 13,
+                  "contentPath": "content/ru/ch13-prototypes",
+                  "subchapters": [
+                    { "id": "01-prototype-chain", "title": "Прототипная цепочка", "order": 1 },
+                    { "id": "02-object-create", "title": "Object.create и прототипное наследование", "order": 2 },
+                    { "id": "03-classes", "title": "Классы: синтаксический сахар", "order": 3 },
+                    { "id": "04-antipatterns", "title": "Антипаттерны наследования", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch14-this",
+                  "title": "this и контекст выполнения",
+                  "description": "Четыре правила привязки this, call/apply/bind, стрелочные функции",
+                  "order": 14,
+                  "contentPath": "content/ru/ch14-this",
+                  "subchapters": [
+                    { "id": "01-binding-rules", "title": "Четыре правила привязки this", "order": 1 },
+                    { "id": "02-call-apply-bind", "title": "call, apply и bind", "order": 2 },
+                    { "id": "03-arrow-this", "title": "Стрелочные функции и this", "order": 3 },
+                    { "id": "04-context-loss", "title": "Потеря контекста и её решения", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch15-error-handling",
+                  "title": "Обработка ошибок",
+                  "description": "try/catch/finally, типы ошибок, кастомные классы, паттерны обработки",
+                  "order": 15,
+                  "contentPath": "content/ru/ch15-error-handling",
+                  "subchapters": [
+                    { "id": "01-try-catch", "title": "try/catch/finally", "order": 1 },
+                    { "id": "02-error-types", "title": "Типы ошибок и кастомные классы", "order": 2 },
+                    { "id": "03-async-errors", "title": "Ошибки в асинхронном коде", "order": 3 },
+                    { "id": "04-patterns", "title": "Паттерны обработки ошибок", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch16-fp",
+                  "title": "Функциональное программирование",
+                  "description": "Чистые функции, иммутабельность, compose/pipe, Maybe и Either",
+                  "order": 16,
+                  "contentPath": "content/ru/ch16-fp",
+                  "subchapters": [
+                    { "id": "01-pure-functions", "title": "Чистые функции и побочные эффекты", "order": 1 },
+                    { "id": "02-immutability", "title": "Иммутабельность", "order": 2 },
+                    { "id": "03-compose-pipe", "title": "Compose и pipe", "order": 3 },
+                    { "id": "04-maybe-either", "title": "Maybe и Either монады", "order": 4 }
+                  ]
+                },
+                {
                   "id": "ch05-currying",
                   "title": "Каррирование",
                   "description": "Каррирование, частичное применение, compose и pipe",
@@ -187,6 +252,45 @@
                     { "id": "03-partial-and-compose", "title": "Частичное применение, compose и pipe", "order": 3 },
                     { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
                     { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
+                  ]
+                },
+                {
+                  "id": "ch18-generators",
+                  "title": "Генераторы и итераторы",
+                  "description": "Протокол итерации, function*/yield, бесконечные последовательности и async-генераторы",
+                  "order": 18,
+                  "contentPath": "content/ru/ch18-generators",
+                  "subchapters": [
+                    { "id": "01-iterator-protocol", "title": "Протокол итерации", "order": 1 },
+                    { "id": "02-generators-syntax", "title": "Генераторы: синтаксис и поведение", "order": 2 },
+                    { "id": "03-practical-generators", "title": "Практические применения", "order": 3 },
+                    { "id": "04-async-generators", "title": "Async-генераторы", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch19-proxy",
+                  "title": "Proxy и Reflect",
+                  "description": "Перехват операций с объектами, метапрограммирование и реактивность на основе Proxy",
+                  "order": 19,
+                  "contentPath": "content/ru/ch19-proxy",
+                  "subchapters": [
+                    { "id": "01-proxy-basics", "title": "Proxy: ловушки и handler", "order": 1 },
+                    { "id": "02-reflect", "title": "Reflect API", "order": 2 },
+                    { "id": "03-practical-proxy", "title": "Практические паттерны", "order": 3 },
+                    { "id": "04-reactivity", "title": "Реактивность: Vue 3 под капотом", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch20-modules",
+                  "title": "Модульная система JavaScript",
+                  "description": "ESM vs CommonJS, статический и динамический импорт, tree shaking",
+                  "order": 20,
+                  "contentPath": "content/ru/ch20-modules",
+                  "subchapters": [
+                    { "id": "01-esm-basics", "title": "ESM: import и export", "order": 1 },
+                    { "id": "02-cjs-vs-esm", "title": "CommonJS vs ESM", "order": 2 },
+                    { "id": "03-dynamic-import", "title": "Динамический import()", "order": 3 },
+                    { "id": "04-tree-shaking", "title": "Tree shaking и циклические зависимости", "order": 4 }
                   ]
                 },
                 {
