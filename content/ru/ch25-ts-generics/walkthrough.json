@@ -1,0 +1,34 @@
+{
+  "chapter": "ch25-ts-generics",
+  "title": "Как TypeScript выводит параметры типов",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Вызов функции с дженериком",
+      "code": "function identity<T>(value: T): T {\n  return value\n}\n\nconst result = identity(42)",
+      "highlight": [5],
+      "explanation": "При вызове identity(42) TypeScript видит аргумент 42 типа number и начинает процесс вывода типов."
+    },
+    {
+      "id": 2,
+      "title": "Унификация типов",
+      "code": "// TypeScript решает уравнение:\n// value: T = 42: number\n// Значит T = number\n\nconst result = identity(42) // identity<number>(42)",
+      "highlight": [1, 2, 3],
+      "explanation": "Компилятор 'унифицирует' тип параметра T с типом переданного значения. Поскольку 42 имеет тип number, TypeScript делает вывод T = number."
+    },
+    {
+      "id": 3,
+      "title": "Применение выведенного типа",
+      "code": "// result получает тип T[T=number] = number\nconst result = identity(42) // тип: number\n\n// Теперь TypeScript знает:\nconsole.log(result.toFixed(2)) // OK — number имеет метод toFixed\n// result.toUpperCase()          // Ошибка — number не имеет toUpperCase",
+      "highlight": [2],
+      "explanation": "После вывода T = number, тип result становится number. Теперь TypeScript может проверять корректность всех операций с result."
+    },
+    {
+      "id": 4,
+      "title": "Вывод с ограничениями",
+      "code": "function getLength<T extends { length: number }>(x: T): number {\n  return x.length\n}\n\ngetLength('hello')    // T = string (у строки есть length)\ngetLength([1, 2, 3]) // T = number[] (у массива есть length)\n// getLength(42)     // Ошибка! number не имеет length",
+      "highlight": [5, 6, 7],
+      "explanation": "При наличии ограничения TypeScript не только выводит T, но и проверяет, что переданный тип удовлетворяет ограничению extends { length: number }."
+    }
+  ]
+}

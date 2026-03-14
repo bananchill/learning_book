@@ -1,0 +1,39 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Generic утилиты — найдите проблемы",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "warning",
+        "message": "getFirst теряет тип элемента. В TypeScript: function getFirst<T>(arr: T[]): T | undefined",
+        "fix": "Используйте дженерик: function getFirst<T>(arr: T[]): T | undefined { return arr[0] }"
+      },
+      {
+        "line": 9,
+        "severity": "error",
+        "message": "wrapNumber и wrapString — дублирование. Один generic тип заменит оба",
+        "fix": "function wrap<T>(value: T): { value: T } { return { value } }"
+      },
+      {
+        "line": 18,
+        "severity": "warning",
+        "message": "merge теряет типы обоих объектов. Нужны generic параметры для A и B",
+        "fix": "function merge<A, B>(a: A, b: B): A & B { return Object.assign({}, a, b) as A & B }"
+      },
+      {
+        "line": 24,
+        "severity": "warning",
+        "message": "transform теряет связь между типом элемента массива и результатом функции",
+        "fix": "function transform<T, U>(items: T[], fn: (item: T) => U): U[] { return items.map(fn) }"
+      },
+      {
+        "line": 29,
+        "severity": "info",
+        "message": "last не защищён от пустого массива — вернёт undefined без предупреждения",
+        "fix": "function last<T>(arr: T[]): T | undefined { return arr[arr.length - 1] }"
+      }
+    ]
+  }
+]

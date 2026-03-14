@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-identity.js",
+    "title": "Generic функция identity",
+    "description": "Реализуйте generic функцию identity<T>(value: T): T, которая возвращает переданное значение без изменений.",
+    "difficulty": "easy",
+    "hints": [
+      "Функция должна принять значение любого типа и вернуть его же",
+      "В TypeScript синтаксис: function identity<T>(value: T): T",
+      "В JS просто верните value — тесты проверяют поведение, а не типы"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-stack.js",
+    "title": "Generic класс Stack<T>",
+    "description": "Реализуйте класс Stack с методами push(item), pop() → item|undefined, peek() → item|undefined и геттером size.",
+    "difficulty": "easy",
+    "hints": [
+      "Внутри используйте массив для хранения элементов",
+      "pop() удаляет и возвращает последний элемент, peek() только смотрит",
+      "size должен возвращать количество элементов без изменения стека"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-result.js",
+    "title": "Тип Result<T, E> с методами",
+    "description": "Реализуйте фабричные функции ok(value) и err(error), а также функцию map(result, fn) которая применяет fn к value если result.ok === true.",
+    "difficulty": "medium",
+    "hints": [
+      "ok(value) возвращает { ok: true, value }, err(error) возвращает { ok: false, error }",
+      "map(result, fn) должен вернуть ok(fn(result.value)) если result.ok, иначе вернуть result без изменений",
+      "Также реализуйте mapError(result, fn) — аналог map но для ошибки"
+    ]
+  }
+]

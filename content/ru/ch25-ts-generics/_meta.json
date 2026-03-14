@@ -1,0 +1,22 @@
+{
+  "id": "ch25-ts-generics",
+  "title": "Дженерики TypeScript",
+  "section": "typescript",
+  "order": 25,
+  "estimatedMinutes": 45,
+  "subchapters": [
+    { "id": "01-what-are-generics", "title": "Что такое дженерики", "order": 1 },
+    { "id": "02-generic-functions-classes", "title": "Generic функции и классы", "order": 2 },
+    { "id": "03-infer-conditional", "title": "infer и условные типы", "order": 3 },
+    { "id": "04-real-patterns", "title": "Реальные паттерны", "order": 4 }
+  ],
+  "concepts": [
+    "generics",
+    "type parameters",
+    "constraints",
+    "infer",
+    "conditional types",
+    "utility types"
+  ],
+  "prerequisites": ["ch06-ts-type-system"]
+}

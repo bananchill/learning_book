@@ -1,0 +1,26 @@
+[
+  {
+    "title": "TypeScript Handbook: Generics",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Deep Dive: Generics",
+    "url": "https://basarat.gitbook.io/typescript/type-system/generics",
+    "type": "book",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Conditional Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Matt Pocock: TypeScript Generics Tutorial",
+    "url": "https://www.totaltypescript.com/tutorials/typescript-generics",
+    "type": "tutorial",
+    "language": "en"
+  }
+]

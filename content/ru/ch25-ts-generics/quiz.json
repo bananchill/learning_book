@@ -1,0 +1,65 @@
+{
+  "chapter": "ch25-ts-generics",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Что делает параметр типа T в функции `function identity<T>(value: T): T`?",
+      "options": [
+        "Ограничивает T только строками",
+        "Говорит TypeScript принять значение любого типа и вернуть тот же тип",
+        "Создаёт новый тип T",
+        "Указывает, что value должен быть объектом"
+      ],
+      "correctIndex": 1,
+      "explanation": "Параметр типа T захватывает тип переданного значения и гарантирует, что возвращаемый тип совпадает с типом аргумента."
+    },
+    {
+      "id": "q2",
+      "text": "Что означает `<T extends { length: number }>`?",
+      "options": [
+        "T должен наследовать класс с полем length",
+        "T должен иметь свойство length типа number",
+        "T должен быть массивом",
+        "T должен быть строкой"
+      ],
+      "correctIndex": 1,
+      "explanation": "Ограничение extends в дженериках означает структурное соответствие — T должен иметь все указанные свойства, это не наследование классов."
+    },
+    {
+      "id": "q3",
+      "text": "Каков результат типа: `type A = ReturnType<() => number>`?",
+      "options": [
+        "() => number",
+        "void",
+        "number",
+        "never"
+      ],
+      "correctIndex": 2,
+      "explanation": "ReturnType извлекает тип возвращаемого значения функции. Для `() => number` это number."
+    },
+    {
+      "id": "q4",
+      "text": "Что делает `infer` в условном типе?",
+      "options": [
+        "Создаёт новый тип на основе существующего",
+        "Позволяет извлечь тип из другого типа в ветке условия",
+        "Проверяет совместимость типов",
+        "Распределяет union-тип"
+      ],
+      "correctIndex": 1,
+      "explanation": "infer позволяет TypeScript 'угадать' и захватить часть типа внутри условного выражения. Например, infer R в `T extends () => infer R` захватывает тип возвращаемого значения."
+    },
+    {
+      "id": "q5",
+      "text": "Какой тип вернёт `ToArray<string | number>` если `type ToArray<T> = T extends any ? T[] : never`?",
+      "options": [
+        "(string | number)[]",
+        "string[] | number[]",
+        "never",
+        "any[]"
+      ],
+      "correctIndex": 1,
+      "explanation": "Дистрибутивные условные типы распределяются по union: (string extends any ? string[] : never) | (number extends any ? number[] : never) = string[] | number[]."
+    }
+  ]
+}
