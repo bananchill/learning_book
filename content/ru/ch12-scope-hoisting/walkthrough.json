@@ -1,0 +1,41 @@
+{
+  "title": "Hoisting: как JavaScript обрабатывает объявления",
+  "code": "console.log(a)\nconsole.log(greet())\n\nvar a = 'значение'\n\nfunction greet() {\n  return 'Привет!'\n}",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Фаза парсинга: до выполнения JavaScript сканирует весь код. Находит 'var a' — добавляет в Environment Record как undefined.",
+      "variables": { "a": "undefined (поднято)", "greet": "(ещё не обработано)" },
+      "callStack": ["global"],
+      "highlight": "parsing"
+    },
+    {
+      "line": 1,
+      "description": "Фаза парсинга продолжается: находит 'function greet' — добавляет в Environment Record полностью, с телом функции.",
+      "variables": { "a": "undefined", "greet": "function greet() {...}" },
+      "callStack": ["global"],
+      "highlight": "hoisting"
+    },
+    {
+      "line": 1,
+      "description": "Выполнение: строка 1. console.log(a). a уже существует (поднято), значение — undefined.",
+      "variables": { "a": "undefined", "greet": "function" },
+      "callStack": ["global"],
+      "output": "undefined"
+    },
+    {
+      "line": 2,
+      "description": "Строка 2. console.log(greet()). greet уже существует полностью (поднято с телом) — вызов работает!",
+      "variables": { "a": "undefined", "greet": "function" },
+      "callStack": ["global", "greet()"],
+      "output": "Привет!"
+    },
+    {
+      "line": 4,
+      "description": "Строка 4. Присваивание a = 'значение'. Теперь a получает реальное значение.",
+      "variables": { "a": "значение", "greet": "function" },
+      "callStack": ["global"],
+      "highlight": "a"
+    }
+  ]
+}

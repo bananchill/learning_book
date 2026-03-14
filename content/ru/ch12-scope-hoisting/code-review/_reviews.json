@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с hoisting и скоупом",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 4,
+        "type": "bug",
+        "description": "version используется до объявления. var поднимается, поэтому не ReferenceError, но значение будет undefined вместо ожидаемой строки.",
+        "fix": "Объявить var version перед использованием или использовать let/const в начале функции"
+      },
+      {
+        "line": 6,
+        "type": "style",
+        "description": "var version и var config объявлены внутри блока if, но var игнорирует блок — они видны во всей функции initApp. Это вводит в заблуждение.",
+        "fix": "Использовать let/const и объявить в начале функции, или убедиться что блок нужен"
+      },
+      {
+        "line": 16,
+        "type": "bug",
+        "description": "var i в цикле: все 5 обработчиков замкнулись на одну переменную i. После цикла i === 5, все обработчики выведут 'Обработчик номер: 5'.",
+        "fix": "Заменить var i на let i — каждая итерация получит свою переменную"
+      },
+      {
+        "line": 24,
+        "type": "bug",
+        "description": "calculate используется до объявления. Но calculate — это var с функциональным выражением, а не объявление функции. Поднимается только имя (undefined), вызов вызовет TypeError: calculate is not a function.",
+        "fix": "Переместить объявление calculate перед вызовом, или использовать function calculate(a, b) { } для полного hoisting"
+      },
+      {
+        "line": 31,
+        "type": "bug",
+        "description": "typeof userId в TDZ бросает ReferenceError! userId объявлена через let ниже в функции — она в TDZ. Паттерн typeof для проверки существования не работает с let/const.",
+        "fix": "Объявить let userId = getUserId() в начале функции, до использования"
+      }
+    ]
+  }
+]

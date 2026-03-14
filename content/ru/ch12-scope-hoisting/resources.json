@@ -1,0 +1,45 @@
+{
+  "chapter": "ch12-scope-hoisting",
+  "resources": [
+    {
+      "title": "Hoisting — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Hoisting",
+      "type": "documentation",
+      "language": "en",
+      "description": "Официальная документация по hoisting с примерами для var, let, const и функций",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "You Don't Know JS: Scope & Closures — Chapter 5: The (Not So) Secret Lifecycle of Variables",
+      "url": "https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch5.md",
+      "type": "book",
+      "language": "en",
+      "description": "Кайл Симпсон подробно разбирает жизненный цикл переменных, hoisting и TDZ",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Temporal Dead Zone — javascript.info",
+      "url": "https://javascript.info/var",
+      "type": "article",
+      "language": "en",
+      "description": "Сравнение var, let, const с объяснением TDZ и практическими примерами",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "ECMAScript Specification — Identifier Resolution",
+      "url": "https://tc39.es/ecma262/#sec-identifier-resolution",
+      "type": "documentation",
+      "language": "en",
+      "description": "Формальное описание поиска переменных по цепочке лексических окружений в ECMAScript",
+      "difficulty": "advanced"
+    },
+    {
+      "title": "IIFE — Immediately Invoked Function Expression",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/IIFE",
+      "type": "documentation",
+      "language": "en",
+      "description": "MDN объясняет IIFE: синтаксис, использование и современные альтернативы",
+      "difficulty": "beginner"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ch12-scope-hoisting",
+  "title": "Scope, Hoisting и TDZ",
+  "description": "Лексическое окружение, подъём переменных и функций, временная мёртвая зона, блочный и функциональный скоуп",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "intermediate",
+  "order": 12,
+  "estimatedMinutes": 35,
+  "subchapters": [
+    { "id": "01-lexical-env", "title": "Лексическое окружение и цепочка скоупов", "order": 1 },
+    { "id": "02-hoisting", "title": "Hoisting: поднятие функций и переменных", "order": 2 },
+    { "id": "03-tdz", "title": "Временная мёртвая зона (TDZ)", "order": 3 },
+    { "id": "04-block-scope", "title": "Блочный скоуп, IIFE и var-проблемы", "order": 4 }
+  ],
+  "concepts": ["lexical-environment", "scope-chain", "hoisting", "tdz", "block-scope", "iife"],
+  "prerequisites": ["ch01-intro", "ch03-variables"]
+}

@@ -1,0 +1,39 @@
+---
+title: "Scope, Hoisting и TDZ"
+description: "Лексическое окружение, подъём переменных и функций, временная мёртвая зона, блочный и функциональный скоуп"
+---
+
+## О чём эта глава
+
+Понимание того, как JavaScript ищет переменные, — ключ к пониманию большинства «странностей» языка. Почему функции можно вызывать до объявления? Почему `var` ведёт себя не так, как ожидаешь в цикле? Почему `let` бросает ошибку до объявления, а `typeof` — нет?
+
+Разберём механику изнутри: лексическое окружение, hoisting, TDZ и блочный скоуп.
+
+## Содержание
+
+1. [Лексическое окружение и цепочка скоупов](/frontend/javascript/ch12-scope-hoisting/01-lexical-env)
+2. [Hoisting: поднятие функций и переменных](/frontend/javascript/ch12-scope-hoisting/02-hoisting)
+3. [Временная мёртвая зона (TDZ)](/frontend/javascript/ch12-scope-hoisting/03-tdz)
+4. [Блочный скоуп, IIFE и var-проблемы](/frontend/javascript/ch12-scope-hoisting/04-block-scope)
+
+## Что ты научишься делать
+
+- Объяснять, как JavaScript ищет переменные по цепочке скоупов
+- Понимать, что реально происходит при «поднятии» переменных и функций
+- Избегать ошибок TDZ с `let` и `const`
+- Правильно использовать блочный скоуп для изоляции кода
+- Понимать IIFE и зачем он применялся до ES6
+
+## Связанные темы
+
+- [Введение в JavaScript](/frontend/javascript/ch01-intro) — строгий режим
+- [Переменные и типы данных](/frontend/javascript/ch03-variables) — var, let, const
+- [Замыкания](/frontend/javascript/ch01-closures) — лексическое окружение в действии
+
+## Задания
+
+[Перейти к заданиям](/frontend/javascript/ch12-scope-hoisting/tasks) — 2 easy, 1 medium
+
+## Песочница
+
+[Открыть песочницу](/frontend/javascript/ch12-scope-hoisting/playground)

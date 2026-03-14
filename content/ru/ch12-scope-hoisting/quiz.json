@@ -1,0 +1,60 @@
+{
+  "chapter": "ch12-scope-hoisting",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что такое Lexical Environment?",
+      "type": "multiple-choice",
+      "options": [
+        "Список всех глобальных переменных",
+        "Пара из Environment Record (переменные) и ссылки на внешнее окружение",
+        "Стек вызовов функций",
+        "Таблица символов компилятора"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lexical Environment состоит из двух частей: Environment Record (хранит переменные текущего скоупа) и [[OuterEnv]] — ссылка на родительское окружение. Цепочка [[OuterEnv]] образует scope chain.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Что выведет этот код?\n\nconsole.log(x)\nvar x = 5\nconsole.log(x)",
+      "type": "code-output",
+      "options": ["ReferenceError, 5", "undefined, 5", "5, 5", "undefined, undefined"],
+      "correctAnswer": 1,
+      "explanation": "var поднимается частично: объявление var x поднимается, поэтому первый console.log выдаёт undefined (не ошибку). Присваивание x = 5 остаётся на месте, поэтому второй выдаёт 5.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что выведет этот код?\n\nhello()\nfunction hello() { console.log('Hello!') }",
+      "type": "code-output",
+      "options": ["ReferenceError", "TypeError: hello is not a function", "Hello!", "undefined"],
+      "correctAnswer": 2,
+      "explanation": "Объявления функций поднимаются полностью — и имя, и тело. Поэтому hello() можно вызвать до строки объявления.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Что произойдёт при выполнении этого кода?\n\nconsole.log(x)\nlet x = 10",
+      "type": "code-output",
+      "options": ["undefined", "10", "ReferenceError: Cannot access 'x' before initialization", "ReferenceError: x is not defined"],
+      "correctAnswer": 2,
+      "explanation": "let объявления находятся в Temporal Dead Zone (TDZ) от начала блока до строки инициализации. Обращение к переменной в TDZ вызывает ReferenceError с сообщением 'Cannot access before initialization'.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Чем отличается var от let с точки зрения скоупа?",
+      "type": "multiple-choice",
+      "options": [
+        "var имеет блочный скоуп, let — функциональный",
+        "let имеет блочный скоуп, var — функциональный",
+        "оба имеют блочный скоуп, но let не поднимается",
+        "разницы нет, только синтаксис отличается"
+      ],
+      "correctAnswer": 1,
+      "explanation": "var имеет функциональный скоуп — он виден во всей функции, игнорируя блоки {}. let и const имеют блочный скоуп — видны только внутри блока {}, где объявлены. Это ключевое различие, из-за которого var создаёт проблемы в циклах и условиях.",
+      "difficulty": "easy"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "chapter": "ch12-scope-hoisting",
+  "tasks": [
+    {
+      "id": "01-easy-hoisting-demo",
+      "title": "Демонстрация hoisting",
+      "difficulty": "easy",
+      "description": "Функция hoistingDemo() должна возвращать массив из 4 элементов: результат typeof для var-переменной до объявления, результат вызова функции до объявления, значение var после объявления, и результат попытки прочитать let до объявления (поймай через try/catch, верни строку 'TDZ Error'). Порядок: [typeof var до, вызов fn до, var после, let TDZ].",
+      "file": "01-easy-hoisting-demo.js",
+      "testFile": "01-easy-hoisting-demo.test.js",
+      "concepts": ["hoisting", "var", "let", "tdz"],
+      "hints": [
+        "Для var: typeof перед объявлением вернёт 'undefined', не выбросит ошибку.",
+        "Функции поднимаются полностью — вызови declaredFn() перед её объявлением внутри hoistingDemo.",
+        "Для let: оберни обращение до объявления в try/catch и верни сообщение об ошибке."
+      ],
+      "estimatedMinutes": 8
+    },
+    {
+      "id": "02-easy-block-scope",
+      "title": "Блочный скоуп в цикле",
+      "difficulty": "easy",
+      "description": "Функция blockScope(n) принимает число n и должна вернуть массив из n функций. Каждая функция при вызове должна возвращать свой индекс (0, 1, 2, ..., n-1). Используй let для исправления классической проблемы замыкания в цикле.",
+      "file": "02-easy-block-scope.js",
+      "testFile": "02-easy-block-scope.test.js",
+      "concepts": ["block-scope", "let", "closure-in-loop"],
+      "hints": [
+        "Попробуй сначала с var — увидишь, что все функции вернут одно значение.",
+        "Замени var на let в for — каждая итерация получит свою копию переменной.",
+        "for (let i = 0; i < n; i++) { fns.push(() => i) } — с let каждый i это отдельная переменная."
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-medium-create-module",
+      "title": "Паттерн модуля через IIFE",
+      "difficulty": "medium",
+      "description": "Реализуй функцию createModule(), которая возвращает объект с публичным API, инкапсулируя приватное состояние через IIFE. Объект должен иметь: приватный массив items, метод add(item) — добавляет элемент, метод remove(item) — удаляет первое вхождение, метод getAll() — возвращает копию массива, метод count() — возвращает количество элементов. Внутренний массив items должен быть недоступен снаружи.",
+      "file": "03-medium-create-module.js",
+      "testFile": "03-medium-create-module.test.js",
+      "concepts": ["iife", "closure", "encapsulation", "module-pattern"],
+      "hints": [
+        "Используй IIFE: const result = (function() { let items = []; return { ... } })();",
+        "getAll() должен возвращать [...items] (копию), а не items напрямую — иначе внешний код изменит внутренний массив.",
+        "remove: используй items.splice(items.indexOf(item), 1) — но проверь, что элемент существует (indexOf !== -1)."
+      ],
+      "estimatedMinutes": 12
+    }
+  ]
+}
