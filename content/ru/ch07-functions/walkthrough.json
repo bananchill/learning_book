@@ -1,0 +1,52 @@
+{
+  "chapter": "ch07-functions",
+  "title": "Стек вызовов при рекурсии: factorial(4)",
+  "description": "Пошаговая визуализация того, как строится и разворачивается call stack",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Начало: вызов factorial(4)",
+      "stack": ["factorial(4)"],
+      "code": "factorial(4)\n  // n=4, 4 > 1 → возвращает 4 * factorial(3)",
+      "explanation": "Первый кадр стека: factorial(4). n=4, базовый случай не выполнен, вызываем factorial(3)."
+    },
+    {
+      "id": 2,
+      "title": "factorial(3) добавлен в стек",
+      "stack": ["factorial(4)", "factorial(3)"],
+      "explanation": "Второй кадр: factorial(3). n=3, вызываем factorial(2). factorial(4) ждёт результата."
+    },
+    {
+      "id": 3,
+      "title": "factorial(2) добавлен в стек",
+      "stack": ["factorial(4)", "factorial(3)", "factorial(2)"],
+      "explanation": "Третий кадр: factorial(2). n=2, вызываем factorial(1)."
+    },
+    {
+      "id": 4,
+      "title": "factorial(1) — базовый случай!",
+      "stack": ["factorial(4)", "factorial(3)", "factorial(2)", "factorial(1)"],
+      "code": "factorial(1)\n  // n=1, базовый случай! → return 1",
+      "explanation": "n=1 — базовый случай. Функция возвращает 1, не создавая новых кадров. Начинается разворачивание стека."
+    },
+    {
+      "id": 5,
+      "title": "Разворачивание: factorial(2) возвращает результат",
+      "stack": ["factorial(4)", "factorial(3)", "factorial(2) → 2 * 1 = 2"],
+      "explanation": "factorial(1) вернул 1. factorial(2) = 2 * 1 = 2. Кадр factorial(2) снимается со стека."
+    },
+    {
+      "id": 6,
+      "title": "factorial(3) = 6",
+      "stack": ["factorial(4)", "factorial(3) → 3 * 2 = 6"],
+      "explanation": "factorial(2) вернул 2. factorial(3) = 3 * 2 = 6."
+    },
+    {
+      "id": 7,
+      "title": "factorial(4) = 24 — стек пуст",
+      "stack": ["factorial(4) → 4 * 6 = 24"],
+      "code": "factorial(4) = 4 * 6 = 24 ✓",
+      "explanation": "factorial(3) вернул 6. factorial(4) = 4 * 6 = 24. Стек пуст, результат возвращён!"
+    }
+  ]
+}

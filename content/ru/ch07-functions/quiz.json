@@ -1,0 +1,54 @@
+{
+  "chapter": "ch07-functions",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "true-false",
+      "question": "Function Declaration поднимается (hoisting) — функцию можно вызвать до её объявления в коде.",
+      "correctAnswer": true,
+      "explanation": "Да, Function Declaration полностью поднимается. Функция доступна с начала области видимости. В отличие от Function Expression — там поднимается только переменная, но не функция."
+    },
+    {
+      "id": "q2",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst f = (x = 10, y = x * 2) => x + y;\nconsole.log(f());\nconsole.log(f(5));\n```",
+      "options": ["30, 15", "20, 15", "NaN, 5", "undefined, undefined"],
+      "correctAnswer": 1,
+      "explanation": "f() → x=10, y=20, результат 30. f(5) → x=5, y=10, результат 15. Дефолтные параметры вычисляются во время вызова и могут использовать предыдущие параметры."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "question": "В чём главное отличие стрелочной функции от обычной в отношении `this`?",
+      "options": [
+        "Стрелочная функция всегда имеет this = null",
+        "Стрелочная функция не имеет собственного this, берёт его из окружающего контекста",
+        "Стрелочная функция всегда имеет this = globalThis",
+        "Разницы нет — this работает одинаково"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Стрелочная функция захватывает `this` из лексического окружения (там, где она определена), а не из контекста вызова. Это делает её идеальной для коллбеков внутри методов."
+    },
+    {
+      "id": "q4",
+      "type": "code-output",
+      "question": "Что вернёт функция?\n\n```javascript\nfunction factorial(n) {\n  if (n <= 1) return 1;\n  return n * factorial(n - 1);\n}\nfactorial(4);\n```",
+      "options": ["4", "10", "24", "undefined"],
+      "correctAnswer": 2,
+      "explanation": "4 * factorial(3) = 4 * 3 * factorial(2) = 4 * 3 * 2 * factorial(1) = 4 * 3 * 2 * 1 = 24."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Что такое базовый случай в рекурсии?",
+      "options": [
+        "Первый вызов рекурсивной функции",
+        "Вызов с наибольшим аргументом",
+        "Условие остановки рекурсии, при котором функция не вызывает себя",
+        "Кэширование результатов вычислений"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Базовый случай — это условие, при котором рекурсия останавливается. Без него функция будет вызывать себя бесконечно до переполнения стека (RangeError: Maximum call stack size exceeded)."
+    }
+  ]
+}

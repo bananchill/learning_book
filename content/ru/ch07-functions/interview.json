@@ -1,0 +1,26 @@
+{
+  "chapter": "ch07-functions",
+  "questions": [
+    {
+      "id": "i1",
+      "level": "junior",
+      "question": "В чём разница между Function Declaration и Function Expression?",
+      "answer": "Function Declaration: `function name() {}` — поднимается (hoisting), функция доступна с начала области видимости, можно вызывать до объявления. Function Expression: `const fn = function() {}` — переменная поднимается, но без значения. С `const`/`let` — TDZ до строки присваивания. Когда использовать: Declaration — для именованных функций верхнего уровня, утилит. Expression — когда нужно условно создать функцию, передать как аргумент, явно контролировать scope. Обе могут быть именованными — имя помогает в stack traces.",
+      "tags": ["function-declaration", "function-expression", "hoisting"]
+    },
+    {
+      "id": "i2",
+      "level": "junior",
+      "question": "Почему стрелочные функции не подходят как методы объекта?",
+      "answer": "Стрелочная функция не имеет собственного `this` — она берёт его из лексического окружения (там, где была определена). В случае метода объекта это означает `this` = глобальный объект (или undefined в strict mode), а не экземпляр объекта. Пример: `const obj = { name: 'A', greet: () => this.name }` — `obj.greet()` вернёт undefined. Используйте обычный метод `greet() {}` или сокращённую запись `{ greet() {} }`.",
+      "tags": ["arrow-functions", "this", "methods"]
+    },
+    {
+      "id": "i3",
+      "level": "middle",
+      "question": "Что такое мемоизация и как реализовать базовую функцию memoize?",
+      "answer": "Мемоизация — кэширование результатов вызовов чистой функции по аргументам. При повторном вызове с теми же аргументами возвращается кэшированный результат без пересчёта. Реализация: `function memoize(fn) { const cache = new Map(); return function(...args) { const key = JSON.stringify(args); if (cache.has(key)) return cache.get(key); const result = fn.apply(this, args); cache.set(key, result); return result; }; }` Применяется для: дорогих вычислений (fibonacci, факториал), API-запросов, вычисляемых свойств. Ограничения: только для чистых функций (без побочных эффектов), растёт память, сложные объекты как ключи требуют careful serialization.",
+      "tags": ["memoization", "cache", "pure-functions", "higher-order-functions"]
+    }
+  ]
+}

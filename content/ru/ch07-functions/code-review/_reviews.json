@@ -1,0 +1,37 @@
+{
+  "chapter": "ch07-functions",
+  "reviews": [
+    {
+      "id": "review-01",
+      "file": "01-review.js",
+      "title": "Проблемы с функциями",
+      "issues": [
+        {
+          "line": 3,
+          "type": "error",
+          "description": "Вызов `greetUser('Иван')` до объявления `const greetUser = function(){}`. Function Expression не поднимается. `const` создаёт TDZ — ReferenceError. Исправление: переместить объявление до вызова или использовать Function Declaration."
+        },
+        {
+          "line": 11,
+          "type": "error",
+          "description": "Стрелочные функции `increment` и `reset` используются как методы объекта. `this` внутри них будет не `counter`, а `undefined` (strict mode) или `globalThis`. Используйте обычные методы: `increment() { this.count++; }`"
+        },
+        {
+          "line": 22,
+          "type": "error",
+          "description": "Функция мутирует входной объект `user.role = ...`. Это side effect — изменение оригинального объекта, который был передан вызывающим кодом. Исправление: `return { ...user, role: user.role || 'user' }` — вернуть новый объект."
+        },
+        {
+          "line": 28,
+          "type": "error",
+          "description": "Нет базового случая в рекурсии! `countDown` будет вызывать себя бесконечно, пока не переполнится стек. Добавить: `if (n <= 0) return;`"
+        },
+        {
+          "line": 34,
+          "type": "warning",
+          "description": "Использование `arguments` вместо rest-параметров. `arguments` — устаревший способ, не работает в стрелочных функциях, не является настоящим массивом. Современный вариант: `function sum(...numbers) { return numbers.reduce((a, b) => a + b, 0); }`"
+        }
+      ]
+    }
+  ]
+}

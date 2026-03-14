@@ -1,0 +1,35 @@
+{
+  "chapter": "ch07-functions",
+  "resources": [
+    {
+      "title": "MDN: Functions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+      "type": "docs",
+      "description": "Полное руководство по функциям JavaScript от MDN."
+    },
+    {
+      "title": "MDN: Arrow function expressions",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+      "type": "docs",
+      "description": "Документация стрелочных функций с подробным разбором отличий от обычных."
+    },
+    {
+      "title": "JavaScript.info: Рекурсия и стек",
+      "url": "https://learn.javascript.ru/recursion",
+      "type": "article",
+      "description": "Подробная статья о рекурсии с визуализацией стека вызовов на русском языке."
+    },
+    {
+      "title": "You Don't Know JS: this & Object Prototypes",
+      "url": "https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/README.md",
+      "type": "book",
+      "description": "Глубокое погружение в `this` — почему стрелочные функции ведут себя иначе."
+    },
+    {
+      "title": "MDN: Default parameters",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters",
+      "type": "docs",
+      "description": "Документация по дефолтным параметрам, включая продвинутые паттерны."
+    }
+  ]
+}
