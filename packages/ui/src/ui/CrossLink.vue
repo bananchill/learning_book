@@ -2,12 +2,23 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
-  to: string
+  to?: string
+  chapter?: string
+  section?: string
   title?: string
 }>()
 
-const href = computed(() => `/${props.to}`)
-const displayTitle = computed(() => props.title ?? props.to.replace(/^ch\d+-/, '').replace(/-/g, ' '))
+// Поддерживаем два режима: to="/path" или chapter="ch01" section="intro"
+const resolvedTo = computed(() => {
+  if (props.to) return props.to
+  if (props.chapter) return props.chapter
+  return ''
+})
+
+const href = computed(() => `/${resolvedTo.value}`)
+const displayTitle = computed(() =>
+  props.title ?? resolvedTo.value.replace(/^ch\d+-/, '').replace(/-/g, ' ')
+)
 </script>
 
 <template>

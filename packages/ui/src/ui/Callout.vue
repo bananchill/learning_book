@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type CalloutType = 'info' | 'tip' | 'warning' | 'danger'
+type CalloutType = 'info' | 'tip' | 'warning' | 'danger' | 'error' | 'concept'
 
 defineProps<{
   type?: CalloutType
@@ -7,37 +7,21 @@ defineProps<{
 }>()
 
 const styles: Record<CalloutType, { border: string; bg: string; icon: string; titleColor: string }> = {
-  info: {
-    border: 'border-info',
-    bg: 'bg-info-light',
-    icon: 'i',
-    titleColor: 'text-info-text',
-  },
-  tip: {
-    border: 'border-success',
-    bg: 'bg-success-light',
-    icon: '!',
-    titleColor: 'text-success-text',
-  },
-  warning: {
-    border: 'border-warning',
-    bg: 'bg-warning-light',
-    icon: '!',
-    titleColor: 'text-warning-text',
-  },
-  danger: {
-    border: 'border-danger',
-    bg: 'bg-danger-light',
-    icon: '!',
-    titleColor: 'text-danger-text',
-  },
+  info: { border: 'border-info', bg: 'bg-info-light', icon: 'i', titleColor: 'text-info-text' },
+  concept: { border: 'border-info', bg: 'bg-info-light', icon: 'i', titleColor: 'text-info-text' },
+  tip: { border: 'border-success', bg: 'bg-success-light', icon: '!', titleColor: 'text-success-text' },
+  warning: { border: 'border-warning', bg: 'bg-warning-light', icon: '!', titleColor: 'text-warning-text' },
+  danger: { border: 'border-danger', bg: 'bg-danger-light', icon: '!', titleColor: 'text-danger-text' },
+  error: { border: 'border-danger', bg: 'bg-danger-light', icon: '!', titleColor: 'text-danger-text' },
 }
 
 const iconBg: Record<CalloutType, string> = {
   info: 'bg-info text-white',
+  concept: 'bg-info text-white',
   tip: 'bg-success text-white',
   warning: 'bg-warning text-white',
   danger: 'bg-danger text-white',
+  error: 'bg-danger text-white',
 }
 </script>
 
