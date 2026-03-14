@@ -1,0 +1,53 @@
+{
+  "title": "try/catch/finally: поток выполнения",
+  "code": "function riskyOp() {\n  throw new Error('Что-то сломалось')\n}\n\nfunction process() {\n  try {\n    console.log('1: до ошибки')\n    riskyOp()\n    console.log('2: после ошибки')\n  } catch (error) {\n    console.log('3: в catch:', error.message)\n  } finally {\n    console.log('4: в finally')\n  }\n  console.log('5: после try/catch')\n}\n\nprocess()",
+  "steps": [
+    {
+      "line": 6,
+      "description": "Входим в try-блок. console.log('1: до ошибки') — выводит строку.",
+      "variables": {},
+      "callStack": ["global", "process()", "try"],
+      "output": "1: до ошибки"
+    },
+    {
+      "line": 7,
+      "description": "Вызываем riskyOp(). Внутри — throw new Error. Выполнение прерывается!",
+      "variables": { "error": "Error: Что-то сломалось" },
+      "callStack": ["global", "process()", "try", "riskyOp()"]
+    },
+    {
+      "line": 8,
+      "description": "Строка 2 НЕ выполняется — выполнение прыгнуло в catch после исключения.",
+      "variables": {},
+      "callStack": [],
+      "highlight": "skipped"
+    },
+    {
+      "line": 9,
+      "description": "Входим в catch. error — объект Error с message 'Что-то сломалось'.",
+      "variables": { "error.message": "'Что-то сломалось'" },
+      "callStack": ["global", "process()", "catch"]
+    },
+    {
+      "line": 10,
+      "description": "console.log в catch выводит сообщение об ошибке.",
+      "variables": {},
+      "callStack": ["global", "process()", "catch"],
+      "output": "3: в catch: Что-то сломалось"
+    },
+    {
+      "line": 11,
+      "description": "catch завершился. Теперь finally — выполняется ВСЕГДА.",
+      "variables": {},
+      "callStack": ["global", "process()", "finally"],
+      "output": "4: в finally"
+    },
+    {
+      "line": 14,
+      "description": "Выходим из try/catch/finally. Строка 5 выполняется нормально.",
+      "variables": {},
+      "callStack": ["global", "process()"],
+      "output": "5: после try/catch"
+    }
+  ]
+}

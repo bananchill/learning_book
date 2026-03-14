@@ -1,0 +1,50 @@
+{
+  "chapter": "ch15-error-handling",
+  "tasks": [
+    {
+      "id": "01-easy-safe-divide",
+      "title": "safeDivide — Result тип",
+      "difficulty": "easy",
+      "description": "Реализуй функцию safeDivide(a, b), которая возвращает Result-объект: { ok: true, value: результат } при успешном делении или { ok: false, error: Error('деление на ноль') } при b === 0. Никаких исключений не бросать.",
+      "file": "01-easy-safe-divide.js",
+      "testFile": "01-easy-safe-divide.test.js",
+      "concepts": ["result-type", "error-handling"],
+      "hints": [
+        "Проверь b === 0 перед делением. В этом случае верни объект с ok: false.",
+        "Для ошибки создай новый Error: new Error('деление на ноль').",
+        "if (b === 0) return { ok: false, error: new Error('деление на ноль') }; return { ok: true, value: a / b }"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-validation-error",
+      "title": "Класс ValidationError",
+      "difficulty": "easy",
+      "description": "Создай класс ValidationError extends Error с дополнительным полем field (название поля, которое не прошло валидацию). Конструктор принимает (message, field). Убедись что: name === 'ValidationError', instanceof Error === true, instanceof ValidationError === true.",
+      "file": "02-easy-validation-error.js",
+      "testFile": "02-easy-validation-error.test.js",
+      "concepts": ["custom-error", "extends", "instanceof"],
+      "hints": [
+        "Вызови super(message) первым в конструкторе.",
+        "Установи this.name = 'ValidationError' и this.field = field.",
+        "class ValidationError extends Error { constructor(message, field) { super(message); this.name = 'ValidationError'; this.field = field } }"
+      ],
+      "estimatedMinutes": 6
+    },
+    {
+      "id": "03-medium-with-retry",
+      "title": "withRetry — повтор при ошибке",
+      "difficulty": "medium",
+      "description": "Реализуй async функцию withRetry(fn, maxAttempts, delayMs), которая: вызывает fn(), при ошибке ждёт delayMs и повторяет до maxAttempts раз, при последней неудаче выбрасывает последнюю ошибку, при успехе возвращает результат fn().",
+      "file": "03-medium-with-retry.js",
+      "testFile": "03-medium-with-retry.test.js",
+      "concepts": ["async-await", "error-handling", "retry-pattern"],
+      "hints": [
+        "Используй цикл for (let i = 1; i <= maxAttempts; i++). Оберни fn() в try/catch.",
+        "При ошибке: если это не последняя попытка — жди через await new Promise(r => setTimeout(r, delayMs)).",
+        "Сохрани последнюю ошибку в let lastError. После цикла бросай lastError."
+      ],
+      "estimatedMinutes": 15
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "chapter": "ch15-error-handling",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Блок finally выполняется...",
+      "type": "multiple-choice",
+      "options": [
+        "Только если ошибка была поймана",
+        "Только если ошибки не было",
+        "Всегда, независимо от того, была ли ошибка",
+        "Только если в try был return"
+      ],
+      "correctAnswer": 2,
+      "explanation": "finally выполняется всегда — и при успешном выполнении try, и при ошибке в catch. Используется для освобождения ресурсов (закрытие файлов, соединений) независимо от результата.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "fetch('/api/data') выбрасывает ошибку при HTTP статусе 404?",
+      "type": "multiple-choice",
+      "options": [
+        "Да, всегда бросает TypeError",
+        "Нет, нужно проверить response.ok или status вручную",
+        "Да, бросает HTTPError",
+        "Нет, возвращает null"
+      ],
+      "correctAnswer": 1,
+      "explanation": "fetch выбрасывает ошибку только при сетевых сбоях (нет соединения). HTTP ошибки 4xx/5xx возвращаются как успешный промис с response.ok === false. Нужно самому проверить: if (!response.ok) throw new Error(...).",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q3",
+      "question": "Что выведет этот код?\n\ntry {\n  throw new Error('оригинал')\n} finally {\n  return 'finally'\n}",
+      "type": "code-output",
+      "options": ["'оригинал'", "Error: оригинал", "'finally'", "undefined"],
+      "correctAnswer": 2,
+      "explanation": "return в finally подавляет выброшенное исключение! Функция вернёт 'finally' вместо того, чтобы выбросить ошибку. Это редкое поведение, которое обычно является источником багов.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Зачем создавать кастомные классы ошибок вместо throw new Error()?",
+      "type": "multiple-choice",
+      "options": [
+        "Только для красивого кода",
+        "Для добавления дополнительных полей, лучшей диагностики и instanceof-проверок",
+        "Кастомные ошибки быстрее работают",
+        "Error() не поддерживает message"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Кастомные классы позволяют: добавлять дополнительные поля (statusCode, field, url), различать типы ошибок через instanceof, создавать иерархии для группировки, добавлять вспомогательные методы.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q5",
+      "question": "В чём преимущество паттерна Result (ok: true/false) перед исключениями?",
+      "type": "multiple-choice",
+      "options": [
+        "Result всегда быстрее",
+        "Ошибки явно присутствуют в сигнатуре функции и не могут быть случайно проигнорированы",
+        "Result не требует try/catch",
+        "Исключения нельзя использовать в async-коде"
+      ],
+      "correctAnswer": 1,
+      "explanation": "С паттерном Result вызывающий код видит, что функция может вернуть ошибку, и вынужден её обработать. Исключения 'невидимы' в сигнатуре — программист может забыть обернуть вызов в try/catch.",
+      "difficulty": "medium"
+    }
+  ]
+}

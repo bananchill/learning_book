@@ -1,0 +1,45 @@
+{
+  "chapter": "ch15-error-handling",
+  "resources": [
+    {
+      "title": "Error — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полная документация по Error, встроенным типам и созданию кастомных классов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Error handling with async/await — javascript.info",
+      "url": "https://javascript.info/async-await#error-handling",
+      "type": "article",
+      "language": "en",
+      "description": "Обработка ошибок в async/await с примерами паттернов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Railway Oriented Programming",
+      "url": "https://fsharpforfunandprofit.com/rop/",
+      "type": "article",
+      "language": "en",
+      "description": "Концепция Railway Oriented Programming — функциональный подход к обработке ошибок",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Joyent Node.js Error Handling Best Practices",
+      "url": "https://www.joyent.com/node-js/production/design/errors",
+      "type": "article",
+      "language": "en",
+      "description": "Разграничение operational errors и programmer errors, лучшие практики для Node.js",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Promise rejection tracking — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event",
+      "type": "documentation",
+      "language": "en",
+      "description": "Глобальная обработка необработанных отклонений промисов в браузере",
+      "difficulty": "beginner"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ch15-error-handling",
+  "title": "Обработка ошибок",
+  "description": "try/catch/finally, типы ошибок, кастомные классы, асинхронные ошибки и паттерны обработки",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "intermediate",
+  "order": 15,
+  "estimatedMinutes": 38,
+  "subchapters": [
+    { "id": "01-try-catch", "title": "try/catch/finally", "order": 1 },
+    { "id": "02-error-types", "title": "Типы ошибок и кастомные классы", "order": 2 },
+    { "id": "03-async-errors", "title": "Асинхронные ошибки", "order": 3 },
+    { "id": "04-patterns", "title": "Паттерны обработки ошибок", "order": 4 }
+  ],
+  "concepts": ["try-catch-finally", "error-types", "custom-error", "promise-rejection", "unhandled-rejection", "result-type", "railway-programming"],
+  "prerequisites": ["ch07-functions", "ch02-async"]
+}

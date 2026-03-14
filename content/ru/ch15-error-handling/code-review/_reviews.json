@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с обработкой ошибок",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 5,
+        "type": "bug",
+        "description": "Пустой catch — ошибка 'проглатывается'. loadConfig вернёт undefined вместо конфига, и вызывающий код не узнает о проблеме.",
+        "fix": "Хотя бы логировать: catch(e) { console.error('Ошибка загрузки конфига:', e); return defaultConfig }"
+      },
+      {
+        "line": 15,
+        "type": "bug",
+        "description": "fetch не выбрасывает ошибку при 404 — response.json() вернёт тело ответа об ошибке, а не выбросит. Нужно проверять response.ok.",
+        "fix": "После fetch добавить: if (!response.ok) throw new Error(`HTTP ${response.status}`)"
+      },
+      {
+        "line": 25,
+        "type": "bug",
+        "description": "throw строки вместо Error объектов. Строки не имеют стека вызовов, их нельзя проверить через instanceof, catch(e) { if (e instanceof Error) } не сработает.",
+        "fix": "throw new RangeError('Возраст не может быть отрицательным')"
+      },
+      {
+        "line": 33,
+        "type": "bug",
+        "description": "Один catch ловит разные типы ошибок — SyntaxError от JSON.parse и сетевые ошибки от sendToServer. Оба обрабатываются одинаково, теряется информация о типе ошибки.",
+        "fix": "Разделить try/catch или проверять instanceof: if (error instanceof SyntaxError) vs NetworkError"
+      },
+      {
+        "line": 45,
+        "type": "bug",
+        "description": "processData(data) вызывается без обработки ошибок. Если processData бросит ошибку — это будет unhandledRejection и может упасть весь процесс.",
+        "fix": "processData(data).catch(error => console.error('Ошибка обработки:', error))"
+      }
+    ]
+  }
+]

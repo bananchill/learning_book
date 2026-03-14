@@ -1,0 +1,53 @@
+{
+  "chapter": "ch15-error-handling",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Как обрабатывать ошибки в async/await коде?",
+      "level": "junior",
+      "goodAnswer": "try/catch работает с async/await так же, как с синхронным кодом — await 'разворачивает' промис, и если он отклоняется, это превращается в выброшенное исключение. Важный нюанс: fetch не выбрасывает ошибку при 4xx/5xx — нужно проверять response.ok. Также важно глобально обрабатывать unhandledRejection через process.on('unhandledRejection') в Node.js или window.addEventListener('unhandledrejection') в браузере.",
+      "whatInterviewerWants": "Понимание синтаксиса, знание о fetch и его особенностях, знание о глобальной обработке.",
+      "commonMistakes": [
+        "Думают, что try/catch не работает с async/await",
+        "Не знают об особенности fetch (4xx не бросает ошибку)",
+        "Не упоминают unhandledRejection"
+      ],
+      "followUps": [
+        "Как обработать ошибки в Promise.all?",
+        "Чем Promise.allSettled отличается от Promise.all?"
+      ]
+    },
+    {
+      "id": "i2",
+      "question": "Зачем создавать кастомные классы ошибок?",
+      "level": "junior",
+      "goodAnswer": "Кастомные классы ошибок дают: 1) дополнительные поля (statusCode, field, url — для диагностики); 2) instanceof-проверки для разных типов ошибок в catch; 3) иерархии (AppError → DatabaseError, NetworkError) для группировки; 4) явный флаг isOperational для различения ожидаемых и неожиданных ошибок; 5) вспомогательные методы. Пример: ValidationError с полем field позволяет в UI выделить конкретное поле формы.",
+      "whatInterviewerWants": "Понимание, что кастомные ошибки — инструмент, а не просто синтаксический сахар.",
+      "commonMistakes": [
+        "Говорят только про красоту кода",
+        "Не знают про instanceof в catch",
+        "Не упоминают isOperational / operational errors"
+      ],
+      "followUps": [
+        "Почему важно установить this.name вручную?",
+        "Что такое operational error vs programmer error?"
+      ]
+    },
+    {
+      "id": "i3",
+      "question": "Что такое паттерн Result и когда его использовать?",
+      "level": "middle",
+      "goodAnswer": "Result (или Either) — паттерн, при котором функция возвращает { ok: true, value } или { ok: false, error } вместо выброса исключения. Преимущества: ошибки явные в сигнатуре, нельзя случайно проигнорировать. Когда использовать: для ожидаемых ошибок (валидация, not found, парсинг), когда вызывающий код всегда должен решить, что делать с ошибкой. Не подходит для: неожиданных ошибок (баги, OOM), глубоких цепочек (много проверок). Для цепочек удобно реализовать метод .map() — Railway Oriented Programming.",
+      "whatInterviewerWants": "Знание альтернатив исключениям, понимание trade-offs.",
+      "commonMistakes": [
+        "Предлагают Result везде, даже для неожиданных ошибок",
+        "Не знают Railway Oriented Programming",
+        "Не понимают, почему это лучше чем возврат null"
+      ],
+      "followUps": [
+        "В чём разница между Result и возвратом null?",
+        "Как реализовать Railway в TypeScript?"
+      ]
+    }
+  ]
+}
