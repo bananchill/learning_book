@@ -1,0 +1,23 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-truncate.js",
+    "title": "Усечение строки",
+    "difficulty": "easy",
+    "description": "Функция truncate(str, maxLength) обрезает строку до maxLength символов и добавляет '...' если строка была обрезана."
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-capitalize.js",
+    "title": "Капитализация слов",
+    "difficulty": "easy",
+    "description": "Функция capitalize(str) делает первую букву каждого слова заглавной."
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-parse-template.js",
+    "title": "Шаблонизатор",
+    "difficulty": "medium",
+    "description": "Функция parseTemplate(template, data) заменяет плейсхолдеры {{key}} в строке на значения из объекта data."
+  }
+]

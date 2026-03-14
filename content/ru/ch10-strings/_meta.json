@@ -1,0 +1,36 @@
+{
+  "id": "ch10-strings",
+  "title": "Строки",
+  "description": "Неизменяемые строки в JavaScript: создание, методы, шаблонные литералы и регулярные выражения.",
+  "emoji": "🔤",
+  "order": 10,
+  "estimatedTime": 45,
+  "subchapters": [
+    {
+      "id": "01-basics",
+      "title": "Строки и Unicode",
+      "file": "01-basics.mdx",
+      "estimatedTime": 10
+    },
+    {
+      "id": "02-methods",
+      "title": "Методы строк",
+      "file": "02-methods.mdx",
+      "estimatedTime": 12
+    },
+    {
+      "id": "03-template-literals",
+      "title": "Шаблонные литералы",
+      "file": "03-template-literals.mdx",
+      "estimatedTime": 10
+    },
+    {
+      "id": "04-regex",
+      "title": "Регулярные выражения",
+      "file": "04-regex.mdx",
+      "estimatedTime": 13
+    }
+  ],
+  "tags": ["strings", "template-literals", "regex", "unicode", "immutability"],
+  "prerequisites": ["ch03-variables", "ch08-arrays"]
+}

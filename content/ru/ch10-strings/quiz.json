@@ -1,0 +1,49 @@
+{
+  "chapter": "ch10-strings",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconst s = 'hello';\ns[0] = 'H';\nconsole.log(s);\n```",
+      "options": ["'Hello'", "'hello'", "TypeError", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "Строки в JavaScript неизменяемы. Присваивание по индексу молча игнорируется (в strict mode — TypeError). Метод `console.log` выведет исходную строку 'hello'."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "question": "Что вернёт `'hello world'.slice(-5)`?",
+      "options": ["'hello'", "'world'", "'llo w'", "'hello'"],
+      "correctAnswer": 1,
+      "explanation": "`slice(-5)` берёт последние 5 символов строки. В 'hello world' (11 символов) это 'world'. Отрицательный индекс считается от конца."
+    },
+    {
+      "id": "q3",
+      "type": "code-output",
+      "question": "Что выведет код?\n\n```javascript\nconsole.log('😀'.length);\n```",
+      "options": ["1", "2", "4", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "Эмодзи занимают 2 кодовые единицы UTF-16 (суррогатная пара), поэтому `.length` возвращает 2. Для корректного подсчёта: `[...'😀'].length === 1`."
+    },
+    {
+      "id": "q4",
+      "type": "true-false",
+      "question": "`'hello'.replace('l', 'L')` заменяет все вхождения 'l'.",
+      "correctAnswer": false,
+      "explanation": "`replace` со строкой заменяет только **первое** вхождение. Для замены всех используйте `replaceAll('l', 'L')` или `replace(/l/g, 'L')` с флагом `g`."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Какой метод использовать для проверки, начинается ли строка с определённого префикса?",
+      "options": [
+        "str.indexOf(prefix) >= 0",
+        "str.startsWith(prefix)",
+        "str.includes(prefix)",
+        "str.match(prefix)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`startsWith(prefix)` явно проверяет начало строки — читаемо и точно. `includes` не проверяет позицию. `indexOf(...) >= 0` тоже работает, но `startsWith` семантически точнее."
+    }
+  ]
+}

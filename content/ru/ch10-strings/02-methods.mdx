@@ -1,0 +1,125 @@
+import { Callout, DeepDive } from '@book/ui'
+
+# Методы строк
+
+## Поиск
+
+```javascript
+const str = 'Hello, World!';
+
+// Проверка наличия
+str.includes('World');      // true
+str.includes('world');      // false — регистрозависимо
+
+// Позиция
+str.indexOf('o');           // 4 — первое вхождение
+str.lastIndexOf('o');       // 8 — последнее
+str.indexOf('xyz');         // -1 — не найдено
+
+// Начало / конец
+str.startsWith('Hello');    // true
+str.endsWith('!');          // true
+str.startsWith('World', 7); // true — проверка с позиции 7
+```
+
+## Извлечение подстроки
+
+```javascript
+const str = 'JavaScript';
+
+str.slice(4);        // 'Script'         — от индекса 4 до конца
+str.slice(0, 4);     // 'Java'           — от 0 до 4 (не включая)
+str.slice(-6);       // 'Script'         — последние 6 символов
+str.slice(4, -3);    // 'Scr'            — от 4 до 3-го с конца
+
+// substring — похож на slice, но не поддерживает отрицательные индексы
+str.substring(4, 10); // 'Script'
+```
+
+<Callout type="info">
+Предпочитайте `slice` — он поддерживает отрицательные индексы и более предсказуем. `substr` — устаревший метод, избегайте.
+</Callout>
+
+## Замена
+
+```javascript
+const str = 'Hello, World! Hello!';
+
+// Первое вхождение
+str.replace('Hello', 'Hi');        // 'Hi, World! Hello!'
+
+// Все вхождения
+str.replaceAll('Hello', 'Hi');     // 'Hi, World! Hi!'
+
+// С функцией
+'hello world'.replace(/\b\w/g, c => c.toUpperCase());
+// 'Hello World' — капитализация первой буквы каждого слова
+
+// replaceAll принимает строку или regex с флагом /g
+str.replaceAll('Hello', 'Hi');
+```
+
+## Разбивка и объединение
+
+```javascript
+const csv = 'Иван,Мария,Пётр';
+
+// split — строка в массив
+csv.split(',');          // ['Иван', 'Мария', 'Пётр']
+csv.split(',', 2);       // ['Иван', 'Мария'] — ограничение
+'hello'.split('');       // ['h', 'e', 'l', 'l', 'o'] — по символам
+'hello'.split();         // ['hello'] — без разделителя
+
+// join — массив в строку (метод массива)
+['Иван', 'Мария'].join(', '); // 'Иван, Мария'
+['a', 'b', 'c'].join('');     // 'abc'
+```
+
+## Обрезка пробелов
+
+```javascript
+const input = '  hello world  ';
+
+input.trim();       // 'hello world'    — с обоих концов
+input.trimStart();  // 'hello world  '  — только начало
+input.trimEnd();    // '  hello world'  — только конец
+```
+
+## Регистр
+
+```javascript
+'Hello World'.toUpperCase(); // 'HELLO WORLD'
+'Hello World'.toLowerCase(); // 'hello world'
+
+// Правильное сравнение без учёта регистра:
+'Hello'.toLowerCase() === 'hello'.toLowerCase(); // true
+```
+
+## Повторение и заполнение
+
+```javascript
+'ha'.repeat(3);        // 'hahaha'
+'5'.padStart(4, '0');  // '0005' — дополнить слева до длины 4
+'5'.padEnd(4, '0');    // '5000' — дополнить справа
+'hi'.padStart(6);      // '    hi' — пробелы по умолчанию
+```
+
+<DeepDive title="Цепочки методов">
+
+Все методы строк возвращают новые строки, поэтому можно строить цепочки:
+
+```javascript
+const clean = '  Hello, World!  '
+  .trim()
+  .toLowerCase()
+  .replace(',', '');
+// 'hello world!'
+
+// Осторожно с читаемостью — длинные цепочки лучше разбивать
+const result = userInput
+  .trim()
+  .slice(0, 100)  // ограничение длины
+  .replace(/[<>]/g, ''); // удаление потенциально опасных символов
+```
+
+</DeepDive>

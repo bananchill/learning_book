@@ -1,0 +1,34 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Форматирование имени пользователя",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "minor",
+        "description": "Использование `var` вместо `const`/`let`. `var` имеет функциональную область видимости, что менее предсказуемо.",
+        "fix": "Использовать `const fullName = ...` или построить строку сразу без мутации переменной."
+      },
+      {
+        "line": 6,
+        "severity": "major",
+        "description": "Сравнение через `!=` вместо `!==`. Нестрогое сравнение может привести к неожиданным преобразованиям типов.",
+        "fix": "Использовать `!== null && !== ''` или проверку на истинность: `if (title)`."
+      },
+      {
+        "line": 6,
+        "severity": "critical",
+        "description": "Если `firstName` или `lastName` равны `undefined` или `null`, результат будет `'undefined Петров'` — строка 'undefined'.",
+        "fix": "Применить дефолты: `firstName = ''` или использовать нулевое слияние: `(firstName ?? '').trim()`."
+      },
+      {
+        "line": 20,
+        "severity": "major",
+        "description": "Если firstName содержит лишние пробелы (`'  Иван  '`), результат будет с двойными пробелами между словами после trim.",
+        "fix": "Обрезать каждую часть отдельно перед сборкой: `firstName.trim()`, `lastName.trim()`."
+      }
+    ],
+    "refactored": "function formatUserName(firstName, lastName, title) {\n  // Обрезаем и защищаемся от null/undefined\n  const parts = [title, firstName, lastName]\n    .map(part => (part ?? '').trim())\n    .filter(part => part.length > 0);\n\n  if (parts.length === 0) return 'Аноним';\n  \n  return parts.join(' ');\n}\n\n// Или с шаблонным литералом для двух обязательных частей:\nfunction formatUserName(firstName, lastName, title = '') {\n  const name = [firstName, lastName]\n    .map(s => (s ?? '').trim())\n    .filter(Boolean)\n    .join(' ');\n  \n  if (!name) return 'Аноним';\n  return title.trim() ? `${title.trim()} ${name}` : name;\n}"
+  }
+]

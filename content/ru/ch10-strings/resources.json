@@ -1,0 +1,37 @@
+[
+  {
+    "title": "String — MDN Web Docs",
+    "url": "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "type": "docs",
+    "level": "beginner",
+    "description": "Полная документация по строкам и всем их методам."
+  },
+  {
+    "title": "Строки — javascript.info",
+    "url": "https://javascript.info/string",
+    "type": "article",
+    "level": "beginner",
+    "description": "Подробное руководство по работе со строками с практическими примерами."
+  },
+  {
+    "title": "Регулярные выражения — javascript.info",
+    "url": "https://javascript.info/regular-expressions",
+    "type": "article",
+    "level": "intermediate",
+    "description": "Полное руководство по регулярным выражениям в JavaScript: паттерны, флаги, методы."
+  },
+  {
+    "title": "Template literals — MDN",
+    "url": "https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Template_literals",
+    "type": "docs",
+    "level": "beginner",
+    "description": "Шаблонные литералы: интерполяция, многострочность, теговые шаблоны."
+  },
+  {
+    "title": "RegexOne — интерактивный курс regex",
+    "url": "https://regexone.com",
+    "type": "interactive",
+    "level": "beginner",
+    "description": "Интерактивный курс по регулярным выражениям с задачами и немедленной проверкой."
+  }
+]

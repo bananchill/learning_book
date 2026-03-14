@@ -1,0 +1,57 @@
+{
+  "chapter": "ch10-strings",
+  "title": "Метод replace с функцией-обработчиком",
+  "description": "Пошаговый разбор использования replace с коллбеком для трансформации совпадений",
+  "code": "const template = 'Привет, {{name}}! Твой уровень: {{level}}';\nconst data = { name: 'Иван', level: 'junior' };\n\nconst result = template.replace(\n  /\\{\\{(\\w+)\\}\\}/g,\n  (match, key) => data[key] ?? match\n);\n\nconsole.log(result);\n// 'Привет, Иван! Твой уровень: junior'",
+  "steps": [
+    {
+      "line": 1,
+      "highlight": [1, 2],
+      "description": "Создаём шаблон с плейсхолдерами {{name}} и {{level}}, и объект данных для подстановки.",
+      "state": {
+        "template": "'Привет, {{name}}! Твой уровень: {{level}}'",
+        "data": "{ name: 'Иван', level: 'junior' }"
+      }
+    },
+    {
+      "line": 4,
+      "highlight": [4, 5, 6],
+      "description": "Regex /\\{\\{(\\w+)\\}\\}/g ищет все вхождения {{...}}. Скобки (\\w+) создают захватывающую группу — ключ без фигурных скобок.",
+      "state": {
+        "regex": "/\\{\\{(\\w+)\\}\\}/g",
+        "firstMatch": "{{name}}",
+        "capturedGroup": "'name'"
+      }
+    },
+    {
+      "line": 6,
+      "highlight": [6],
+      "description": "Для первого совпадения: match = '{{name}}', key = 'name'. data['name'] = 'Иван'. Возвращаем 'Иван'.",
+      "state": {
+        "match": "'{{name}}'",
+        "key": "'name'",
+        "data[key]": "'Иван'",
+        "returns": "'Иван'"
+      }
+    },
+    {
+      "line": 6,
+      "highlight": [6],
+      "description": "Для второго совпадения: match = '{{level}}', key = 'level'. data['level'] = 'junior'. Возвращаем 'junior'.",
+      "state": {
+        "match": "'{{level}}'",
+        "key": "'level'",
+        "data[key]": "'junior'",
+        "returns": "'junior'"
+      }
+    },
+    {
+      "line": 8,
+      "highlight": [8, 9],
+      "description": "Все плейсхолдеры заменены. Если ключа нет в data — возвращаем match (исходный плейсхолдер) через оператор ??.",
+      "state": {
+        "result": "'Привет, Иван! Твой уровень: junior'"
+      }
+    }
+  ]
+}
