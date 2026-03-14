@@ -1,0 +1,26 @@
+{
+  "chapter": "ch18-generators",
+  "tasks": [
+    {
+      "id": "01-easy-range",
+      "title": "Генератор диапазона",
+      "difficulty": "easy",
+      "file": "01-easy-range.js",
+      "description": "Реализуй генератор range(start, end, step), который выдаёт числа от start до end (не включая) с шагом step."
+    },
+    {
+      "id": "02-easy-infinite-counter",
+      "title": "Бесконечный счётчик",
+      "difficulty": "easy",
+      "file": "02-easy-infinite-counter.js",
+      "description": "Реализуй класс InfiniteCounter с методом Symbol.iterator, который бесконечно считает от заданного начального значения с заданным шагом."
+    },
+    {
+      "id": "03-medium-paginate",
+      "title": "Async-пагинация",
+      "difficulty": "medium",
+      "file": "03-medium-paginate.js",
+      "description": "Реализуй async-генератор paginate(fetchFn, pageSize), который постранично загружает данные, вызывая fetchFn(page, pageSize)."
+    }
+  ]
+}

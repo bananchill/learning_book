@@ -1,0 +1,45 @@
+{
+  "chapter": "ch18-generators",
+  "resources": [
+    {
+      "title": "Iterators and generators — MDN Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+      "type": "documentation",
+      "language": "en",
+      "description": "Полное руководство по протоколу итерации и генераторам от MDN",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Generators — javascript.info",
+      "url": "https://javascript.info/generators",
+      "type": "article",
+      "language": "en",
+      "description": "Подробное объяснение генераторов с примерами использования yield*",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Async iteration and generators — javascript.info",
+      "url": "https://javascript.info/async-iterators-generators",
+      "type": "article",
+      "language": "en",
+      "description": "Async-итераторы, async-генераторы и for await...of",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "ES6 Generators: Complete Series — Kyle Simpson",
+      "url": "https://davidwalsh.name/es6-generators",
+      "type": "article",
+      "language": "en",
+      "description": "Глубокое погружение в генераторы от автора YDKJS",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Symbol.iterator — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator",
+      "type": "documentation",
+      "language": "en",
+      "description": "Документация по Symbol.iterator и пример реализации кастомного итерируемого",
+      "difficulty": "beginner"
+    }
+  ]
+}

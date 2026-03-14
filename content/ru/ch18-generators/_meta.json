@@ -1,0 +1,27 @@
+{
+  "id": "ch18-generators",
+  "title": "Генераторы и итераторы",
+  "description": "Протокол итерации, функции-генераторы, бесконечные последовательности и async-генераторы",
+  "section": "javascript",
+  "subsection": "advanced",
+  "group": "intermediate",
+  "order": 18,
+  "estimatedMinutes": 35,
+  "subchapters": [
+    { "id": "01-iterator-protocol", "title": "Протокол итерации", "order": 1 },
+    { "id": "02-generators-syntax", "title": "Генераторы: синтаксис и поведение", "order": 2 },
+    { "id": "03-practical-generators", "title": "Практические применения", "order": 3 },
+    { "id": "04-async-generators", "title": "Async-генераторы", "order": 4 }
+  ],
+  "concepts": [
+    "Symbol.iterator",
+    "итерируемые объекты",
+    "function*",
+    "yield",
+    "бесконечные последовательности",
+    "ленивые вычисления",
+    "async generator",
+    "for await...of"
+  ],
+  "prerequisites": ["ch07-functions", "ch06-loops", "ch02-async"]
+}

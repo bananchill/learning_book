@@ -1,0 +1,33 @@
+{
+  "title": "Генератор: пошаговое выполнение",
+  "code": "function* counter(start) {\n  console.log('старт:', start)\n  const step = yield start\n  console.log('шаг:', step)\n  yield start + step\n  console.log('конец')\n}\n\nconst gen = counter(10)\nconst r1 = gen.next()      // запуск\nconst r2 = gen.next(5)     // передаём step=5\nconst r3 = gen.next()      // завершение",
+  "steps": [
+    {
+      "line": 8,
+      "description": "counter(10) создаёт объект-генератор. Тело функции НЕ выполняется — мы просто получаем gen.",
+      "variables": { "gen": "Generator { <suspended> }", "start": "не инициализирован" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 9,
+      "description": "gen.next() — первый запуск. Выполнение входит в функцию: 'старт: 10' выводится, дошли до yield start.",
+      "variables": { "start": "10", "r1": "{ value: 10, done: false }" },
+      "callStack": ["global", "counter(10)"],
+      "output": "старт: 10"
+    },
+    {
+      "line": 10,
+      "description": "gen.next(5) — передаём значение 5. Оно становится результатом yield — переменная step получает 5. Выводим 'шаг: 5', дошли до второго yield.",
+      "variables": { "step": "5", "r2": "{ value: 15, done: false }" },
+      "callStack": ["global", "counter(10)"],
+      "output": "шаг: 5"
+    },
+    {
+      "line": 11,
+      "description": "gen.next() — третий вызов. Выполнение возобновляется после второго yield. Выводим 'конец'. Функция завершается — done: true.",
+      "variables": { "r3": "{ value: undefined, done: true }" },
+      "callStack": ["global"],
+      "output": "конец"
+    }
+  ]
+}

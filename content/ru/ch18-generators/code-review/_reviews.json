@@ -1,0 +1,33 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с генераторами",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 12,
+        "type": "bug",
+        "description": "Spread бесконечного генератора [...infiniteNumbers()] вызовет бесконечный цикл и подвесит процесс. Для бесконечных генераторов нужно явно ограничивать итерацию через break или функцию take().",
+        "fix": "function take(gen, n) { const r = []; for (const v of gen) { r.push(v); if (r.length >= n) break; } return r }\ntake(infiniteNumbers(), 5) // [0, 1, 2, 3, 4]"
+      },
+      {
+        "line": 22,
+        "type": "bug",
+        "description": "Первый вызов `.next(value)` всегда игнорирует переданное значение — генератор ещё не дошёл до первого yield. Значение 10 теряется. Первый .next() всегда вызывается без аргументов.",
+        "fix": "calc.next()     // запуск, без значения\ncalc.next(10)   // a = 10\ncalc.next(20)   // b = 20, возвращает 30"
+      },
+      {
+        "line": 35,
+        "type": "bug",
+        "description": "Возвращённый объект — итератор, но не итерируемый. for...of требует [Symbol.iterator]. Нужно добавить метод [Symbol.iterator]() { return this } чтобы объект был одновременно итератором и итерируемым.",
+        "fix": "return {\n  next() { ... },\n  [Symbol.iterator]() { return this }\n}"
+      },
+      {
+        "line": 46,
+        "type": "bug",
+        "description": "Пропущен await перед fetch. fetch() возвращает Promise, а .then() тоже возвращает Promise. Без await генератор выдаёт Promise<Response>, а не данные. Нужно await fetch(url).then(r => r.json()) или await (await fetch(url)).json().",
+        "fix": "const data = await fetch(url).then(r => r.json())"
+      }
+    ]
+  }
+]
