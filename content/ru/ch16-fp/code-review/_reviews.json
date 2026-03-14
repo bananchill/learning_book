@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди нарушения принципов ФП",
+    "codeFile": "01-review.js",
+    "issues": [
+      {
+        "line": 3,
+        "type": "bug",
+        "description": "Array.sort() мутирует оригинальный массив. Вызывающий код не ожидает, что его массив будет изменён.",
+        "fix": "return [...users].sort((a, b) => a.name.localeCompare(b.name)) — spread создаёт копию"
+      },
+      {
+        "line": 10,
+        "type": "design",
+        "description": "applyDiscount зависит от внешней переменной discountRate — нечистая функция. Результат меняется при изменении discountRate, нельзя надёжно тестировать.",
+        "fix": "function applyDiscount(price, rate) { return price * (1 - rate) } — сделать rate параметром"
+      },
+      {
+        "line": 15,
+        "type": "design",
+        "description": "console.log внутри map — побочный эффект в функции трансформации. map должен быть чистым: только трансформация, без I/O.",
+        "fix": "Убрать console.log из map. Если нужно логировать — сделать tap-функцию: const tap = fn => x => { fn(x); return x }"
+      },
+      {
+        "line": 24,
+        "type": "bug",
+        "description": "addMetadata и markActive мутируют входной объект. Это нарушение иммутабельности — вызывающий код получит изменённый объект неожиданно.",
+        "fix": "function addMetadata(item) { return { ...item, updatedAt: new Date() } } — возвращаем новый объект"
+      },
+      {
+        "line": 37,
+        "type": "design",
+        "description": "Логика трансформации данных смешана с I/O (fetch и db.save). Нельзя протестировать трансформацию без HTTP и БД.",
+        "fix": "Выделить чистую функцию processData(data) отдельно. loadAndSave только организует: load → processData → save"
+      }
+    ]
+  }
+]

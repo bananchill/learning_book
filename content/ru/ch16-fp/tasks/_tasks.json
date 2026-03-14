@@ -1,0 +1,50 @@
+{
+  "chapter": "ch16-fp",
+  "tasks": [
+    {
+      "id": "01-easy-pipe",
+      "title": "Реализовать pipe",
+      "difficulty": "easy",
+      "description": "Реализуй функцию pipe(...fns), которая принимает любое количество функций и возвращает новую функцию. При вызове новая функция применяет fns слева направо: pipe(f, g, h)(x) === h(g(f(x))).",
+      "file": "01-easy-pipe.js",
+      "testFile": "01-easy-pipe.test.js",
+      "concepts": ["pipe", "compose", "higher-order-function"],
+      "hints": [
+        "Используй Array.prototype.reduce: начни с x, применяй каждую функцию.",
+        "const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x)",
+        "Проверь с одной функцией: pipe(double)(5) === double(5)"
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-maybe",
+      "title": "Реализовать Maybe монаду",
+      "difficulty": "easy",
+      "description": "Реализуй класс Maybe с методами: static of(value) — создаёт Maybe, map(fn) — применяет fn к значению если оно не null/undefined, иначе возвращает Maybe.of(null), getOrElse(defaultValue) — возвращает значение или defaultValue если значение null/undefined.",
+      "file": "02-easy-maybe.js",
+      "testFile": "02-easy-maybe.test.js",
+      "concepts": ["maybe", "functor", "null-safety"],
+      "hints": [
+        "Сохрани значение в this._value. of(value) создаёт new Maybe(value).",
+        "В map(fn): если this._value == null — верни Maybe.of(null), иначе Maybe.of(fn(this._value)).",
+        "getOrElse(def): return this._value ?? def"
+      ],
+      "estimatedMinutes": 8
+    },
+    {
+      "id": "03-medium-refactor-fp",
+      "title": "Рефакторинг в функциональный стиль",
+      "difficulty": "medium",
+      "description": "Рефакторинг функции processOrders(orders) из императивного в функциональный стиль используя pipe. Функция должна: отфильтровать только активные заказы (status === 'active'), преобразовать в формат { id, total, currency }, отсортировать по total (убывание), вернуть первые 5 заказов. Реализуй без мутаций и циклов.",
+      "file": "03-medium-refactor-fp.js",
+      "testFile": "03-medium-refactor-fp.test.js",
+      "concepts": ["pipe", "immutability", "pure-functions"],
+      "hints": [
+        "Разбей на маленькие функции: filterActive, toSummary, sortByTotal, takeFirst(5).",
+        "Объедини через pipe: pipe(filterActive, toSummary, sortByTotal, takeFirst(5)).",
+        "sortByTotal: orders => [...orders].sort((a, b) => b.total - a.total) — spread чтобы не мутировать"
+      ],
+      "estimatedMinutes": 15
+    }
+  ]
+}

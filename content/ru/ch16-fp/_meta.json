@@ -1,0 +1,18 @@
+{
+  "id": "ch16-fp",
+  "title": "Функциональное программирование",
+  "description": "Чистые функции, иммутабельность, compose/pipe, Maybe и Either монады на практике",
+  "section": "frontend",
+  "subsection": "javascript",
+  "group": "intermediate",
+  "order": 16,
+  "estimatedMinutes": 42,
+  "subchapters": [
+    { "id": "01-pure-functions", "title": "Чистые функции и side effects", "order": 1 },
+    { "id": "02-immutability", "title": "Иммутабельность", "order": 2 },
+    { "id": "03-compose-pipe", "title": "compose и pipe", "order": 3 },
+    { "id": "04-maybe-either", "title": "Maybe и Either на практике", "order": 4 }
+  ],
+  "concepts": ["pure-function", "side-effects", "immutability", "compose", "pipe", "maybe", "either", "functor"],
+  "prerequisites": ["ch07-functions", "ch08-arrays"]
+}

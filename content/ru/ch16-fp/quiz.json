@@ -1,0 +1,70 @@
+{
+  "chapter": "ch16-fp",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Какая из этих функций является чистой?",
+      "type": "multiple-choice",
+      "options": [
+        "function rand() { return Math.random() }",
+        "function add(a, b) { return a + b }",
+        "function push(arr, x) { arr.push(x); return arr }",
+        "function log(x) { console.log(x); return x }"
+      ],
+      "correctAnswer": 1,
+      "explanation": "add(a, b) — чистая: возвращает одинаковый результат для одинаковых аргументов и не имеет побочных эффектов. rand() — нечистая (случайность). push() — нечистая (мутирует массив). log() — нечистая (побочный эффект: вывод в консоль).",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Что такое pipe в функциональном программировании?",
+      "type": "multiple-choice",
+      "options": [
+        "Способ обработки ошибок",
+        "Функция, применяющая функции слева направо: pipe(f,g,h)(x) === h(g(f(x)))",
+        "Аналог async/await для синхронного кода",
+        "Метод для работы с промисами"
+      ],
+      "correctAnswer": 1,
+      "explanation": "pipe применяет функции слева направо — как конвейер. pipe(f, g, h)(x) сначала применяет f к x, затем g к результату, затем h. Это противоположность compose, которая работает справа налево.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что вернёт Maybe.of(null).map(x => x.name).getOrElse('default')?",
+      "type": "code-output",
+      "options": ["TypeError: Cannot read properties of null", "null", "undefined", "'default'"],
+      "correctAnswer": 3,
+      "explanation": "Maybe.of(null) создаёт Maybe с null. map() видит null и пропускает вызов fn. getOrElse('default') возвращает 'default', так как значение null. Maybe защищает от TypeError при обращении к свойствам null.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Что такое иммутабельность в контексте ФП?",
+      "type": "multiple-choice",
+      "options": [
+        "Все переменные объявляются как const",
+        "Вместо изменения объектов создаются новые с обновлёнными значениями",
+        "Функции не могут принимать объекты как аргументы",
+        "Запрет на использование циклов"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Иммутабельность — принцип, при котором данные не изменяются. Вместо мутации создаётся новый объект/массив с обновлёнными значениями. Это предотвращает неожиданные изменения в других частях кода.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q5",
+      "question": "Чем Either отличается от Maybe в обработке ошибок?",
+      "type": "multiple-choice",
+      "options": [
+        "Either быстрее Maybe",
+        "Either содержит информацию об ошибке (Left), Maybe просто None при отсутствии",
+        "Maybe можно использовать с async, Either — нет",
+        "Either — для массивов, Maybe — для объектов"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Maybe имеет два состояния: Just(value) или Nothing (без деталей). Either имеет Right(value) — успех — и Left(error) — ошибка с деталями. Either предпочтительнее когда нужно знать, что именно пошло не так.",
+      "difficulty": "medium"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "title": "pipe: пайплайн трансформации данных",
+  "code": "const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x)\n\nconst normalize = user => ({ ...user, email: user.email.toLowerCase() })\nconst addRole = user => ({ ...user, role: user.role || 'user' })\nconst trim = user => ({ ...user, name: user.name.trim() })\n\nconst processUser = pipe(normalize, trim, addRole)\n\nconst result = processUser({\n  email: 'Alice@Example.COM',\n  name: '  Алиса  ',\n  role: null\n})",
+  "steps": [
+    {
+      "line": 1,
+      "description": "pipe создаёт функцию-пайплайн. fns.reduce применяет функции слева направо, передавая результат следующей.",
+      "variables": { "pipe": "(...fns) => x => fns.reduce(...)" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 7,
+      "description": "processUser = pipe(normalize, trim, addRole). Создаётся функция, которая применит три функции по порядку.",
+      "variables": { "processUser": "fn(normalize → trim → addRole)" },
+      "callStack": ["global"]
+    },
+    {
+      "line": 9,
+      "description": "Вызываем processUser. Начало reduce: v = входной объект.",
+      "variables": { "v": "{ email: 'Alice@Example.COM', name: '  Алиса  ', role: null }" },
+      "callStack": ["global", "pipe → reduce"]
+    },
+    {
+      "line": 3,
+      "description": "Шаг 1: normalize(v). email приводим к нижнему регистру.",
+      "variables": { "v": "{ email: 'alice@example.com', name: '  Алиса  ', role: null }" },
+      "callStack": ["global", "normalize()"],
+      "highlight": "email"
+    },
+    {
+      "line": 4,
+      "description": "Шаг 2: trim(v). Убираем пробелы из name.",
+      "variables": { "v": "{ email: 'alice@example.com', name: 'Алиса', role: null }" },
+      "callStack": ["global", "trim()"],
+      "highlight": "name"
+    },
+    {
+      "line": 5,
+      "description": "Шаг 3: addRole(v). role null → 'user'.",
+      "variables": { "result": "{ email: 'alice@example.com', name: 'Алиса', role: 'user' }" },
+      "callStack": ["global", "addRole()"],
+      "highlight": "role"
+    }
+  ]
+}

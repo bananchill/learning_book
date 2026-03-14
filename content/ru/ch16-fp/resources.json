@@ -1,0 +1,45 @@
+{
+  "chapter": "ch16-fp",
+  "resources": [
+    {
+      "title": "Mostly Adequate Guide to Functional Programming",
+      "url": "https://github.com/MostlyAdequate/mostly-adequate-guide",
+      "type": "book",
+      "language": "en",
+      "description": "Бесплатная книга по ФП в JavaScript — от основ до монад, практично и с юмором",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Ramda — Practical Functional JavaScript",
+      "url": "https://ramdajs.com/",
+      "type": "documentation",
+      "language": "en",
+      "description": "Библиотека для ФП в JS — карри, compose, pipe и сотни чистых функций",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "Immutability in JavaScript — MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Immutable",
+      "type": "documentation",
+      "language": "en",
+      "description": "Объяснение иммутабельности с примерами для примитивов и объектов",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Immer — Immutable state with mutations",
+      "url": "https://immerjs.github.io/immer/",
+      "type": "documentation",
+      "language": "en",
+      "description": "Библиотека для иммутабельных обновлений состояния через 'изменяемый' синтаксис",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "Professor Frisby's Mostly Adequate Guide — Functors",
+      "url": "https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch08",
+      "type": "book",
+      "language": "en",
+      "description": "Объяснение функторов и монад (Maybe, Either) без теории категорий",
+      "difficulty": "intermediate"
+    }
+  ]
+}
