@@ -1,0 +1,27 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.js",
+    "title": "Обработчики событий — типичные ошибки",
+    "issues": [
+      {
+        "line": 4,
+        "severity": "warning",
+        "message": "Отдельный обработчик на каждый .item: N обработчиков в памяти, новые элементы не будут обрабатываться",
+        "fix": "listEl.addEventListener('click', (e) => { const item = e.target.closest('.item'); if (item) deleteItem(item) })"
+      },
+      {
+        "line": 14,
+        "severity": "error",
+        "message": "Анонимные обработчики не могут быть удалены через removeEventListener — утечка памяти при уничтожении Modal",
+        "fix": "Использовать AbortController: this.controller = new AbortController(); addEventListener('keydown', handler, { signal: this.controller.signal }); В destroy(): this.controller.abort()"
+      },
+      {
+        "line": 27,
+        "severity": "warning",
+        "message": "stopPropagation на всём dropdown ломает другие обработчики выше в DOM (например, закрытие других dropdown)",
+        "fix": "Проверять e.target вместо блокировки всплытия. Если нужно — добавить обработчик document.addEventListener('click', closeDropdown) и проверять !dropdown.contains(e.target)"
+      }
+    ]
+  }
+]

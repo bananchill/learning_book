@@ -1,0 +1,22 @@
+{
+  "id": "ch29-events",
+  "title": "События и делегирование",
+  "section": "browser",
+  "order": 29,
+  "estimatedMinutes": 40,
+  "subchapters": [
+    { "id": "01-event-model", "title": "Модель событий", "order": 1 },
+    { "id": "02-delegation", "title": "Делегирование событий", "order": 2 },
+    { "id": "03-custom-events", "title": "Кастомные события", "order": 3 },
+    { "id": "04-optimization", "title": "Оптимизация", "order": 4 }
+  ],
+  "concepts": [
+    "event bubbling",
+    "event capturing",
+    "event delegation",
+    "CustomEvent",
+    "AbortController",
+    "passive listeners"
+  ],
+  "prerequisites": ["ch28-dom", "ch02-async"]
+}

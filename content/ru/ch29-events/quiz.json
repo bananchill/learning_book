@@ -1,0 +1,65 @@
+{
+  "chapter": "ch29-events",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "В чём разница между event.target и event.currentTarget?",
+      "options": [
+        "target — элемент с обработчиком, currentTarget — куда кликнули",
+        "target — куда реально кликнули, currentTarget — элемент с обработчиком",
+        "Они всегда одинаковы",
+        "currentTarget устарел, нужно использовать target"
+      ],
+      "correctIndex": 1,
+      "explanation": "event.target — элемент, который стал источником события (куда реально кликнули). event.currentTarget — элемент, к которому привязан обработчик. При делегировании они разные: target — дочерний элемент, currentTarget — родительский."
+    },
+    {
+      "id": "q2",
+      "text": "Зачем нужны passive event listeners?",
+      "options": [
+        "Для безмолчного выполнения обработчика",
+        "Чтобы сказать браузеру, что preventDefault не будет вызван — браузер может оптимизировать прокрутку",
+        "Для предотвращения всплытия событий",
+        "Для асинхронного выполнения обработчика"
+      ],
+      "correctIndex": 1,
+      "explanation": "Для scroll и touch событий браузер обычно ждёт завершения обработчика перед прокруткой (вдруг там вызовут preventDefault). { passive: true } говорит: 'не буду вызывать preventDefault, можешь сразу прокручивать'."
+    },
+    {
+      "id": "q3",
+      "text": "Как AbortController упрощает работу с обработчиками событий?",
+      "options": [
+        "Позволяет отменить выполнение обработчика в процессе",
+        "Позволяет удалить несколько обработчиков одним вызовом abort()",
+        "Делает обработчики более быстрыми",
+        "Конвертирует callback в Promise"
+      ],
+      "correctIndex": 1,
+      "explanation": "AbortController.signal передаётся в addEventListener. При вызове controller.abort() все обработчики с этим signal удаляются автоматически. Удобно для очистки компонентов — не нужно хранить ссылки на функции."
+    },
+    {
+      "id": "q4",
+      "text": "Что делает e.stopImmediatePropagation() в отличие от e.stopPropagation()?",
+      "options": [
+        "Разницы нет — они делают одно и то же",
+        "stopImmediatePropagation останавливает и всплытие, и остальные обработчики на том же элементе",
+        "stopImmediatePropagation работает только в capturing фазе",
+        "stopImmediatePropagation быстрее"
+      ],
+      "correctIndex": 1,
+      "explanation": "stopPropagation останавливает всплытие, но другие обработчики на ЭТОМ же элементе всё равно выполнятся. stopImmediatePropagation останавливает и всплытие, и все последующие обработчики на этом же элементе."
+    },
+    {
+      "id": "q5",
+      "text": "Каким методом искать ближайший предок при делегировании?",
+      "options": [
+        "e.target.parentNode",
+        "e.target.closest(selector)",
+        "document.querySelector(selector)",
+        "e.target.matches(selector)"
+      ],
+      "correctIndex": 1,
+      "explanation": "closest(selector) идёт вверх по DOM начиная с текущего элемента и возвращает первый совпадающий предок (или сам элемент). Идеально для делегирования: e.target.closest('.list-item') найдёт li даже если кликнули на span внутри него."
+    }
+  ]
+}

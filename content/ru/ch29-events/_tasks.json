@@ -1,0 +1,38 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-delegate.js",
+    "title": "on() — делегированный обработчик",
+    "description": "Реализуйте функцию on(el, event, selector, handler), добавляющую делегированный обработчик события.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте el.addEventListener(event, callback)",
+      "Внутри callback: найдите ближайший предок через e.target.closest(selector)",
+      "Проверьте что el.contains(matched) перед вызовом handler"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-once.js",
+    "title": "once() — одноразовый обработчик",
+    "description": "Реализуйте функцию once(el, event, handler), которая добавляет обработчик, срабатывающий только один раз.",
+    "difficulty": "easy",
+    "hints": [
+      "Оберните handler в wrapper функцию",
+      "После первого вызова удалите wrapper через el.removeEventListener",
+      "Или используйте { once: true } в addEventListener"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-event-emitter.js",
+    "title": "EventEmitter класс",
+    "description": "Реализуйте класс EventEmitter с методами on(event, handler), off(event, handler), once(event, handler) и emit(event, ...args).",
+    "difficulty": "medium",
+    "hints": [
+      "Храните обработчики в Map<string, Set<Function>>",
+      "Set предотвращает дублирование одного обработчика",
+      "once: создайте wrapper, который вызывает off после первого срабатывания"
+    ]
+  }
+]

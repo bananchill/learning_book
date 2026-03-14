@@ -1,0 +1,26 @@
+[
+  {
+    "title": "MDN: Introduction to events",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "MDN: Event delegation",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_delegation",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "MDN: CustomEvent",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "JavaScript.info: Events",
+    "url": "https://javascript.info/events",
+    "type": "tutorial",
+    "language": "ru"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "chapter": "ch29-events",
+  "title": "Путь события: от клика до обработчика",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Пользователь кликает на кнопку",
+      "code": "<div id=\"app\">\n  <ul id=\"list\">\n    <li class=\"item\">Элемент 1</li>\n    <li class=\"item\">Элемент 2</li>  ← клик здесь\n  </ul>\n</div>",
+      "highlight": [4],
+      "explanation": "Пользователь кликает на второй элемент списка."
+    },
+    {
+      "id": 2,
+      "title": "Фаза Capturing: событие спускается",
+      "code": "// Браузер создаёт Event объект\n// event.target = <li>Элемент 2</li>\n\n// Фаза capturing: document → html → body → div#app → ul#list → li\n// (обработчики с { capture: true } вызываются здесь)",
+      "highlight": [4],
+      "explanation": "Событие начинает путь сверху вниз (capturing). Если на родителях есть capture-обработчики, они вызываются в этой фазе."
+    },
+    {
+      "id": 3,
+      "title": "Фаза Target: обработчики на li",
+      "code": "// Событие достигает target (li)\n// Обработчики на самом li вызываются здесь\n// (как capture так и bubble обработчики)",
+      "highlight": [3],
+      "explanation": "На самом целевом элементе вызываются все обработчики независимо от useCapture."
+    },
+    {
+      "id": 4,
+      "title": "Фаза Bubbling: событие всплывает",
+      "code": "// Событие всплывает: li → ul#list → div#app → body → html → document\n\nlist.addEventListener('click', (e) => {\n  // e.target = li (куда кликнули)\n  // e.currentTarget = ul (где обработчик)\n\n  if (e.target.classList.contains('item')) {\n    console.log('Клик на элемент!')\n  }\n})",
+      "highlight": [3, 4, 5, 7, 8],
+      "explanation": "Событие всплывает к ul#list. Здесь срабатывает делегированный обработчик. e.target говорит на какой li кликнули."
+    }
+  ]
+}
