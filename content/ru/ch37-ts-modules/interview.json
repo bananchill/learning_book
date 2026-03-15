@@ -1,0 +1,57 @@
+{
+  "chapter": "ch37-ts-modules",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "В чём разница между `import type` и обычным `import` в TypeScript? Когда стоит использовать `import type`?",
+      "level": "junior",
+      "goodAnswer": "`import type` импортирует только типы — они полностью удаляются при компиляции и не попадают в итоговый JS. Обычный `import` может импортировать и значения, и типы. `import type` стоит использовать, когда импортируешь исключительно интерфейсы, type alias или другие конструкции, которые не существуют в рантайме. При включённом `verbatimModuleSyntax` это становится обязательным — TypeScript требует явного `import type` для чисто типовых импортов.",
+      "whatInterviewerWants": "Понимание разницы между типами и значениями в TypeScript, знание о стирании типов при компиляции.",
+      "commonMistakes": [
+        "Не знают о существовании import type",
+        "Думают, что import type — это просто стилистический выбор без практического значения",
+        "Не знают про verbatimModuleSyntax"
+      ],
+      "followUps": ["Что такое verbatimModuleSyntax?", "Можно ли смешивать type и value в одном import?"]
+    },
+    {
+      "id": "i2",
+      "question": "Объясните, как работает module resolution в TypeScript. Какую стратегию вы бы выбрали для проекта на Vite и для серверного Node.js-приложения?",
+      "level": "middle",
+      "goodAnswer": "Module resolution — процесс, при котором TypeScript определяет, какой файл стоит за строкой импорта. Для Vite (и других бандлеров) — стратегия `bundler`: она не требует расширений файлов, поддерживает `exports` в package.json и соответствует поведению бандлера. Для Node.js — `node16` или `nodenext`: они различают ESM и CJS контексты, требуют расширения `.js` в импортах и точно соответствуют алгоритму разрешения Node.js. Устаревшие `node10` и `classic` не поддерживают `exports` и не различают ESM/CJS.",
+      "whatInterviewerWants": "Практическое понимание настройки TypeScript-проектов, знание современных стратегий и умение выбрать правильную.",
+      "commonMistakes": [
+        "Используют node10 для всех проектов, не зная о bundler и node16",
+        "Не понимают, зачем при node16 нужно расширение .js в импортах",
+        "Путают настройки TypeScript (paths) и бандлера (resolve.alias)"
+      ],
+      "followUps": ["Зачем нужен paths в tsconfig?", "Как paths связан с resolve.alias в Vite?"]
+    },
+    {
+      "id": "i3",
+      "question": "Что такое declaration merging в TypeScript? Приведите практический пример.",
+      "level": "middle",
+      "goodAnswer": "Declaration merging — механизм, при котором TypeScript объединяет несколько деклараций с одинаковым именем в одну. Самый частый пример — слияние интерфейсов: два interface с одним именем объединяются, получая все свойства из обоих. Практическое применение — module augmentation: расширение типов сторонних библиотек. Например, можно добавить типизированное поле `userId` к `Request` из Express через `declare module 'express' { interface Request { userId?: string; } }`. Также работает слияние namespace с class, function или enum.",
+      "whatInterviewerWants": "Понимание механизма слияния и его практического применения для расширения библиотечных типов.",
+      "commonMistakes": [
+        "Путают declaration merging с intersection types",
+        "Не знают, что type alias не поддерживает слияние, а interface — поддерживает",
+        "Не могут привести практический пример module augmentation"
+      ],
+      "followUps": ["Чем отличается interface от type alias в контексте слияния?", "Как расширить глобальный объект Window?"]
+    },
+    {
+      "id": "i4",
+      "question": "Стоит ли использовать namespaces в современном TypeScript-проекте? Когда они оправданы?",
+      "level": "senior",
+      "goodAnswer": "В подавляющем большинстве случаев — нет, следует использовать ES-модули. Namespaces — устаревший механизм из эпохи до ESM. Они не поддерживают tree shaking, требуют --outFile для многофайловой компиляции, и модуль уже сам по себе является областью видимости. Оправданные случаи: 1) файлы деклараций (.d.ts) для глобальных библиотек, загружаемых через <script>, 2) расширение глобальных типов (declare namespace NodeJS), 3) поддержка legacy-кода. Частая ошибка — оборачивание содержимого модуля в namespace, что бессмысленно и добавляет лишний уровень вложенности.",
+      "whatInterviewerWants": "Зрелое понимание эволюции TypeScript, умение обосновать архитектурный выбор.",
+      "commonMistakes": [
+        "Считают namespace и module (ES) взаимозаменяемыми",
+        "Оборачивают модули в namespace по привычке из C#/Java",
+        "Не знают о проблемах namespace с tree shaking"
+      ],
+      "followUps": ["Как namespace компилируется в JavaScript?", "Что такое triple-slash directive?"]
+    }
+  ]
+}

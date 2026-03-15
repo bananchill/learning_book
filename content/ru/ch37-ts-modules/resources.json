@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Modules — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/modules.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация по модулям в TypeScript: ESM-синтаксис, import type, CommonJS interop",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Module Resolution — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Теория разрешения модулей: стратегии node16, bundler, paths, baseUrl",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Namespaces — TypeScript Reference",
+    "url": "https://www.typescriptlang.org/docs/handbook/namespaces.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник по пространствам имён: объявление, вложенные namespace, многофайловые пространства",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Namespaces and Modules — TypeScript Reference",
+    "url": "https://www.typescriptlang.org/docs/handbook/namespaces-and-modules.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Сравнение namespace и модулей, типичные ошибки и рекомендации",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Declaration Merging — TypeScript Reference",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-merging.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полное описание механизма слияния деклараций: интерфейсы, namespace, module augmentation",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TSConfig Reference — module",
+    "url": "https://www.typescriptlang.org/tsconfig/#module",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник по опции module в tsconfig: выбор формата модулей и стратегии разрешения",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TypeScript Module Resolution: The Definitive Guide",
+    "url": "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Практическое руководство по выбору module и moduleResolution для разных сценариев",
+    "difficulty": "intermediate"
+  }
+]

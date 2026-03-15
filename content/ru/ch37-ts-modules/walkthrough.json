@@ -1,0 +1,55 @@
+{
+  "chapter": "ch37-ts-modules",
+  "title": "Пошаговый разбор: от модулей к declaration merging",
+  "description": "Проследим, как TypeScript обрабатывает модули, разрешает импорты и объединяет декларации",
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "Именованные экспорты и import type",
+      "code": "// math.ts\nexport function add(a: number, b: number): number {\n  return a + b;\n}\n\nexport interface MathResult {\n  value: number;\n  operation: string;\n}\n\nexport type Operator = '+' | '-' | '*' | '/';",
+      "highlight": [2, 6, 11],
+      "explanation": "Модуль экспортирует функцию (значение), интерфейс (тип) и type alias (тип). Все три доступны для импорта, но интерфейс и type alias существуют только на этапе компиляции.",
+      "annotation": "Значения и типы экспортируются одинаково, но живут по-разному"
+    },
+    {
+      "id": "step-2",
+      "title": "Импорт: значения vs типы",
+      "code": "// app.ts\nimport { add } from './math';           // импорт значения\nimport type { MathResult } from './math'; // импорт типа\nimport { type Operator } from './math';   // инлайн-форма (TS 4.5+)\n\nconst result: MathResult = {\n  value: add(2, 3),\n  operation: '+'\n};",
+      "highlight": [2, 3, 4],
+      "explanation": "Строка 2 — обычный импорт значения (функция add). Строки 3-4 — импорт только типов через `import type` и инлайн-форму `type`. Эти импорты полностью удаляются при компиляции.",
+      "annotation": "import type гарантирует стирание при компиляции"
+    },
+    {
+      "id": "step-3",
+      "title": "Скомпилированный результат",
+      "code": "// app.js (после компиляции)\nimport { add } from './math';\n// import type — полностью удалён!\n// import { type Operator } — тоже удалён!\n\nconst result = {\n  value: add(2, 3),\n  operation: '+'\n};",
+      "highlight": [2, 3, 4],
+      "explanation": "В итоговом JS остался только импорт функции add. Все типовые импорты стёрты. Если бы мы использовали обычный `import { MathResult }`, бандлер мог бы оставить пустой импорт — `import type` предотвращает это.",
+      "annotation": "Типы стираются, значения остаются"
+    },
+    {
+      "id": "step-4",
+      "title": "Module Resolution — как TypeScript ищет файл",
+      "code": "// tsconfig.json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\",\n    \"paths\": {\n      \"@utils/*\": [\"./src/utils/*\"]\n    }\n  }\n}\n\n// app.ts\nimport { format } from '@utils/format';\n\n// TypeScript ищет:\n// 1. ./src/utils/format.ts\n// 2. ./src/utils/format.tsx\n// 3. ./src/utils/format.d.ts\n// 4. ./src/utils/format/index.ts",
+      "highlight": [4, 5, 6, 12],
+      "explanation": "При стратегии `bundler` TypeScript использует paths из tsconfig для маппинга `@utils/*` → `./src/utils/*`. Затем ищет файл, пробуя расширения .ts, .tsx, .d.ts, и index.ts в папке.",
+      "annotation": "paths — это маппинг только для TypeScript, бандлер настраивается отдельно"
+    },
+    {
+      "id": "step-5",
+      "title": "Declaration Merging — расширение интерфейса",
+      "code": "// types/express.d.ts\nimport 'express';\n\ndeclare module 'express' {\n  interface Request {\n    userId?: string;\n    sessionId?: string;\n  }\n}\n\n// Оригинальный тип Express:\n// interface Request { body: any; params: any; query: any; ... }\n\n// После слияния:\n// interface Request {\n//   body: any; params: any; query: any; ...  (оригинал)\n//   userId?: string; sessionId?: string;     (наше расширение)\n// }",
+      "highlight": [4, 5, 6, 7, 8, 15, 16, 17],
+      "explanation": "Module augmentation: `declare module 'express'` открывает модуль для расширения. Наш интерфейс Request сливается с оригинальным через declaration merging. Теперь req.userId типизирован во всём проекте.",
+      "annotation": "declare module + interface = расширение типов сторонней библиотеки"
+    },
+    {
+      "id": "step-6",
+      "title": "Полная картина: модули в TypeScript",
+      "code": "// Модульная система TypeScript\n//\n// 1. Синтаксис:  import / export / import type / export type\n//       ↓\n// 2. Разрешение: moduleResolution (bundler | node16 | ...)\n//       ↓\n// 3. Проверка:   типы импортов совпадают с экспортами?\n//       ↓\n// 4. Слияние:    declaration merging (интерфейсы, module augmentation)\n//       ↓\n// 5. Компиляция: import type стирается, значения остаются\n//       ↓\n// 6. Рантайм:    бандлер / Node.js загружает итоговые .js файлы",
+      "highlight": [3, 5, 7, 9, 11, 13],
+      "explanation": "Полный pipeline работы с модулями: TypeScript парсит импорты, разрешает пути к файлам, проверяет типы, применяет слияние деклараций, компилирует (стирая типы), и передаёт результат бандлеру или Node.js.",
+      "annotation": "TypeScript проверяет модули на этапе компиляции, рантайм — дело бандлера"
+    }
+  ]
+}

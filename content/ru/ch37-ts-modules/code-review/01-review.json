@@ -1,0 +1,39 @@
+[
+  {
+    "id": "01-review",
+    "title": "Найди проблемы с модулями, namespace и declaration merging",
+    "codeFile": "01-review.ts",
+    "issues": [
+      {
+        "line": 5,
+        "type": "anti-pattern",
+        "description": "Namespace внутри модуля — антипаттерн. Файл с export уже является модулем и сам по себе создаёт область видимости. Оборачивание в namespace добавляет бессмысленный уровень вложенности: вместо trim() приходится писать StringUtils.trim().",
+        "fix": "export function trim(s: string): string { return s.trim(); }\nexport function capitalize(s: string): string { return s.charAt(0).toUpperCase() + s.slice(1); }"
+      },
+      {
+        "line": 20,
+        "type": "bug",
+        "description": "Если UserDTO, ProductDTO, OrderDTO — это только интерфейсы (типы), их нужно импортировать через import type. При verbatimModuleSyntax: true обычный import для чисто типовых сущностей вызовет ошибку компиляции. Даже без этого флага обычный import может оставить в скомпилированном JS пустой import, что создаёт лишнюю зависимость.",
+        "fix": "import type { UserDTO, ProductDTO, OrderDTO } from './types';"
+      },
+      {
+        "line": 35,
+        "type": "bug",
+        "description": "При слиянии интерфейсов не-функциональные свойства с одинаковым именем обязаны иметь одинаковый тип. В первом интерфейсе status: number, во втором status: string — это ошибка компиляции (Subsequent property declarations must have the same type).",
+        "fix": "interface ApiResponse {\n  status: number;\n  data: string;\n}\n\ninterface ApiResponse {\n  status: number;    // Тот же тип, что и в первом объявлении\n  timestamp: Date;\n}"
+      },
+      {
+        "line": 42,
+        "type": "bug",
+        "description": "Module augmentation работает только из файла-модуля (содержащего import или export верхнего уровня). Без хотя бы одного import/export файл считается скриптом, и declare module создаёт ambient-модуль вместо augmentation. Нужно добавить import 'express' или export {} для превращения файла в модуль.",
+        "fix": "import 'express';\n// или: export {};\n\ndeclare module 'express' {\n  interface Request {\n    userId?: string; // Лучше optional — не всегда будет установлен\n  }\n}"
+      },
+      {
+        "line": 55,
+        "type": "compatibility",
+        "description": "export = — это CommonJS-стиль экспорта в TypeScript. При импорте через ESM default import (import X from './module') нужен флаг esModuleInterop: true. Без него нужно использовать import X = require('./module'). Для нового кода лучше вообще не использовать export = — это устаревший синтаксис.",
+        "fix": "// Вариант 1: переписать на ESM (рекомендуется)\nexport class LegacyService {\n  getData(): string[] { return ['a', 'b', 'c']; }\n}\n// import { LegacyService } from './legacy-lib';\n\n// Вариант 2: если нельзя менять — включить esModuleInterop: true\n// import LegacyService from './legacy-lib';"
+      }
+    ]
+  }
+]

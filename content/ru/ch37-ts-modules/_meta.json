@@ -1,0 +1,30 @@
+{
+  "id": "ch37-ts-modules",
+  "title": "Модули и пространства имён",
+  "description": "ES-модули в TypeScript, стратегии разрешения модулей, пространства имён и слияние деклараций",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "intermediate",
+  "order": 37,
+  "estimatedMinutes": 30,
+  "difficulty": "intermediate",
+  "topics": [
+    "es-modules",
+    "import-export",
+    "commonjs-interop",
+    "module-resolution",
+    "paths",
+    "baseUrl",
+    "namespaces",
+    "declaration-merging",
+    "module-augmentation",
+    "global-augmentation"
+  ],
+  "prerequisites": ["ch20-modules", "ch32-ts-intro"],
+  "subchapters": [
+    { "id": "01-modules", "title": "Модули в TypeScript", "file": "01-modules.md" },
+    { "id": "02-module-resolution", "title": "Module Resolution", "file": "02-module-resolution.md" },
+    { "id": "03-namespaces", "title": "Namespaces", "file": "03-namespaces.md" },
+    { "id": "04-declaration-merging", "title": "Declaration Merging", "file": "04-declaration-merging.md" }
+  ]
+}

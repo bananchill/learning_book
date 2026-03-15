@@ -1,0 +1,75 @@
+{
+  "chapter": "ch37-ts-modules",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что делает `import type { User } from './types'` по сравнению с обычным `import { User } from './types'`?",
+      "type": "multiple-choice",
+      "options": [
+        "Импортирует User как read-only значение",
+        "Гарантирует, что импорт будет полностью удалён при компиляции — используется только для типов",
+        "Автоматически делает User partial (все поля необязательны)",
+        "Запрещает реэкспорт User из текущего модуля"
+      ],
+      "correctAnswer": 1,
+      "explanation": "`import type` указывает компилятору, что импорт используется только как тип. Он полностью стирается при компиляции и не попадает в итоговый JS. Это обязательно при `verbatimModuleSyntax: true`.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Какую стратегию `moduleResolution` следует выбрать для проекта на Vite?",
+      "type": "multiple-choice",
+      "options": [
+        "classic",
+        "node10",
+        "bundler",
+        "node16"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Стратегия `bundler` предназначена для проектов с бандлерами (Vite, webpack, esbuild). Она не требует расширений файлов в импортах и поддерживает `exports` из package.json. `node16` — для Node.js, `classic` и `node10` — устаревшие.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что произойдёт при объявлении двух интерфейсов с одинаковым именем в одном скоупе?\n\n```ts\ninterface Config {\n  host: string;\n}\n\ninterface Config {\n  port: number;\n}\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Ошибка компиляции: duplicate identifier",
+        "Второй интерфейс перезапишет первый",
+        "Интерфейсы сольются: Config будет иметь оба свойства (host и port)",
+        "Будет использоваться только первый интерфейс"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Это declaration merging — интерфейсы с одинаковым именем автоматически объединяются. Результат: `{ host: string; port: number; }`. В отличие от `type alias`, интерфейсы поддерживают слияние.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Почему при `moduleResolution: 'node16'` в импорте пишут расширение `.js`, хотя исходный файл — `.ts`?\n\n```ts\nimport { helper } from './utils.js';\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Это баг TypeScript, который планируется исправить",
+        "TypeScript ожидает расширение файла, который будет существовать после компиляции (.ts → .js)",
+        "Расширение .js нужно только для CommonJS-модулей",
+        "Это необходимо только в тестовых файлах"
+      ],
+      "correctAnswer": 1,
+      "explanation": "При `node16` TypeScript следует правилам Node.js ESM, где расширения обязательны. Поскольку `.ts`-файл компилируется в `.js`, в импорте указывается итоговое расширение `.js`. TypeScript при этом корректно находит `.ts`-файл.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Как правильно добавить свойство `userId` к типу `Request` из библиотеки Express?",
+      "type": "multiple-choice",
+      "options": [
+        "```ts\nnamespace Express {\n  interface Request { userId: string; }\n}\n```",
+        "```ts\nimport 'express';\ndeclare module 'express' {\n  interface Request { userId?: string; }\n}\n```",
+        "```ts\ntype Request = import('express').Request & { userId: string; }\n```",
+        "```ts\ndeclare global {\n  interface Request { userId: string; }\n}\n```"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Module augmentation — правильный способ расширить типы из стороннего модуля. Нужно импортировать модуль и использовать `declare module 'имя'` с интерфейсом, который сольётся с существующим через declaration merging.",
+      "difficulty": "hard"
+    }
+  ]
+}
