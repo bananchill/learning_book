@@ -1,0 +1,79 @@
+{
+  "id": "review-ts-classes-01",
+  "title": "UserManager — антипаттерны классов в TypeScript",
+  "difficulty": "intermediate",
+  "file": "01-review.ts",
+  "issues": [
+    {
+      "line": 8,
+      "severity": "error",
+      "category": "type-safety",
+      "description": "Поле `users` имеет тип `any[]` и публичный доступ. Нужен конкретный тип (интерфейс User) и модификатор `private`.",
+      "fix": "Создать интерфейс User и использовать `private users: User[] = []`"
+    },
+    {
+      "line": 9,
+      "severity": "error",
+      "category": "type-safety",
+      "description": "Статическое поле `instance` типизировано как `any`. Должен быть `UserManager | null`.",
+      "fix": "private static instance: UserManager | null = null"
+    },
+    {
+      "line": 14,
+      "severity": "error",
+      "category": "encapsulation",
+      "description": "Конструктор singleton должен быть приватным, чтобы предотвратить создание экземпляров через `new`.",
+      "fix": "private constructor() с фабричным методом static getInstance(): UserManager"
+    },
+    {
+      "line": 24,
+      "severity": "error",
+      "category": "type-safety",
+      "description": "Параметры `name`, `email`, `role` типизированы как `any`. Нет валидации входных данных.",
+      "fix": "Использовать конкретные типы (string, enum Role) и добавить валидацию"
+    },
+    {
+      "line": 27,
+      "severity": "warning",
+      "category": "reliability",
+      "description": "`Math.random()` для генерации ID ненадёжен — возможны коллизии.",
+      "fix": "Использовать `crypto.randomUUID()` или инкрементальный счётчик"
+    },
+    {
+      "line": 37,
+      "severity": "error",
+      "category": "design",
+      "description": "Метод `getUser` принимает `any` и ищет по трём разным полям. Неясная семантика, невозможно понять по какому полю ищем.",
+      "fix": "Разделить на `getUserById(id)`, `getUserByEmail(email)`, `getUserByName(name)`"
+    },
+    {
+      "line": 8,
+      "severity": "error",
+      "category": "encapsulation",
+      "description": "Публичный массив `users` позволяет обойти `addUser`/`removeUser` и мутировать данные напрямую.",
+      "fix": "Сделать `private` и предоставить только методы чтения (getUsers(): ReadonlyArray<User>)"
+    },
+    {
+      "line": 49,
+      "severity": "warning",
+      "category": "design",
+      "description": "Стрелочное свойство `updateUser` вместо метода — теряется возможность переопределения в наследниках, занимает память на каждый экземпляр.",
+      "fix": "Использовать обычный метод: updateUser(id: string, data: Partial<User>): User | undefined"
+    },
+    {
+      "line": 51,
+      "severity": "error",
+      "category": "type-safety",
+      "description": "`Object.assign(user, data)` с `any`-данными может перезаписать id, createdAt и другие системные поля.",
+      "fix": "Принимать `Partial<Pick<User, 'name' | 'email' | 'role'>>` и валидировать"
+    },
+    {
+      "line": 56,
+      "severity": "warning",
+      "category": "maintainability",
+      "description": "Метод `toString` переопределяет Object.prototype.toString без ключевого слова `override`. При включённом `noImplicitOverride` код не скомпилируется.",
+      "fix": "Добавить `override toString(): string`"
+    }
+  ],
+  "suggestedFix": "Создать интерфейс User с конкретными типами. Сделать поле users приватным. Типизировать singleton (private constructor + getInstance). Разделить getUser на конкретные методы. Добавить валидацию. Использовать override для toString."
+}

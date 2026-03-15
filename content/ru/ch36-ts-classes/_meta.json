@@ -1,0 +1,15 @@
+{
+  "id": "ch36-ts-classes",
+  "title": "Классы в TypeScript",
+  "order": 36,
+  "estimatedMinutes": 35,
+  "difficulty": "intermediate",
+  "prerequisites": ["ch13-prototypes", "ch06-ts-type-system"],
+  "tags": ["typescript", "classes", "oop", "mixins", "abstract", "static"],
+  "subchapters": [
+    { "file": "01-members.md", "title": "Поля, конструкторы и методы" },
+    { "file": "02-visibility-heritage.md", "title": "Модификаторы доступа и наследование" },
+    { "file": "03-abstract-static.md", "title": "abstract-классы и static-члены" },
+    { "file": "04-mixins-this.md", "title": "Mixins и this-типы" }
+  ]
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "TypeScript Handbook — Classes",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/classes.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация TypeScript по классам — полный справочник по всем возможностям"
+  },
+  {
+    "title": "TypeScript Reference — Mixins",
+    "url": "https://www.typescriptlang.org/docs/handbook/mixins.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник TypeScript по реализации паттерна миксинов"
+  },
+  {
+    "title": "MDN — Classes",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник MDN по JavaScript-классам — основа, на которой строятся классы TypeScript"
+  },
+  {
+    "title": "MDN — Private class features",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties",
+    "type": "documentation",
+    "language": "en",
+    "description": "Подробное описание ECMAScript #private полей и методов"
+  },
+  {
+    "title": "TypeScript Deep Dive — Classes",
+    "url": "https://basarat.gitbook.io/typescript/future-javascript/classes",
+    "type": "article",
+    "language": "en",
+    "description": "Глава из книги TypeScript Deep Dive, посвящённая классам с практическими примерами"
+  }
+]

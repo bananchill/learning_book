@@ -1,0 +1,56 @@
+[
+  {
+    "id": "task-readonly-config",
+    "title": "Неизменяемая конфигурация",
+    "difficulty": "easy",
+    "file": "01-readonly-config.ts",
+    "testFile": "01-readonly-config.test.ts",
+    "description": "Создайте класс AppConfig с readonly-полями и методом clone для создания модифицированной копии.",
+    "topics": ["readonly", "fields", "constructor"]
+  },
+  {
+    "id": "task-access-modifiers",
+    "title": "Банковский счёт",
+    "difficulty": "easy",
+    "file": "02-bank-account.ts",
+    "testFile": "02-bank-account.test.ts",
+    "description": "Реализуйте класс BankAccount с правильными модификаторами доступа, валидацией и методами deposit/withdraw.",
+    "topics": ["private", "public", "validation"]
+  },
+  {
+    "id": "task-getter-setter",
+    "title": "Температурный конвертер",
+    "difficulty": "easy",
+    "file": "03-temperature.ts",
+    "testFile": "03-temperature.test.ts",
+    "description": "Создайте класс Temperature с геттерами/сеттерами для Celsius, Fahrenheit и Kelvin с валидацией.",
+    "topics": ["getter", "setter", "validation"]
+  },
+  {
+    "id": "task-abstract-shapes",
+    "title": "Фигуры и площади",
+    "difficulty": "medium",
+    "file": "04-abstract-shapes.ts",
+    "testFile": "04-abstract-shapes.test.ts",
+    "description": "Создайте абстрактный класс Shape с абстрактными методами area() и perimeter(). Реализуйте Circle, Rectangle, Triangle.",
+    "topics": ["abstract", "inheritance", "override"]
+  },
+  {
+    "id": "task-fluent-builder",
+    "title": "Fluent Query Builder",
+    "difficulty": "medium",
+    "file": "05-fluent-builder.ts",
+    "testFile": "05-fluent-builder.test.ts",
+    "description": "Создайте QueryBuilder с this-типом для fluent API. Наследник PaginatedQueryBuilder должен сохранять цепочку вызовов.",
+    "topics": ["this-type", "fluent-api", "inheritance"]
+  },
+  {
+    "id": "task-mixins",
+    "title": "Система миксинов",
+    "difficulty": "hard",
+    "file": "06-mixins.ts",
+    "testFile": "06-mixins.test.ts",
+    "description": "Реализуйте типобезопасные миксины Serializable, Validatable и EventEmitter. Скомпонуйте их в класс Model.",
+    "topics": ["mixins", "generics", "composition"]
+  }
+]
