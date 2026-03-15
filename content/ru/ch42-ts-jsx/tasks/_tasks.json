@@ -1,0 +1,63 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-intrinsic-elements.tsx",
+    "title": "Объявление IntrinsicElements для кастомных тегов",
+    "description": "Расширьте JSX.IntrinsicElements, добавив кастомный тег <alert-box> с обязательным prop 'message' (string) и опциональным 'severity' ('info' | 'warning' | 'error'). Реализуйте функцию createAlertBox, которая возвращает объект с переданными пропсами.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте declare namespace JSX для расширения IntrinsicElements",
+      "severity должен быть опциональным — добавьте ?",
+      "Функция createAlertBox принимает message и severity, возвращает объект { tag: 'alert-box', message, severity }"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-type-cast.tsx",
+    "title": "Безопасное приведение типов в TSX",
+    "description": "Реализуйте набор функций для безопасного приведения типов, используя оператор as (не angle-bracket). Функция castToString, castToNumber и parseJsonAs<T>.",
+    "difficulty": "easy",
+    "hints": [
+      "В .tsx файлах нельзя использовать <Type>value, только value as Type",
+      "parseJsonAs должен быть generic: принимает строку и возвращает T",
+      "Используйте JSON.parse внутри parseJsonAs и приведите результат через as T"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-medium-component-props.ts",
+    "title": "Извлечение и проверка типов пропсов компонента",
+    "description": "Создайте утилитный тип ExtractProps<T>, который извлекает тип пропсов из функционального компонента. Реализуйте функцию validateProps, проверяющую объект на соответствие пропсам.",
+    "difficulty": "medium",
+    "hints": [
+      "Используйте условный тип с infer: T extends (props: infer P) => any ? P : never",
+      "validateProps принимает массив обязательных ключей и проверяет их наличие в объекте",
+      "Верните { valid: true, props } или { valid: false, missing: string[] }"
+    ]
+  },
+  {
+    "id": "task-04",
+    "file": "tasks/04-medium-children-types.ts",
+    "title": "Типизация children для различных компонентов",
+    "description": "Создайте типы для компонентов с разными ограничениями children: TextOnly (только string), SingleChild (один элемент), ListOf<T> (render-prop паттерн). Реализуйте функции-валидаторы.",
+    "difficulty": "medium",
+    "hints": [
+      "TextOnly: children: string",
+      "SingleChild: children: { type: string; props: Record<string, unknown> }",
+      "ListOf<T>: children: (item: T) => { type: string; props: Record<string, unknown> }, items: T[]"
+    ]
+  },
+  {
+    "id": "task-05",
+    "file": "tasks/05-hard-jsx-namespace.ts",
+    "title": "Реализация собственного JSX-пространства имён",
+    "description": "Реализуйте упрощённую модель JSX namespace: интерфейс IntrinsicElements, функцию createElement, которая создаёт объекты-элементы с полной проверкой типов. Поддержите intrinsic-элементы и функциональные компоненты.",
+    "difficulty": "hard",
+    "hints": [
+      "createElement принимает tag (string | Function), props (object | null), ...children",
+      "Для intrinsic-элементов верните { type: tag, props: { ...props, children } }",
+      "Для функциональных компонентов вызовите tag({ ...props, children }) и верните результат",
+      "Используйте перегрузки функций или generic для разных вариантов tag"
+    ]
+  }
+]

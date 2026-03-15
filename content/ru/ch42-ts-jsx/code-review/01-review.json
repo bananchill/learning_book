@@ -1,0 +1,39 @@
+[
+  {
+    "id": "review-01",
+    "file": "01-review.tsx",
+    "title": "JSX-компоненты — найдите проблемы с типизацией",
+    "issues": [
+      {
+        "line": 5,
+        "severity": "error",
+        "message": "UserCard принимает props: any — потеряна вся типобезопасность пропсов",
+        "fix": "Определите интерфейс: interface UserCardProps { name: string; email: string } и используйте его: function UserCard(props: UserCardProps)"
+      },
+      {
+        "line": 17,
+        "severity": "warning",
+        "message": "Container использует children: any — нет ограничений на тип содержимого",
+        "fix": "Используйте конкретный тип: children: React.ReactNode (или SimpleElement[] для кастомного рендера)"
+      },
+      {
+        "line": 27,
+        "severity": "error",
+        "message": "Каст через as any полностью отключает проверку типов. В .tsx нужен as HTMLInputElement",
+        "fix": "const input = el as HTMLInputElement — используйте точный тип вместо any"
+      },
+      {
+        "line": 34,
+        "severity": "warning",
+        "message": "Button принимает props: any и деструктурирует без типов — spread передаёт непроверенные атрибуты",
+        "fix": "interface ButtonProps { label: string; disabled?: boolean; onClick?: () => void } — определите допустимые пропсы"
+      },
+      {
+        "line": 44,
+        "severity": "warning",
+        "message": "Дженерик стрелочная функция заменена на any из-за конфликта с JSX-синтаксисом",
+        "fix": "Используйте trailing comma: const identity = <T,>(x: T): T => x, или extends: <T extends unknown>"
+      }
+    ]
+  }
+]

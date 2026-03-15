@@ -1,0 +1,26 @@
+[
+  {
+    "title": "TypeScript Handbook: JSX",
+    "url": "https://www.typescriptlang.org/docs/handbook/jsx.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "React: Writing Markup with JSX",
+    "url": "https://react.dev/learn/writing-markup-with-jsx",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "React: TypeScript",
+    "url": "https://react.dev/learn/typescript",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Total TypeScript: React with TypeScript",
+    "url": "https://www.totaltypescript.com/tutorials/react-with-typescript",
+    "type": "tutorial",
+    "language": "en"
+  }
+]

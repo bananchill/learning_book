@@ -1,0 +1,26 @@
+{
+  "id": "ch42-ts-jsx",
+  "title": "JSX и TSX",
+  "order": 42,
+  "estimatedMinutes": 25,
+  "difficulty": "intermediate",
+  "prerequisites": ["ch34-ts-object-types", "ch33-ts-functions"],
+  "tags": ["typescript", "jsx", "tsx", "react", "components", "intrinsic-elements"],
+  "subchapters": [
+    {
+      "id": "01-jsx-basics",
+      "title": "Основы JSX в TypeScript",
+      "file": "01-jsx-basics.md"
+    },
+    {
+      "id": "02-elements",
+      "title": "Intrinsic и value-based элементы",
+      "file": "02-elements.md"
+    },
+    {
+      "id": "03-attributes-children",
+      "title": "Типизация атрибутов и children",
+      "file": "03-attributes-children.md"
+    }
+  ]
+}

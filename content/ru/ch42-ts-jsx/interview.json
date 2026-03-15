@@ -1,0 +1,29 @@
+{
+  "chapter": "ch42-ts-jsx",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Чем отличаются режимы jsx: 'react' и 'react-jsx' в tsconfig.json?",
+      "answer": "Режим 'react' трансформирует JSX в вызовы React.createElement(), что требует явного import React from 'react' в каждом файле. Режим 'react-jsx' (React 17+) использует новый JSX-трансформ: JSX превращается в вызовы _jsx() из 'react/jsx-runtime', импорт добавляется автоматически компилятором. Это уменьшает размер бандла и упрощает код. Есть также режим 'preserve', который оставляет JSX без изменений для обработки другим инструментом (Babel, SWC).",
+      "level": "junior"
+    },
+    {
+      "id": "i2",
+      "question": "Как TypeScript различает intrinsic-элементы и пользовательские компоненты в JSX? Как расширить список допустимых intrinsic-элементов?",
+      "answer": "TypeScript различает их по регистру первой буквы: строчная (<div>, <span>) — intrinsic-элемент, заглавная (<Button>, <App>) — value-based (компонент). Intrinsic-элементы проверяются через интерфейс JSX.IntrinsicElements — словарь, где ключ — имя тега, значение — тип допустимых атрибутов. Для добавления кастомных элементов (Web Components) нужно расширить этот интерфейс через declaration merging: declare namespace JSX { interface IntrinsicElements { 'my-element': { title: string } } }.",
+      "level": "middle"
+    },
+    {
+      "id": "i3",
+      "question": "В чём разница между JSX.Element, React.ReactElement и React.ReactNode? Когда что использовать?",
+      "answer": "JSX.Element — тип, который возвращается JSX-выражением. В контексте React это React.ReactElement<any, any>. React.ReactElement — более специфичный тип, описывающий конкретный элемент с type, props и key. React.ReactNode — объединение всех рендерируемых типов: ReactElement, string, number, boolean, null, undefined и массивы из них. Правило: для возвращаемого типа компонентов используйте JSX.Element (или просто не аннотируйте — TypeScript выведет сам). Для children используйте React.ReactNode — он принимает всё, что React может отрендерить. React.ReactElement — когда нужно именно элемент, без строк и null.",
+      "level": "middle"
+    },
+    {
+      "id": "i4",
+      "question": "Почему стрелочные generic-функции в .tsx файлах требуют особого синтаксиса? Как решить проблему?",
+      "answer": "В .tsx файлах запись <T>(x: T) => x неоднозначна: TypeScript не может определить, что <T> — это параметр типа, а не JSX-тег. Парсер видит < и начинает искать JSX-элемент. Есть два решения: 1) trailing comma — <T,>(x: T) => x — запятая однозначно указывает на список параметров типа; 2) ограничение — <T extends unknown>(x: T) => x — extends не встречается в JSX. Обычные function-объявления не имеют этой проблемы: function identity<T>(x: T): T {} работает в .tsx без изменений, потому что function-контекст однозначен.",
+      "level": "senior"
+    }
+  ]
+}

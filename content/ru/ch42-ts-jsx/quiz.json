@@ -1,0 +1,65 @@
+{
+  "chapter": "ch42-ts-jsx",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Какое расширение файла необходимо для использования JSX в TypeScript?",
+      "options": [
+        ".ts",
+        ".tsx",
+        ".jsx",
+        ".js"
+      ],
+      "correctIndex": 1,
+      "explanation": "JSX-синтаксис в TypeScript доступен только в файлах с расширением .tsx. В обычных .ts файлах JSX вызовет ошибку компиляции."
+    },
+    {
+      "id": "q2",
+      "text": "Почему в .tsx файлах нельзя использовать angle-bracket синтаксис `<Type>value` для приведения типов?",
+      "options": [
+        "Этот синтаксис устарел в TypeScript",
+        "Он конфликтует с JSX-тегами — TypeScript не может отличить приведение от элемента",
+        "Он работает только с примитивными типами",
+        "Он запрещён стандартом ECMAScript"
+      ],
+      "correctIndex": 1,
+      "explanation": "Запись <Type>value синтаксически неотличима от JSX-тега <Type>. Поэтому в .tsx файлах для приведения типов используется оператор as."
+    },
+    {
+      "id": "q3",
+      "text": "Через какой интерфейс TypeScript проверяет атрибуты встроенных HTML-элементов в JSX?",
+      "options": [
+        "HTMLElementTagNameMap",
+        "JSX.IntrinsicElements",
+        "JSX.ElementAttributes",
+        "React.HTMLAttributes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Интерфейс JSX.IntrinsicElements содержит описание всех допустимых intrinsic-тегов и их атрибутов. TypeScript использует его для проверки <div>, <span> и других HTML/SVG-элементов."
+    },
+    {
+      "id": "q4",
+      "text": "Как TypeScript определяет, является ли JSX-тег intrinsic-элементом или компонентом?",
+      "options": [
+        "По наличию атрибутов",
+        "По регистру первой буквы имени тега: строчная — intrinsic, заглавная — компонент",
+        "По количеству children",
+        "По наличию импорта"
+      ],
+      "correctIndex": 1,
+      "explanation": "Имена, начинающиеся со строчной буквы (<div>, <input>), ищутся в JSX.IntrinsicElements. Имена с заглавной буквы (<Button>, <App>) разрешаются как идентификаторы — функции или классы."
+    },
+    {
+      "id": "q5",
+      "text": "Какой тип лучше использовать для prop `children`, если компонент должен принимать любой рендерируемый контент?",
+      "options": [
+        "JSX.Element",
+        "string",
+        "React.ReactNode",
+        "React.ReactElement"
+      ],
+      "correctIndex": 2,
+      "explanation": "React.ReactNode — объединение всех типов, которые React может отрендерить: строки, числа, boolean, null, undefined, JSX-элементы и их массивы. JSX.Element принимает только JSX-элементы, без строк и чисел."
+    }
+  ]
+}
