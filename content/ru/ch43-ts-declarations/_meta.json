@@ -1,0 +1,33 @@
+{
+  "id": "ch43-ts-declarations",
+  "title": "Declaration Files",
+  "description": "Файлы деклараций .d.ts: создание, структура библиотек, DefinitelyTyped, @types, triple-slash директивы и расширение модулей",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "advanced",
+  "order": 43,
+  "estimatedMinutes": 30,
+  "difficulty": "advanced",
+  "topics": [
+    "declaration-files",
+    "d-ts",
+    "ambient-declarations",
+    "library-structures",
+    "global-libraries",
+    "modular-libraries",
+    "umd-libraries",
+    "definitely-typed",
+    "at-types",
+    "triple-slash-directives",
+    "module-augmentation",
+    "global-augmentation",
+    "declare-module"
+  ],
+  "prerequisites": ["ch37-ts-modules"],
+  "subchapters": [
+    { "id": "01-intro", "title": "Что такое .d.ts и зачем они нужны", "file": "01-intro.md" },
+    { "id": "02-writing", "title": "Написание declaration files", "file": "02-writing.md" },
+    { "id": "03-definitely-typed", "title": "DefinitelyTyped, @types и публикация", "file": "03-definitely-typed.md" },
+    { "id": "04-triple-slash", "title": "Triple-Slash Directives и Module Augmentation", "file": "04-triple-slash.md" }
+  ]
+}

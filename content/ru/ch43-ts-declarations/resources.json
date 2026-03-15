@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Declaration Files — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация по файлам деклараций: введение, шаблоны, примеры, do's and don'ts",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Declaration Reference — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справочник по написанию деклараций с примерами для каждого паттерна",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Triple-Slash Directives — TypeScript Reference",
+    "url": "https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полный справочник по triple-slash директивам: reference path, types, lib, no-default-lib",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "Module Augmentation — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation",
+    "type": "documentation",
+    "language": "en",
+    "description": "Расширение модулей и глобальное дополнение типов",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "DefinitelyTyped — GitHub Repository",
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "type": "documentation",
+    "language": "en",
+    "description": "Крупнейший репозиторий файлов деклараций TypeScript для JS-библиотек",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Publishing Declaration Files — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Два способа публикации типов: бандлинг в пакет и публикация в DefinitelyTyped",
+    "difficulty": "advanced"
+  },
+  {
+    "title": "Library Structures — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/declaration-files/library-structures.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Классификация библиотек: глобальные, модульные, UMD и как писать декларации для каждого типа",
+    "difficulty": "intermediate"
+  }
+]

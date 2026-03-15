@@ -1,0 +1,75 @@
+[
+  {
+    "id": "01-easy-declare-globals",
+    "file": "01-easy-declare-globals.d.ts",
+    "testFile": "01-easy-declare-globals.test.ts",
+    "title": "Объяви глобальные переменные",
+    "difficulty": "easy",
+    "description": "Напиши ambient-декларации для глобальных переменных и функций, которые существуют в рантайме",
+    "concepts": ["declare", "ambient-declarations", "global-types"],
+    "hints": [
+      "Используй declare var / declare const / declare function для глобальных объявлений",
+      "Типы указываются после двоеточия: declare const VERSION: string"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-module-types",
+    "file": "02-easy-module-types.d.ts",
+    "testFile": "02-easy-module-types.test.ts",
+    "title": "Опиши типы модуля",
+    "difficulty": "easy",
+    "description": "Напиши .d.ts файл для простого модуля с функциями и интерфейсом",
+    "concepts": ["module-declarations", "export", "interface"],
+    "hints": [
+      "Используй export function для экспортируемых функций",
+      "Интерфейсы в модульном .d.ts тоже должны быть экспортированы"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-medium-class-library",
+    "file": "03-medium-class-library.d.ts",
+    "testFile": "03-medium-class-library.test.ts",
+    "title": "Декларация для библиотеки с классом",
+    "difficulty": "medium",
+    "description": "Напиши .d.ts для библиотеки, экспортирующей класс с конструктором, методами и статическими свойствами",
+    "concepts": ["declare-class", "module-class", "overloads"],
+    "hints": [
+      "Класс объявляется как declare class Name { }",
+      "Перегрузки методов записываются от конкретных к общим",
+      "Статические члены помечаются ключевым словом static"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "04-medium-module-augmentation",
+    "file": "04-medium-module-augmentation.ts",
+    "testFile": "04-medium-module-augmentation.test.ts",
+    "title": "Расширь типы стороннего модуля",
+    "difficulty": "medium",
+    "description": "Используй module augmentation и global augmentation для расширения существующих типов",
+    "concepts": ["module-augmentation", "global-augmentation", "declare-module", "declare-global"],
+    "hints": [
+      "declare module \"имя\" { } расширяет существующий модуль",
+      "declare global { } расширяет глобальные типы из модульного файла",
+      "Файл должен быть модулем -- содержать import или export"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-hard-full-library-types",
+    "file": "05-hard-full-library-types.d.ts",
+    "testFile": "05-hard-full-library-types.test.ts",
+    "title": "Полные типы для JS-библиотеки",
+    "difficulty": "hard",
+    "description": "Напиши полноценный .d.ts файл для JavaScript-библиотеки с дженериками, перегрузками, callback-ами и namespace",
+    "concepts": ["generics", "overloads", "namespace", "callbacks", "umd"],
+    "hints": [
+      "export as namespace делает библиотеку UMD-совместимой",
+      "Дженерики позволяют типизировать коллекции: Collection<T>",
+      "Перегрузки сортируются от конкретных к общим"
+    ],
+    "estimatedMinutes": 20
+  }
+]
