@@ -1,0 +1,30 @@
+{
+  "id": "ch34-ts-object-types",
+  "title": "Объектные типы",
+  "description": "Property modifiers (optional, readonly), index signatures, расширение и пересечение типов, generic-объекты, кортежи",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "intermediate",
+  "order": 33,
+  "estimatedMinutes": 30,
+  "difficulty": "intermediate",
+  "topics": [
+    "object-types",
+    "optional-properties",
+    "readonly-properties",
+    "index-signatures",
+    "extending-types",
+    "intersection-types",
+    "generic-object-types",
+    "array-type",
+    "readonly-array",
+    "tuple-types"
+  ],
+  "prerequisites": ["ch32-ts-intro", "ch06-ts-type-system"],
+  "subchapters": [
+    { "id": "01-properties", "title": "Свойства: optional, readonly, index signatures", "file": "01-properties.md" },
+    { "id": "02-extending-intersection", "title": "Расширение и пересечение типов", "file": "02-extending-intersection.md" },
+    { "id": "03-generic-objects", "title": "Generic-объекты и интерфейсы", "file": "03-generic-objects.md" },
+    { "id": "04-tuples", "title": "Кортежи", "file": "04-tuples.md" }
+  ]
+}

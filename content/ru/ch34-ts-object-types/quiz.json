@@ -1,0 +1,75 @@
+{
+  "chapter": "ch34-ts-object-types",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Какой тип у свойства `age` в следующем интерфейсе?\n\n```ts\ninterface User {\n  name: string;\n  age?: number;\n}\n```",
+      "type": "multiple-choice",
+      "options": [
+        "number",
+        "number | undefined",
+        "number | null",
+        "any"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Модификатор `?` делает свойство необязательным. При чтении такого свойства TypeScript считает его тип как `number | undefined`, потому что свойство может отсутствовать.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Что произойдёт при компиляции этого кода?\n\n```ts\ninterface Point {\n  readonly x: number;\n  readonly y: number;\n}\n\nconst p: Point = { x: 10, y: 20 };\nconst q: { x: number; y: number } = p;\nq.x = 5;\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Ошибка: нельзя присвоить Point в { x: number; y: number }",
+        "Ошибка: нельзя изменить q.x, потому что p — readonly",
+        "Код скомпилируется без ошибок",
+        "Ошибка: нельзя изменить readonly-свойство"
+      ],
+      "correctAnswer": 2,
+      "explanation": "TypeScript не учитывает `readonly` при проверке совместимости типов. `Point` можно присвоить в `{ x: number; y: number }`, и через переменную `q` свойства можно изменять, потому что тип `q` не помечен как readonly.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q3",
+      "question": "Чем отличается конфликт свойств при `extends` и при `&`?\n\n```ts\ninterface A { id: number; }\ninterface B extends A { id: string; } // вариант 1\n\ntype C = { id: number } & { id: string }; // вариант 2\n```",
+      "type": "multiple-choice",
+      "options": [
+        "Оба варианта вызовут ошибку компиляции",
+        "Вариант 1 — ошибка, вариант 2 — тип id становится never",
+        "Оба варианта создадут тип id: never",
+        "Вариант 1 — ошибка, вариант 2 — тип id становится string"
+      ],
+      "correctAnswer": 1,
+      "explanation": "При `extends` конфликт свойств — это ошибка компиляции: TypeScript не позволит создать интерфейс с несовместимым типом свойства. При `&` конфликт не вызывает ошибку, но тип конфликтующего свойства становится `number & string = never`, что делает невозможным создание значения такого типа.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Какой тип имеет переменная `result`?\n\n```ts\nconst arr = [1, 2, 3] as const;\nconst result = arr;\n```",
+      "type": "multiple-choice",
+      "options": [
+        "number[]",
+        "readonly number[]",
+        "readonly [1, 2, 3]",
+        "[number, number, number]"
+      ],
+      "correctAnswer": 2,
+      "explanation": "`as const` превращает массивный литерал в readonly-кортеж с литеральными типами элементов. Результат — `readonly [1, 2, 3]`, а не `number[]` или `readonly number[]`.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Какой тип имеет `length` у кортежа `[string, number, boolean?]`?",
+      "type": "multiple-choice",
+      "options": [
+        "number",
+        "3",
+        "2 | 3",
+        "2"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Кортеж `[string, number, boolean?]` может содержать 2 или 3 элемента (третий необязателен). TypeScript выводит тип `length` как литеральное объединение `2 | 3`.",
+      "difficulty": "hard"
+    }
+  ]
+}

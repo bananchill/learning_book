@@ -1,0 +1,90 @@
+[
+  {
+    "id": "01-easy-optional-props",
+    "file": "01-easy-optional-props.ts",
+    "testFile": "01-easy-optional-props.test.ts",
+    "title": "Опиши интерфейс с optional и readonly",
+    "difficulty": "easy",
+    "description": "Создай интерфейс Product с обязательными, необязательными и readonly свойствами. Напиши функцию, которая безопасно читает необязательные поля.",
+    "concepts": ["optional-properties", "readonly", "nullish-coalescing"],
+    "hints": [
+      "Необязательные свойства помечаются знаком ?",
+      "readonly запрещает перезапись свойства",
+      "Используй ?? для значения по умолчанию при чтении optional-свойства"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-index-signature",
+    "file": "02-easy-index-signature.ts",
+    "testFile": "02-easy-index-signature.test.ts",
+    "title": "Словарь с индексной сигнатурой",
+    "difficulty": "easy",
+    "description": "Создай типизированный словарь с индексной сигнатурой и напиши функции для работы с ним.",
+    "concepts": ["index-signatures", "string-keys"],
+    "hints": [
+      "Индексная сигнатура: [key: string]: тип",
+      "Значение по ключу может быть undefined, если ключа нет"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-easy-extends",
+    "file": "03-easy-extends.ts",
+    "testFile": "03-easy-extends.test.ts",
+    "title": "Расширение интерфейсов",
+    "difficulty": "easy",
+    "description": "Создай иерархию интерфейсов через extends: базовый Shape, расширенные Circle и Rectangle.",
+    "concepts": ["extends", "interface-hierarchy"],
+    "hints": [
+      "interface Circle extends Shape { radius: number; }",
+      "Расширенный интерфейс наследует все свойства базового"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "04-medium-generic-container",
+    "file": "04-medium-generic-container.ts",
+    "testFile": "04-medium-generic-container.test.ts",
+    "title": "Generic-контейнер Result",
+    "difficulty": "medium",
+    "description": "Создай generic-тип Result<T, E> для представления успешного результата или ошибки. Напиши функции-конструкторы и функцию обработки.",
+    "concepts": ["generic-object-types", "discriminated-unions", "type-narrowing"],
+    "hints": [
+      "Result<T, E> может быть { ok: true, value: T } | { ok: false, error: E }",
+      "Поле ok — дискриминант для сужения типа",
+      "Функция map должна трансформировать значение только при ok: true"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-medium-intersection",
+    "file": "05-medium-intersection.ts",
+    "testFile": "05-medium-intersection.test.ts",
+    "title": "Пересечение и расширение типов",
+    "difficulty": "medium",
+    "description": "Создай систему типов для сущностей с временными метками и soft-delete через пересечение и расширение.",
+    "concepts": ["intersection-types", "extends", "generic-intersection"],
+    "hints": [
+      "Используй type WithTimestamps<T> = T & { createdAt: Date; updatedAt: Date }",
+      "Интерфейс может extends, а type может &",
+      "Комбинируй оба подхода для максимальной выразительности"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "06-hard-typed-event-system",
+    "file": "06-hard-typed-event-system.ts",
+    "testFile": "06-hard-typed-event-system.test.ts",
+    "title": "Типобезопасная система событий",
+    "difficulty": "hard",
+    "description": "Создай типобезопасную систему событий (EventEmitter), где типы событий и их данных связаны через generic-интерфейс. Используй индексные сигнатуры, generic-объекты и кортежи.",
+    "concepts": ["generic-object-types", "index-signatures", "keyof", "mapped-types", "tuples"],
+    "hints": [
+      "Опиши карту событий как интерфейс: interface EventMap { click: [x: number, y: number]; change: [value: string] }",
+      "EventEmitter<T> параметризуется картой событий",
+      "Метод on<K extends keyof T> связывает имя события с типом callback-а"
+    ],
+    "estimatedMinutes": 15
+  }
+]

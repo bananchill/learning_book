@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Object Types — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная страница handbook: объектные типы, модификаторы свойств, расширение, пересечение, дженерики, кортежи",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Interfaces — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces",
+    "type": "documentation",
+    "language": "en",
+    "description": "Основы интерфейсов и разница между interface и type alias",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Generics — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Обобщённые типы: функции, классы, интерфейсы, ограничения",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TypeScript Playground",
+    "url": "https://www.typescriptlang.org/play",
+    "type": "documentation",
+    "language": "en",
+    "description": "Онлайн-песочница TypeScript: можно экспериментировать с объектными типами и видеть ошибки компилятора",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript: Documentation — Utility Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Утилитарные типы: Readonly<T>, Partial<T>, Required<T>, Record<K, V> — встроенные обобщённые типы для работы с объектами",
+    "difficulty": "intermediate"
+  }
+]
