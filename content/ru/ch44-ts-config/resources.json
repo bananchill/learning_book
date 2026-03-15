@@ -1,0 +1,50 @@
+[
+  {
+    "title": "TSConfig Reference",
+    "url": "https://www.typescriptlang.org/tsconfig",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полный справочник всех опций tsconfig.json с пояснениями и примерами",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "What is a tsconfig.json — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация по структуре tsconfig.json: files, include, exclude, extends",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "Project References — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/project-references.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Документация по Project References: composite, references, tsc -b, монорепо",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "Module Resolution — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Теория разрешения модулей: moduleResolution, paths, baseUrl, условные экспорты",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "@tsconfig/bases — GitHub",
+    "url": "https://github.com/tsconfig/bases",
+    "type": "tool",
+    "language": "en",
+    "description": "Готовые базовые конфиги для Node.js, Vite, React и других стеков",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript Compiler Options — Total TypeScript",
+    "url": "https://www.totaltypescript.com/tsconfig-cheat-sheet",
+    "type": "article",
+    "language": "en",
+    "description": "Шпаргалка по основным опциям tsconfig от Matt Pocock",
+    "difficulty": "beginner"
+  }
+]

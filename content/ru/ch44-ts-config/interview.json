@@ -1,0 +1,57 @@
+{
+  "chapter": "ch44-ts-config",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Какие опции tsconfig.json вы считаете обязательными для нового проекта и почему?",
+      "level": "junior",
+      "goodAnswer": "Для нового проекта обязательны: strict: true — включает все строгие проверки (noImplicitAny, strictNullChecks и т.д.), что сразу приучает к качественным типам. esModuleInterop: true — позволяет нормально импортировать CommonJS-пакеты. skipLibCheck: true — ускоряет компиляцию, пропуская проверку .d.ts из node_modules. isolatedModules: true — если используется бандлер (Vite, webpack), этот флаг предупреждает о конструкциях, несовместимых с пофайловой компиляцией.",
+      "whatInterviewerWants": "Знание ключевых опций и понимание, зачем каждая из них нужна. Не просто список, а обоснование.",
+      "commonMistakes": [
+        "Не могут назвать конкретных опций — только strict",
+        "Не знают про isolatedModules и зачем он нужен",
+        "Путают target и lib"
+      ],
+      "followUps": ["Что включает strict: true?", "Зачем нужен isolatedModules?"]
+    },
+    {
+      "id": "i2",
+      "question": "Чем отличаются moduleResolution: 'bundler', 'node16' и 'nodenext'? Когда какой использовать?",
+      "level": "middle",
+      "goodAnswer": "'bundler' — для проектов с бандлером (Vite, webpack, esbuild). Не требует расширений в импортах, поддерживает paths и условные экспорты package.json. 'node16'/'nodenext' — для чистого Node.js с ESM. Требует расширения .js в импортах (даже для .ts-файлов), потому что Node.js ESM-лоадер не умеет пробовать расширения. 'node' (устар.) — старый алгоритм для CommonJS, не понимает exports-поле в package.json.",
+      "whatInterviewerWants": "Понимание разницы между стратегиями и умение выбрать правильную для конкретного стека.",
+      "commonMistakes": [
+        "Всегда используют 'node' по привычке",
+        "Не знают про 'bundler'",
+        "Не понимают, почему nodenext требует расширения .js"
+      ],
+      "followUps": ["Почему при nodenext нужно писать import './utils.js', если файл — utils.ts?"]
+    },
+    {
+      "id": "i3",
+      "question": "Как вы организуете tsconfig.json в монорепозитории? Расскажите про Project References.",
+      "level": "senior",
+      "goodAnswer": "В монорепо создаю базовый tsconfig.base.json с общими настройками (strict, target, module). Каждый пакет наследует его через extends и добавляет composite: true, declaration: true, declarationMap: true. Зависимости между пакетами описываются через references. Корневой tsconfig.json содержит files: [] и references на все пакеты. Сборка через tsc -b — TypeScript строит граф зависимостей, компилирует в правильном порядке и кеширует результат в .tsbuildinfo. При изменении перекомпилируется только затронутый пакет и его зависимые.",
+      "whatInterviewerWants": "Практический опыт с монорепо. Знание composite, references, tsc -b. Понимание инкрементальной сборки.",
+      "commonMistakes": [
+        "Не знают про Project References — компилируют всё как один проект",
+        "Забывают про composite и declaration",
+        "Не понимают роль .tsbuildinfo"
+      ],
+      "followUps": ["Как интегрировать Project References с Vite?", "Что делать с циклическими зависимостями?"]
+    },
+    {
+      "id": "i4",
+      "question": "Опция paths в tsconfig.json не работает в рантайме. Объясните почему и как решить эту проблему.",
+      "level": "middle",
+      "goodAnswer": "paths — это инструкция только для системы типов TypeScript. Компилятор tsc использует paths для разрешения модулей при проверке типов, но НЕ переписывает пути в сгенерированных .js-файлах. В выходном JS остаётся оригинальный алиас (@utils/date), который Node.js или браузер не понимают. Решения: 1) Бандлер (Vite resolve.alias, webpack resolve.alias) — заменяет алиасы при сборке. 2) tsc-alias — постобработка после tsc, заменяет алиасы на относительные пути. 3) tsconfig-paths — рантайм-библиотека, регистрирует алиасы при запуске Node.js. Нужно помнить: алиасы настраиваются в двух местах — tsconfig (типы) и бандлер/инструмент (рантайм).",
+      "whatInterviewerWants": "Понимание границ ответственности tsc и бандлера. Практическое знание решений проблемы.",
+      "commonMistakes": [
+        "Думают, что tsc переписывает пути в JS",
+        "Настраивают paths только в tsconfig и удивляются ошибкам в рантайме",
+        "Не знают про tsc-alias и tsconfig-paths"
+      ],
+      "followUps": ["Почему TypeScript не переписывает пути?", "Какие проблемы могут быть при рассинхронизации алиасов в tsconfig и бандлере?"]
+    }
+  ]
+}

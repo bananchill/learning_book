@@ -1,0 +1,75 @@
+{
+  "chapter": "ch44-ts-config",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что произойдёт, если файл указан в `files`, но также попадает под `exclude`?",
+      "type": "multiple-choice",
+      "options": [
+        "Файл будет исключён — exclude имеет приоритет",
+        "Файл будет включён — files имеет приоритет над exclude",
+        "TypeScript выдаст ошибку конфликта",
+        "Поведение зависит от порядка полей в tsconfig.json"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Поле `files` имеет абсолютный приоритет. Если файл указан в `files`, он всегда включается в компиляцию, даже если попадает под паттерн `exclude`. Exclude влияет только на файлы из `include`.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Какую опцию `moduleResolution` рекомендуется использовать для проекта с Vite?",
+      "type": "multiple-choice",
+      "options": [
+        "node",
+        "classic",
+        "bundler",
+        "nodenext"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Значение `bundler` оптимально для Vite (и других бандлеров). Оно работает как `node16`, но не требует обязательных расширений файлов в импортах. `classic` устарел, `node` — для старого CommonJS, `nodenext` — для чистого Node.js без бандлера.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что НЕ входит в `strict: true`?",
+      "type": "multiple-choice",
+      "options": [
+        "noImplicitAny",
+        "strictNullChecks",
+        "noUnusedLocals",
+        "useUnknownInCatchVariables"
+      ],
+      "correctAnswer": 2,
+      "explanation": "`noUnusedLocals` — это отдельный флаг, он НЕ входит в `strict`. Флаг `strict` включает: noImplicitAny, strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, useUnknownInCatchVariables и alwaysStrict.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Настроены `paths` в tsconfig.json:\n\n```json\n{\n  \"paths\": {\n    \"@utils/*\": [\"./src/utils/*\"]\n  }\n}\n```\n\nПосле компиляции `tsc` импорт `@utils/date` в .js-файле будет:",
+      "type": "multiple-choice",
+      "options": [
+        "Заменён на './src/utils/date'",
+        "Заменён на относительный путь вида '../utils/date'",
+        "Оставлен как '@utils/date' без изменений",
+        "Удалён, если это импорт типа"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Опция `paths` работает только для проверки типов. TypeScript НЕ перезаписывает пути в выходных .js-файлах. Для рантайма нужно настроить разрешение алиасов в бандлере (Vite, webpack) или использовать инструмент вроде `tsc-alias`.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Что обязательно требуется при `composite: true` в tsconfig.json?",
+      "type": "multiple-choice",
+      "options": [
+        "sourceMap: true и outDir",
+        "declaration: true и include (или files)",
+        "noEmit: true и isolatedModules: true",
+        "rootDir и baseUrl"
+      ],
+      "correctAnswer": 1,
+      "explanation": "При `composite: true` TypeScript требует: 1) `declaration: true` — чтобы генерировать .d.ts для зависимых проектов, 2) явно указанные файлы через `include` или `files` — чтобы знать границы проекта. Также создаётся .tsbuildinfo для инкрементальной сборки.",
+      "difficulty": "medium"
+    }
+  ]
+}

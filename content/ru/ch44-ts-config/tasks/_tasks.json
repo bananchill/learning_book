@@ -1,0 +1,73 @@
+[
+  {
+    "id": "01-easy-fix-tsconfig",
+    "file": "01-easy-fix-tsconfig.ts",
+    "testFile": "01-easy-fix-tsconfig.test.ts",
+    "title": "Исправь tsconfig.json",
+    "difficulty": "easy",
+    "description": "Функция parseTsConfig принимает объект конфигурации и возвращает нормализованный результат. Исправь типы и логику валидации полей tsconfig.",
+    "concepts": ["tsconfig-structure", "files-include-exclude"],
+    "hints": [
+      "Поле files — это массив строк, include и exclude — тоже массивы строк",
+      "Если указан files, он имеет приоритет — include можно пропустить"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-compiler-options",
+    "file": "02-easy-compiler-options.ts",
+    "testFile": "02-easy-compiler-options.test.ts",
+    "title": "Рекомендуемые опции компилятора",
+    "difficulty": "easy",
+    "description": "Напиши функцию, которая генерирует рекомендуемые compilerOptions для указанного типа проекта (frontend, node-lib, node-app).",
+    "concepts": ["compiler-options", "target", "module", "moduleResolution"],
+    "hints": [
+      "Для фронтенда: module ESNext, moduleResolution bundler, noEmit true",
+      "Для Node.js: module NodeNext, moduleResolution nodenext"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-medium-resolve-path",
+    "file": "03-medium-resolve-path.ts",
+    "testFile": "03-medium-resolve-path.test.ts",
+    "title": "Разрешение алиасов путей",
+    "difficulty": "medium",
+    "description": "Реализуй функцию resolvePath, которая разрешает импорт-путь по маппингу paths из tsconfig.json. Поддержи точные совпадения и паттерны с *.",
+    "concepts": ["paths", "baseUrl", "module-resolution"],
+    "hints": [
+      "Сначала проверь точное совпадение ключа, потом паттерны с *",
+      "Звёздочка захватывает часть пути и подставляется в значение"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "04-medium-merge-configs",
+    "file": "04-medium-merge-configs.ts",
+    "testFile": "04-medium-merge-configs.test.ts",
+    "title": "Мерж конфигов (extends)",
+    "difficulty": "medium",
+    "description": "Реализуй функцию mergeConfigs, которая имитирует поведение extends в tsconfig.json: compilerOptions мержатся, а files/include/exclude заменяются целиком.",
+    "concepts": ["extends", "config-inheritance", "merge-strategy"],
+    "hints": [
+      "compilerOptions из дочернего конфига переопределяют родительские",
+      "files, include и exclude НЕ мержатся — дочерний полностью заменяет родительский"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-hard-build-order",
+    "file": "05-hard-build-order.ts",
+    "testFile": "05-hard-build-order.test.ts",
+    "title": "Порядок сборки Project References",
+    "difficulty": "hard",
+    "description": "Реализуй функцию getBuildOrder, которая принимает граф зависимостей проектов (Project References) и возвращает правильный порядок сборки (топологическая сортировка). Обнаруживай циклические зависимости.",
+    "concepts": ["project-references", "topological-sort", "dependency-graph"],
+    "hints": [
+      "Используй алгоритм Кана или DFS для топологической сортировки",
+      "Если после сортировки не все вершины посещены — есть цикл",
+      "Проекты без зависимостей собираются первыми"
+    ],
+    "estimatedMinutes": 15
+  }
+]

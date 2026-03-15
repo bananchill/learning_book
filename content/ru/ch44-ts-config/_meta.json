@@ -1,0 +1,32 @@
+{
+  "id": "ch44-ts-config",
+  "title": "tsconfig.json и конфигурация",
+  "description": "Структура tsconfig.json, ключевые опции компилятора, пути и алиасы, Project References и монорепо",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "intermediate",
+  "order": 44,
+  "estimatedMinutes": 25,
+  "difficulty": "intermediate",
+  "topics": [
+    "tsconfig",
+    "compiler-options",
+    "strict",
+    "target",
+    "module",
+    "moduleResolution",
+    "paths",
+    "baseUrl",
+    "project-references",
+    "composite",
+    "extends",
+    "include-exclude"
+  ],
+  "prerequisites": ["ch32-ts-intro", "ch37-ts-modules"],
+  "subchapters": [
+    { "id": "01-structure", "title": "Структура tsconfig.json", "file": "01-structure.md" },
+    { "id": "02-compiler-options", "title": "Ключевые опции компилятора", "file": "02-compiler-options.md" },
+    { "id": "03-paths-aliases", "title": "Paths, baseUrl и алиасы", "file": "03-paths-aliases.md" },
+    { "id": "04-project-references", "title": "Project References и монорепо", "file": "04-project-references.md" }
+  ]
+}
