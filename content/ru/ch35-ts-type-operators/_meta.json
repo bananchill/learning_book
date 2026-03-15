@@ -1,0 +1,19 @@
+{
+  "id": "ch35-ts-type-operators",
+  "title": "Операторы типов",
+  "description": "keyof, typeof в контексте типов и индексные типы доступа T[K] — три ключевых оператора для работы с типами в TypeScript",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "intermediate",
+  "order": 35,
+  "estimatedMinutes": 25,
+  "difficulty": "intermediate",
+  "topics": ["keyof", "typeof", "indexed-access-types", "type-operators", "type-queries"],
+  "prerequisites": ["ch06-ts-type-system", "ch25-ts-generics"],
+  "subchapters": [
+    { "id": "01-keyof", "title": "keyof: получение ключей типа", "file": "01-keyof.md" },
+    { "id": "02-typeof", "title": "typeof: получение типа из значения", "file": "02-typeof.md" },
+    { "id": "03-indexed-access", "title": "Индексные типы доступа T[K]", "file": "03-indexed-access.md" },
+    { "id": "04-combining", "title": "Комбинирование операторов", "file": "04-combining.md" }
+  ]
+}

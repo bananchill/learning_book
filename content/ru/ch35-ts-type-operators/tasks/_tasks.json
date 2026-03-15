@@ -1,0 +1,75 @@
+[
+  {
+    "id": "task-01",
+    "file": "tasks/01-easy-get-property.ts",
+    "title": "Типобезопасный доступ к свойству",
+    "description": "Реализуйте функцию getProperty<T, K>(obj, key), которая возвращает значение свойства объекта с корректным типом.",
+    "difficulty": "easy",
+    "hints": [
+      "K должен быть ограничен keyof T",
+      "Возвращаемый тип — T[K]",
+      "Внутри функции просто верните obj[key]"
+    ]
+  },
+  {
+    "id": "task-02",
+    "file": "tasks/02-easy-keys-union.ts",
+    "title": "Union ключей объекта",
+    "description": "Создайте тип ThemeColor, который является union ключей объекта theme. Реализуйте функцию isValidColor, проверяющую, является ли строка валидным ключом.",
+    "difficulty": "easy",
+    "hints": [
+      "Используйте keyof typeof для получения ключей объекта-значения",
+      "Для проверки ключа используйте оператор in",
+      "Функция должна быть type guard: value is ThemeColor"
+    ]
+  },
+  {
+    "id": "task-03",
+    "file": "tasks/03-easy-array-element.ts",
+    "title": "Тип элемента массива",
+    "description": "Используя as const и индексный доступ, создайте тип Role из массива ролей. Реализуйте функцию isValidRole.",
+    "difficulty": "easy",
+    "hints": [
+      "Объявите массив с as const для сохранения литеральных типов",
+      "Используйте (typeof arr)[number] для типа элемента",
+      "Type guard проверяет, что значение входит в массив"
+    ]
+  },
+  {
+    "id": "task-04",
+    "file": "tasks/04-medium-update-field.ts",
+    "title": "Типобезопасное обновление поля",
+    "description": "Реализуйте функцию updateField<T, K>(obj, key, value), которая возвращает копию объекта с обновлённым полем. TypeScript должен проверять соответствие типа value типу поля key.",
+    "difficulty": "medium",
+    "hints": [
+      "K extends keyof T ограничивает ключ",
+      "value должен иметь тип T[K]",
+      "Верните новый объект через spread: { ...obj, [key]: value }"
+    ]
+  },
+  {
+    "id": "task-05",
+    "file": "tasks/05-medium-pluck.ts",
+    "title": "Функция pluck",
+    "description": "Реализуйте функцию pluck<T, K>(arr, key), которая из массива объектов извлекает массив значений по указанному ключу. Тип результата должен быть T[K][].",
+    "difficulty": "medium",
+    "hints": [
+      "K extends keyof T",
+      "Возвращаемый тип — T[K][]",
+      "Используйте arr.map(item => item[key])"
+    ]
+  },
+  {
+    "id": "task-06",
+    "file": "tasks/06-hard-event-emitter.ts",
+    "title": "Типобезопасный EventEmitter",
+    "description": "Реализуйте класс TypedEmitter<Events>, где Events — объект, ключи которого — имена событий, а значения — функции-обработчики. Методы on, off, emit должны быть типобезопасными.",
+    "difficulty": "hard",
+    "hints": [
+      "Events — тип вида { click: (x: number, y: number) => void; ... }",
+      "Метод on<K extends keyof Events>(event: K, handler: Events[K])",
+      "emit должен принимать аргументы, соответствующие сигнатуре обработчика: Parameters<Events[K]>",
+      "Храните обработчики в Map<keyof Events, Set<Function>>"
+    ]
+  }
+]

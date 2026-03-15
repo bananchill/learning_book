@@ -1,0 +1,29 @@
+{
+  "chapter": "ch35-ts-type-operators",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Что делает оператор keyof и какие типы он возвращает?",
+      "answer": "keyof принимает объектный тип и возвращает union строковых или числовых литеральных типов его ключей. Например, keyof { a: string; b: number } = \"a\" | \"b\". Для индексных сигнатур: keyof { [n: number]: unknown } = number, а keyof { [k: string]: boolean } = string | number (потому что числовые ключи в JS всегда приводятся к строке). Часто используется с дженериками для ограничения параметра ключа: <K extends keyof T>.",
+      "level": "junior"
+    },
+    {
+      "id": "i2",
+      "question": "В чём разница между typeof в рантайме и typeof в контексте типов TypeScript?",
+      "answer": "В рантайме typeof возвращает строку ('string', 'number', 'object' и т.д.) — это оператор JavaScript. В контексте типов typeof возвращает полный TypeScript-тип выражения. Например, для const x = { a: 1 } рантайм typeof x === 'object', а type X = typeof x = { a: number }. Ограничения: в контексте типов typeof можно применять только к именам переменных и их свойствам, нельзя к вызовам функций (typeof fn() — ошибка). Для получения типа возвращаемого значения используют ReturnType<typeof fn>.",
+      "level": "junior"
+    },
+    {
+      "id": "i3",
+      "question": "Как работает паттерн keyof typeof obj и когда он полезен?",
+      "answer": "keyof typeof obj — двухшаговая операция: typeof obj получает TypeScript-тип объекта-значения, а keyof извлекает union его ключей. Полезен, когда объект уже существует как значение и не хочется дублировать его структуру в отдельном интерфейсе. Типичные применения: enum-подобные объекты (const COLORS = { red: '#f00', ... } as const; type Color = keyof typeof COLORS), конфигурации, маппинги. С as const литеральные типы сохраняются, и можно также получить union значений: (typeof obj)[keyof typeof obj].",
+      "level": "middle"
+    },
+    {
+      "id": "i4",
+      "question": "Объясните, как работают индексные типы доступа T[K]. Как получить тип элемента массива?",
+      "answer": "T[K] обращается к типу свойства K в типе T. K должен быть подтипом keyof T, иначе будет ошибка. Можно использовать union в качестве индекса: Person['age' | 'name'] даст number | string. Для массивов T[number] возвращает тип элемента: string[][number] = string. Для значений-массивов: (typeof arr)[number]. С as const это особенно полезно: const roles = ['admin', 'user'] as const; type Role = (typeof roles)[number] = 'admin' | 'user'. Можно строить цепочки: ApiResponse['data']['users'][number]['name'] — провалиться на любой уровень вложенности.",
+      "level": "middle"
+    }
+  ]
+}

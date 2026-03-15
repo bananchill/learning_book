@@ -1,0 +1,26 @@
+[
+  {
+    "title": "TypeScript Handbook: Keyof Type Operator",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Typeof Type Operator",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Indexed Access Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Total TypeScript: Deriving Types",
+    "url": "https://www.totaltypescript.com/tutorials/type-transformations",
+    "type": "tutorial",
+    "language": "en"
+  }
+]

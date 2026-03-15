@@ -1,0 +1,41 @@
+{
+  "chapter": "ch35-ts-type-operators",
+  "title": "Как TypeScript вычисляет комбинированные типы",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Исходный объект-значение",
+      "code": "const config = {\n  host: \"localhost\",\n  port: 3000,\n  debug: true,\n} as const;",
+      "highlight": [1, 2, 3, 4, 5],
+      "explanation": "Объявляем объект config с as const. TypeScript выведет тип с литеральными значениями: { readonly host: \"localhost\"; readonly port: 3000; readonly debug: true }."
+    },
+    {
+      "id": 2,
+      "title": "Получаем тип объекта через typeof",
+      "code": "// typeof config =\n// {\n//   readonly host: \"localhost\";\n//   readonly port: 3000;\n//   readonly debug: true;\n// }\ntype Config = typeof config;",
+      "highlight": [7],
+      "explanation": "typeof config превращает значение в тип. Благодаря as const все свойства имеют литеральные типы (\"localhost\", 3000, true), а не расширенные (string, number, boolean)."
+    },
+    {
+      "id": 3,
+      "title": "Извлекаем ключи через keyof",
+      "code": "// keyof typeof config =\n// keyof { readonly host: \"localhost\"; readonly port: 3000; readonly debug: true }\n// = \"host\" | \"port\" | \"debug\"\ntype ConfigKey = keyof typeof config;",
+      "highlight": [4],
+      "explanation": "keyof берёт тип объекта и возвращает union его ключей. Результат: \"host\" | \"port\" | \"debug\" — три строковых литеральных типа."
+    },
+    {
+      "id": 4,
+      "title": "Получаем union значений через индексный доступ",
+      "code": "// (typeof config)[keyof typeof config]\n// = { readonly host: \"localhost\"; ... }[\"host\" | \"port\" | \"debug\"]\n// = \"localhost\" | 3000 | true\ntype ConfigValue = (typeof config)[keyof typeof config];",
+      "highlight": [4],
+      "explanation": "Индексный доступ с union-ключом возвращает union соответствующих типов значений. TypeScript подставляет каждый ключ и объединяет результаты: \"localhost\" | 3000 | true."
+    },
+    {
+      "id": 5,
+      "title": "Используем в типобезопасной функции",
+      "code": "function getConfig<K extends keyof typeof config>(\n  key: K\n): (typeof config)[K] {\n  return config[key];\n}\n\nconst host = getConfig(\"host\");   // тип: \"localhost\"\nconst port = getConfig(\"port\");   // тип: 3000\n// getConfig(\"url\");              // Ошибка!",
+      "highlight": [7, 8, 9],
+      "explanation": "K ограничен ключами config, а возвращаемый тип (typeof config)[K] зависит от конкретного ключа. TypeScript знает точный литеральный тип для каждого вызова."
+    }
+  ]
+}

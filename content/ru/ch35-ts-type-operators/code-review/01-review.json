@@ -1,0 +1,48 @@
+{
+  "id": "01-review",
+  "title": "Типичные ошибки при использовании операторов типов",
+  "issues": [
+    {
+      "line": 12,
+      "type": "best_practice",
+      "description": "Параметр name типизирован как string, а внутри приводится через as keyof typeof. Это обходит проверку типов — можно передать любую строку, и TypeScript не предупредит.",
+      "fix": "Используйте дженерик: function getEndpoint<K extends keyof typeof API_ENDPOINTS>(name: K). Тогда TypeScript проверит, что name — один из валидных ключей, а as не нужен."
+    },
+    {
+      "line": 17,
+      "type": "best_practice",
+      "description": "Интерфейс Config описан вручную и дублирует структуру defaultConfig. При добавлении нового поля в defaultConfig нужно обновлять оба места — легко забыть.",
+      "fix": "Используйте typeof defaultConfig вместо отдельного интерфейса: type Config = typeof defaultConfig. Тип всегда будет синхронизирован с реализацией."
+    },
+    {
+      "line": 35,
+      "type": "bug",
+      "description": "Функция getField принимает Record<string, any> и возвращает any. Полностью отсутствует типобезопасность — потеряна информация о типе возвращаемого значения.",
+      "fix": "Используйте дженерик с keyof и T[K]: function getField<T, K extends keyof T>(obj: T, key: K): T[K]. TypeScript будет знать точный тип возвращаемого значения."
+    },
+    {
+      "line": 40,
+      "type": "best_practice",
+      "description": "Тип StatusName перечислен вручную и не связан с объектом STATUS_CODES. При добавлении нового статуса нужно обновлять тип отдельно.",
+      "fix": "Используйте keyof typeof STATUS_CODES: type StatusName = keyof typeof STATUS_CODES. Тип автоматически обновится при изменении объекта."
+    },
+    {
+      "line": 49,
+      "type": "best_practice",
+      "description": "Возвращаемый тип getStatusCode — number, хотя STATUS_CODES объявлен с as const и содержит литеральные значения 200 | 404 | 500.",
+      "fix": "Возвращаемый тип должен быть (typeof STATUS_CODES)[StatusName], что даст 200 | 404 | 500. Или используйте дженерик: function getStatusCode<K extends keyof typeof STATUS_CODES>(name: K): (typeof STATUS_CODES)[K]."
+    },
+    {
+      "line": 56,
+      "type": "bug",
+      "description": "ReturnType<any> вернёт any — полная потеря типизации. Разработчик подавил ошибку @ts-ignore вместо правильного использования typeof.",
+      "fix": "Используйте ReturnType<typeof createUser>. Результат: { id: number; name: string; role: \"admin\" }. Уберите @ts-ignore."
+    },
+    {
+      "line": 59,
+      "type": "bug",
+      "description": "Массив ROLES без as const имеет тип string[]. Тип Role = string не даёт union литералов. Функция isRole возвращает boolean вместо type guard.",
+      "fix": "Добавьте as const: const ROLES = ['admin', 'editor', 'viewer'] as const. Тип: type Role = (typeof ROLES)[number] = 'admin' | 'editor' | 'viewer'. Функцию сделайте type guard: function isRole(value: string): value is Role."
+    }
+  ]
+}

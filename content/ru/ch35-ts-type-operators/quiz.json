@@ -1,0 +1,65 @@
+{
+  "chapter": "ch35-ts-type-operators",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Что вернёт `keyof { [k: string]: boolean }`?",
+      "options": [
+        "string",
+        "string | number",
+        "boolean",
+        "never"
+      ],
+      "correctIndex": 1,
+      "explanation": "Для строковой индексной сигнатуры keyof возвращает string | number, потому что в JavaScript числовые ключи всегда приводятся к строке (obj[0] === obj[\"0\"]), поэтому числовой индекс тоже валиден."
+    },
+    {
+      "id": "q2",
+      "text": "Какой тип получится: `type T = typeof fn` если `function fn() { return 42; }`?",
+      "options": [
+        "number",
+        "42",
+        "() => number",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 2,
+      "explanation": "typeof в контексте типов возвращает тип переменной или выражения. Для функции fn это её полная сигнатура: () => number. Чтобы получить тип возвращаемого значения, нужно ReturnType<typeof fn>."
+    },
+    {
+      "id": "q3",
+      "text": "Что вернёт `Person[\"age\" | \"name\"]` если `type Person = { age: number; name: string; alive: boolean }`?",
+      "options": [
+        "number",
+        "string",
+        "number | string",
+        "number | string | boolean"
+      ],
+      "correctIndex": 2,
+      "explanation": "Индексный тип доступа с union-индексом возвращает union соответствующих типов свойств: Person[\"age\"] = number, Person[\"name\"] = string, итого number | string."
+    },
+    {
+      "id": "q4",
+      "text": "Что даст `keyof (A | B)` если `type A = { x: number; y: number }` и `type B = { y: number; z: number }`?",
+      "options": [
+        "\"x\" | \"y\" | \"z\"",
+        "\"y\"",
+        "\"x\" | \"z\"",
+        "never"
+      ],
+      "correctIndex": 1,
+      "explanation": "keyof от union-типа возвращает пересечение ключей (только общие ключи). У A и B общий ключ — \"y\". Логика: если значение может быть A или B, безопасно обращаться только к свойствам, которые есть в обоих."
+    },
+    {
+      "id": "q5",
+      "text": "Как получить тип элемента массива `const items = [{ id: 1 }, { id: 2 }]`?",
+      "options": [
+        "typeof items[0]",
+        "items[number]",
+        "(typeof items)[number]",
+        "keyof typeof items"
+      ],
+      "correctIndex": 2,
+      "explanation": "(typeof items)[number] — правильный способ. typeof items даёт тип массива, а [number] — индексный доступ по number, что возвращает тип элемента. typeof items[0] вернёт тип конкретного элемента по рантайм-индексу, а не тип на уровне типов."
+    }
+  ]
+}
