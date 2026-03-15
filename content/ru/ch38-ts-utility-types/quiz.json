@@ -1,0 +1,65 @@
+{
+  "chapter": "ch38-ts-utility-types",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Какой тип получится в результате: `type T = Partial<{ a: string; b: number }>`?",
+      "options": [
+        "{ a: string; b: number }",
+        "{ a?: string; b?: number }",
+        "{ readonly a: string; readonly b: number }",
+        "{ a: string | undefined; b: number | undefined }"
+      ],
+      "correctIndex": 1,
+      "explanation": "Partial<T> делает все свойства необязательными, добавляя модификатор ?. Результат: { a?: string; b?: number }."
+    },
+    {
+      "id": "q2",
+      "text": "Что вернёт `Exclude<'a' | 'b' | 'c' | 'd', 'a' | 'c'>`?",
+      "options": [
+        "'a' | 'c'",
+        "'b' | 'd'",
+        "'a' | 'b' | 'c' | 'd'",
+        "never"
+      ],
+      "correctIndex": 1,
+      "explanation": "Exclude удаляет из union те члены, которые совместимы со вторым аргументом. 'a' и 'c' удаляются, остаётся 'b' | 'd'."
+    },
+    {
+      "id": "q3",
+      "text": "Каков результат: `type R = ReturnType<(x: string, y: number) => boolean>`?",
+      "options": [
+        "[string, number]",
+        "string | number",
+        "boolean",
+        "void"
+      ],
+      "correctIndex": 2,
+      "explanation": "ReturnType извлекает тип возвращаемого значения функции. Функция возвращает boolean, значит R = boolean."
+    },
+    {
+      "id": "q4",
+      "text": "Что получится: `type A = Awaited<Promise<Promise<string[]>>>`?",
+      "options": [
+        "Promise<string[]>",
+        "Promise<Promise<string[]>>",
+        "string[]",
+        "string"
+      ],
+      "correctIndex": 2,
+      "explanation": "Awaited рекурсивно разворачивает вложенные Promise. Promise<Promise<string[]>> → Promise<string[]> → string[]."
+    },
+    {
+      "id": "q5",
+      "text": "Какой тип получится: `type G = Capitalize<'hello'>`?",
+      "options": [
+        "'HELLO'",
+        "'Hello'",
+        "'hello'",
+        "string"
+      ],
+      "correctIndex": 1,
+      "explanation": "Capitalize преобразует только первый символ строкового литерала в верхний регистр. 'hello' → 'Hello'."
+    }
+  ]
+}

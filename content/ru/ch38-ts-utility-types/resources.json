@@ -1,0 +1,38 @@
+[
+  {
+    "title": "TypeScript Handbook: Utility Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Mapped Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/mapped-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Conditional Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Template Literal Types",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Total TypeScript: Utility Types Workshop",
+    "url": "https://www.totaltypescript.com/tutorials/type-transformations",
+    "type": "tutorial",
+    "language": "en"
+  },
+  {
+    "title": "type-challenges — задачи на реализацию утилитарных типов",
+    "url": "https://github.com/type-challenges/type-challenges",
+    "type": "practice",
+    "language": "en"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "id": "01-review",
+  "title": "Code Review: неэффективное использование утилитарных типов",
+  "issues": [
+    {
+      "line": 13,
+      "type": "best_practice",
+      "description": "UserPreview дублирует поля из User вручную. При изменении типа id или name в User, UserPreview рассинхронизируется.",
+      "fix": "type UserPreview = Pick<User, 'id' | 'name'>"
+    },
+    {
+      "line": 19,
+      "type": "best_practice",
+      "description": "CreateUserDto дублирует типы полей и union роли из User. При добавлении новой роли её нужно обновлять в двух местах.",
+      "fix": "type CreateUserDto = Omit<User, 'id' | 'createdAt'>"
+    },
+    {
+      "line": 25,
+      "type": "bug",
+      "description": "Параметр updates имеет тип any — можно передать любые данные, включая несуществующие поля. Это убивает типобезопасность.",
+      "fix": "function updateUser(id: number, updates: Partial<User>): User"
+    },
+    {
+      "line": 31,
+      "type": "best_practice",
+      "description": "Ключи roleLabels не ограничены типом Role. Можно добавить произвольный ключ и забыть обновить при добавлении новой роли.",
+      "fix": "const roleLabels: Record<User['role'], string> = { ... }"
+    },
+    {
+      "line": 40,
+      "type": "best_practice",
+      "description": "Тип FetchUsersResult дублирует возвращаемый тип fetchUsers. При изменении функции тип рассинхронизируется.",
+      "fix": "type FetchUsersResult = ReturnType<typeof fetchUsers>"
+    },
+    {
+      "line": 43,
+      "type": "best_practice",
+      "description": "NonAdminRole перечисляет роли вручную. При добавлении новой роли в User.role её нужно добавить и сюда.",
+      "fix": "type NonAdminRole = Exclude<User['role'], 'admin'>"
+    },
+    {
+      "line": 46,
+      "type": "bug",
+      "description": "appConfig не защищён от мутаций. Строка appConfig.maxRetries = -1 компилируется без ошибок, хотя конфиг не должен меняться.",
+      "fix": "const appConfig: Readonly<{ apiUrl: string; maxRetries: number; timeout: number }> = { ... } или добавить as const"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "chapter": "ch38-ts-utility-types",
+  "title": "Как TypeScript вычисляет Omit<T, K>",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Исходный тип и вызов Omit",
+      "code": "interface User {\n  id: number\n  name: string\n  email: string\n  passwordHash: string\n}\n\ntype PublicUser = Omit<User, 'passwordHash'>",
+      "highlight": [8],
+      "explanation": "Мы хотим создать тип PublicUser, исключив поле passwordHash. TypeScript начинает вычислять Omit<User, 'passwordHash'>."
+    },
+    {
+      "id": 2,
+      "title": "Раскрытие определения Omit",
+      "code": "// Omit<T, K> = Pick<T, Exclude<keyof T, K>>\n\n// Шаг 1: keyof User\n// = 'id' | 'name' | 'email' | 'passwordHash'\n\n// Подставляем:\n// Pick<User, Exclude<'id' | 'name' | 'email' | 'passwordHash', 'passwordHash'>>",
+      "highlight": [3, 4],
+      "explanation": "Omit реализован через Pick и Exclude. Первый шаг — получить все ключи типа User через keyof."
+    },
+    {
+      "id": 3,
+      "title": "Вычисление Exclude",
+      "code": "// Exclude<'id' | 'name' | 'email' | 'passwordHash', 'passwordHash'>\n\n// Дистрибутивное вычисление:\n// 'id' extends 'passwordHash' ? never : 'id'                → 'id'\n// 'name' extends 'passwordHash' ? never : 'name'            → 'name'\n// 'email' extends 'passwordHash' ? never : 'email'          → 'email'\n// 'passwordHash' extends 'passwordHash' ? never : ...        → never\n\n// Результат: 'id' | 'name' | 'email'",
+      "highlight": [4, 5, 6, 7],
+      "explanation": "Exclude — дистрибутивный условный тип. Он применяется к каждому члену union отдельно. passwordHash совпадает — превращается в never и исчезает из union."
+    },
+    {
+      "id": 4,
+      "title": "Вычисление Pick",
+      "code": "// Pick<User, 'id' | 'name' | 'email'>\n\n// Mapped type: для каждого ключа из 'id' | 'name' | 'email'\n// берём соответствующий тип из User\n\ntype PublicUser = {\n  id: number\n  name: string\n  email: string\n}\n\n// passwordHash исключён — цель достигнута!",
+      "highlight": [6, 7, 8, 9],
+      "explanation": "Pick создаёт новый тип, копируя только указанные свойства из User. Поле passwordHash не попало в список ключей, поэтому его нет в результате."
+    }
+  ]
+}

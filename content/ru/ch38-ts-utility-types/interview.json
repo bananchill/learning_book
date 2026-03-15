@@ -1,0 +1,29 @@
+{
+  "chapter": "ch38-ts-utility-types",
+  "questions": [
+    {
+      "id": "i1",
+      "question": "Объясните разницу между Pick и Omit. Когда лучше использовать каждый?",
+      "answer": "Pick<T, K> создаёт новый тип, выбирая только указанные свойства K из T. Omit<T, K> — наоборот, создаёт тип, исключая указанные свойства. Практическое правило: используйте Pick, когда нужных полей меньше, чем ненужных (например, Pick<User, 'id' | 'name'> для превью). Используйте Omit, когда нужно исключить несколько полей из большого типа (например, Omit<User, 'passwordHash'> для публичного API). Omit реализован через Pick и Exclude: Omit<T, K> = Pick<T, Exclude<keyof T, K>>.",
+      "level": "junior"
+    },
+    {
+      "id": "i2",
+      "question": "Как получить тип результата асинхронной функции, не вызывая её?",
+      "answer": "Комбинацией Awaited и ReturnType: type Result = Awaited<ReturnType<typeof myAsyncFn>>. ReturnType извлекает тип возвращаемого значения, который для async-функции будет Promise<X>. Awaited рекурсивно разворачивает Promise, давая X. typeof нужен, потому что ReturnType принимает тип функции, а не значение. Пример: async function fetchData() { return { items: [] } } — тип Awaited<ReturnType<typeof fetchData>> будет { items: never[] }.",
+      "level": "middle"
+    },
+    {
+      "id": "i3",
+      "question": "Что такое NoInfer и какую проблему он решает?",
+      "answer": "NoInfer<T> (TypeScript 5.4+) — интринсик компилятора, который исключает позицию аргумента из процесса вывода параметра типа. Проблема: когда TypeScript выводит T из нескольких аргументов, он объединяет информацию из всех позиций, что может привести к расширению типа и пропуску ошибок. Пример: function create<T>(initial: T, options: T[]) — если передать create('typo', ['a', 'b']), TypeScript объединит и выведет T = 'typo' | 'a' | 'b', не заметив опечатку. С NoInfer: function create<T>(initial: NoInfer<T>, options: T[]) — T выводится только из options, а initial проверяется на совместимость.",
+      "level": "senior"
+    },
+    {
+      "id": "i4",
+      "question": "Напишите свой аналог Omit, не используя встроенный Omit. Объясните, как он работает.",
+      "answer": "type MyOmit<T, K extends keyof any> = { [P in keyof T as P extends K ? never : P]: T[P] }. Здесь используется key remapping (as-клауза в mapped types, TypeScript 4.1+). Для каждого ключа P из T проверяем: если P совместим с K, маппим его в never (ключ исчезает), иначе оставляем как есть. Альтернативная реализация через Pick и Exclude: type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>> — Exclude убирает ключи K из keyof T, а Pick выбирает оставшиеся. Обе реализации эквивалентны по результату.",
+      "level": "senior"
+    }
+  ]
+}

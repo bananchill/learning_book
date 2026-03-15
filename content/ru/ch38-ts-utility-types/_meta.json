@@ -1,0 +1,39 @@
+{
+  "id": "ch38-ts-utility-types",
+  "title": "Утилитарные типы",
+  "section": "typescript",
+  "order": 38,
+  "estimatedMinutes": 35,
+  "difficulty": "advanced",
+  "subchapters": [
+    { "id": "01-object-transform", "title": "Трансформация объектов", "order": 1 },
+    { "id": "02-union-manipulation", "title": "Работа с union-типами", "order": 2 },
+    { "id": "03-function-class-types", "title": "Типы функций и классов", "order": 3 },
+    { "id": "04-awaited-string", "title": "Awaited и строковые типы", "order": 4 }
+  ],
+  "concepts": [
+    "Partial",
+    "Required",
+    "Readonly",
+    "Record",
+    "Pick",
+    "Omit",
+    "Exclude",
+    "Extract",
+    "NonNullable",
+    "NoInfer",
+    "Parameters",
+    "ConstructorParameters",
+    "ReturnType",
+    "InstanceType",
+    "ThisParameterType",
+    "OmitThisParameter",
+    "ThisType",
+    "Awaited",
+    "Uppercase",
+    "Lowercase",
+    "Capitalize",
+    "Uncapitalize"
+  ],
+  "prerequisites": ["ch25-ts-generics", "ch26-ts-advanced"]
+}

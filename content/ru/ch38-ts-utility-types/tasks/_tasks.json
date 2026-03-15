@@ -1,0 +1,88 @@
+[
+  {
+    "id": "01-easy-partial-update",
+    "file": "01-easy-partial-update.ts",
+    "testFile": "01-easy-partial-update.test.ts",
+    "title": "Функция обновления с Partial",
+    "difficulty": "easy",
+    "description": "Напиши функцию updateProduct, которая принимает объект Product и объект частичных изменений (Partial) и возвращает обновлённый Product",
+    "concepts": ["Partial"],
+    "hints": [
+      "Используй Partial<Product> для типа второго аргумента",
+      "Спред-оператор { ...original, ...updates } объединяет объекты"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-pick-omit",
+    "file": "02-easy-pick-omit.ts",
+    "testFile": "02-easy-pick-omit.test.ts",
+    "title": "Создание DTO с Pick и Omit",
+    "difficulty": "easy",
+    "description": "Создай типы ArticlePreview (только id и title) и CreateArticleDto (без id и createdAt) с помощью Pick и Omit",
+    "concepts": ["Pick", "Omit"],
+    "hints": [
+      "Pick<T, 'key1' | 'key2'> выбирает только указанные поля",
+      "Omit<T, 'key1' | 'key2'> исключает указанные поля"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-easy-record-map",
+    "file": "03-easy-record-map.ts",
+    "testFile": "03-easy-record-map.test.ts",
+    "title": "Словарь с Record",
+    "difficulty": "easy",
+    "description": "Создай типизированный словарь разрешений для ролей с помощью Record и напиши функцию проверки доступа",
+    "concepts": ["Record"],
+    "hints": [
+      "Record<Keys, ValueType> создаёт объект с указанными ключами",
+      "Используй union литералов для ограничения набора ключей"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "04-medium-exclude-extract",
+    "file": "04-medium-exclude-extract.ts",
+    "testFile": "04-medium-exclude-extract.test.ts",
+    "title": "Фильтрация событий с Exclude и Extract",
+    "difficulty": "medium",
+    "description": "Используя дискриминированные union-типы событий, создай типы для подмножеств событий с помощью Exclude и Extract. Напиши типизированный обработчик.",
+    "concepts": ["Exclude", "Extract", "discriminated unions"],
+    "hints": [
+      "Extract<Union, { type: 'click' }> извлечёт только событие click",
+      "Exclude работает наоборот — убирает совпадающие члены"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-medium-return-params",
+    "file": "05-medium-return-params.ts",
+    "testFile": "05-medium-return-params.test.ts",
+    "title": "Обёртка функции с Parameters и ReturnType",
+    "difficulty": "medium",
+    "description": "Напиши функцию-обёртку withLogging, которая оборачивает любую функцию, логируя вызовы. Используй Parameters и ReturnType для сохранения типов.",
+    "concepts": ["Parameters", "ReturnType"],
+    "hints": [
+      "Parameters<typeof fn> даёт кортеж типов аргументов",
+      "ReturnType<typeof fn> даёт тип возвращаемого значения",
+      "Используй spread: ...args: Parameters<T>"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "06-hard-deep-partial",
+    "file": "06-hard-deep-partial.ts",
+    "testFile": "06-hard-deep-partial.test.ts",
+    "title": "DeepPartial и типобезопасный merge",
+    "difficulty": "hard",
+    "description": "Реализуй рекурсивный тип DeepPartial<T>, который делает ВСЕ вложенные свойства необязательными. Напиши функцию deepMerge, которая рекурсивно объединяет объекты.",
+    "concepts": ["Partial", "recursive types", "mapped types", "conditional types"],
+    "hints": [
+      "DeepPartial проверяет: если значение — объект, применяет DeepPartial рекурсивно",
+      "Используй T[K] extends object ? DeepPartial<T[K]> : T[K]",
+      "В deepMerge проверяй, является ли значение объектом, прежде чем рекурсивно мержить"
+    ],
+    "estimatedMinutes": 15
+  }
+]
