@@ -1,0 +1,47 @@
+[
+  {
+    "id": "task-01-traffic-light",
+    "title": "Светофор",
+    "difficulty": "easy",
+    "file": "01-traffic-light.ts",
+    "testFile": "01-traffic-light.test.ts",
+    "description": "Создайте строковый enum для светофора и функцию, которая возвращает действие по сигналу.",
+    "topics": ["string enum", "switch"]
+  },
+  {
+    "id": "task-02-http-status",
+    "title": "HTTP-статусы",
+    "difficulty": "easy",
+    "file": "02-http-status.ts",
+    "testFile": "02-http-status.test.ts",
+    "description": "Создайте числовой enum HTTP-статусов и функцию классификации (success/redirect/client error/server error).",
+    "topics": ["numeric enum", "reverse mapping"]
+  },
+  {
+    "id": "task-03-permissions",
+    "title": "Система прав доступа",
+    "difficulty": "medium",
+    "file": "03-permissions.ts",
+    "testFile": "03-permissions.test.ts",
+    "description": "Реализуйте систему битовых флагов для управления правами доступа с функциями проверки и комбинирования.",
+    "topics": ["bitwise flags", "numeric enum"]
+  },
+  {
+    "id": "task-04-as-const-refactor",
+    "title": "Рефакторинг enum в as const",
+    "difficulty": "medium",
+    "file": "04-as-const-refactor.ts",
+    "testFile": "04-as-const-refactor.test.ts",
+    "description": "Перепишите enum-решение на as const объект, сохранив типобезопасность и функциональность.",
+    "topics": ["as const", "typeof", "keyof"]
+  },
+  {
+    "id": "task-05-state-machine",
+    "title": "Конечный автомат заказа",
+    "difficulty": "hard",
+    "file": "05-state-machine.ts",
+    "testFile": "05-state-machine.test.ts",
+    "description": "Реализуйте типобезопасный конечный автомат для статусов заказа с enum, валидацией переходов и историей.",
+    "topics": ["enum", "discriminated union", "state machine"]
+  }
+]

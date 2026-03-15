@@ -1,0 +1,26 @@
+{
+  "id": "ch39-ts-enums",
+  "title": "Перечисления (Enums)",
+  "order": 39,
+  "estimatedMinutes": 20,
+  "difficulty": "intermediate",
+  "prerequisites": ["ch06-ts-type-system"],
+  "tags": ["typescript", "enums", "const-enum", "reverse-mapping", "as-const"],
+  "subchapters": [
+    {
+      "id": "01-numeric-string",
+      "title": "Числовые и строковые перечисления",
+      "file": "01-numeric-string.md"
+    },
+    {
+      "id": "02-const-computed",
+      "title": "const enums и вычисляемые члены",
+      "file": "02-const-computed.md"
+    },
+    {
+      "id": "03-patterns-alternatives",
+      "title": "Паттерны использования и альтернативы",
+      "file": "03-patterns-alternatives.md"
+    }
+  ]
+}

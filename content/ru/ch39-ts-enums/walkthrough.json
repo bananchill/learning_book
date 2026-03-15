@@ -1,0 +1,49 @@
+{
+  "id": "walkthrough-enum-compilation",
+  "title": "Как TypeScript компилирует enum в JavaScript",
+  "description": "Пошаговый разбор: от исходного TypeScript-кода enum до скомпилированного JavaScript с reverse mapping.",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Исходный TypeScript-код",
+      "code": "enum Status {\n  Active,\n  Inactive,\n  Suspended,\n}",
+      "explanation": "Объявляем числовой enum с тремя членами. Значения не заданы, TypeScript использует auto-increment от 0.",
+      "highlight": [1, 2, 3, 4, 5]
+    },
+    {
+      "step": 2,
+      "title": "Определение значений (компиляция, шаг 1)",
+      "code": "// TypeScript определяет значения:\n// Active = 0\n// Inactive = 1\n// Suspended = 2",
+      "explanation": "Компилятор присваивает каждому члену числовое значение. Первый получает 0, каждый следующий -- предыдущее + 1.",
+      "highlight": [2, 3, 4]
+    },
+    {
+      "step": 3,
+      "title": "Генерация IIFE (компиляция, шаг 2)",
+      "code": "var Status;\n(function (Status) {\n  // ... члены будут здесь\n})(Status || (Status = {}));",
+      "explanation": "TypeScript оборачивает enum в IIFE (Immediately Invoked Function Expression). Паттерн `Status || (Status = {})` позволяет нескольким объявлениям enum с одним именем объединяться (declaration merging).",
+      "highlight": [1, 2, 4]
+    },
+    {
+      "step": 4,
+      "title": "Прямое отображение (имя -> значение)",
+      "code": "var Status;\n(function (Status) {\n  Status[\"Active\"] = 0;\n  Status[\"Inactive\"] = 1;\n  Status[\"Suspended\"] = 2;\n})(Status || (Status = {}));",
+      "explanation": "Каждый член записывается как свойство объекта: `Status[\"Active\"] = 0`. Это позволяет обращаться через `Status.Active` и получать `0`.",
+      "highlight": [3, 4, 5]
+    },
+    {
+      "step": 5,
+      "title": "Reverse mapping (значение -> имя)",
+      "code": "var Status;\n(function (Status) {\n  Status[Status[\"Active\"] = 0] = \"Active\";\n  Status[Status[\"Inactive\"] = 1] = \"Inactive\";\n  Status[Status[\"Suspended\"] = 2] = \"Suspended\";\n})(Status || (Status = {}));",
+      "explanation": "Трюк: выражение `Status[\"Active\"] = 0` возвращает `0`, поэтому `Status[0] = \"Active\"` создаёт обратный маппинг. Теперь `Status[0]` возвращает `\"Active\"`.",
+      "highlight": [3, 4, 5]
+    },
+    {
+      "step": 6,
+      "title": "Итоговый объект в рантайме",
+      "code": "// Status в рантайме:\n// {\n//   0: \"Active\",\n//   1: \"Inactive\",\n//   2: \"Suspended\",\n//   Active: 0,\n//   Inactive: 1,\n//   Suspended: 2\n// }",
+      "explanation": "Итоговый объект содержит 6 свойств: 3 для прямого отображения (имя -> число) и 3 для обратного (число -> имя). Строковые enum НЕ создают обратное отображение.",
+      "highlight": [2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  ]
+}

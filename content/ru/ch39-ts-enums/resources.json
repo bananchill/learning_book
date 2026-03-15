@@ -1,0 +1,37 @@
+[
+  {
+    "title": "TypeScript Handbook: Enums",
+    "url": "https://www.typescriptlang.org/docs/handbook/enums.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация TypeScript по enum -- полное описание всех видов перечислений."
+  },
+  {
+    "title": "TypeScript Playground",
+    "url": "https://www.typescriptlang.org/play",
+    "type": "tool",
+    "language": "en",
+    "description": "Онлайн-песочница для экспериментов с enum -- можно увидеть скомпилированный JavaScript."
+  },
+  {
+    "title": "The Dangers of TypeScript Enums",
+    "url": "https://dev.to/ivanzm123/dont-use-enums-in-typescript-they-are-very-dangerous-57bh",
+    "type": "article",
+    "language": "en",
+    "description": "Статья о подводных камнях enum и почему `as const` может быть лучшей альтернативой."
+  },
+  {
+    "title": "TypeScript Deep Dive: Enums",
+    "url": "https://basarat.gitbook.io/typescript/type-system/enums",
+    "type": "book",
+    "language": "en",
+    "description": "Глубокий разбор enum из книги TypeScript Deep Dive Басарата Али Сайеда."
+  },
+  {
+    "title": "Matt Pocock: Enums considered harmful",
+    "url": "https://www.totaltypescript.com/concepts/enums",
+    "type": "article",
+    "language": "en",
+    "description": "Разбор проблем enum от Matt Pocock с рекомендациями по замене на as const."
+  }
+]

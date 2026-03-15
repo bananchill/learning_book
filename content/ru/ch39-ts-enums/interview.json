@@ -1,0 +1,34 @@
+[
+  {
+    "id": "i1-enum-vs-as-const",
+    "question": "В чём разница между `enum` и объектом с `as const`? Когда какой подход лучше?",
+    "difficulty": "intermediate",
+    "topics": ["enum", "as const", "tree-shaking"],
+    "idealAnswer": "Enum генерирует IIFE-обёртку в JavaScript и создаёт рантайм-объект. Объект с `as const` -- обычное присваивание. Enum поддерживает reverse mapping (числовой), но плохо tree-shakeable. `as const` лучше для библиотек, совместим с `isolatedModules`, не требует TypeScript. Enum удобнее для битовых флагов и когда нужен reverse mapping.",
+    "followUp": "Как создать тип из `as const` объекта, эквивалентный типу enum?"
+  },
+  {
+    "id": "i2-const-enum-pitfalls",
+    "question": "Почему `const enum` может вызвать проблемы в проекте? Какие подводные камни?",
+    "difficulty": "intermediate",
+    "topics": ["const enum", "isolatedModules", "npm"],
+    "idealAnswer": "const enum инлайнится при компиляции и не создаёт рантайм-объект. Проблемы: 1) При `isolatedModules: true` (Vite, esbuild) импортированные const enum из других файлов не инлайнятся. 2) Если экспортировать const enum из npm-пакета, потребители могут получить ошибки. 3) Нельзя итерировать по значениям. Решение: `preserveConstEnums` или использовать обычный enum / `as const`.",
+    "followUp": "Что делает флаг `preserveConstEnums` в tsconfig?"
+  },
+  {
+    "id": "i3-numeric-enum-type-safety",
+    "question": "Числовые enum в TypeScript имеют известную проблему с типобезопасностью. В чём она заключается?",
+    "difficulty": "intermediate",
+    "topics": ["numeric enum", "type safety"],
+    "idealAnswer": "TypeScript позволяет присвоить произвольное число переменной с типом числового enum без ошибки компиляции. Например: `enum Color { Red, Green } const c: Color = 42;` -- не вызовет ошибку. Это связано с обратной совместимостью и использованием enum как битовых флагов. Строковые enum не имеют этой проблемы -- произвольную строку присвоить нельзя.",
+    "followUp": "Как можно обезопасить себя от этой проблемы?"
+  },
+  {
+    "id": "i4-reverse-mapping",
+    "question": "Что такое reverse mapping в enum? Для каких типов enum он работает?",
+    "difficulty": "easy",
+    "topics": ["reverse mapping", "numeric enum", "string enum"],
+    "idealAnswer": "Reverse mapping -- обратное отображение, позволяющее получить имя члена по его значению. Работает ТОЛЬКО для числовых enum. TypeScript компилирует числовой enum в объект с двусторонним маппингом: `Direction[0]` вернёт `\"Up\"`, а `Direction.Up` вернёт `0`. Строковые enum не поддерживают reverse mapping -- компилятор генерирует только прямое отображение (имя -> значение).",
+    "followUp": "Как выглядит скомпилированный JavaScript-код числового enum?"
+  }
+]
