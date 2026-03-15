@@ -1,0 +1,70 @@
+{
+  "chapter": "ch32-ts-intro",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Что произойдёт с аннотациями типов после компиляции TypeScript в JavaScript?",
+      "type": "multiple-choice",
+      "options": [
+        "Останутся в коде как комментарии",
+        "Будут полностью удалены (стирание типов)",
+        "Преобразуются в проверки typeof",
+        "Останутся только в режиме strict"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TypeScript использует стирание типов (type erasure): все аннотации типов полностью удаляются при компиляции. Итоговый JS-файл не содержит никакой информации о типах.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "По умолчанию tsc генерирует JS-файл, даже если в коде есть ошибки типов.",
+      "type": "true-false",
+      "options": ["Верно", "Неверно"],
+      "correctAnswer": 0,
+      "explanation": "Это сделано намеренно: TypeScript не хочет мешать вам. Особенно полезно при миграции с JavaScript. Чтобы запретить генерацию при ошибках, используйте флаг --noEmitOnError.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Какой флаг запрещает неявное использование типа any?",
+      "type": "multiple-choice",
+      "options": [
+        "strictNullChecks",
+        "noImplicitAny",
+        "noEmitOnError",
+        "strictPropertyInitialization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "noImplicitAny выдаёт ошибку, если TypeScript не может вывести тип и использует any по умолчанию. Это один из самых важных строгих флагов.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q4",
+      "question": "Что выведет этот код после компиляции с target: ES5?\n\n```ts\nconst name = \"World\";\nconsole.log(`Hello ${name}!`);\n```",
+      "type": "code-output",
+      "options": [
+        "console.log(`Hello ${name}!`);",
+        "console.log(\"Hello \".concat(name, \"!\"));",
+        "console.log(\"Hello \" + name + \"!\");",
+        "Ошибка компиляции"
+      ],
+      "correctAnswer": 1,
+      "explanation": "При target: ES5 TypeScript выполняет даунлевелинг: шаблонные строки (template literals) преобразуются в вызовы concat(), потому что ES5 не поддерживает обратные кавычки.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "TypeScript использует структурную систему типов. Что это означает?",
+      "type": "multiple-choice",
+      "options": [
+        "Типы проверяются по имени класса или интерфейса",
+        "Типы проверяются по форме (shape) объекта — набору свойств и их типам",
+        "Типы проверяются только в рантайме",
+        "Объекты должны явно реализовывать интерфейс через implements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "В структурной системе типов (duck typing) два объекта совместимы, если имеют одинаковую форму — нужные свойства с нужными типами. Не важно, объявлены ли они как один тип.",
+      "difficulty": "medium"
+    }
+  ]
+}

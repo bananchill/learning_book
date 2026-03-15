@@ -1,0 +1,29 @@
+{
+  "id": "ch32-ts-intro",
+  "title": "Введение в TypeScript",
+  "description": "Что такое TypeScript, зачем он нужен, как установить и запустить первую программу, как работает компилятор tsc и строгий режим",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "basics",
+  "order": 32,
+  "estimatedMinutes": 25,
+  "difficulty": "beginner",
+  "topics": [
+    "typescript",
+    "static-typing",
+    "tsc",
+    "type-erasure",
+    "downleveling",
+    "strict-mode",
+    "noImplicitAny",
+    "strictNullChecks",
+    "tsconfig"
+  ],
+  "prerequisites": ["ch03-variables", "ch07-functions"],
+  "subchapters": [
+    { "id": "01-what-is-ts", "title": "Что такое TypeScript и зачем он нужен", "file": "01-what-is-ts.md" },
+    { "id": "02-installation", "title": "Установка и первая программа", "file": "02-installation.md" },
+    { "id": "03-compiler", "title": "Как работает компилятор tsc", "file": "03-compiler.md" },
+    { "id": "04-strict-mode", "title": "Строгий режим и флаги компилятора", "file": "04-strict-mode.md" }
+  ]
+}

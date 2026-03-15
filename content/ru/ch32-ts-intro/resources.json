@@ -1,0 +1,50 @@
+[
+  {
+    "title": "The Basics — TypeScript Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная страница handbook: статическая проверка типов, компилятор tsc, стирание типов, строгость",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript for JavaScript Programmers",
+    "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Краткое введение для JS-разработчиков: вывод типов, интерфейсы, объединения, структурная типизация",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript for the New Programmer",
+    "url": "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Введение для начинающих: связь JS и TS, что такое статическая проверка типов, стирание типов",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TSConfig Reference",
+    "url": "https://www.typescriptlang.org/tsconfig",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полный справочник опций компилятора TypeScript: strict, target, module и все остальные",
+    "difficulty": "intermediate"
+  },
+  {
+    "title": "TypeScript Playground",
+    "url": "https://www.typescriptlang.org/play",
+    "type": "documentation",
+    "language": "en",
+    "description": "Онлайн-песочница TypeScript: можно экспериментировать с кодом и видеть скомпилированный JS",
+    "difficulty": "beginner"
+  },
+  {
+    "title": "TypeScript: Documentation — The Handbook",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Введение в полный TypeScript Handbook — дальнейшее чтение после этой главы",
+    "difficulty": "beginner"
+  }
+]

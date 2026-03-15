@@ -1,0 +1,48 @@
+{
+  "id": "01-review",
+  "title": "Code Review: типичные ошибки начинающего TypeScript-разработчика",
+  "issues": [
+    {
+      "line": 4,
+      "type": "best_practice",
+      "description": "Параметр id имеет тип any — теряется вся польза от TypeScript. Нужно указать конкретный тип (number).",
+      "fix": "function getUser(id: number)"
+    },
+    {
+      "line": 9,
+      "type": "bug",
+      "description": "Использован нестрогий оператор == вместо ===. При id: any это может привести к ложным совпадениям (например, '1' == 1).",
+      "fix": "Использовать === и типизировать id как number"
+    },
+    {
+      "line": 12,
+      "type": "best_practice",
+      "description": "Параметр user имеет тип any. Нужно создать интерфейс User и использовать его.",
+      "fix": "interface User { id: number; name: string; age: number }"
+    },
+    {
+      "line": 17,
+      "type": "bug",
+      "description": "getUser может вернуть undefined (если пользователь не найден). Обращение к user.age без проверки вызовет ошибку в рантайме.",
+      "fix": "Проверить if (user) или вернуть тип User | undefined и обработать"
+    },
+    {
+      "line": 21,
+      "type": "best_practice",
+      "description": "Параметр names имеет тип any. Нужно указать string[].",
+      "fix": "function greetAll(names: string[]): string[]"
+    },
+    {
+      "line": 30,
+      "type": "bug",
+      "description": "port и debug в конфиге — строки ('3000' и 'true'), а функция startServer ожидает number и boolean. TypeScript с strict: true покажет ошибку.",
+      "fix": "Использовать правильные типы в конфиге: port: 3000, debug: true"
+    },
+    {
+      "line": 22,
+      "type": "best_practice",
+      "description": "Массив result не типизирован — TypeScript выведет any[]. Лучше указать тип: const result: string[] = []",
+      "fix": "const result: string[] = []"
+    }
+  ]
+}

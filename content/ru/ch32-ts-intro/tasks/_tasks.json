@@ -1,0 +1,87 @@
+[
+  {
+    "id": "01-easy-add-types",
+    "file": "01-easy-add-types.ts",
+    "testFile": "01-easy-add-types.test.ts",
+    "title": "Добавь аннотации типов",
+    "difficulty": "easy",
+    "description": "Добавь аннотации типов к параметрам и возвращаемому значению функций",
+    "concepts": ["type-annotations", "basic-types"],
+    "hints": [
+      "Используй : string, : number, : boolean после параметров",
+      "Возвращаемый тип указывается после скобок: ): string"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-fix-errors",
+    "file": "02-easy-fix-errors.ts",
+    "testFile": "02-easy-fix-errors.test.ts",
+    "title": "Исправь ошибки типов",
+    "difficulty": "easy",
+    "description": "Код содержит ошибки типов, которые TypeScript обнаружил бы. Исправь вызовы функций так, чтобы типы совпадали.",
+    "concepts": ["type-checking", "type-errors"],
+    "hints": [
+      "Посмотри на типы параметров — какие значения ожидаются?",
+      "Date() без new возвращает строку, а не объект Date"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-easy-interfaces",
+    "file": "03-easy-interfaces.ts",
+    "testFile": "03-easy-interfaces.test.ts",
+    "title": "Опиши интерфейс объекта",
+    "difficulty": "easy",
+    "description": "Создай интерфейс для описания объекта и используй его в функции",
+    "concepts": ["interface", "structural-typing"],
+    "hints": [
+      "Интерфейс описывает форму объекта: interface Name { prop: type }",
+      "Необязательные свойства помечаются знаком ?"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "04-medium-narrowing",
+    "file": "04-medium-narrowing.ts",
+    "testFile": "04-medium-narrowing.test.ts",
+    "title": "Сужение типов с typeof",
+    "difficulty": "medium",
+    "description": "Напиши функцию, которая принимает string | number | boolean и обрабатывает каждый тип по-разному",
+    "concepts": ["union-types", "typeof", "narrowing"],
+    "hints": [
+      "Используй typeof для проверки типа в рантайме",
+      "После проверки typeof TypeScript сужает тип автоматически"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-medium-strict-null",
+    "file": "05-medium-strict-null.ts",
+    "testFile": "05-medium-strict-null.test.ts",
+    "title": "Работа с null и undefined",
+    "difficulty": "medium",
+    "description": "Перепиши функции так, чтобы они корректно работали с strictNullChecks: обрабатывай null и undefined явно",
+    "concepts": ["strictNullChecks", "null", "undefined", "optional"],
+    "hints": [
+      "Тип может включать null: string | null",
+      "Проверяй значение перед использованием: if (value !== null)"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "06-hard-type-safe-config",
+    "file": "06-hard-type-safe-config.ts",
+    "testFile": "06-hard-type-safe-config.test.ts",
+    "title": "Типобезопасный конфиг",
+    "difficulty": "hard",
+    "description": "Создай типобезопасную систему конфигурации: интерфейс для конфига, функция-валидатор, функция доступа к значениям с правильными типами",
+    "concepts": ["interface", "generics", "type-safety", "validation"],
+    "hints": [
+      "Опиши интерфейс конфига со всеми полями и их типами",
+      "Функция get должна возвращать правильный тип для каждого ключа",
+      "Используй keyof для ограничения допустимых ключей"
+    ],
+    "estimatedMinutes": 15
+  }
+]
