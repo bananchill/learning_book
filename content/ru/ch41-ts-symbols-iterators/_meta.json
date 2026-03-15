@@ -1,0 +1,26 @@
+{
+  "id": "ch41-ts-symbols-iterators",
+  "title": "Символы, итераторы и генераторы",
+  "order": 41,
+  "estimatedMinutes": 25,
+  "difficulty": "advanced",
+  "prerequisites": ["ch18-generators", "ch25-ts-generics"],
+  "tags": ["typescript", "symbols", "iterators", "generators", "protocols"],
+  "subchapters": [
+    {
+      "id": "01-symbols",
+      "title": "Символы в TypeScript",
+      "file": "01-symbols.md"
+    },
+    {
+      "id": "02-iterators",
+      "title": "Итераторы и for...of",
+      "file": "02-iterators.md"
+    },
+    {
+      "id": "03-generators",
+      "title": "Генераторы и типизация yield",
+      "file": "03-generators.md"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "q1-unique-symbol",
+    "question": "Какое объявление корректно создаёт `unique symbol` в TypeScript?",
+    "type": "single",
+    "options": [
+      {
+        "id": "a",
+        "text": "`let s: unique symbol = Symbol('s');`",
+        "correct": false,
+        "explanation": "Неверно. `unique symbol` можно объявить только через `const` или `static readonly`, но не через `let`."
+      },
+      {
+        "id": "b",
+        "text": "`const s: unique symbol = Symbol('s');`",
+        "correct": true,
+        "explanation": "Верно. `unique symbol` требует `const`-объявления, так как значение не должно изменяться."
+      },
+      {
+        "id": "c",
+        "text": "`var s: unique symbol = Symbol('s');`",
+        "correct": false,
+        "explanation": "Неверно. `var` не поддерживается для `unique symbol` -- нужен `const`."
+      },
+      {
+        "id": "d",
+        "text": "`const s: symbol = Symbol('s');` -- это тоже `unique symbol`",
+        "correct": false,
+        "explanation": "Неверно. Аннотация `symbol` создаёт обычный тип `symbol`, а не `unique symbol`. Для `unique symbol` нужна явная аннотация."
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "id": "q2-for-of-vs-for-in",
+    "question": "Что выведет следующий код?\n```typescript\nconst arr = [10, 20, 30];\nfor (const x in arr) {\n  console.log(typeof x);\n}\n```",
+    "type": "single",
+    "options": [
+      {
+        "id": "a",
+        "text": "`\"number\"` три раза",
+        "correct": false,
+        "explanation": "Неверно. `for...in` возвращает ключи как строки, даже для массивов."
+      },
+      {
+        "id": "b",
+        "text": "`\"string\"` три раза",
+        "correct": true,
+        "explanation": "Верно. `for...in` итерирует перечисляемые ключи объекта, и для массива это индексы в виде строк: `\"0\"`, `\"1\"`, `\"2\"`."
+      },
+      {
+        "id": "c",
+        "text": "`\"number\"`, `\"number\"`, `\"number\"`, `\"string\"`, `\"string\"`, `\"string\"`",
+        "correct": false,
+        "explanation": "Неверно. `for...in` возвращает только ключи (строки), не значения."
+      },
+      {
+        "id": "d",
+        "text": "Ошибка компиляции",
+        "correct": false,
+        "explanation": "Неверно. `for...in` допустим для массивов, хотя и не рекомендуется."
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "id": "q3-generator-type",
+    "question": "Генератор объявлен как `function* gen(): Generator<string, number, boolean>`. Какой тип имеет выражение `yield 'hello'` внутри генератора?",
+    "type": "single",
+    "options": [
+      {
+        "id": "a",
+        "text": "`string`",
+        "correct": false,
+        "explanation": "Неверно. `string` -- это тип значения, которое генератор *отдаёт* через yield, а не тип самого выражения yield."
+      },
+      {
+        "id": "b",
+        "text": "`number`",
+        "correct": false,
+        "explanation": "Неверно. `number` -- это `TReturn`, тип значения из `return`."
+      },
+      {
+        "id": "c",
+        "text": "`boolean`",
+        "correct": true,
+        "explanation": "Верно. Тип выражения `yield` определяется параметром `TNext` (третий параметр `Generator`). `TNext = boolean` означает, что в генератор передают `boolean` через `next(value)`, и это значение становится результатом `yield`."
+      },
+      {
+        "id": "d",
+        "text": "`unknown`",
+        "correct": false,
+        "explanation": "Неверно. `unknown` -- это значение `TNext` по умолчанию, но здесь явно указан `boolean`."
+      }
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "id": "q4-yield-delegation",
+    "question": "Что вернёт `yield*` при делегировании к обычному массиву `[1, 2, 3]`?",
+    "type": "single",
+    "options": [
+      {
+        "id": "a",
+        "text": "`undefined`",
+        "correct": true,
+        "explanation": "Верно. Обычный `Iterable` (массив) не имеет `TReturn`. Когда итератор массива завершается, `yield*` возвращает `undefined` (тип `void`)."
+      },
+      {
+        "id": "b",
+        "text": "`3` -- последний элемент массива",
+        "correct": false,
+        "explanation": "Неверно. Последний элемент отдаётся через yield, но `yield*` возвращает значение с `done: true`, которое для массива -- `undefined`."
+      },
+      {
+        "id": "c",
+        "text": "`[1, 2, 3]` -- сам массив",
+        "correct": false,
+        "explanation": "Неверно. `yield*` не возвращает исходный iterable."
+      },
+      {
+        "id": "d",
+        "text": "Ошибка компиляции: нельзя делегировать к массиву",
+        "correct": false,
+        "explanation": "Неверно. Массивы реализуют `Iterable`, и `yield*` с ними работает."
+      }
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "id": "q5-symbol-visibility",
+    "question": "Какие из перечисленных методов **НЕ** видят символьные ключи объекта?",
+    "type": "multiple",
+    "options": [
+      {
+        "id": "a",
+        "text": "`Object.keys()`",
+        "correct": true,
+        "explanation": "Верно. `Object.keys()` возвращает только строковые перечисляемые ключи."
+      },
+      {
+        "id": "b",
+        "text": "`for...in`",
+        "correct": true,
+        "explanation": "Верно. `for...in` обходит только строковые перечисляемые свойства."
+      },
+      {
+        "id": "c",
+        "text": "`JSON.stringify()`",
+        "correct": true,
+        "explanation": "Верно. `JSON.stringify()` игнорирует символьные ключи."
+      },
+      {
+        "id": "d",
+        "text": "`Object.getOwnPropertySymbols()`",
+        "correct": false,
+        "explanation": "Неверно. Этот метод специально предназначен для получения символьных ключей."
+      }
+    ],
+    "difficulty": "medium"
+  }
+]

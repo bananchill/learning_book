@@ -1,0 +1,58 @@
+[
+  {
+    "title": "TypeScript Handbook: Symbols",
+    "url": "https://www.typescriptlang.org/docs/handbook/symbols.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация TypeScript по символам"
+  },
+  {
+    "title": "TypeScript Handbook: Iterators and Generators",
+    "url": "https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html",
+    "type": "documentation",
+    "language": "en",
+    "description": "Официальная документация TypeScript по итераторам и генераторам"
+  },
+  {
+    "title": "MDN: Symbol",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "type": "documentation",
+    "language": "en",
+    "description": "Полная справка по символам на MDN"
+  },
+  {
+    "title": "MDN: Iteration protocols",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols",
+    "type": "documentation",
+    "language": "en",
+    "description": "Протоколы итерации: iterable и iterator"
+  },
+  {
+    "title": "MDN: function*",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*",
+    "type": "documentation",
+    "language": "en",
+    "description": "Справка по функциям-генераторам"
+  },
+  {
+    "title": "ECMAScript Specification: Well-Known Symbols",
+    "url": "https://tc39.es/ecma262/#sec-well-known-symbols",
+    "type": "specification",
+    "language": "en",
+    "description": "Спецификация ECMAScript: таблица well-known символов"
+  },
+  {
+    "title": "Exploring JS: Symbols",
+    "url": "https://exploringjs.com/es6/ch_symbols.html",
+    "type": "article",
+    "language": "en",
+    "description": "Глубокий разбор символов из книги Exploring ES6"
+  },
+  {
+    "title": "Exploring JS: Iterables and iterators",
+    "url": "https://exploringjs.com/es6/ch_iteration.html",
+    "type": "article",
+    "language": "en",
+    "description": "Подробный разбор итерации из книги Exploring ES6"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "task-01-unique-symbol-registry",
+    "title": "Реестр сервисов на unique symbol",
+    "difficulty": "easy",
+    "estimatedMinutes": 5,
+    "topics": ["unique-symbol", "type-safety"],
+    "file": "01-unique-symbol-registry.ts",
+    "testFile": "01-unique-symbol-registry.test.ts",
+    "description": "Создайте типобезопасный реестр сервисов, используя unique symbol как ключи для гарантии уникальности."
+  },
+  {
+    "id": "task-02-custom-iterable-range",
+    "title": "Итерируемый диапазон с шагом",
+    "difficulty": "easy",
+    "estimatedMinutes": 7,
+    "topics": ["iterable", "iterator", "Symbol.iterator"],
+    "file": "02-custom-iterable-range.ts",
+    "testFile": "02-custom-iterable-range.test.ts",
+    "description": "Реализуйте класс StepRange, который итерирует числа от start до end с заданным шагом."
+  },
+  {
+    "id": "task-03-lazy-pipeline",
+    "title": "Ленивый конвейер на генераторах",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "topics": ["generators", "lazy-evaluation", "iterable"],
+    "file": "03-lazy-pipeline.ts",
+    "testFile": "03-lazy-pipeline.test.ts",
+    "description": "Создайте класс Lazy<T> с методами map, filter и take, реализованными через генераторы для ленивых вычислений."
+  },
+  {
+    "id": "task-04-generator-state-machine",
+    "title": "Конечный автомат на генераторе",
+    "difficulty": "medium",
+    "estimatedMinutes": 10,
+    "topics": ["generators", "TNext", "state-machine"],
+    "file": "04-generator-state-machine.ts",
+    "testFile": "04-generator-state-machine.test.ts",
+    "description": "Реализуйте конечный автомат заказа (created → paid → shipped → delivered) через генератор с типизированным TNext."
+  },
+  {
+    "id": "task-05-async-paginator",
+    "title": "Асинхронный пагинатор",
+    "difficulty": "hard",
+    "estimatedMinutes": 15,
+    "topics": ["async-generators", "AsyncIterable", "pagination"],
+    "file": "05-async-paginator.ts",
+    "testFile": "05-async-paginator.test.ts",
+    "description": "Создайте асинхронный генератор-пагинатор, который загружает данные постранично и отдаёт элементы по одному через AsyncIterable."
+  }
+]
