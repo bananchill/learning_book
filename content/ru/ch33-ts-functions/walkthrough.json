@@ -1,0 +1,65 @@
+{
+  "title": "Перегрузки функций: пошаговый разбор",
+  "code": "function makeDate(timestamp: number): Date;\nfunction makeDate(m: number, d: number, y: number): Date;\nfunction makeDate(mOrTimestamp: number, d?: number, y?: number): Date {\n  if (d !== undefined && y !== undefined) {\n    return new Date(y, mOrTimestamp, d);\n  } else {\n    return new Date(mOrTimestamp);\n  }\n}\n\nconst d1 = makeDate(12345678);\nconst d2 = makeDate(5, 5, 2023);\n// const d3 = makeDate(1, 3);",
+  "steps": [
+    {
+      "line": 1,
+      "description": "Первая сигнатура перегрузки: makeDate принимает один числовой аргумент (timestamp) и возвращает Date. Это только описание типа — тела функции здесь нет.",
+      "variables": {},
+      "callStack": ["global"]
+    },
+    {
+      "line": 2,
+      "description": "Вторая сигнатура перегрузки: makeDate принимает три числовых аргумента (месяц, день, год) и возвращает Date. TypeScript теперь знает два способа вызова функции.",
+      "variables": {},
+      "callStack": ["global"]
+    },
+    {
+      "line": 3,
+      "description": "Сигнатура реализации. Она должна быть совместима с обеими перегрузками. Параметры d и y опциональны (?), чтобы покрыть оба варианта вызова. Эта сигнатура НЕ видна снаружи.",
+      "variables": {},
+      "callStack": ["global"]
+    },
+    {
+      "line": 4,
+      "description": "Внутри реализации проверяем: переданы ли d и y? Если да — вызов по второй перегрузке (три аргумента). TypeScript сужает типы d и y от number | undefined до number.",
+      "variables": { "mOrTimestamp": "number", "d": "number | undefined", "y": "number | undefined" },
+      "callStack": ["global", "makeDate()"]
+    },
+    {
+      "line": 5,
+      "description": "Ветка для трёх аргументов: создаём Date из года, месяца и дня. new Date(y, mOrTimestamp, d) — стандартный конструктор Date.",
+      "variables": { "mOrTimestamp": "month", "d": "day", "y": "year" },
+      "callStack": ["global", "makeDate()"],
+      "highlight": "overload-2"
+    },
+    {
+      "line": 7,
+      "description": "Ветка для одного аргумента (timestamp): создаём Date из числа миллисекунд. Это первая перегрузка.",
+      "variables": { "mOrTimestamp": "timestamp" },
+      "callStack": ["global", "makeDate()"],
+      "highlight": "overload-1"
+    },
+    {
+      "line": 11,
+      "description": "Вызов makeDate(12345678) — TypeScript выбирает первую перегрузку (один аргумент). Тип d1 — Date. Внутри функции попадаем в ветку else.",
+      "variables": { "d1": "Date" },
+      "callStack": ["global"],
+      "highlight": "overload-1"
+    },
+    {
+      "line": 12,
+      "description": "Вызов makeDate(5, 5, 2023) — TypeScript выбирает вторую перегрузку (три аргумента). Тип d2 — Date. Внутри функции попадаем в ветку if.",
+      "variables": { "d1": "Date", "d2": "Date" },
+      "callStack": ["global"],
+      "highlight": "overload-2"
+    },
+    {
+      "line": 13,
+      "description": "makeDate(1, 3) вызвал бы ошибку компиляции! Нет перегрузки с двумя аргументами. Хотя сигнатура реализации это позволяет (d? и y?), она не видна снаружи. TypeScript проверяет только по перегрузкам.",
+      "variables": {},
+      "callStack": ["global"],
+      "highlight": "error"
+    }
+  ]
+}

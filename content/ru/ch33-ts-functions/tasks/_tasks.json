@@ -1,0 +1,87 @@
+[
+  {
+    "id": "01-easy-fn-types",
+    "file": "01-easy-fn-types.ts",
+    "testFile": "01-easy-fn-types.test.ts",
+    "title": "Типизируй коллбэки",
+    "difficulty": "easy",
+    "description": "Добавь типы функциональных параметров (коллбэков) с помощью Function Type Expressions. Каждая функция принимает коллбэк — опиши его тип.",
+    "concepts": ["function-type-expression", "callback-types"],
+    "hints": [
+      "Тип коллбэка описывается как (param: Type) => ReturnType",
+      "Имена параметров в типе обязательны: (s: string) => void, а не (string) => void"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "02-easy-call-signatures",
+    "file": "02-easy-call-signatures.ts",
+    "testFile": "02-easy-call-signatures.test.ts",
+    "title": "Опиши Call Signature",
+    "difficulty": "easy",
+    "description": "Создай тип для функции со свойствами, используя Call Signature. Функция-валидатор должна иметь свойство errorMessage и вызываться с аргументом.",
+    "concepts": ["call-signature", "function-properties"],
+    "hints": [
+      "Call Signature: { (param: Type): ReturnType; property: Type }",
+      "Между параметрами и возвратом используется двоеточие, не стрелка"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "03-easy-special-types",
+    "file": "03-easy-special-types.ts",
+    "testFile": "03-easy-special-types.test.ts",
+    "title": "Используй void, unknown, never",
+    "difficulty": "easy",
+    "description": "Расставь правильные типы возврата: void, unknown и never. Каждая функция имеет подсказку в комментарии.",
+    "concepts": ["void", "unknown", "never"],
+    "hints": [
+      "void — функция ничего не возвращает, unknown — возвращает неизвестное значение, never — никогда не возвращается",
+      "Функция с throw всегда возвращает never, JSON.parse возвращает unknown"
+    ],
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "04-medium-overloads",
+    "file": "04-medium-overloads.ts",
+    "testFile": "04-medium-overloads.test.ts",
+    "title": "Напиши перегрузки функции",
+    "difficulty": "medium",
+    "description": "Реализуй функцию format с перегрузками: принимает число — возвращает строку с фиксированной точкой, принимает дату — возвращает локализованную строку, принимает массив — возвращает строку через запятую.",
+    "concepts": ["function-overloads", "implementation-signature"],
+    "hints": [
+      "Напиши три сигнатуры перегрузки и одну реализацию",
+      "В реализации используй typeof и instanceof для различения типов"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "05-medium-rest-destructuring",
+    "file": "05-medium-rest-destructuring.ts",
+    "testFile": "05-medium-rest-destructuring.test.ts",
+    "title": "Rest-параметры и деструктуризация",
+    "difficulty": "medium",
+    "description": "Типизируй функции с rest-параметрами и деструктуризацией объектов. Исправь ошибки типов и добавь недостающие аннотации.",
+    "concepts": ["rest-parameters", "destructuring", "as-const"],
+    "hints": [
+      "Rest-параметр типизируется как массив: ...args: string[]",
+      "Деструктуризация типизируется после паттерна: ({ a, b }: { a: number; b: number })"
+    ],
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "06-hard-typed-event-emitter",
+    "file": "06-hard-typed-event-emitter.ts",
+    "testFile": "06-hard-typed-event-emitter.test.ts",
+    "title": "Типизированный EventEmitter",
+    "difficulty": "hard",
+    "description": "Создай типизированный EventEmitter, используя перегрузки, Call Signatures и rest-параметры. Метод on должен принимать имя события и коллбэк с правильной сигнатурой, метод emit — имя события и аргументы.",
+    "concepts": ["overloads", "call-signatures", "rest-parameters", "type-safety"],
+    "hints": [
+      "Опиши интерфейс EventMap: { eventName: (...args: Types) => void }",
+      "Используй перегрузки для on и emit, чтобы связать имя события с типами аргументов",
+      "Храни обработчики в Map<string, Function[]>"
+    ],
+    "estimatedMinutes": 20
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "chapter": "ch33-ts-functions",
+  "resources": [
+    {
+      "title": "TypeScript Handbook — More on Functions",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+      "type": "documentation",
+      "language": "en",
+      "description": "Официальная документация TypeScript по функциям: типы, перегрузки, rest-параметры",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "TypeScript Handbook — Everyday Types",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "type": "documentation",
+      "language": "en",
+      "description": "Базовые типы TypeScript: void, object, unknown, never и другие",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "TypeScript Handbook — Narrowing",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "type": "documentation",
+      "language": "en",
+      "description": "Сужение типов: typeof, instanceof, in — критически важно для работы с unknown",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "TypeScript Playground",
+      "url": "https://www.typescriptlang.org/play",
+      "type": "tool",
+      "language": "en",
+      "description": "Онлайн-среда для экспериментов с TypeScript: проверка типов, компиляция, примеры",
+      "difficulty": "beginner"
+    },
+    {
+      "title": "TypeScript Deep Dive — Functions",
+      "url": "https://basarat.gitbook.io/typescript/type-system/functions",
+      "type": "book",
+      "language": "en",
+      "description": "Углублённый разбор типизации функций от Basarat Ali Syed",
+      "difficulty": "intermediate"
+    },
+    {
+      "title": "TypeScript Handbook — Generics (Generic Functions)",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+      "type": "documentation",
+      "language": "en",
+      "description": "Обобщённые функции — логическое продолжение темы типов функций",
+      "difficulty": "intermediate"
+    }
+  ]
+}

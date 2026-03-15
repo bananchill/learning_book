@@ -1,0 +1,65 @@
+{
+  "chapter": "ch33-ts-functions",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Какой синтаксис правильно описывает тип функции, принимающей строку и возвращающей число?",
+      "type": "multiple-choice",
+      "options": [
+        "(string) => number",
+        "(s: string) => number",
+        "{ string: number }",
+        "string -> number"
+      ],
+      "correctAnswer": 1,
+      "explanation": "В Function Type Expression имена параметров обязательны. Синтаксис (string) => number сделает string именем параметра с типом any. Правильный вариант: (s: string) => number.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q2",
+      "question": "Сигнатура реализации перегруженной функции доступна для вызова снаружи.",
+      "type": "true-false",
+      "options": ["Верно", "Неверно"],
+      "correctAnswer": 1,
+      "explanation": "Неверно. Сигнатура реализации не видна снаружи. TypeScript выбирает только среди сигнатур перегрузок. Вызов, совпадающий только с реализацией, вызовет ошибку компиляции.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "q3",
+      "question": "Что выведет TypeScript как тип переменной result?\n\ntype VoidFunc = () => void;\nconst f: VoidFunc = () => 42;\nconst result = f();",
+      "type": "code-output",
+      "options": ["number", "void", "42", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "Контекстуальная типизация с void не запрещает функции что-то возвращать, но тип результата остаётся void. В рантайме result будет 42, но TypeScript считает его типом void.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q4",
+      "question": "Почему этот код вызывает ошибку?\n\nconst args = [1, 2];\nMath.atan2(...args);",
+      "type": "multiple-choice",
+      "options": [
+        "Math.atan2 не принимает spread-аргументы",
+        "TypeScript выводит тип args как number[] (неизвестная длина), а Math.atan2 требует ровно 2 аргумента",
+        "Spread-оператор не работает с числами",
+        "Нужно использовать Math.atan2.apply(null, args)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TypeScript выводит тип [1, 2] как number[] — массив произвольной длины. Math.atan2 принимает ровно 2 числа. TypeScript не может гарантировать, что в массиве ровно 2 элемента. Решение: использовать as const или явный кортеж [number, number].",
+      "difficulty": "medium"
+    },
+    {
+      "id": "q5",
+      "question": "Какой тип следует использовать вместо any для параметра, тип которого неизвестен заранее?",
+      "type": "multiple-choice",
+      "options": [
+        "object",
+        "Function",
+        "unknown",
+        "never"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Тип unknown — безопасная альтернатива any. Ему можно присвоить любое значение, но использовать его нельзя без сужения типа (typeof, instanceof, in). object — только не-примитивы, Function — только функции, never — значение, которое никогда не появится.",
+      "difficulty": "hard"
+    }
+  ]
+}

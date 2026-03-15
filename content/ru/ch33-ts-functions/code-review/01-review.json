@@ -1,0 +1,48 @@
+{
+  "id": "01-review",
+  "title": "Code Review: типичные ошибки типизации функций в TypeScript",
+  "issues": [
+    {
+      "line": 5,
+      "type": "best_practice",
+      "description": "Тип Function нетипизирован — результат вызова будет any. Нужно использовать конкретный тип коллбэка: (item: string, index: number) => string.",
+      "fix": "function applyToAll(items: string[], callback: (item: string, index: number) => string): string[]"
+    },
+    {
+      "line": 6,
+      "type": "best_practice",
+      "description": "callback as any — приведение к any убивает проверку типов. Это следствие использования типа Function вместо конкретной сигнатуры.",
+      "fix": "Убрать as any после исправления типа callback"
+    },
+    {
+      "line": 9,
+      "type": "best_practice",
+      "description": "Перегрузки используются для разных типов одного параметра. Лучше использовать union: function getLength(input: string | any[]): number. Иначе getLength(Math.random() > 0.5 ? 'hello' : [1]) вызовет ошибку.",
+      "fix": "function getLength(input: string | unknown[]): number { return input.length }"
+    },
+    {
+      "line": 17,
+      "type": "best_practice",
+      "description": "Возврат any из parseConfig снимает все проверки типов у результата. JSON.parse возвращает unknown — нужно использовать unknown и сужать тип на месте вызова.",
+      "fix": "function parseConfig(raw: string): unknown { return JSON.parse(raw) }"
+    },
+    {
+      "line": 22,
+      "type": "bug",
+      "description": "handleClick передаётся в addEventListener без привязки this. При вызове this будет указывать на элемент DOM, а не на handler. Свойство this.message будет undefined.",
+      "fix": "Использовать bind: document.addEventListener('click', handler.handleClick.bind(handler)) или стрелочную функцию, или типизировать this-параметр: handleClick(this: typeof handler, event: Event)"
+    },
+    {
+      "line": 31,
+      "type": "bug",
+      "description": "Массив coords имеет тип number[] (произвольная длина). TypeScript не может гарантировать, что в нём ровно 2 элемента для функции move(x, y).",
+      "fix": "const coords = [10, 20] as const; move(...coords); или const coords: [number, number] = [10, 20];"
+    },
+    {
+      "line": 34,
+      "type": "bug",
+      "description": "Синтаксис { name: string, age: number } — это деструктуризация с переименованием, а не типизация. Здесь string и number — локальные переменные. Тип нужно указывать после паттерна: { name, age }: { name: string; age: number }.",
+      "fix": "function createUser({ name, age }: { name: string; age: number }) { return { name, age } }"
+    }
+  ]
+}

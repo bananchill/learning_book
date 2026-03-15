@@ -1,0 +1,19 @@
+{
+  "id": "ch33-ts-functions",
+  "title": "Функции в TypeScript",
+  "description": "Типы функций, сигнатуры вызова, перегрузки, this-параметр, rest-параметры и деструктуризация",
+  "section": "frontend",
+  "subsection": "typescript",
+  "group": "intermediate",
+  "order": 33,
+  "estimatedMinutes": 30,
+  "difficulty": "intermediate",
+  "topics": ["function-types", "call-signatures", "overloads", "this-parameter", "void", "rest-parameters", "destructuring"],
+  "prerequisites": ["ch32-ts-intro", "ch07-functions"],
+  "subchapters": [
+    { "id": "01-function-types", "title": "Типы функций и сигнатуры вызова", "file": "01-function-types.md" },
+    { "id": "02-overloads", "title": "Перегрузки функций", "file": "02-overloads.md" },
+    { "id": "03-this-void", "title": "this-параметр и void", "file": "03-this-void.md" },
+    { "id": "04-rest-destructuring", "title": "Rest-параметры и деструктуризация", "file": "04-rest-destructuring.md" }
+  ]
+}
