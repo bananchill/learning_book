@@ -1,0 +1,26 @@
+{
+  "id": "ch40-ts-type-inference",
+  "title": "Вывод типов и совместимость",
+  "order": 40,
+  "estimatedMinutes": 25,
+  "difficulty": "advanced",
+  "prerequisites": ["ch06-ts-type-system", "ch33-ts-functions"],
+  "tags": ["typescript", "type-inference", "type-compatibility", "variance", "structural-typing", "covariance", "contravariance"],
+  "subchapters": [
+    {
+      "id": "01-inference",
+      "title": "Как TypeScript выводит типы",
+      "file": "01-inference.md"
+    },
+    {
+      "id": "02-compatibility",
+      "title": "Совместимость типов",
+      "file": "02-compatibility.md"
+    },
+    {
+      "id": "03-variance",
+      "title": "Ковариантность и контравариантность",
+      "file": "03-variance.md"
+    }
+  ]
+}

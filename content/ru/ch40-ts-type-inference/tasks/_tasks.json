@@ -1,0 +1,80 @@
+{
+  "chapter": "ch40-ts-type-inference",
+  "tasks": [
+    {
+      "id": "01-easy-infer-result",
+      "title": "Определи выведенный тип",
+      "difficulty": "easy",
+      "description": "Даны несколько объявлений переменных. Для каждого верните строку с названием типа, который выведет TypeScript. Учитывайте разницу между let и const, best common type и widening.",
+      "file": "01-easy-infer-result.ts",
+      "testFile": "01-easy-infer-result.test.ts",
+      "concepts": ["type-inference", "widening", "best-common-type"],
+      "hints": [
+        "const сохраняет литеральный тип (const x = 3 -> тип 3), а let расширяет до примитива (let x = 3 -> тип number).",
+        "Массив из разных типов получает union: [1, 'a'] -> (number | string)[].",
+        "as const делает все свойства readonly и сохраняет литеральные типы."
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "02-easy-structural-check",
+      "title": "Проверка структурной совместимости",
+      "difficulty": "easy",
+      "description": "Даны несколько интерфейсов и объектов. Реализуйте функции, которые принимают определённые интерфейсы, и определите, какие объекты можно передать в каждую функцию без ошибок компиляции.",
+      "file": "02-easy-structural-check.ts",
+      "testFile": "02-easy-structural-check.test.ts",
+      "concepts": ["structural-typing", "type-compatibility", "excess-property-check"],
+      "hints": [
+        "Структурная совместимость: если объект имеет все свойства интерфейса, он совместим.",
+        "Excess property check срабатывает только для объектных литералов, переданных напрямую.",
+        "Объект с дополнительными свойствами совместим с интерфейсом, если основные свойства совпадают."
+      ],
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "03-medium-function-compat",
+      "title": "Совместимость функций",
+      "difficulty": "medium",
+      "description": "Реализуйте систему обработчиков событий с корректной типизацией. Базовый тип Event с полем type: string. Подтипы: MouseEvent (clientX, clientY), KeyboardEvent (key, code). Напишите функцию registerHandler, которая принимает обработчик и вызывает его безопасно.",
+      "file": "03-medium-function-compat.ts",
+      "testFile": "03-medium-function-compat.test.ts",
+      "concepts": ["function-compatibility", "parameter-count", "return-type-covariance"],
+      "hints": [
+        "Функция с меньшим числом параметров совместима с функцией с большим числом. Обработчик (e: Event) => void совместим с (e: MouseEvent) => void по контравариантности.",
+        "Возвращаемый тип ковариантен: функция, возвращающая подтип, совместима с функцией, возвращающей базовый тип.",
+        "Используйте discriminated union с полем type для безопасного сужения типа события в обработчике."
+      ],
+      "estimatedMinutes": 12
+    },
+    {
+      "id": "04-medium-variance-safe",
+      "title": "Типобезопасный контейнер с вариантностью",
+      "difficulty": "medium",
+      "description": "Реализуйте три интерфейса: ReadonlyBox<T> (ковариантный -- только чтение), WriteBox<T> (контравариантный -- только запись), Box<T> (инвариантный -- чтение и запись). Напишите функции преобразования, соблюдающие вариантность.",
+      "file": "04-medium-variance-safe.ts",
+      "testFile": "04-medium-variance-safe.test.ts",
+      "concepts": ["covariance", "contravariance", "invariance", "variance-annotations"],
+      "hints": [
+        "ReadonlyBox<out T> с методом get(): T -- ковариантный, потому что T только в выходной позиции.",
+        "WriteBox<in T> с методом set(value: T): void -- контравариантный, потому что T только во входной позиции.",
+        "Box<in out T> с обоими методами -- инвариантный. ReadonlyBox<Cat> <: ReadonlyBox<Animal>, но Box<Cat> не совместим с Box<Animal>."
+      ],
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "05-hard-type-safe-emitter",
+      "title": "Типобезопасный EventEmitter с вариантностью",
+      "difficulty": "hard",
+      "description": "Реализуйте generic EventEmitter<Events>, где Events -- объект { eventName: payloadType }. Метод on() должен быть контравариантным по типу обработчика, emit() -- ковариантным по payload. Обеспечьте полную типобезопасность: on('click', handler) принимает только обработчик с правильным типом payload.",
+      "file": "05-hard-type-safe-emitter.ts",
+      "testFile": "05-hard-type-safe-emitter.test.ts",
+      "concepts": ["variance", "mapped-types", "generic-constraints", "strict-function-types"],
+      "hints": [
+        "Определите тип Events как generic constraint: Events extends Record<string, unknown>. Метод on должен быть generic по имени события: on<K extends keyof Events>(event: K, handler: (payload: Events[K]) => void): void.",
+        "emit должен принимать имя события и payload соответствующего типа: emit<K extends keyof Events>(event: K, payload: Events[K]): void.",
+        "Для контравариантности обработчиков используйте function property syntax, а не method syntax. Храните обработчики в Map<keyof Events, Set<Function>>."
+      ],
+      "estimatedMinutes": 20
+    }
+  ]
+}

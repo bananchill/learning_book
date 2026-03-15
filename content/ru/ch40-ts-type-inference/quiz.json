@@ -1,0 +1,65 @@
+{
+  "chapter": "ch40-ts-type-inference",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Какой тип выведет TypeScript для переменной `let arr = [1, \"hello\", true]`?",
+      "options": [
+        "any[]",
+        "(number | string | boolean)[]",
+        "[number, string, boolean]",
+        "unknown[]"
+      ],
+      "correctIndex": 1,
+      "explanation": "TypeScript применяет алгоритм best common type: рассматривает каждый элемент массива как кандидата и объединяет их в union. Результат -- (number | string | boolean)[]."
+    },
+    {
+      "id": "q2",
+      "text": "Функция `let f1 = (a: number) => 0` и `let f2 = (a: number, b: number) => 0`. Какое присваивание допустимо?",
+      "options": [
+        "Только f1 = f2",
+        "Только f2 = f1",
+        "Оба допустимы",
+        "Ни одно не допустимо"
+      ],
+      "correctIndex": 1,
+      "explanation": "Функция с меньшим числом параметров совместима с функцией с большим числом. f1 (1 параметр) можно присвоить f2 (2 параметра), но не наоборот. Это отражает то, как JavaScript позволяет игнорировать лишние аргументы."
+    },
+    {
+      "id": "q3",
+      "text": "При включённом `strictFunctionTypes`, если Cat extends Animal, какое присваивание допустимо?",
+      "options": [
+        "let handleCat: (c: Cat) => void = (a: Animal) => {} -- OK",
+        "let handleAnimal: (a: Animal) => void = (c: Cat) => {} -- OK",
+        "Оба допустимы",
+        "Ни одно не допустимо"
+      ],
+      "correctIndex": 0,
+      "explanation": "Параметры функций контравариантны при strictFunctionTypes. Если Cat <: Animal, то (Animal) => void <: (Cat) => void. Обработчик, принимающий Animal (более общий), безопасно принимает и Cat."
+    },
+    {
+      "id": "q4",
+      "text": "Почему method syntax в интерфейсе остаётся бивариантным даже при strictFunctionTypes?",
+      "options": [
+        "Это баг TypeScript",
+        "Для совместимости с DOM API и встроенными типами",
+        "Method syntax не поддерживает дженерики",
+        "Методы всегда инвариантны"
+      ],
+      "correctIndex": 1,
+      "explanation": "TypeScript намеренно сохраняет бивариантность для method syntax, чтобы не сломать совместимость с DOM API (addEventListener и подобные), где обработчики часто принимают подтип Event."
+    },
+    {
+      "id": "q5",
+      "text": "Два интерфейса: `interface A { x: number }` и `interface B { x: number; y: string }`. Какое присваивание допустимо?",
+      "options": [
+        "Только let a: A = objB",
+        "Только let b: B = objA",
+        "Оба допустимы",
+        "Ни одно (разные имена интерфейсов)"
+      ],
+      "correctIndex": 0,
+      "explanation": "TypeScript использует структурную типизацию. B имеет все свойства A (x: number) плюс дополнительное y. Поэтому B совместим с A (B <: A), но не наоборот -- у A нет свойства y."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "title": "TypeScript Handbook: Type Inference",
+    "url": "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Handbook: Type Compatibility",
+    "url": "https://www.typescriptlang.org/docs/handbook/type-compatibility.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "TypeScript Deep Dive: Type Inference",
+    "url": "https://basarat.gitbook.io/typescript/type-system/type-inference",
+    "type": "book",
+    "language": "en"
+  },
+  {
+    "title": "Strict Function Types (TypeScript 2.6 Release Notes)",
+    "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-6.html",
+    "type": "docs",
+    "language": "en"
+  },
+  {
+    "title": "Matt Pocock: Variance in TypeScript",
+    "url": "https://www.totaltypescript.com/variance-in-typescript",
+    "type": "tutorial",
+    "language": "en"
+  },
+  {
+    "title": "Optional Variance Annotations (TypeScript 4.7)",
+    "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#optional-variance-annotations-for-type-parameters",
+    "type": "docs",
+    "language": "en"
+  }
+]

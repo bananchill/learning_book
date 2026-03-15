@@ -1,0 +1,41 @@
+{
+  "chapter": "ch40-ts-type-inference",
+  "title": "Как TypeScript проверяет совместимость функций",
+  "steps": [
+    {
+      "id": 1,
+      "title": "Определяем типы",
+      "code": "interface Animal {\n  name: string;\n}\n\ninterface Cat extends Animal {\n  purr(): void;\n}\n\ntype HandleAnimal = (a: Animal) => void;\ntype HandleCat = (a: Cat) => void;",
+      "highlight": [9, 10],
+      "explanation": "Определяем иерархию типов: Cat расширяет Animal (имеет дополнительный метод purr). Затем определяем два типа функций-обработчиков."
+    },
+    {
+      "id": 2,
+      "title": "Создаём обработчики",
+      "code": "const handleAnimal: HandleAnimal = (a) => {\n  console.log(a.name); // Использует только name\n};\n\nconst handleCat: HandleCat = (a) => {\n  a.purr(); // Использует purr -- специфичный для Cat\n  console.log(a.name);\n};",
+      "highlight": [1, 5],
+      "explanation": "handleAnimal использует только свойства Animal (name). handleCat использует purr() -- метод, который есть только у Cat."
+    },
+    {
+      "id": 3,
+      "title": "Контравариантная подстановка (безопасная)",
+      "code": "let catHandler: HandleCat;\n\n// Присваиваем обработчик Animal в позицию обработчика Cat\ncatHandler = handleAnimal; // OK!\n\n// Безопасно: catHandler будет вызван с Cat,\n// а handleAnimal принимает любой Animal.\n// Cat -- это Animal, значит handleAnimal справится.\nconst myCat: Cat = { name: 'Мурка', purr() {} };\ncatHandler(myCat); // OK -- handleAnimal использует только name",
+      "highlight": [4, 10],
+      "explanation": "Контравариантность: HandleAnimal совместим с HandleCat, потому что handleAnimal принимает Animal, а Cat -- это Animal. Вызов безопасен: обработчик использует только name, который есть у Cat."
+    },
+    {
+      "id": 4,
+      "title": "Ковариантная подстановка (небезопасная)",
+      "code": "let animalHandler: HandleAnimal;\n\n// Присваиваем обработчик Cat в позицию обработчика Animal\n// animalHandler = handleCat; // Ошибка при strictFunctionTypes!\n\n// Почему это опасно:\nconst dog: Animal = { name: 'Шарик' };\n// animalHandler(dog); // handleCat вызовет dog.purr()\n// Но у dog нет purr() -- runtime error!",
+      "highlight": [4, 8],
+      "explanation": "При strictFunctionTypes TypeScript запрещает это присваивание. handleCat ожидает Cat с purr(), но animalHandler может быть вызван с любым Animal (например, Dog), у которого нет purr(). Это привело бы к ошибке в рантайме."
+    },
+    {
+      "id": 5,
+      "title": "Итог: направление совместимости",
+      "code": "// Иерархия типов:\n//   Cat <: Animal (Cat -- подтип Animal)\n//\n// Иерархия функций (при strict):\n//   HandleAnimal <: HandleCat (направление инвертировано!)\n//\n// Ковариантность:  Cat <: Animal => Producer<Cat> <: Producer<Animal>\n// Контравариантность: Cat <: Animal => Consumer<Animal> <: Consumer<Cat>",
+      "highlight": [5, 7, 8],
+      "explanation": "Ключевой вывод: для параметров функций направление совместимости инвертируется (контравариантность). Если Cat -- подтип Animal, то обработчик Animal -- подтип обработчика Cat. Это гарантирует типобезопасность при вызове функций."
+    }
+  ]
+}
