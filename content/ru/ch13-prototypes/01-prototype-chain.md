@@ -63,7 +63,11 @@ obj.toString()         // "[object Object]"
 obj.hasOwnProperty('name')  // true
 ```
 
-## hasOwnProperty vs унаследованные свойства
+## Собственные vs унаследованные свойства
+
+Когда вы обращаетесь к свойству через точку, JavaScript не различает, где оно лежит — в самом объекте или где-то в прототипной цепочке. Но иногда важно понять: это **собственное** свойство объекта или **унаследованное** от прототипа?
+
+Метод `hasOwnProperty(prop)` отвечает на этот вопрос. Он возвращает `true`, только если свойство определено **непосредственно на объекте**, а не получено через цепочку прототипов.
 
 ```js
 const parent = { inherited: 'от родителя' }
@@ -75,37 +79,51 @@ console.log(child.own)       // "своё"
 console.log(child.inherited) // "от родителя"
 
 // Но hasOwnProperty различает их
-child.hasOwnProperty('own')       // true — своё свойство
-child.hasOwnProperty('inherited') // false — унаследованное
+child.hasOwnProperty('own')       // true — определено на child
+child.hasOwnProperty('inherited') // false — пришло из parent
+```
 
-// Безопасная проверка (если объект мог переопределить hasOwnProperty)
+У `hasOwnProperty` есть подвох: если кто-то создаст объект без прототипа (`Object.create(null)`) или переопределит этот метод, вызов сломается. Поэтому в ES2022 появился статический метод `Object.hasOwn()` — он безопаснее и короче:
+
+```js
+// Старый безопасный способ (вызов через Object.prototype)
 Object.prototype.hasOwnProperty.call(child, 'own') // true
-// Или (ES2022):
+
+// Современный способ (ES2022) — рекомендуется
 Object.hasOwn(child, 'own') // true
 ```
 
-## for...in и прототипная цепочка
+## Перебор свойств: for...in vs Object.keys()
+
+`for...in` перебирает **все** перечисляемые (enumerable) свойства объекта, **включая унаследованные** из прототипной цепочки. Часто это не то, что нужно:
 
 ```js
 const parent = { a: 1 }
 const child = Object.create(parent)
 child.b = 2
 
-// for...in перебирает ВСЕ enumerable свойства, включая унаследованные
+// for...in — захватит и своё b, и унаследованное a
 for (const key in child) {
   console.log(key) // b, a
 }
-
-// Чтобы перебирать только собственные:
-for (const key in child) {
-  if (Object.hasOwn(child, key)) {
-    console.log(key) // только b
-  }
-}
-
-// Или используй Object.keys() — только собственные enumerable
-Object.keys(child) // ["b"]
 ```
+
+Самый простой способ перебрать **только собственные** свойства — `Object.keys()`, `Object.values()` и `Object.entries()`. Они изначально игнорируют прототипную цепочку:
+
+```js
+Object.keys(child)    // ["b"] — только ключи
+Object.values(child)  // [2]   — только значения
+Object.entries(child) // [["b", 2]] — пары [ключ, значение]
+
+// Удобно в цикле:
+for (const [key, value] of Object.entries(child)) {
+  console.log(key, value) // b 2
+}
+```
+
+<Callout type="tip">
+Используйте `Object.keys()` / `Object.entries()` вместо `for...in` — это и проще, и безопаснее. `for...in` нужен крайне редко — только когда вам действительно нужны унаследованные свойства.
+</Callout>
 
 <DeepDive>
 В движке V8 каждый объект имеет **Hidden Class** (скрытый класс / Shape). Когда два объекта имеют одинаковую структуру свойств, V8 даёт им один скрытый класс и оптимизирует доступ к свойствам. Добавление свойств после создания объекта или изменение порядка добавления переводит объект на другой скрытый класс — это «деоптимизация». Прототипы V8 также учитывает при построении скрытых классов.
