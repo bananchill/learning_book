@@ -1,0 +1,62 @@
+[
+{
+  "id": "01-review",
+  "title": "Code Review: типичные ошибки в declaration files",
+  "issues": [
+    {
+      "line": 6,
+      "type": "best_practice",
+      "description": "Параметр data и возвращаемый тип -- any. Это полностью уничтожает типобезопасность. Используй unknown для входных данных неизвестного типа или дженерик <T>(data: T): ProcessedData<T>.",
+      "fix": "declare function processData<T>(data: T): ProcessedResult<T>; или declare function processData(data: unknown): unknown;"
+    },
+    {
+      "line": 8,
+      "type": "best_practice",
+      "description": "Callback возвращает any. Для callback-ов без полезного возвращаемого значения используй void, а не any.",
+      "fix": "declare function handleEvent(callback: () => void): void;"
+    },
+    {
+      "line": 10,
+      "type": "bug",
+      "description": "Использованы объектные обёртки String, Number, Object вместо примитивных типов string, number, object. String !== string в TypeScript: String -- это объект-обёртка, string -- примитив.",
+      "fix": "declare function createUser(name: string, age: number): { name: string; age: number };"
+    },
+    {
+      "line": 16,
+      "type": "bug",
+      "description": "Перегрузки отсортированы неправильно: общая сигнатура parse(input: string) стоит перед конкретной parse(input: \"json\"). TypeScript выбирает первую подходящую перегрузку, поэтому parse(\"json\") всегда попадёт в parse(input: string), а конкретная перегрузка никогда не сработает.",
+      "fix": "Переместить parse(input: \"json\"): JsonResult на первое место, затем parse(input: string): Object"
+    },
+    {
+      "line": 17,
+      "type": "best_practice",
+      "description": "Перегрузка parse(input: any): any избыточна и опасна. Она принимает всё что угодно и возвращает any, обходя все остальные перегрузки.",
+      "fix": "Удалить перегрузку с any. Если нужен fallback, используй parse(input: unknown): unknown"
+    },
+    {
+      "line": 21,
+      "type": "best_practice",
+      "description": "Поля data и error в JsonResult имеют тип any. Это уничтожает пользу от типизации. Используй unknown для данных неизвестной формы.",
+      "fix": "interface JsonResult { data: unknown; error: string | null; }"
+    },
+    {
+      "line": 28,
+      "type": "bug",
+      "description": "Module augmentation для express написан в файле без import/export. Без них файл -- скрипт, и declare module создаёт новый ambient-модуль, а не расширяет существующий. Для augmentation файл должен быть модулем.",
+      "fix": "Добавить import \"express\"; или export {} перед declare module \"express\""
+    },
+    {
+      "line": 30,
+      "type": "best_practice",
+      "description": "Свойство user типа any. Лучше описать конкретный интерфейс и сделать поле необязательным (user может отсутствовать до аутентификации).",
+      "fix": "user?: { id: string; email: string; roles: string[] };"
+    },
+    {
+      "line": 35,
+      "type": "best_practice",
+      "description": "Wildcard-модули для ассетов (*.png, *.jpg, *.svg) объявлены без типа экспорта. Все импорты вернут any. Лучше указать конкретный тип: default export строка (путь к файлу).",
+      "fix": "declare module \"*.png\" { const src: string; export default src; }"
+    }
+  ]
+}
+]

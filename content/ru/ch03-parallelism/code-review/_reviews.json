@@ -1,0 +1,32 @@
+[
+{
+  "id": "01-review",
+  "title": "Проблемы параллельного кода",
+  "issues": [
+    {
+      "line": 7,
+      "type": "performance",
+      "description": "Создание и уничтожение воркера на каждое изображение. Overhead ~5ms на воркер, при 1000 изображений — 5 секунд только на создание. Плюс задачи выполняются последовательно (await в цикле), хотя могут параллельно.",
+      "fix": "Создать worker pool из N воркеров (N = количество ядер). Отправлять задачи в пул, обрабатывать параллельно. Использовать piscina или реализовать пул вручную."
+    },
+    {
+      "line": 20,
+      "type": "bug",
+      "description": "Data race: view[0] = view[0] + 1 — три шага (чтение, сложение, запись). Если два потока вызовут одновременно, один инкремент потеряется.",
+      "fix": "Использовать Atomics.add(view, 0, 1) — атомарная операция, гарантированно неделимая."
+    },
+    {
+      "line": 25,
+      "type": "performance",
+      "description": "ArrayBuffer передаётся через postMessage без Transferable — данные копируются. Для больших буферов (мегабайты) это медленно и удваивает потребление памяти.",
+      "fix": "Передать буфер как Transferable: worker.postMessage({ data: arrayBuffer, timestamp: Date.now() }, [arrayBuffer]). Учесть, что после transfer буфер недоступен в отправляющем потоке."
+    },
+    {
+      "line": 31,
+      "type": "bug",
+      "description": "Atomics.wait в main thread браузера выбросит TypeError. В Node.js main thread — заблокирует event loop, все I/O и таймеры встанут.",
+      "fix": "Использовать Atomics.waitAsync() в main thread (возвращает промис). Или вызывать Atomics.wait только из воркеров."
+    }
+  ]
+}
+]

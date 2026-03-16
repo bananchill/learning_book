@@ -1,0 +1,50 @@
+[
+{
+  "id": "cr-01-iterable-collection",
+  "title": "Итерируемая коллекция с генератором",
+  "description": "Код содержит 5 проблем, связанных с символами, итераторами и генераторами. Найдите и объясните каждую.",
+  "file": "01-review.ts",
+  "issues": [
+    {
+      "id": "issue-1",
+      "line": 5,
+      "severity": "error",
+      "category": "unique-symbol",
+      "description": "Символ объявлен через `let` и типизирован как `symbol`, а не `unique symbol`. Такой символ нельзя использовать как вычисляемый ключ в интерфейсе — TypeScript требует `const` с типом `unique symbol`.",
+      "fix": "Замените `let PRIORITY = Symbol(\"priority\")` на `const PRIORITY: unique symbol = Symbol(\"priority\")`."
+    },
+    {
+      "id": "issue-2",
+      "line": 24,
+      "severity": "error",
+      "category": "iterator-protocol",
+      "description": "Метод `next()` ссылается на `this.tasks`, но `this` внутри объекта-итератора указывает на сам итератор, а не на `TaskQueue`. Также отсутствует `value: undefined` в финальном результате, и нет аннотации типа возвращаемого значения.",
+      "fix": "Захватите `this.tasks` в замыкание перед созданием объекта итератора: `const tasks = this.tasks;`. Добавьте `value: undefined` к финальному результату. Укажите тип возвращаемого значения `Iterator<Task>`."
+    },
+    {
+      "id": "issue-3",
+      "line": 37,
+      "severity": "warning",
+      "category": "generator-typing",
+      "description": "Генератор `processTasks` не имеет явной аннотации типа. TypeScript выведет `TNext` как `unknown`, и `shouldSkip` получит тип `unknown` вместо `boolean`. Также `TReturn` будет `number`, но это неочевидно без аннотации.",
+      "fix": "Укажите явный тип генератора: `function* processTasks(queue: TaskQueue): Generator<string, number, boolean>`."
+    },
+    {
+      "id": "issue-4",
+      "line": 50,
+      "severity": "error",
+      "category": "for-in-vs-for-of",
+      "description": "Используется `for...in` вместо `for...of`. `for...in` итерирует строковые ключи объекта, а не элементы итерируемой коллекции. Переменная `task` будет строкой, а не объектом `Task`, и `task.title` вызовет ошибку.",
+      "fix": "Замените `for (const task in queue)` на `for (const task of queue)`."
+    },
+    {
+      "id": "issue-5",
+      "line": 57,
+      "severity": "warning",
+      "category": "resource-cleanup",
+      "description": "Итератор `DatabaseCursor` не реализует метод `return()`. Если потребитель прервёт итерацию через `break`, `throw` или `return`, соединение с базой данных не будет закрыто — утечка ресурсов.",
+      "fix": "Добавьте метод `return()` к объекту итератора, который вызывает `connection.close()` и возвращает `{ value: undefined, done: true }`. Также добавьте закрытие соединения в `next()` при `done: true`."
+    }
+  ]
+}
+]

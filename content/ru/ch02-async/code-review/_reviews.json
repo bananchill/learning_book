@@ -1,0 +1,32 @@
+[
+{
+  "id": "01-review",
+  "title": "Проблемы асинхронного кода",
+  "issues": [
+    {
+      "line": 4,
+      "type": "performance",
+      "description": "Три независимых запроса выполняются последовательно (await в каждой строке). Это примерно втрое медленнее, чем нужно.",
+      "fix": "Использовать Promise.all: const [user, posts, comments] = await Promise.all([fetch(...), fetch(...), fetch(...)])"
+    },
+    {
+      "line": 12,
+      "type": "bug",
+      "description": "forEach с async callback не ждёт завершения. Функция вернёт пустой массив results, потому что forEach не ждёт промисы.",
+      "fix": "Использовать for...of с await, или Promise.all с map: const results = await Promise.all(items.map(item => processItem(item)))"
+    },
+    {
+      "line": 19,
+      "type": "best_practice",
+      "description": "Promise constructor antipattern — оборачивание async-функции в new Promise. Это избыточно и может проглотить ошибки.",
+      "fix": "Просто вернуть fetch(url).then(r => r.json()) — fetch уже возвращает Promise."
+    },
+    {
+      "line": 30,
+      "type": "bug",
+      "description": "Пустой catch — ошибки проглатываются. Если save() упадёт на первом элементе, остальные не сохранятся, и вызывающий код не узнает об ошибке.",
+      "fix": "Логировать ошибку и/или пробрасывать: catch (e) { console.error('Save failed:', e); throw e }"
+    }
+  ]
+}
+]

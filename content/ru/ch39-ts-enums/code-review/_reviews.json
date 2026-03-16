@@ -1,0 +1,66 @@
+[
+{
+  "id": "cr-01-notification-enums",
+  "title": "Code Review: Система уведомлений с enum",
+  "description": "Найдите проблемы в коде, использующем TypeScript enum для системы уведомлений.",
+  "difficulty": "intermediate",
+  "issues": [
+    {
+      "id": "issue-1",
+      "line": "10-15",
+      "severity": "warning",
+      "category": "design",
+      "title": "Гетерогенный enum",
+      "description": "NotificationType смешивает числовые и строковые значения. Это антипаттерн, затрудняющий предсказуемость типов.",
+      "suggestion": "Используйте только строковые значения: Email = \"EMAIL\", SMS = \"SMS\", Push = \"PUSH\", InApp = \"IN_APP\"."
+    },
+    {
+      "id": "issue-2",
+      "line": "18-23",
+      "severity": "error",
+      "category": "compatibility",
+      "title": "Экспорт const enum",
+      "description": "Экспортируемый const enum вызывает проблемы при isolatedModules (Vite, esbuild) и у потребителей npm-пакетов.",
+      "suggestion": "Замените на обычный enum или as const объект: export const PRIORITY = { Low: 1, Medium: 2, High: 3, Critical: 4 } as const."
+    },
+    {
+      "id": "issue-3",
+      "line": "35-43",
+      "severity": "error",
+      "category": "correctness",
+      "title": "Неполный switch без exhaustive check",
+      "description": "В switch по NotificationType не обработаны Push и InApp. Нет default-ветки или exhaustive check.",
+      "suggestion": "Добавьте case для всех членов enum и используйте exhaustive check: default: const _exhaustive: never = type; throw new Error(`Необработанный тип: ${_exhaustive}`);"
+    },
+    {
+      "id": "issue-4",
+      "line": "46-52",
+      "severity": "warning",
+      "category": "readability",
+      "title": "Магические числа вместо enum",
+      "description": "Функция updateStatus принимает number вместо Status enum. Магические числа 0, 1 делают код нечитаемым.",
+      "suggestion": "Замените параметр на тип Status и используйте Status.Pending, Status.Sent и т.д."
+    },
+    {
+      "id": "issue-5",
+      "line": "55-58",
+      "severity": "error",
+      "category": "correctness",
+      "title": "Object.keys на числовом enum включает reverse mapping",
+      "description": "Object.keys(Status) возвращает и числовые ключи (reverse mapping), и строковые имена. Функция вернёт 8 элементов вместо 4.",
+      "suggestion": "Фильтруйте числовые ключи: Object.keys(Status).filter(k => isNaN(Number(k))). Или используйте строковый enum / as const объект."
+    },
+    {
+      "id": "issue-6",
+      "line": "61",
+      "severity": "warning",
+      "category": "type-safety",
+      "title": "Произвольное число присвоено числовому enum",
+      "description": "TypeScript позволяет присвоить любое число переменной с типом числового enum (Status = 42). Это известный недостаток типизации.",
+      "suggestion": "Используйте строковый enum для строгой типизации, или добавьте runtime-валидацию с функцией-гардом."
+    }
+  ],
+  "totalIssues": 6,
+  "passingCriteria": "Найдите минимум 4 из 6 проблем."
+}
+]

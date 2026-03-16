@@ -1,0 +1,80 @@
+[
+{
+  "id": "01-review",
+  "title": "Code Review: типичные ошибки в конфигурации tsconfig.json монорепо",
+  "issues": [
+    {
+      "line": 8,
+      "type": "best_practice",
+      "description": "moduleResolution: 'node' — устаревшая стратегия. Для Vite-проекта нужно использовать 'bundler', для чистого Node.js — 'nodenext'.",
+      "fix": "moduleResolution: \"bundler\""
+    },
+    {
+      "line": 10,
+      "type": "best_practice",
+      "description": "target: 'ES5' — слишком старый. Даунлевелинг до ES5 генерирует раздутый код. Для Vite лучше ES2022 — даунлевелингом займётся бандлер.",
+      "fix": "target: \"ES2022\""
+    },
+    {
+      "line": 12,
+      "type": "bug",
+      "description": "strict: false — отключены все строгие проверки. TypeScript не найдёт ошибки с null, неявным any и другие. В новом проекте strict всегда должен быть true.",
+      "fix": "strict: true"
+    },
+    {
+      "line": 14,
+      "type": "bug",
+      "description": "esModuleInterop: false — не получится нормально импортировать CJS-пакеты (React, lodash). Придётся писать import * as React вместо import React.",
+      "fix": "esModuleInterop: true"
+    },
+    {
+      "line": 16,
+      "type": "bug",
+      "description": "isolatedModules: false — Vite компилирует файлы изолированно через esbuild. Без этого флага можно использовать конструкции (const enum, re-export типов), которые сломаются в рантайме.",
+      "fix": "isolatedModules: true"
+    },
+    {
+      "line": 18,
+      "type": "best_practice",
+      "description": "skipLibCheck: false — TypeScript проверяет типы в .d.ts из node_modules, что сильно замедляет компиляцию без практической пользы.",
+      "fix": "skipLibCheck: true"
+    },
+    {
+      "line": 21,
+      "type": "bug",
+      "description": "include: ['**/*'] — слишком широкий паттерн. Включает node_modules, dist, coverage и всё остальное. Нужно ограничить: include: ['src/**/*'].",
+      "fix": "include: [\"src/**/*\"]"
+    },
+    {
+      "line": 27,
+      "type": "bug",
+      "description": "Пакет shared — не включён composite: true. Без этого Project References не будут работать, и зависимые пакеты не смогут на него ссылаться.",
+      "fix": "composite: true"
+    },
+    {
+      "line": 30,
+      "type": "bug",
+      "description": "declaration: false — зависимые пакеты (core, app) не увидят типы из shared. С composite: true declaration обязателен.",
+      "fix": "declaration: true, declarationMap: true"
+    },
+    {
+      "line": 44,
+      "type": "bug",
+      "description": "paths в tsconfig без дублирования в vite.config.ts. TypeScript разрешит алиасы для проверки типов, но в рантайме Vite не найдёт модули — ошибка при сборке.",
+      "fix": "Продублировать алиасы в vite.config.ts → resolve.alias"
+    },
+    {
+      "line": 53,
+      "type": "bug",
+      "description": "include: ['source/**/*'] — указана директория 'source', а не 'src'. Если исходники в src/, TypeScript не найдёт ни одного файла.",
+      "fix": "include: [\"src/**/*\"]"
+    },
+    {
+      "line": 49,
+      "type": "best_practice",
+      "description": "Для Vite-проекта не указан noEmit: true. Vite сам компилирует код, а TypeScript нужен только для проверки типов. Без noEmit tsc будет генерировать ненужные .js-файлы.",
+      "fix": "noEmit: true"
+    }
+  ]
+}
+]

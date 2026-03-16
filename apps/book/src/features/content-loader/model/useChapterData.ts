@@ -69,7 +69,12 @@ export function useChapterData(contentPath: () => string | undefined) {
     }
     if (results[4].status === 'fulfilled' && results[4].value) {
       const data = results[4].value.default ?? results[4].value
-      codeReviews.value = (Array.isArray(data) ? data : []) as CodeReview[]
+      // Нормализация: некоторые файлы используют "file" вместо "codeFile"
+      const raw = Array.isArray(data) ? data : []
+      codeReviews.value = raw.map((r: Record<string, unknown>) => ({
+        ...r,
+        codeFile: (r.codeFile ?? r.file) as string,
+      })) as CodeReview[]
     }
 
     isLoading.value = false

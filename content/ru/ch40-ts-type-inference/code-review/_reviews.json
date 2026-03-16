@@ -1,0 +1,44 @@
+[
+{
+  "id": "01-review",
+  "title": "Проблемы с выводом типов и совместимостью",
+  "issues": [
+    {
+      "line": 18,
+      "type": "best_practice",
+      "description": "Параметр animals типизирован как any[] -- теряется вся типобезопасность, вызовы name и sound() не проверяются",
+      "fix": "Замените any[] на Animal[]. TypeScript будет проверять, что у каждого элемента есть name и sound()."
+    },
+    {
+      "line": 25,
+      "type": "bug",
+      "description": "Пустой массив без аннотации типа -- TypeScript выведет any[] и не будет проверять элементы",
+      "fix": "Укажите тип явно: const pets: Animal[] = []. Или используйте union: const pets: (Cat | Dog)[] = []."
+    },
+    {
+      "line": 47,
+      "type": "bug",
+      "description": "createClickHandler возвращает EventHandler, но handle принимает ClickEvent вместо BaseEvent. Method syntax бивариантен -- TypeScript не выдаст ошибку, но в рантайме handle может получить не-ClickEvent и упасть при доступе к x/y",
+      "fix": "Используйте function property syntax для строгой проверки: type EventHandler = { handle: (event: BaseEvent) => void }. Или используйте discriminated union с проверкой event.type внутри обработчика."
+    },
+    {
+      "line": 58,
+      "type": "bug",
+      "description": "Unsound ковариантность массивов: Cat[] передаётся как Animal[], а функция добавляет объект без метода purr(). После этого cats содержит не-Cat элемент",
+      "fix": "Используйте readonly Animal[] для параметра, если функция не должна модифицировать массив. Если модификация нужна -- параметр должен быть точного типа Cat[]."
+    },
+    {
+      "line": 69,
+      "type": "best_practice",
+      "description": "as any при обработке результата fetchConfig() -- обходит проверку типов, raw.host и raw.port могут быть undefined",
+      "fix": "fetchConfig() возвращает unknown. Используйте type guard или валидацию: if (typeof raw === 'object' && raw !== null && 'host' in raw && 'port' in raw). Или используйте библиотеку вроде Zod."
+    },
+    {
+      "line": 79,
+      "type": "bug",
+      "description": "found имеет тип Animal | undefined, но код обращается к found.name без проверки на undefined -- ошибка в рантайме, если животное не найдено",
+      "fix": "Проверьте результат: if (!found) throw new Error('Не найдено'). Или верните found?.name с возвращаемым типом string | undefined."
+    }
+  ]
+}
+]

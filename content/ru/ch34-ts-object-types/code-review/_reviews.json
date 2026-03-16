@@ -1,0 +1,50 @@
+[
+{
+  "id": "01-review",
+  "title": "Code Review: типичные ошибки при работе с объектными типами",
+  "issues": [
+    {
+      "line": 14,
+      "type": "bug",
+      "description": "config.host и config.port могут быть undefined, потому что тип — Partial<Config>. Обращение без проверки приведёт к выводу 'undefined:undefined'. Нужно установить значения по умолчанию или проверить наличие.",
+      "fix": "const host = config.host ?? 'localhost'; const port = config.port ?? 3000;"
+    },
+    {
+      "line": 19,
+      "type": "bug",
+      "description": "config.timeout может быть undefined. setTimeout с undefined вызовет таймаут в 0мс — скрытый баг. Нужно значение по умолчанию.",
+      "fix": "setTimeout(() => { ... }, config.timeout ?? 30000);"
+    },
+    {
+      "line": 30,
+      "type": "best_practice",
+      "description": "Функция translatePoint мутирует входной объект. Параметр p должен быть readonly, а функция — возвращать новый объект. Мутация входных данных приводит к неожиданным побочным эффектам.",
+      "fix": "function translatePoint(p: Readonly<Point>, dx: number, dy: number): Point { return { x: p.x + dx, y: p.y + dy }; }"
+    },
+    {
+      "line": 38,
+      "type": "best_practice",
+      "description": "Box использует any для contents — теряется типобезопасность. Нужен generic-тип Box<T> с contents: T.",
+      "fix": "interface Box<T> { contents: T; } function unbox<T>(box: Box<T>): T { return box.contents; }"
+    },
+    {
+      "line": 50,
+      "type": "best_practice",
+      "description": "Свойство name в Dog дублирует свойство из Animal. Это не ошибка, но засоряет код. При extends свойства базового интерфейса наследуются автоматически.",
+      "fix": "interface Dog extends Animal { breed: string; }"
+    },
+    {
+      "line": 55,
+      "type": "bug",
+      "description": "Функция getFirst сортирует входной массив (items.sort() мутирует массив). Параметр должен быть readonly string[], чтобы TypeScript запретил вызов sort(). Вместо мутации нужно создать копию: [...items].sort().",
+      "fix": "function getFirst(items: readonly string[]): string | undefined { return [...items].sort()[0]; }"
+    },
+    {
+      "line": 61,
+      "type": "best_practice",
+      "description": "Индексная сигнатура [key: string]: any и свойства с типом any убивают типобезопасность. Нужно описать конкретные типы для user и theme, а индексную сигнатуру убрать или использовать unknown.",
+      "fix": "interface AppState { user: User; theme: 'light' | 'dark'; } function getState<K extends keyof AppState>(state: AppState, key: K): AppState[K] { return state[key]; }"
+    }
+  ]
+}
+]
