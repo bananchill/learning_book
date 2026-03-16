@@ -95,59 +95,134 @@ class Movement {
 
 Оператор `instanceof` проверяет, есть ли `Constructor.prototype` в цепочке прототипов объекта. Звучит просто, но есть несколько ловушек.
 
-### Разные контексты (iframes, realm)
+### Как работает instanceof
 
-Каждый iframe или realm имеет **свои** глобальные объекты. `Array` в одном iframe — это не тот же `Array`, что в другом:
+Прежде чем разбирать ловушки, убедимся, что понимаем механику. Выражение `obj instanceof Foo` делает следующее:
+
+1. Берёт объект `Foo.prototype`
+2. Идёт по цепочке прототипов `obj`: `obj → obj.[[Prototype]] → obj.[[Prototype]].[[Prototype]] → ...`
+3. Если где-то в цепочке встретился `Foo.prototype` — возвращает `true`
+4. Если дошёл до `null` (конец цепочки) и не встретил — `false`
 
 ```js
-// Массив, созданный в iframe
-const arr = new window.frames[0].Array(1, 2, 3)
-arr instanceof Array // false! Это Array из другого контекста
-Array.isArray(arr)   // true — надёжная проверка
+class Animal {}
+class Dog extends Animal {}
+
+const rex = new Dog()
+
+rex instanceof Dog    // true — Dog.prototype есть в цепочке rex
+rex instanceof Animal // true — Animal.prototype тоже есть (на уровень выше)
+rex instanceof Object // true — Object.prototype есть в любой цепочке
 ```
 
-### Замена прототипа после создания
+Теперь — к ловушкам.
+
+### Ловушка 1: разные контексты (iframes)
+
+Представьте, что на странице есть `<iframe>`. Внутри iframe — отдельный мир JavaScript: свои глобальные объекты, свой `Array`, свой `Object`, свой `Function`. Они **не совпадают** с `Array`, `Object` и `Function` из основной страницы, хотя работают одинаково.
+
+Почему? Потому что каждый контекст (realm) при загрузке создаёт **свои копии** всех встроенных конструкторов. `Array` на главной странице и `Array` внутри iframe — это две разные функции с двумя разными объектами `prototype`.
 
 ```js
-function Foo() {}
-const obj = new Foo()
+// На главной странице
+const myArray = [1, 2, 3]
+myArray instanceof Array // true — создан через Array этой страницы
 
-Foo.prototype = {} // заменяем прототип на новый объект
+// Массив, созданный ВНУТРИ iframe
+const iframe = document.querySelector('iframe')
+const iframeArray = iframe.contentWindow.eval('[1, 2, 3]')
 
-obj instanceof Foo // false! obj всё ещё ссылается на СТАРЫЙ Foo.prototype
+// instanceof сравнивает с Array НАШЕЙ страницы
+iframeArray instanceof Array // false!
+// Потому что iframeArray.[[Prototype]] → iframe.Array.prototype
+// А мы сравниваем с window.Array.prototype — это другой объект!
+
+// Array.isArray работает правильно в любом контексте
+Array.isArray(iframeArray) // true
 ```
 
-### Примитивы
+Та же проблема возникает с `Object`, `RegExp`, `Date` и любыми другими встроенными типами, если объект передан между контекстами (iframe, Web Worker с postMessage, vm-модули в Node.js).
+
+### Ловушка 2: замена прототипа после создания объектов
+
+`instanceof` проверяет **текущее** значение `Constructor.prototype`. Если вы замените `prototype` после создания объекта, старые объекты «отвяжутся»:
 
 ```js
-'строка' instanceof String           // false — это примитив, не объект
-42 instanceof Number                  // false
-new String('строка') instanceof String // true — это объект-обёртка
+function User() {}
+const alice = new User()
+
+// В этот момент:
+// alice.[[Prototype]] → User.prototype (объект A)
+alice instanceof User // true
+
+// Заменяем prototype на НОВЫЙ объект
+User.prototype = { role: 'admin' }
+
+// Теперь User.prototype — объект B
+// Но alice.[[Prototype]] всё ещё указывает на объект A!
+alice instanceof User // false — объект A ≠ объект B
+
+// Новые объекты привязаны к объекту B
+const bob = new User()
+bob instanceof User // true
 ```
 
-### Надёжные альтернативы
+Это редко случается нарочно, но может произойти при неаккуратной работе с прототипами в библиотеках.
 
-Вместо `instanceof` используйте проверки, подходящие под задачу:
+### Ловушка 3: примитивы — не объекты
+
+`instanceof` работает с **объектами**. Примитивы (`string`, `number`, `boolean`) — не объекты, поэтому `instanceof` для них всегда `false`:
 
 ```js
-// Для массивов — всегда Array.isArray
-Array.isArray([1, 2, 3]) // true
+'привет' instanceof String  // false — это примитив, а не объект
+42 instanceof Number         // false
+true instanceof Boolean      // false
 
-// Для типа — typeof (для примитивов)
-typeof 'строка' === 'string' // true
+// Объекты-обёртки — это объекты, для них работает:
+new String('привет') instanceof String // true
+new Number(42) instanceof Number       // true
 
-// Для duck typing — проверяйте наличие нужного метода
-function isIterable(obj) {
-  return obj != null && typeof obj[Symbol.iterator] === 'function'
+// Но объекты-обёртки почти никогда не нужны!
+// Для проверки типа примитивов используйте typeof:
+typeof 'привет' === 'string' // true
+typeof 42 === 'number'        // true
+```
+
+### Что использовать вместо instanceof
+
+| Задача | Ненадёжно | Надёжно |
+|--------|-----------|---------|
+| Проверить массив | `x instanceof Array` | `Array.isArray(x)` |
+| Проверить тип примитива | `x instanceof String` | `typeof x === 'string'` |
+| Проверить наличие метода | `x instanceof Iterable` | `typeof x[Symbol.iterator] === 'function'` |
+| Проверить тип объекта | `x instanceof Date` | `Object.prototype.toString.call(x) === '[object Date]'` |
+
+Последний подход — **duck typing** («если ходит как утка и крякает как утка, то это утка»). Вместо вопроса «от какого конструктора создан объект?» спрашиваем «умеет ли объект делать то, что нам нужно?»:
+
+```js
+// Duck typing: нам не важно, ЧТО это — важно, ЧТО оно умеет
+function processItems(collection) {
+  // Вместо: if (collection instanceof Array)
+  // Проверяем: можно ли перебирать?
+  if (collection != null && typeof collection[Symbol.iterator] === 'function') {
+    for (const item of collection) {
+      console.log(item)
+    }
+  }
 }
+
+// Работает с массивами, Set, Map, строками, генераторами...
+processItems([1, 2, 3])
+processItems(new Set([4, 5, 6]))
+processItems('abc')
 ```
 
 ## Антипаттерн 4: смешивание подходов
 
-Когда часть кода использует `class`, а часть — функции-конструкторы с ручной настройкой `prototype`, читать и поддерживать код становится сложно:
+Когда в одном проекте часть кода использует `class`, а часть — функции-конструкторы с ручной настройкой `prototype`, код становится непоследовательным. Новый разработчик не поймёт, какой стиль «правильный», и будет путаться:
 
 ```js
-// Непоследовательно: function-конструктор + class
+// Непоследовательно: старый стиль + новый стиль в одном проекте
 function Animal(name) {
   this.name = name
 }
@@ -155,7 +230,21 @@ Animal.prototype.speak = function() {
   console.log(this.name)
 }
 
-class Dog extends Animal { // работает, но сбивает с толку
+class Dog extends Animal { // работает, но зачем миксовать?
+  bark() { console.log('Гав') }
+}
+```
+
+Технически это работает — `extends` умеет наследовать от функций-конструкторов. Но это создаёт путаницу: часть иерархии написана в одном стиле, часть — в другом. Выберите один подход и придерживайтесь его:
+
+```js
+// Последовательно: только классы
+class Animal {
+  constructor(name) { this.name = name }
+  speak() { console.log(this.name) }
+}
+
+class Dog extends Animal {
   bark() { console.log('Гав') }
 }
 ```
