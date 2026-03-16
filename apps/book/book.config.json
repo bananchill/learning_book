@@ -339,7 +339,8 @@
                     { "id": "02-memory-model", "title": "Память: стек, куча, объекты", "order": 2 },
                     { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
                     { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
-                    { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 }
+                    { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 },
+                    { "id": "06-hidden-classes", "title": "Hidden Classes и Inline Caches", "order": 6 }
                   ]
                 }
               ]
