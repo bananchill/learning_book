@@ -1,5 +1,5 @@
 import { ref, watch } from 'vue'
-import type { Quiz, Task, Walkthrough, Interview } from '@book/shared'
+import type { Quiz, Task, Walkthrough, Interview, CodeReview } from '@book/shared'
 import { normalizeContentPath } from '@book/shared'
 
 // Динамический импорт .json файлов из контента
@@ -19,6 +19,7 @@ export function useChapterData(contentPath: () => string | undefined) {
   const tasks = ref<Task[]>([])
   const walkthrough = ref<Walkthrough | null>(null)
   const interview = ref<Interview | null>(null)
+  const codeReviews = ref<CodeReview[]>([])
   const isLoading = ref(false)
 
   watch(contentPath, async (basePath) => {
@@ -26,6 +27,7 @@ export function useChapterData(contentPath: () => string | undefined) {
     tasks.value = []
     walkthrough.value = null
     interview.value = null
+    codeReviews.value = []
 
     if (!basePath) {
       isLoading.value = false
@@ -41,6 +43,7 @@ export function useChapterData(contentPath: () => string | undefined) {
       tasks: jsonMap.get(`${prefix}/tasks/_tasks.json`),
       walkthrough: jsonMap.get(`${prefix}/walkthrough.json`),
       interview: jsonMap.get(`${prefix}/interview.json`),
+      codeReviews: jsonMap.get(`${prefix}/code-review/_reviews.json`),
     }
 
     const results = await Promise.allSettled([
@@ -48,6 +51,7 @@ export function useChapterData(contentPath: () => string | undefined) {
       loaders.tasks?.(),
       loaders.walkthrough?.(),
       loaders.interview?.(),
+      loaders.codeReviews?.(),
     ])
 
     if (results[0].status === 'fulfilled' && results[0].value) {
@@ -63,9 +67,13 @@ export function useChapterData(contentPath: () => string | undefined) {
     if (results[3].status === 'fulfilled' && results[3].value) {
       interview.value = (results[3].value.default ?? results[3].value) as Interview
     }
+    if (results[4].status === 'fulfilled' && results[4].value) {
+      const data = results[4].value.default ?? results[4].value
+      codeReviews.value = (Array.isArray(data) ? data : []) as CodeReview[]
+    }
 
     isLoading.value = false
   }, { immediate: true })
 
-  return { quiz, tasks, walkthrough, interview, isLoading }
+  return { quiz, tasks, walkthrough, interview, codeReviews, isLoading }
 }

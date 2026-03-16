@@ -15,6 +15,7 @@ export function generateRoutes(): string[] {
           routes.push(base)
           routes.push(`${base}/tasks`)
           routes.push(`${base}/playground`)
+          routes.push(`${base}/code-review`)
 
           for (const sub of chapter.subchapters) {
             routes.push(`${base}/${sub.id}`)

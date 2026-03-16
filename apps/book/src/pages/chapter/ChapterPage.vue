@@ -96,6 +96,9 @@ const { onContentClick } = useRouterLinks()
       <router-link :to="`${basePath}/playground`">
         <BaseButton variant="secondary" size="sm">{{ t('chapter.go_playground') }}</BaseButton>
       </router-link>
+      <router-link :to="`${basePath}/code-review`">
+        <BaseButton variant="secondary" size="sm">{{ t('chapter.go_code_review') }}</BaseButton>
+      </router-link>
     </div>
   </ChapterView>
 </template>

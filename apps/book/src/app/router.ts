@@ -27,6 +27,11 @@ export const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/chapter/ChapterPlaygroundPage.vue'),
       },
       {
+        path: 'code-review',
+        name: 'chapter-code-review',
+        component: () => import('@/pages/chapter/ChapterCodeReviewPage.vue'),
+      },
+      {
         path: ':subchapter',
         name: 'subchapter',
         component: () => import('@/pages/chapter/SubchapterPage.vue'),

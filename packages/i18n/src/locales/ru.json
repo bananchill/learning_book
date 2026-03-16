@@ -47,7 +47,10 @@
     "mark_issue": "Отметьте строки с проблемами",
     "found_line": "✅ Строка {line}:",
     "missed_line": "❌ Строка {line}:",
-    "false_positive": "⚠️ Строка {line}: ложное срабатывание"
+    "false_positive": "⚠️ Строка {line}: ложное срабатывание",
+    "back_to_list": "Назад к списку",
+    "next_review": "Следующее задание",
+    "issues_count": "проблем"
   },
   "chat": {
     "title": "AI Помощник",
@@ -147,7 +150,8 @@
     "tasks_for": "Задачи: {chapter}",
     "playground_for": "Песочница: {chapter}",
     "back_to_tasks": "Назад к задачам",
-    "next_task": "Следующая задача"
+    "next_task": "Следующая задача",
+    "go_code_review": "Code Review"
   },
   "content": {
     "coming_soon": "Скоро здесь будет контент",
