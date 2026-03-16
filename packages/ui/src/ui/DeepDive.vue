@@ -30,8 +30,11 @@ const { isOpen, toggle } = useCollapsible()
       <span class="text-sm">{{ title }}</span>
     </button>
     <div
-      class="grid transition-[grid-template-rows] duration-slow ease-out"
-      :class="isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+      class="grid"
+      :style="{
+        gridTemplateRows: isOpen ? '1fr' : '0fr',
+        transition: 'grid-template-rows 300ms ease-out',
+      }"
     >
       <div class="overflow-hidden">
         <div class="px-4 pb-4 pt-1 text-text-secondary">

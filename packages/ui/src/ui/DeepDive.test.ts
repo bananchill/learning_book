@@ -41,16 +41,16 @@ describe('DeepDive', () => {
 
   it('содержимое скрыто по умолчанию (свёрнуто)', () => {
     const wrapper = mountDeepDive()
-    // Когда свёрнуто, grid-rows-[0fr] скрывает контент
+    // Когда свёрнуто, gridTemplateRows: 0fr скрывает контент
     const gridContainer = wrapper.find('.grid')
-    expect(gridContainer.classes()).toContain('grid-rows-[0fr]')
+    expect(gridContainer.element.style.gridTemplateRows).toBe('0fr')
   })
 
   it('раскрывает содержимое при клике на кнопку', async () => {
     const wrapper = mountDeepDive()
     await wrapper.find('button').trigger('click')
     const gridContainer = wrapper.find('.grid')
-    expect(gridContainer.classes()).toContain('grid-rows-[1fr]')
+    expect(gridContainer.element.style.gridTemplateRows).toBe('1fr')
   })
 
   it('отображает текст "expand" когда свёрнуто', () => {
