@@ -353,9 +353,29 @@
           "icon": "ts",
           "groups": [
             {
+              "id": "intro",
+              "title": "Введение",
+              "order": 1,
+              "chapters": [
+                {
+                  "id": "ch32-ts-intro",
+                  "title": "Введение в TypeScript",
+                  "description": "Что такое TypeScript, зачем он нужен, как установить и запустить первую программу, компилятор tsc и строгий режим",
+                  "order": 32,
+                  "contentPath": "content/ru/ch32-ts-intro",
+                  "subchapters": [
+                    { "id": "01-what-is-ts", "title": "Что такое TypeScript и зачем он нужен", "order": 1 },
+                    { "id": "02-installation", "title": "Установка и первая программа", "order": 2 },
+                    { "id": "03-compiler", "title": "Как работает компилятор tsc", "order": 3 },
+                    { "id": "04-strict-mode", "title": "Строгий режим и флаги компилятора", "order": 4 }
+                  ]
+                }
+              ]
+            },
+            {
               "id": "basics",
               "title": "Основы",
-              "order": 1,
+              "order": 2,
               "chapters": [
                 {
                   "id": "ch06-ts-type-system",
@@ -370,13 +390,122 @@
                     { "id": "04-object-types", "title": "Объектные типы: интерфейсы, type alias, классы", "order": 4 },
                     { "id": "05-type-narrowing", "title": "Сужение типов и контроль потока", "order": 5 }
                   ]
+                },
+                {
+                  "id": "ch33-ts-functions",
+                  "title": "Функции в TypeScript",
+                  "description": "Типы функций, сигнатуры вызова, перегрузки, this-параметр, rest-параметры и деструктуризация",
+                  "order": 33,
+                  "contentPath": "content/ru/ch33-ts-functions",
+                  "subchapters": [
+                    { "id": "01-function-types", "title": "Типы функций и сигнатуры вызова", "order": 1 },
+                    { "id": "02-overloads", "title": "Перегрузки функций", "order": 2 },
+                    { "id": "03-this-void", "title": "this-параметр и void", "order": 3 },
+                    { "id": "04-rest-destructuring", "title": "Rest-параметры и деструктуризация", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch34-ts-object-types",
+                  "title": "Объектные типы",
+                  "description": "Property modifiers, index signatures, расширение и пересечение типов, generic-объекты, кортежи",
+                  "order": 34,
+                  "contentPath": "content/ru/ch34-ts-object-types",
+                  "subchapters": [
+                    { "id": "01-properties", "title": "Свойства: optional, readonly, index signatures", "order": 1 },
+                    { "id": "02-extending-intersection", "title": "Расширение и пересечение типов", "order": 2 },
+                    { "id": "03-generic-objects", "title": "Generic-объекты и интерфейсы", "order": 3 },
+                    { "id": "04-tuples", "title": "Кортежи", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch39-ts-enums",
+                  "title": "Перечисления (Enums)",
+                  "description": "Числовые и строковые перечисления, const enums, вычисляемые члены, паттерны и альтернативы",
+                  "order": 35,
+                  "contentPath": "content/ru/ch39-ts-enums",
+                  "subchapters": [
+                    { "id": "01-numeric-string", "title": "Числовые и строковые перечисления", "order": 1 },
+                    { "id": "02-const-computed", "title": "const enums и вычисляемые члены", "order": 2 },
+                    { "id": "03-patterns-alternatives", "title": "Паттерны использования и альтернативы", "order": 3 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "intermediate",
+              "title": "Промежуточный",
+              "order": 3,
+              "chapters": [
+                {
+                  "id": "ch35-ts-type-operators",
+                  "title": "Операторы типов",
+                  "description": "keyof, typeof в контексте типов и индексные типы доступа T[K]",
+                  "order": 36,
+                  "contentPath": "content/ru/ch35-ts-type-operators",
+                  "subchapters": [
+                    { "id": "01-keyof", "title": "keyof: получение ключей типа", "order": 1 },
+                    { "id": "02-typeof", "title": "typeof: получение типа из значения", "order": 2 },
+                    { "id": "03-indexed-access", "title": "Индексные типы доступа T[K]", "order": 3 },
+                    { "id": "04-combining", "title": "Комбинирование операторов", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch36-ts-classes",
+                  "title": "Классы в TypeScript",
+                  "description": "Поля, конструкторы, модификаторы доступа, наследование, abstract и static, mixins",
+                  "order": 37,
+                  "contentPath": "content/ru/ch36-ts-classes",
+                  "subchapters": [
+                    { "id": "01-members", "title": "Поля, конструкторы и методы", "order": 1 },
+                    { "id": "02-visibility-heritage", "title": "Модификаторы доступа и наследование", "order": 2 },
+                    { "id": "03-abstract-static", "title": "abstract-классы и static-члены", "order": 3 },
+                    { "id": "04-mixins-this", "title": "Mixins и this-типы", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch37-ts-modules",
+                  "title": "Модули и пространства имён",
+                  "description": "ES-модули в TypeScript, стратегии разрешения модулей, пространства имён и слияние деклараций",
+                  "order": 38,
+                  "contentPath": "content/ru/ch37-ts-modules",
+                  "subchapters": [
+                    { "id": "01-modules", "title": "Модули в TypeScript", "order": 1 },
+                    { "id": "02-module-resolution", "title": "Module Resolution", "order": 2 },
+                    { "id": "03-namespaces", "title": "Namespaces", "order": 3 },
+                    { "id": "04-declaration-merging", "title": "Declaration Merging", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch42-ts-jsx",
+                  "title": "JSX и TSX",
+                  "description": "Основы JSX в TypeScript, intrinsic и value-based элементы, типизация атрибутов и children",
+                  "order": 39,
+                  "contentPath": "content/ru/ch42-ts-jsx",
+                  "subchapters": [
+                    { "id": "01-jsx-basics", "title": "Основы JSX в TypeScript", "order": 1 },
+                    { "id": "02-elements", "title": "Intrinsic и value-based элементы", "order": 2 },
+                    { "id": "03-attributes-children", "title": "Типизация атрибутов и children", "order": 3 }
+                  ]
+                },
+                {
+                  "id": "ch44-ts-config",
+                  "title": "tsconfig.json и конфигурация",
+                  "description": "Структура tsconfig.json, ключевые опции компилятора, пути и алиасы, Project References и монорепо",
+                  "order": 40,
+                  "contentPath": "content/ru/ch44-ts-config",
+                  "subchapters": [
+                    { "id": "01-structure", "title": "Структура tsconfig.json", "order": 1 },
+                    { "id": "02-compiler-options", "title": "Ключевые опции компилятора", "order": 2 },
+                    { "id": "03-paths-aliases", "title": "Paths, baseUrl и алиасы", "order": 3 },
+                    { "id": "04-project-references", "title": "Project References и монорепо", "order": 4 }
+                  ]
                 }
               ]
             },
             {
               "id": "advanced",
               "title": "Продвинутый",
-              "order": 2,
+              "order": 4,
               "chapters": [
                 {
                   "id": "ch25-ts-generics",
@@ -415,6 +544,56 @@
                     { "id": "02-class-method-property", "title": "Декораторы классов, методов и свойств", "order": 2 },
                     { "id": "03-reflect-metadata", "title": "Reflect Metadata API", "order": 3 },
                     { "id": "04-practical-decorators", "title": "Практические паттерны: DI, валидация, логирование", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch38-ts-utility-types",
+                  "title": "Утилитарные типы",
+                  "description": "Partial, Required, Readonly, Record, Pick, Omit, Exclude, Extract, ReturnType и другие встроенные типы",
+                  "order": 41,
+                  "contentPath": "content/ru/ch38-ts-utility-types",
+                  "subchapters": [
+                    { "id": "01-object-transform", "title": "Трансформация объектов", "order": 1 },
+                    { "id": "02-union-manipulation", "title": "Работа с union-типами", "order": 2 },
+                    { "id": "03-function-class-types", "title": "Типы функций и классов", "order": 3 },
+                    { "id": "04-awaited-string", "title": "Awaited и строковые типы", "order": 4 }
+                  ]
+                },
+                {
+                  "id": "ch40-ts-type-inference",
+                  "title": "Вывод типов и совместимость",
+                  "description": "Как TypeScript выводит типы, совместимость типов, ковариантность и контравариантность",
+                  "order": 42,
+                  "contentPath": "content/ru/ch40-ts-type-inference",
+                  "subchapters": [
+                    { "id": "01-inference", "title": "Как TypeScript выводит типы", "order": 1 },
+                    { "id": "02-compatibility", "title": "Совместимость типов", "order": 2 },
+                    { "id": "03-variance", "title": "Ковариантность и контравариантность", "order": 3 }
+                  ]
+                },
+                {
+                  "id": "ch41-ts-symbols-iterators",
+                  "title": "Символы, итераторы и генераторы",
+                  "description": "Символы в TypeScript, типизация итераторов и генераторов",
+                  "order": 43,
+                  "contentPath": "content/ru/ch41-ts-symbols-iterators",
+                  "subchapters": [
+                    { "id": "01-symbols", "title": "Символы в TypeScript", "order": 1 },
+                    { "id": "02-iterators", "title": "Итераторы и for...of", "order": 2 },
+                    { "id": "03-generators", "title": "Генераторы и типизация yield", "order": 3 }
+                  ]
+                },
+                {
+                  "id": "ch43-ts-declarations",
+                  "title": "Declaration Files",
+                  "description": "Файлы деклараций .d.ts: создание, структура, DefinitelyTyped, @types, triple-slash директивы",
+                  "order": 44,
+                  "contentPath": "content/ru/ch43-ts-declarations",
+                  "subchapters": [
+                    { "id": "01-intro", "title": "Что такое .d.ts и зачем они нужны", "order": 1 },
+                    { "id": "02-writing", "title": "Написание declaration files", "order": 2 },
+                    { "id": "03-definitely-typed", "title": "DefinitelyTyped, @types и публикация", "order": 3 },
+                    { "id": "04-triple-slash", "title": "Triple-Slash Directives и Module Augmentation", "order": 4 }
                   ]
                 }
               ]
