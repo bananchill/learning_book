@@ -11,10 +11,10 @@ description: "Четыре правила привязки this, call/apply/bind
 
 ## Содержание
 
-1. [Четыре правила привязки this](/frontend/javascript/ch14-this/01-four-rules)
+1. [Четыре правила привязки this](/frontend/javascript/ch14-this/01-binding-rules)
 2. [call, apply, bind](/frontend/javascript/ch14-this/02-call-apply-bind)
 3. [Стрелочные функции и this](/frontend/javascript/ch14-this/03-arrow-this)
-4. [Потеря контекста и решения](/frontend/javascript/ch14-this/04-losing-context)
+4. [Потеря контекста и решения](/frontend/javascript/ch14-this/04-context-loss)
 
 ## Что ты научишься делать
 

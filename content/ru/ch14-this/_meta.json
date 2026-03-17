@@ -8,10 +8,10 @@
   "order": 14,
   "estimatedMinutes": 35,
   "subchapters": [
-    { "id": "01-four-rules", "title": "Четыре правила привязки this", "order": 1 },
+    { "id": "01-binding-rules", "title": "Четыре правила привязки this", "order": 1 },
     { "id": "02-call-apply-bind", "title": "call, apply, bind", "order": 2 },
     { "id": "03-arrow-this", "title": "Стрелочные функции и this", "order": 3 },
-    { "id": "04-losing-context", "title": "Потеря контекста и решения", "order": 4 }
+    { "id": "04-context-loss", "title": "Потеря контекста и решения", "order": 4 }
   ],
   "concepts": ["this", "implicit-binding", "explicit-binding", "new-binding", "default-binding", "call", "apply", "bind", "arrow-function", "context-loss"],
   "prerequisites": ["ch07-functions", "ch13-prototypes"]
