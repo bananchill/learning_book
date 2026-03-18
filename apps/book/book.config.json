@@ -25,6 +25,7 @@
                   "contentPath": "content/ru/ch01-intro",
                   "hasTasks": false,
                   "hasPlayground": false,
+                  "hasCodeReview": false,
                   "subchapters": [
                     { "id": "01-what-is-js", "title": "Что такое JavaScript", "order": 1 },
                     { "id": "02-first-steps", "title": "Первые шаги", "order": 2 },
@@ -38,6 +39,9 @@
                   "description": "VS Code, браузерный DevTools, Node.js, линтинг и форматирование",
                   "order": 2,
                   "contentPath": "content/ru/ch02-devtools",
+                  "hasTasks": false,
+                  "hasPlayground": false,
+                  "hasCodeReview": false,
                   "subchapters": [
                     { "id": "01-vscode", "title": "VS Code — редактор кода", "order": 1 },
                     { "id": "02-browser-devtools", "title": "Браузерный DevTools", "order": 2 },
@@ -58,6 +62,9 @@
                   "description": "var, let, const, примитивные типы, typeof и приведение типов",
                   "order": 3,
                   "contentPath": "content/ru/ch03-variables",
+                  "hasTasks": false,
+                  "hasPlayground": false,
+                  "hasCodeReview": false,
                   "subchapters": [
                     { "id": "01-var-let-const", "title": "var, let, const", "order": 1 },
                     { "id": "02-primitives", "title": "Примитивные типы", "order": 2 },

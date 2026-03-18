@@ -15,6 +15,7 @@ export interface ChapterMeta {
   subchapters: SubchapterMeta[]
   hasTasks?: boolean
   hasPlayground?: boolean
+  hasCodeReview?: boolean
 }
 
 /** Группа глав по уровню сложности */

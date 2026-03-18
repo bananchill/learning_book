@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Переменные и типы данных
 
@@ -18,11 +18,7 @@ JavaScript молча преобразует типы в неожиданных 
 
 ## Подглавы
 
-1. [var, let, const](./01-var-let-const) — блочный vs функциональный скоуп, TDZ
-2. [Примитивные типы](./02-primitives) — string, number, boolean, null, undefined, symbol, bigint
-3. [typeof и приведение типов](./03-typeof-coercion) — явное/неявное приведение, truthy/falsy
-4. [Работа со значениями](./04-values) — присваивание, копирование, ссылки
-
-<CrossLink chapter="ch04-operators" section="comparison">
-В следующей главе мы подробно разберём операторы сравнения, которые тесно связаны с приведением типов.
-</CrossLink>
+1. [var, let, const](/frontend/javascript/ch03-variables/01-var-let-const) — блочный vs функциональный скоуп, TDZ
+2. [Примитивные типы](/frontend/javascript/ch03-variables/02-primitives) — string, number, boolean, null, undefined, symbol, bigint
+3. [typeof и приведение типов](/frontend/javascript/ch03-variables/03-typeof-coercion) — явное/неявное приведение, truthy/falsy
+4. [Работа со значениями](/frontend/javascript/ch03-variables/04-values) — присваивание, копирование, ссылки

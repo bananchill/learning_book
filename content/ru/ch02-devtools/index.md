@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Среда разработки
 
@@ -19,11 +19,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [VS Code — редактор кода](./01-vscode) — установка, обязательные расширения, настройка
-2. [Браузерный DevTools](./02-browser-devtools) — Console, Sources, Network, Performance
-3. [Node.js и npm/pnpm](./03-nodejs-npm) — установка, REPL, запуск файлов, пакеты
-4. [Линтинг и форматирование](./04-linting) — ESLint, Prettier, .editorconfig, husky
-
-<CrossLink chapter="ch01-intro" section="setup">
-Если вы ещё не прошли введение, начните с первой главы — там описаны базовые концепции курса.
-</CrossLink>
+1. [VS Code — редактор кода](/frontend/javascript/ch02-devtools/01-vscode) — установка, обязательные расширения, настройка
+2. [Браузерный DevTools](/frontend/javascript/ch02-devtools/02-browser-devtools) — Console, Sources, Network, Performance
+3. [Node.js и npm/pnpm](/frontend/javascript/ch02-devtools/03-nodejs-npm) — установка, REPL, запуск файлов, пакеты
+4. [Линтинг и форматирование](/frontend/javascript/ch02-devtools/04-linting) — ESLint, Prettier, .editorconfig, husky

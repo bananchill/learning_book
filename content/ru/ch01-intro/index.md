@@ -13,7 +13,7 @@ JavaScript — язык, который оживляет веб. Он запус
 
 ## Содержание
 
-1. [Что такое JavaScript](/ch01-intro/01-what-is-js) — история, характеристики, где работает
-2. [Первые шаги](/ch01-intro/02-first-steps) — консоль браузера, первый код, подключение скрипта
-3. [Как работает JavaScript](/ch01-intro/03-how-it-works) — движок, интерпретация, JIT
-4. [Строгий режим и современный JS](/ch01-intro/04-strict-mode) — `use strict`, ES6+, что изменилось
+1. [Что такое JavaScript](/frontend/javascript/ch01-intro/01-what-is-js) — история, характеристики, где работает
+2. [Первые шаги](/frontend/javascript/ch01-intro/02-first-steps) — консоль браузера, первый код, подключение скрипта
+3. [Как работает JavaScript](/frontend/javascript/ch01-intro/03-how-it-works) — движок, интерпретация, JIT
+4. [Строгий режим и современный JS](/frontend/javascript/ch01-intro/04-strict-mode) — `use strict`, ES6+, что изменилось
