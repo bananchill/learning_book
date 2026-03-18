@@ -22,7 +22,8 @@ COPY packages/ packages/
 COPY apps/book/ apps/book/
 COPY content/ content/
 
-# Билдим приложение книги
+# Билдим приложение книги (увеличиваем память для vite-ssg)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN pnpm --filter @book/app build
 
 # Stage 2: Serve
