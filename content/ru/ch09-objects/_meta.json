@@ -10,6 +10,8 @@
     { "id": "01-creation", "title": "Создание и доступ к свойствам", "file": "01-creation.md" },
     { "id": "02-methods", "title": "Методы Object", "file": "02-methods.md" },
     { "id": "03-destructuring", "title": "Деструктуризация объектов", "file": "03-destructuring.md" },
-    { "id": "04-references", "title": "Ссылки и копирование", "file": "04-references.md" }
+    { "id": "04-references", "title": "Ссылки и копирование", "file": "04-references.md" },
+    { "id": "05-property-descriptors", "title": "Дескрипторы свойств", "file": "05-property-descriptors.md" },
+    { "id": "06-json", "title": "JSON", "file": "06-json.md" }
   ]
 }

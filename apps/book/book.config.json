@@ -233,6 +233,16 @@
                       "id": "04-recursion",
                       "title": "Рекурсия",
                       "order": 4
+                    },
+                    {
+                      "id": "05-timers",
+                      "title": "Таймеры и планирование",
+                      "order": 5
+                    },
+                    {
+                      "id": "06-arguments",
+                      "title": "Объект arguments",
+                      "order": 6
                     }
                   ]
                 },
@@ -291,6 +301,16 @@
                       "id": "04-references",
                       "title": "Ссылки и копирование",
                       "order": 4
+                    },
+                    {
+                      "id": "05-property-descriptors",
+                      "title": "Дескрипторы свойств",
+                      "order": 5
+                    },
+                    {
+                      "id": "06-json",
+                      "title": "JSON",
+                      "order": 6
                     }
                   ]
                 },
@@ -319,6 +339,35 @@
                     {
                       "id": "04-regex",
                       "title": "Регулярные выражения",
+                      "order": 4
+                    }
+                  ]
+                },
+                {
+                  "id": "ch11-collections",
+                  "title": "Коллекции: Map, Set, WeakMap, WeakSet",
+                  "description": "Специализированные структуры данных: Map для ключ-значение, Set для уникальных значений, слабые коллекции для кеширования",
+                  "order": 11,
+                  "contentPath": "content/ru/ch11-collections",
+                  "subchapters": [
+                    {
+                      "id": "01-map",
+                      "title": "Map — ассоциативный массив",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-set",
+                      "title": "Set — множество уникальных значений",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-weak-collections",
+                      "title": "WeakMap и WeakSet",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-comparison",
+                      "title": "Когда что использовать",
                       "order": 4
                     }
                   ]
@@ -546,6 +595,35 @@
                       "id": "05-antipatterns",
                       "title": "Антипаттерны",
                       "order": 5
+                    }
+                  ]
+                },
+                {
+                  "id": "ch17-symbols",
+                  "title": "Символы (Symbol)",
+                  "description": "Символы как уникальные идентификаторы: создание, глобальный реестр, well-known символы и практическое применение",
+                  "order": 17,
+                  "contentPath": "content/ru/ch17-symbols",
+                  "subchapters": [
+                    {
+                      "id": "01-basics",
+                      "title": "Что такое Symbol",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-global-registry",
+                      "title": "Глобальный реестр символов",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-well-known",
+                      "title": "Well-known символы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-practical",
+                      "title": "Практическое применение",
+                      "order": 4
                     }
                   ]
                 },

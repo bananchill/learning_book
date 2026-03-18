@@ -1,0 +1,15 @@
+{
+  "id": "ch17-symbols",
+  "title": "Символы (Symbol)",
+  "description": "Символы как уникальные идентификаторы: создание, глобальный реестр, well-known символы и практическое применение.",
+  "order": 17,
+  "estimatedTime": 35,
+  "difficulty": "intermediate",
+  "tags": ["symbol", "Symbol.iterator", "Symbol.toPrimitive", "well-known-symbols"],
+  "subchapters": [
+    { "id": "01-basics", "title": "Что такое Symbol", "file": "01-basics.md" },
+    { "id": "02-global-registry", "title": "Глобальный реестр символов", "file": "02-global-registry.md" },
+    { "id": "03-well-known", "title": "Well-known символы", "file": "03-well-known.md" },
+    { "id": "04-practical", "title": "Практическое применение", "file": "04-practical.md" }
+  ]
+}

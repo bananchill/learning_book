@@ -10,6 +10,8 @@ import { Callout } from '@book/ui'
 - Параметры с дефолтными значениями, rest-параметры, `arguments`
 - Стрелочные функции — синтаксис и ключевые отличия от обычных
 - Рекурсия — базовый случай, стек вызовов, когда применять
+- Таймеры — setTimeout, setInterval, debounce, throttle
+- Объект arguments — legacy-подход и преобразование в массив
 
 
 
@@ -19,3 +21,5 @@ import { Callout } from '@book/ui'
 2. [Параметры и аргументы](/frontend/javascript/ch07-functions/02-parameters) — defaults, rest, arguments
 3. [Стрелочные функции](/frontend/javascript/ch07-functions/03-arrow) — синтаксис, this, ограничения
 4. [Рекурсия](/frontend/javascript/ch07-functions/04-recursion) — базовый случай, call stack, примеры
+5. [Таймеры и планирование](/frontend/javascript/ch07-functions/05-timers) — setTimeout, setInterval, debounce, throttle
+6. [Объект arguments](/frontend/javascript/ch07-functions/06-arguments) — arguments vs rest, преобразование в массив

@@ -1,0 +1,15 @@
+{
+  "id": "ch11-collections",
+  "title": "Коллекции: Map, Set, WeakMap, WeakSet",
+  "description": "Специализированные структуры данных: Map для ключ-значение, Set для уникальных значений, слабые коллекции для кеширования.",
+  "order": 11,
+  "estimatedTime": 45,
+  "difficulty": "beginner",
+  "tags": ["map", "set", "weakmap", "weakset", "collections"],
+  "subchapters": [
+    { "id": "01-map", "title": "Map — ассоциативный массив", "file": "01-map.md" },
+    { "id": "02-set", "title": "Set — множество уникальных значений", "file": "02-set.md" },
+    { "id": "03-weak-collections", "title": "WeakMap и WeakSet", "file": "03-weak-collections.md" },
+    { "id": "04-comparison", "title": "Когда что использовать", "file": "04-comparison.md" }
+  ]
+}

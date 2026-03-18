@@ -10,6 +10,8 @@
     { "id": "01-declaration", "title": "Объявление функций", "file": "01-declaration.md" },
     { "id": "02-parameters", "title": "Параметры и аргументы", "file": "02-parameters.md" },
     { "id": "03-arrow", "title": "Стрелочные функции", "file": "03-arrow.md" },
-    { "id": "04-recursion", "title": "Рекурсия", "file": "04-recursion.md" }
+    { "id": "04-recursion", "title": "Рекурсия", "file": "04-recursion.md" },
+    { "id": "05-timers", "title": "Таймеры и планирование", "file": "05-timers.md" },
+    { "id": "06-arguments", "title": "Объект arguments", "file": "06-arguments.md" }
   ]
 }
