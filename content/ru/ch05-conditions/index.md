@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Условные операторы
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - Тернарный оператор — краткий синтаксис для простых условий
 - Профессиональные паттерны: early return, guard clauses, lookup tables
 
-<CrossLink chapter="ch04-operators" section="logical">
-Для понимания условий важно знать о falsy-значениях и short-circuit из предыдущей главы.
-</CrossLink>
+
 
 ## Подглавы
 
-1. [if / else if / else](./01-if-else) — синтаксис, вложенность, лучшие практики
-2. [switch / case](./02-switch) — синтаксис, fall-through, когда использовать
-3. [Тернарный оператор](./03-ternary) — синтаксис, использование
-4. [Паттерны условий](./04-patterns) — early return, guard clauses, lookup tables
+1. [if / else if / else](/frontend/javascript/ch05-conditions/01-if-else) — синтаксис, вложенность, лучшие практики
+2. [switch / case](/frontend/javascript/ch05-conditions/02-switch) — синтаксис, fall-through, когда использовать
+3. [Тернарный оператор](/frontend/javascript/ch05-conditions/03-ternary) — синтаксис, использование
+4. [Паттерны условий](/frontend/javascript/ch05-conditions/04-patterns) — early return, guard clauses, lookup tables

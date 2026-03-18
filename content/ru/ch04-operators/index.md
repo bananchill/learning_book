@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Операторы и выражения
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - Short-circuit evaluation: как `&&`, `||` и `??` экономят код
 - Деструктуризация — элегантный способ извлечения данных
 
-<CrossLink chapter="ch03-variables" section="typeof-coercion">
-Операторы сравнения тесно связаны с приведением типов из предыдущей главы.
-</CrossLink>
+
 
 ## Подглавы
 
-1. [Арифметические и строковые операторы](./01-arithmetic) — +, -, *, /, %, **, приоритет
-2. [Операторы сравнения](./02-comparison) — ==, ===, <, >, особенности
-3. [Логические операторы](./03-logical) — &&, ||, !, ??, short-circuit
-4. [Деструктуризация и spread/rest](./04-destructuring) — массивы, объекты, вложенная
+1. [Арифметические и строковые операторы](/frontend/javascript/ch04-operators/01-arithmetic) — +, -, *, /, %, **, приоритет
+2. [Операторы сравнения](/frontend/javascript/ch04-operators/02-comparison) — ==, ===, <, >, особенности
+3. [Логические операторы](/frontend/javascript/ch04-operators/03-logical) — &&, ||, !, ??, short-circuit
+4. [Деструктуризация и spread/rest](/frontend/javascript/ch04-operators/04-destructuring) — массивы, объекты, вложенная

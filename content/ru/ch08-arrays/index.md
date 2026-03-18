@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Массивы
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - Сортировка и поиск: sort, toSorted, indexOf, includes
 - Паттерны: chaining, иммутабельность, Object.groupBy
 
-<CrossLink chapter="ch07-functions" section="arrow">
-Итерационные методы массивов принимают коллбеки. Стрелочные функции идеальны для этого.
-</CrossLink>
+
 
 ## Подглавы
 
-1. [Создание и базовые методы](./01-basics) — [], Array.from, push/pop/splice/slice
-2. [Итерационные методы](./02-iteration) — map, filter, reduce, forEach, find
-3. [Сортировка и поиск](./03-sort-search) — sort, toSorted, indexOf, flat
-4. [Паттерны работы с массивами](./04-patterns) — chaining, иммутабельность
+1. [Создание и базовые методы](/frontend/javascript/ch08-arrays/01-basics) — [], Array.from, push/pop/splice/slice
+2. [Итерационные методы](/frontend/javascript/ch08-arrays/02-iteration) — map, filter, reduce, forEach, find
+3. [Сортировка и поиск](/frontend/javascript/ch08-arrays/03-sort-search) — sort, toSorted, indexOf, flat
+4. [Паттерны работы с массивами](/frontend/javascript/ch08-arrays/04-patterns) — chaining, иммутабельность

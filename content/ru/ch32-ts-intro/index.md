@@ -11,10 +11,10 @@ TypeScript — это надмножество JavaScript с системой с
 
 ## Содержание
 
-1. [Что такое TypeScript и зачем он нужен](/ch32-ts-intro/01-what-is-ts)
-2. [Установка и первая программа](/ch32-ts-intro/02-installation)
-3. [Как работает компилятор tsc](/ch32-ts-intro/03-compiler)
-4. [Строгий режим и флаги компилятора](/ch32-ts-intro/04-strict-mode)
+1. [Что такое TypeScript и зачем он нужен](/frontend/typescript/ch32-ts-intro/01-what-is-ts)
+2. [Установка и первая программа](/frontend/typescript/ch32-ts-intro/02-installation)
+3. [Как работает компилятор tsc](/frontend/typescript/ch32-ts-intro/03-compiler)
+4. [Строгий режим и флаги компилятора](/frontend/typescript/ch32-ts-intro/04-strict-mode)
 
 ## Что ты научишься делать
 
@@ -25,8 +25,8 @@ TypeScript — это надмножество JavaScript с системой с
 
 ## Связанные темы
 
-- [Система типов TypeScript](/ch06-ts-type-system) — глубокое погружение в типы
-- [Конфигурация tsconfig.json](/ch44-ts-config) — подробнее про настройку проекта
+- [Система типов TypeScript](/frontend/typescript/ch06-ts-type-system) — глубокое погружение в типы
+- [Конфигурация tsconfig.json](/frontend/typescript/ch44-ts-config) — подробнее про настройку проекта
 
 ## Время чтения
 

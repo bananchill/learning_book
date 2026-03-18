@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Дженерики TypeScript
 
@@ -17,10 +17,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [Что такое дженерики](./01-what-are-generics) — параметры типов, Array&lt;T&gt;, Promise&lt;T&gt;
-2. [Generic функции и классы](./02-generic-functions-classes) — синтаксис, вывод типов, constraints
-3. [infer и условные типы](./03-infer-conditional) — ReturnType, Parameters, infer
-4. [Реальные паттерны](./04-real-patterns) — Repository&lt;T&gt;, Result&lt;T,E&gt;, DeepReadonly&lt;T&gt;
-
-<CrossLink chapter="ch06-ts-type-system" title="Система типов TypeScript" />
-<CrossLink chapter="ch26-ts-advanced" title="Продвинутые типы TypeScript" />
+1. [Что такое дженерики](/frontend/typescript/ch25-ts-generics/01-what-are-generics) — параметры типов, Array&lt;T&gt;, Promise&lt;T&gt;
+2. [Generic функции и классы](/frontend/typescript/ch25-ts-generics/02-generic-functions-classes) — синтаксис, вывод типов, constraints
+3. [infer и условные типы](/frontend/typescript/ch25-ts-generics/03-infer-conditional) — ReturnType, Parameters, infer
+4. [Реальные паттерны](/frontend/typescript/ch25-ts-generics/04-real-patterns) — Repository&lt;T&gt;, Result&lt;T,E&gt;, DeepReadonly&lt;T&gt;

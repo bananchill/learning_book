@@ -29,11 +29,3 @@ description: "Полный разбор замыканий: от основ до
 
 - [Асинхронность](/frontend/javascript/ch02-async) — замыкания в callbacks и async-функциях
 - [Движок V8](/frontend/javascript/ch04-v8-engine) — context allocation и оптимизации замыканий в V8
-
-## Задания
-
-[Перейти к заданиям](/frontend/javascript/ch01-closures/tasks) — 3 easy, 2 medium, 3 hard
-
-## Песочница
-
-[Открыть песочницу](/frontend/javascript/ch01-closures/playground)

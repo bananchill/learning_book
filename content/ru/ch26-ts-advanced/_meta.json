@@ -7,7 +7,7 @@
   "subchapters": [
     { "id": "01-mapped-types", "title": "Mapped Types", "order": 1 },
     { "id": "02-conditional-types", "title": "Conditional Types", "order": 2 },
-    { "id": "03-template-literal-types", "title": "Template Literal Types", "order": 3 },
+    { "id": "03-template-literal", "title": "Template Literal Types", "order": 3 },
     { "id": "04-utility-types", "title": "Utility Types разбор", "order": 4 }
   ],
   "concepts": [

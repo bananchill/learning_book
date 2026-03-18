@@ -30,11 +30,3 @@ description: "Конкурентность vs параллелизм, Web Worker
 
 - [Замыкания](/frontend/javascript/ch01-closures) — замыкания не передаются через postMessage: функции нельзя клонировать
 - [Асинхронность](/frontend/javascript/ch02-async) — event loop = concurrency, не parallelism; worker pool расширяет parallel limit
-
-## Задания
-
-[Перейти к заданиям](/frontend/javascript/ch03-parallelism/tasks) — 3 easy, 2 medium, 3 hard
-
-## Песочница
-
-[Открыть песочницу](/frontend/javascript/ch03-parallelism/playground) — экспериментируй с воркерами и общей памятью

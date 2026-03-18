@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Декораторы TypeScript
 
@@ -17,10 +17,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [Что такое декораторы](./01-what-are-decorators) — синтаксис, порядок, experimentalDecorators
-2. [Декораторы классов, методов, свойств](./02-class-method-property) — фабрики, composition
-3. [reflect-metadata](./03-reflect-metadata) — метаданные типов, design:type
-4. [Практика](./04-practical-decorators) — @Log, @Validate, @Inject, @Memoize
-
-<CrossLink chapter="ch13-prototypes" title="Прототипы и наследование" />
-<CrossLink chapter="ch25-ts-generics" title="Дженерики TypeScript" />
+1. [Что такое декораторы](/frontend/typescript/ch27-ts-decorators/01-what-are-decorators) — синтаксис, порядок, experimentalDecorators
+2. [Декораторы классов, методов, свойств](/frontend/typescript/ch27-ts-decorators/02-class-method-property) — фабрики, composition
+3. [reflect-metadata](/frontend/typescript/ch27-ts-decorators/03-reflect-metadata) — метаданные типов, design:type
+4. [Практика](/frontend/typescript/ch27-ts-decorators/04-practical-decorators) — @Log, @Validate, @Inject, @Memoize

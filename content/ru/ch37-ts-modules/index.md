@@ -11,10 +11,10 @@ TypeScript полностью поддерживает стандартные ES
 
 ## Содержание
 
-1. [Модули в TypeScript](/ch37-ts-modules/01-modules) — ES Module Syntax, export/import, CommonJS interop, re-exports
-2. [Module Resolution](/ch37-ts-modules/02-module-resolution) — стратегии node, bundler, classic; paths и baseUrl
-3. [Namespaces](/ch37-ts-modules/03-namespaces) — ключевое слово namespace, многофайловые пространства имён, сравнение с модулями
-4. [Declaration Merging](/ch37-ts-modules/04-declaration-merging) — слияние интерфейсов, пространств имён, расширение модулей и глобальной области
+1. [Модули в TypeScript](/frontend/typescript/ch37-ts-modules/01-modules) — ES Module Syntax, export/import, CommonJS interop, re-exports
+2. [Module Resolution](/frontend/typescript/ch37-ts-modules/02-module-resolution) — стратегии node, bundler, classic; paths и baseUrl
+3. [Namespaces](/frontend/typescript/ch37-ts-modules/03-namespaces) — ключевое слово namespace, многофайловые пространства имён, сравнение с модулями
+4. [Declaration Merging](/frontend/typescript/ch37-ts-modules/04-declaration-merging) — слияние интерфейсов, пространств имён, расширение модулей и глобальной области
 
 ## Что ты научишься делать
 
@@ -25,8 +25,8 @@ TypeScript полностью поддерживает стандартные ES
 
 ## Связанные темы
 
-- [Модульная система JavaScript](/ch20-modules) — ESM vs CommonJS, основы модулей в JS
-- [Введение в TypeScript](/ch32-ts-intro) — основы языка, компилятор tsc
+- [Модульная система JavaScript](/frontend/javascript/ch20-modules) — ESM vs CommonJS, основы модулей в JS
+- [Введение в TypeScript](/frontend/typescript/ch32-ts-intro) — основы языка, компилятор tsc
 
 ## Время чтения
 

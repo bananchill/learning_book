@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Утилитарные типы
 
@@ -17,10 +17,7 @@ TypeScript предоставляет набор встроенных **утил
 
 ## Подглавы
 
-1. [Трансформация объектов](./01-object-transform) — Partial, Required, Readonly, Record, Pick, Omit
-2. [Работа с union-типами](./02-union-manipulation) — Exclude, Extract, NonNullable, NoInfer
-3. [Типы функций и классов](./03-function-class-types) — Parameters, ReturnType, InstanceType и другие
-4. [Awaited и строковые типы](./04-awaited-string) — Awaited, Uppercase, Lowercase, Capitalize, Uncapitalize
-
-<CrossLink chapter="ch25-ts-generics" title="Дженерики TypeScript" />
-<CrossLink chapter="ch26-ts-advanced" title="Продвинутые типы TypeScript" />
+1. [Трансформация объектов](/frontend/typescript/ch38-ts-utility-types/01-object-transform) — Partial, Required, Readonly, Record, Pick, Omit
+2. [Работа с union-типами](/frontend/typescript/ch38-ts-utility-types/02-union-manipulation) — Exclude, Extract, NonNullable, NoInfer
+3. [Типы функций и классов](/frontend/typescript/ch38-ts-utility-types/03-function-class-types) — Parameters, ReturnType, InstanceType и другие
+4. [Awaited и строковые типы](/frontend/typescript/ch38-ts-utility-types/04-awaited-string) — Awaited, Uppercase, Lowercase, Capitalize, Uncapitalize

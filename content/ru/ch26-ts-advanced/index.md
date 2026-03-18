@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Продвинутые типы TypeScript
 
@@ -17,10 +17,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [Mapped Types](./01-mapped-types) — `{ [K in keyof T]: ... }`, модификаторы readonly/?
-2. [Conditional Types](./02-conditional-types) — `T extends U ? X : Y`, дистрибутивность
-3. [Template Literal Types](./03-template-literal-types) — `` `${string}` ``, EventName
-4. [Utility Types разбор](./04-utility-types) — Pick, Omit, Record, Extract, Exclude
-
-<CrossLink chapter="ch25-ts-generics" title="Дженерики TypeScript" />
-<CrossLink chapter="ch27-ts-decorators" title="Декораторы TypeScript" />
+1. [Mapped Types](/frontend/typescript/ch26-ts-advanced/01-mapped-types) — `{ [K in keyof T]: ... }`, модификаторы readonly/?
+2. [Conditional Types](/frontend/typescript/ch26-ts-advanced/02-conditional-types) — `T extends U ? X : Y`, дистрибутивность
+3. [Template Literal Types](/frontend/typescript/ch26-ts-advanced/03-template-literal-types) — `` `${string}` ``, EventName
+4. [Utility Types разбор](/frontend/typescript/ch26-ts-advanced/04-utility-types) — Pick, Omit, Record, Extract, Exclude

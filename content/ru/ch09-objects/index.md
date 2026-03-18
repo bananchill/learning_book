@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Объекты
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - Деструктуризация с переименованием, дефолтами и вложенной структурой
 - Разница между ссылками и значениями, shallow vs deep copy
 
-<CrossLink chapter="ch03-variables" section="values">
-Если забыли про ссылки vs значения — перечитайте раздел "Работа со значениями".
-</CrossLink>
+
 
 ## Подглавы
 
-1. [Создание и доступ](./01-creation) — {}, Object.create, dot vs bracket notation
-2. [Методы Object](./02-methods) — keys, values, entries, assign, freeze
-3. [Деструктуризация](./03-destructuring) — переименование, дефолты, вложенная
-4. [Ссылки и копирование](./04-references) — shallow copy, deep copy
+1. [Создание и доступ](/frontend/javascript/ch09-objects/01-creation) — {}, Object.create, dot vs bracket notation
+2. [Методы Object](/frontend/javascript/ch09-objects/02-methods) — keys, values, entries, assign, freeze
+3. [Деструктуризация](/frontend/javascript/ch09-objects/03-destructuring) — переименование, дефолты, вложенная
+4. [Ссылки и копирование](/frontend/javascript/ch09-objects/04-references) — shallow copy, deep copy

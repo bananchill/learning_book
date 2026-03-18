@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Web APIs
 
@@ -17,10 +17,7 @@ Web APIs — это не JavaScript. Это интерфейсы, предост
 
 ## Подглавы
 
-1. [Fetch API](./01-fetch-api) — fetch, Response, AbortController, таймауты
-2. [WebSocket](./02-websocket) — создание, события, переподключение
-3. [Observers](./03-observers) — IntersectionObserver, ResizeObserver
-4. [Storage](./04-storage) — localStorage, sessionStorage, IndexedDB
-
-<CrossLink chapter="ch02-async" title="Асинхронность" />
-<CrossLink chapter="ch29-events" title="События и делегирование" />
+1. [Fetch API](/frontend/browser/ch31-web-apis/01-fetch-api) — fetch, Response, AbortController, таймауты
+2. [WebSocket](/frontend/browser/ch31-web-apis/02-websocket) — создание, события, переподключение
+3. [Observers](/frontend/browser/ch31-web-apis/03-observers) — IntersectionObserver, ResizeObserver
+4. [Storage](/frontend/browser/ch31-web-apis/04-storage) — localStorage, sessionStorage, IndexedDB

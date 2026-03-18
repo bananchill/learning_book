@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["variables", "types", "typeof", "coercion", "primitives"],
   "subchapters": [
-    { "id": "01-var-let-const", "title": "var, let, const", "file": "01-var-let-const.mdx" },
-    { "id": "02-primitives", "title": "Примитивные типы", "file": "02-primitives.mdx" },
-    { "id": "03-typeof-coercion", "title": "typeof и приведение типов", "file": "03-typeof-coercion.mdx" },
-    { "id": "04-values", "title": "Работа со значениями", "file": "04-values.mdx" }
+    { "id": "01-var-let-const", "title": "var, let, const", "file": "01-var-let-const.md" },
+    { "id": "02-primitives", "title": "Примитивные типы", "file": "02-primitives.md" },
+    { "id": "03-typeof-coercion", "title": "typeof и приведение типов", "file": "03-typeof-coercion.md" },
+    { "id": "04-values", "title": "Работа со значениями", "file": "04-values.md" }
   ]
 }

@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Циклы
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - `break`, `continue` и метки — управление потоком
 - Как писать эффективные циклы
 
-<CrossLink chapter="ch08-arrays" section="iteration">
-Для работы с массивами часто лучше подходят методы: map, filter, reduce. Изучим их в главе про массивы.
-</CrossLink>
+
 
 ## Подглавы
 
-1. [for, while, do...while](./01-for-while) — синтаксис и выбор типа цикла
-2. [for...of и for...in](./02-for-of-in) — итерация по значениям vs ключам
-3. [break, continue, метки](./03-break-continue) — управление потоком
-4. [Производительность циклов](./04-performance) — оптимизация
+1. [for, while, do...while](/frontend/javascript/ch06-loops/01-for-while) — синтаксис и выбор типа цикла
+2. [for...of и for...in](/frontend/javascript/ch06-loops/02-for-of-in) — итерация по значениям vs ключам
+3. [break, continue, метки](/frontend/javascript/ch06-loops/03-break-continue) — управление потоком
+4. [Производительность циклов](/frontend/javascript/ch06-loops/04-performance) — оптимизация

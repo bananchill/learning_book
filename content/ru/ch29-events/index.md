@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # События и делегирование
 
@@ -17,10 +17,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [Модель событий](./01-event-model) — Event объект, bubbling, capturing
-2. [Делегирование](./02-delegation) — паттерн, event.target vs currentTarget
-3. [Кастомные события](./03-custom-events) — CustomEvent, dispatchEvent
-4. [Оптимизация](./04-optimization) — passive, once, AbortController
-
-<CrossLink chapter="ch28-dom" title="DOM API" />
-<CrossLink chapter="ch31-web-apis" title="Web APIs" />
+1. [Модель событий](/frontend/browser/ch29-events/01-event-model) — Event объект, bubbling, capturing
+2. [Делегирование](/frontend/browser/ch29-events/02-delegation) — паттерн, event.target vs currentTarget
+3. [Кастомные события](/frontend/browser/ch29-events/03-custom-events) — CustomEvent, dispatchEvent
+4. [Оптимизация](/frontend/browser/ch29-events/04-optimization) — passive, once, AbortController

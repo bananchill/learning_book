@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["objects", "Object.keys", "destructuring", "shallow-copy", "deep-copy"],
   "subchapters": [
-    { "id": "01-creation", "title": "Создание и доступ к свойствам", "file": "01-creation.mdx" },
-    { "id": "02-methods", "title": "Методы Object", "file": "02-methods.mdx" },
-    { "id": "03-destructuring", "title": "Деструктуризация объектов", "file": "03-destructuring.mdx" },
-    { "id": "04-references", "title": "Ссылки и копирование", "file": "04-references.mdx" }
+    { "id": "01-creation", "title": "Создание и доступ к свойствам", "file": "01-creation.md" },
+    { "id": "02-methods", "title": "Методы Object", "file": "02-methods.md" },
+    { "id": "03-destructuring", "title": "Деструктуризация объектов", "file": "03-destructuring.md" },
+    { "id": "04-references", "title": "Ссылки и копирование", "file": "04-references.md" }
   ]
 }

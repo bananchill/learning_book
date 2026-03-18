@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Функции
 
@@ -11,13 +11,11 @@ import { Callout, CrossLink } from '@book/ui'
 - Стрелочные функции — синтаксис и ключевые отличия от обычных
 - Рекурсия — базовый случай, стек вызовов, когда применять
 
-<CrossLink chapter="ch01-closures" section="scope">
-Функции создают области видимости. Глава о замыканиях подробно объясняет, как это работает.
-</CrossLink>
+
 
 ## Подглавы
 
-1. [Объявление функций](./01-declaration) — declaration vs expression, hoisting
-2. [Параметры и аргументы](./02-parameters) — defaults, rest, arguments
-3. [Стрелочные функции](./03-arrow) — синтаксис, this, ограничения
-4. [Рекурсия](./04-recursion) — базовый случай, call stack, примеры
+1. [Объявление функций](/frontend/javascript/ch07-functions/01-declaration) — declaration vs expression, hoisting
+2. [Параметры и аргументы](/frontend/javascript/ch07-functions/02-parameters) — defaults, rest, arguments
+3. [Стрелочные функции](/frontend/javascript/ch07-functions/03-arrow) — синтаксис, this, ограничения
+4. [Рекурсия](/frontend/javascript/ch07-functions/04-recursion) — базовый случай, call stack, примеры

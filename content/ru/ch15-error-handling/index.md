@@ -25,11 +25,3 @@ description: "try/catch/finally, типы ошибок, кастомные кл�
 
 - [Функции](/frontend/javascript/ch07-functions) — функции и исключения
 - [Асинхронность](/frontend/javascript/ch02-async) — ошибки в Promise и async/await
-
-## Задания
-
-[Перейти к заданиям](/frontend/javascript/ch15-error-handling/tasks) — 2 easy, 1 medium
-
-## Песочница
-
-[Открыть песочницу](/frontend/javascript/ch15-error-handling/playground)

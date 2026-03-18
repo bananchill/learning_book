@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Производительность браузера
 
@@ -17,10 +17,7 @@ import { Callout, CrossLink } from '@book/ui'
 
 ## Подглавы
 
-1. [Critical Rendering Path](./01-critical-rendering-path) — HTML/CSS парсинг, CSSOM, Layout, Paint
-2. [Repaint и Reflow](./02-repaint-reflow) — что вызывает, batching, layout thrashing
-3. [rAF и rIC](./03-raf-ric) — requestAnimationFrame, requestIdleCallback
-4. [Профилирование](./04-profiling) — Performance API, marks, Long Tasks
-
-<CrossLink chapter="ch28-dom" title="DOM API" />
-<CrossLink chapter="ch04-v8-engine" title="Движок V8" />
+1. [Critical Rendering Path](/frontend/browser/ch30-performance/01-critical-rendering-path) — HTML/CSS парсинг, CSSOM, Layout, Paint
+2. [Repaint и Reflow](/frontend/browser/ch30-performance/02-repaint-reflow) — что вызывает, batching, layout thrashing
+3. [rAF и rIC](/frontend/browser/ch30-performance/03-raf-ric) — requestAnimationFrame, requestIdleCallback
+4. [Профилирование](/frontend/browser/ch30-performance/04-profiling) — Performance API, marks, Long Tasks

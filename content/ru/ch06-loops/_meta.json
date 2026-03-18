@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["loops", "for", "while", "for-of", "for-in", "break", "continue"],
   "subchapters": [
-    { "id": "01-for-while", "title": "for, while, do...while", "file": "01-for-while.mdx" },
-    { "id": "02-for-of-in", "title": "for...of и for...in", "file": "02-for-of-in.mdx" },
-    { "id": "03-break-continue", "title": "break, continue, метки", "file": "03-break-continue.mdx" },
-    { "id": "04-performance", "title": "Производительность циклов", "file": "04-performance.mdx" }
+    { "id": "01-for-while", "title": "for, while, do...while", "file": "01-for-while.md" },
+    { "id": "02-for-of-in", "title": "for...of и for...in", "file": "02-for-of-in.md" },
+    { "id": "03-break-continue", "title": "break, continue, метки", "file": "03-break-continue.md" },
+    { "id": "04-performance", "title": "Производительность циклов", "file": "04-performance.md" }
   ]
 }

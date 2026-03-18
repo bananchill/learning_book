@@ -12,10 +12,10 @@
 
 ## Структура главы
 
-1. [Числовые и строковые перечисления](./01-numeric-string.md) -- базовый синтаксис, auto-increment, строковые enum, гетерогенные enum
-2. [const enums и вычисляемые члены](./02-const-computed.md) -- константные и вычисляемые члены, `const enum`, ambient enums
-3. [Паттерны использования и альтернативы](./03-patterns-alternatives.md) -- runtime-поведение, reverse mapping, объекты vs enum, паттерн `as const`
+1. [Числовые и строковые перечисления](/frontend/typescript/ch39-ts-enums/01-numeric-string) -- базовый синтаксис, auto-increment, строковые enum, гетерогенные enum
+2. [const enums и вычисляемые члены](/frontend/typescript/ch39-ts-enums/02-const-computed) -- константные и вычисляемые члены, `const enum`, ambient enums
+3. [Паттерны использования и альтернативы](/frontend/typescript/ch39-ts-enums/03-patterns-alternatives) -- runtime-поведение, reverse mapping, объекты vs enum, паттерн `as const`
 
 ## Предварительные требования
 
-- Базовое понимание системы типов TypeScript ([ch06-ts-type-system](../ch06-ts-type-system/index.md))
+- Базовое понимание системы типов TypeScript ([ch06-ts-type-system](/frontend/typescript/ch06-ts-type-system))

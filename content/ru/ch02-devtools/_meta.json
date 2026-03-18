@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["vscode", "devtools", "nodejs", "eslint", "prettier"],
   "subchapters": [
-    { "id": "01-vscode", "title": "VS Code — редактор кода", "file": "01-vscode.mdx" },
-    { "id": "02-browser-devtools", "title": "Браузерный DevTools", "file": "02-browser-devtools.mdx" },
-    { "id": "03-nodejs-npm", "title": "Node.js и npm/pnpm", "file": "03-nodejs-npm.mdx" },
-    { "id": "04-linting", "title": "Линтинг и форматирование", "file": "04-linting.mdx" }
+    { "id": "01-vscode", "title": "VS Code — редактор кода", "file": "01-vscode.md" },
+    { "id": "02-browser-devtools", "title": "Браузерный DevTools", "file": "02-browser-devtools.md" },
+    { "id": "03-nodejs-npm", "title": "Node.js и npm/pnpm", "file": "03-nodejs-npm.md" },
+    { "id": "04-linting", "title": "Линтинг и форматирование", "file": "04-linting.md" }
   ]
 }

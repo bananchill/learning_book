@@ -27,10 +27,26 @@
                   "hasPlayground": false,
                   "hasCodeReview": false,
                   "subchapters": [
-                    { "id": "01-what-is-js", "title": "Что такое JavaScript", "order": 1 },
-                    { "id": "02-first-steps", "title": "Первые шаги", "order": 2 },
-                    { "id": "03-how-it-works", "title": "Как работает JavaScript", "order": 3 },
-                    { "id": "04-strict-mode", "title": "Строгий режим и современный JS", "order": 4 }
+                    {
+                      "id": "01-what-is-js",
+                      "title": "Что такое JavaScript",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-first-steps",
+                      "title": "Первые шаги",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-how-it-works",
+                      "title": "Как работает JavaScript",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-strict-mode",
+                      "title": "Строгий режим и современный JS",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -43,10 +59,26 @@
                   "hasPlayground": false,
                   "hasCodeReview": false,
                   "subchapters": [
-                    { "id": "01-vscode", "title": "VS Code — редактор кода", "order": 1 },
-                    { "id": "02-browser-devtools", "title": "Браузерный DevTools", "order": 2 },
-                    { "id": "03-nodejs-npm", "title": "Node.js и npm/pnpm", "order": 3 },
-                    { "id": "04-linting", "title": "Линтинг и форматирование", "order": 4 }
+                    {
+                      "id": "01-vscode",
+                      "title": "VS Code — редактор кода",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-browser-devtools",
+                      "title": "Браузерный DevTools",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-nodejs-npm",
+                      "title": "Node.js и npm/pnpm",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-linting",
+                      "title": "Линтинг и форматирование",
+                      "order": 4
+                    }
                   ]
                 }
               ]
@@ -66,10 +98,26 @@
                   "hasPlayground": false,
                   "hasCodeReview": false,
                   "subchapters": [
-                    { "id": "01-var-let-const", "title": "var, let, const", "order": 1 },
-                    { "id": "02-primitives", "title": "Примитивные типы", "order": 2 },
-                    { "id": "03-typeof-coercion", "title": "typeof и приведение типов", "order": 3 },
-                    { "id": "04-values", "title": "Работа со значениями", "order": 4 }
+                    {
+                      "id": "01-var-let-const",
+                      "title": "var, let, const",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-primitives",
+                      "title": "Примитивные типы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-typeof-coercion",
+                      "title": "typeof и приведение типов",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-values",
+                      "title": "Работа со значениями",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -79,10 +127,26 @@
                   "order": 4,
                   "contentPath": "content/ru/ch04-operators",
                   "subchapters": [
-                    { "id": "01-arithmetic", "title": "Арифметические и строковые операторы", "order": 1 },
-                    { "id": "02-comparison", "title": "Операторы сравнения", "order": 2 },
-                    { "id": "03-logical", "title": "Логические операторы", "order": 3 },
-                    { "id": "04-destructuring", "title": "Деструктуризация и spread/rest", "order": 4 }
+                    {
+                      "id": "01-arithmetic",
+                      "title": "Арифметические и строковые операторы",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-comparison",
+                      "title": "Операторы сравнения",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-logical",
+                      "title": "Логические операторы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-destructuring",
+                      "title": "Деструктуризация и spread/rest",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -92,10 +156,26 @@
                   "order": 5,
                   "contentPath": "content/ru/ch05-conditions",
                   "subchapters": [
-                    { "id": "01-if-else", "title": "if / else if / else", "order": 1 },
-                    { "id": "02-switch", "title": "switch / case", "order": 2 },
-                    { "id": "03-ternary", "title": "Тернарный оператор", "order": 3 },
-                    { "id": "04-patterns", "title": "Паттерны условий", "order": 4 }
+                    {
+                      "id": "01-if-else",
+                      "title": "if / else if / else",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-switch",
+                      "title": "switch / case",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-ternary",
+                      "title": "Тернарный оператор",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-patterns",
+                      "title": "Паттерны условий",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -105,10 +185,26 @@
                   "order": 6,
                   "contentPath": "content/ru/ch06-loops",
                   "subchapters": [
-                    { "id": "01-for-while", "title": "for, while, do...while", "order": 1 },
-                    { "id": "02-for-of-in", "title": "for...of и for...in", "order": 2 },
-                    { "id": "03-break-continue", "title": "break, continue, метки", "order": 3 },
-                    { "id": "04-performance", "title": "Производительность циклов", "order": 4 }
+                    {
+                      "id": "01-for-while",
+                      "title": "for, while, do...while",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-for-of-in",
+                      "title": "for...of и for...in",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-break-continue",
+                      "title": "break, continue, метки",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-performance",
+                      "title": "Производительность циклов",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -118,10 +214,26 @@
                   "order": 7,
                   "contentPath": "content/ru/ch07-functions",
                   "subchapters": [
-                    { "id": "01-declaration", "title": "Объявление функций", "order": 1 },
-                    { "id": "02-parameters", "title": "Параметры и аргументы", "order": 2 },
-                    { "id": "03-arrow", "title": "Стрелочные функции", "order": 3 },
-                    { "id": "04-recursion", "title": "Рекурсия", "order": 4 }
+                    {
+                      "id": "01-declaration",
+                      "title": "Объявление функций",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-parameters",
+                      "title": "Параметры и аргументы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-arrow",
+                      "title": "Стрелочные функции",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-recursion",
+                      "title": "Рекурсия",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -131,10 +243,26 @@
                   "order": 8,
                   "contentPath": "content/ru/ch08-arrays",
                   "subchapters": [
-                    { "id": "01-basics", "title": "Создание и базовые методы", "order": 1 },
-                    { "id": "02-iteration", "title": "Итерационные методы", "order": 2 },
-                    { "id": "03-sort-search", "title": "Сортировка и поиск", "order": 3 },
-                    { "id": "04-patterns", "title": "Паттерны работы с массивами", "order": 4 }
+                    {
+                      "id": "01-basics",
+                      "title": "Создание и базовые методы",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-iteration",
+                      "title": "Итерационные методы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-sort-search",
+                      "title": "Сортировка и поиск",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-patterns",
+                      "title": "Паттерны работы с массивами",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -144,10 +272,26 @@
                   "order": 9,
                   "contentPath": "content/ru/ch09-objects",
                   "subchapters": [
-                    { "id": "01-creation", "title": "Создание и доступ к свойствам", "order": 1 },
-                    { "id": "02-methods", "title": "Методы Object", "order": 2 },
-                    { "id": "03-destructuring", "title": "Деструктуризация объектов", "order": 3 },
-                    { "id": "04-references", "title": "Ссылки и копирование", "order": 4 }
+                    {
+                      "id": "01-creation",
+                      "title": "Создание и доступ к свойствам",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-methods",
+                      "title": "Методы Object",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-destructuring",
+                      "title": "Деструктуризация объектов",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-references",
+                      "title": "Ссылки и копирование",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -157,10 +301,26 @@
                   "order": 10,
                   "contentPath": "content/ru/ch10-strings",
                   "subchapters": [
-                    { "id": "01-basics", "title": "Строки и Unicode", "order": 1 },
-                    { "id": "02-methods", "title": "Методы строк", "order": 2 },
-                    { "id": "03-template-literals", "title": "Шаблонные литералы", "order": 3 },
-                    { "id": "04-regex", "title": "Регулярные выражения", "order": 4 }
+                    {
+                      "id": "01-basics",
+                      "title": "Строки и Unicode",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-methods",
+                      "title": "Методы строк",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-template-literals",
+                      "title": "Шаблонные литералы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-regex",
+                      "title": "Регулярные выражения",
+                      "order": 4
+                    }
                   ]
                 }
               ]
@@ -177,12 +337,33 @@
                   "order": 11,
                   "contentPath": "content/ru/ch01-closures",
                   "subchapters": [
-                    { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
-                    { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
-                    { "id": "03-common-problems", "title": "Частые проблемы", "order": 3 },
-                    { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
-                    { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
-                  ]
+                    {
+                      "id": "01-what-and-why",
+                      "title": "Что это и зачем",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-how-it-works",
+                      "title": "Как это работает",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-common-problems",
+                      "title": "Частые проблемы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-real-world",
+                      "title": "В реальном мире",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-antipatterns",
+                      "title": "Антипаттерны",
+                      "order": 5
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch12-scope-hoisting",
@@ -191,10 +372,26 @@
                   "order": 12,
                   "contentPath": "content/ru/ch12-scope-hoisting",
                   "subchapters": [
-                    { "id": "01-lexical-env", "title": "Лексическое окружение и цепочка scope", "order": 1 },
-                    { "id": "02-hoisting", "title": "Hoisting: поднятие переменных и функций", "order": 2 },
-                    { "id": "03-tdz", "title": "TDZ: временная мёртвая зона", "order": 3 },
-                    { "id": "04-block-scope", "title": "Блочная область видимости и IIFE", "order": 4 }
+                    {
+                      "id": "01-lexical-env",
+                      "title": "Лексическое окружение и цепочка scope",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-hoisting",
+                      "title": "Hoisting: поднятие переменных и функций",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-tdz",
+                      "title": "TDZ: временная мёртвая зона",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-block-scope",
+                      "title": "Блочная область видимости и IIFE",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -204,10 +401,26 @@
                   "order": 13,
                   "contentPath": "content/ru/ch13-prototypes",
                   "subchapters": [
-                    { "id": "01-prototype-chain", "title": "Прототипная цепочка", "order": 1 },
-                    { "id": "02-object-create", "title": "Object.create и прототипное наследование", "order": 2 },
-                    { "id": "03-classes", "title": "Классы: синтаксический сахар", "order": 3 },
-                    { "id": "04-antipatterns", "title": "Антипаттерны наследования", "order": 4 }
+                    {
+                      "id": "01-prototype-chain",
+                      "title": "Прототипная цепочка",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-object-create",
+                      "title": "Object.create и прототипное наследование",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-classes",
+                      "title": "Классы: синтаксический сахар",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-antipatterns",
+                      "title": "Антипаттерны наследования",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -217,11 +430,31 @@
                   "order": 14,
                   "contentPath": "content/ru/ch14-this",
                   "subchapters": [
-                    { "id": "01-what-is-this", "title": "Что такое this", "order": 1 },
-                    { "id": "02-call-apply-bind", "title": "call, apply и bind", "order": 2 },
-                    { "id": "03-arrow-this", "title": "Стрелочные функции и this", "order": 3 },
-                    { "id": "04-context-loss", "title": "Потеря контекста и её решения", "order": 4 },
-                    { "id": "05-binding-rules", "title": "Четыре правила привязки this", "order": 5 }
+                    {
+                      "id": "01-what-is-this",
+                      "title": "Что такое this",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-call-apply-bind",
+                      "title": "call, apply и bind",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-arrow-this",
+                      "title": "Стрелочные функции и this",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-context-loss",
+                      "title": "Потеря контекста и её решения",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-binding-rules",
+                      "title": "Четыре правила привязки this",
+                      "order": 5
+                    }
                   ]
                 },
                 {
@@ -231,10 +464,26 @@
                   "order": 15,
                   "contentPath": "content/ru/ch15-error-handling",
                   "subchapters": [
-                    { "id": "01-try-catch", "title": "try/catch/finally", "order": 1 },
-                    { "id": "02-error-types", "title": "Типы ошибок и кастомные классы", "order": 2 },
-                    { "id": "03-async-errors", "title": "Ошибки в асинхронном коде", "order": 3 },
-                    { "id": "04-patterns", "title": "Паттерны обработки ошибок", "order": 4 }
+                    {
+                      "id": "01-try-catch",
+                      "title": "try/catch/finally",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-error-types",
+                      "title": "Типы ошибок и кастомные классы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-async-errors",
+                      "title": "Ошибки в асинхронном коде",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-patterns",
+                      "title": "Паттерны обработки ошибок",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -244,10 +493,26 @@
                   "order": 16,
                   "contentPath": "content/ru/ch16-fp",
                   "subchapters": [
-                    { "id": "01-pure-functions", "title": "Чистые функции и побочные эффекты", "order": 1 },
-                    { "id": "02-immutability", "title": "Иммутабельность", "order": 2 },
-                    { "id": "03-compose-pipe", "title": "Compose и pipe", "order": 3 },
-                    { "id": "04-maybe-either", "title": "Maybe и Either монады", "order": 4 }
+                    {
+                      "id": "01-pure-functions",
+                      "title": "Чистые функции и побочные эффекты",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-immutability",
+                      "title": "Иммутабельность",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-compose-pipe",
+                      "title": "Compose и pipe",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-maybe-either",
+                      "title": "Maybe и Either монады",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -257,11 +522,31 @@
                   "order": 17,
                   "contentPath": "content/ru/ch05-currying",
                   "subchapters": [
-                    { "id": "01-what-and-why", "title": "Что это и зачем", "order": 1 },
-                    { "id": "02-how-it-works", "title": "Как это работает", "order": 2 },
-                    { "id": "03-partial-and-compose", "title": "Частичное применение, compose и pipe", "order": 3 },
-                    { "id": "04-real-world", "title": "В реальном мире", "order": 4 },
-                    { "id": "05-antipatterns", "title": "Антипаттерны", "order": 5 }
+                    {
+                      "id": "01-what-and-why",
+                      "title": "Что это и зачем",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-how-it-works",
+                      "title": "Как это работает",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-partial-and-compose",
+                      "title": "Частичное применение, compose и pipe",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-real-world",
+                      "title": "В реальном мире",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-antipatterns",
+                      "title": "Антипаттерны",
+                      "order": 5
+                    }
                   ]
                 },
                 {
@@ -271,10 +556,26 @@
                   "order": 18,
                   "contentPath": "content/ru/ch18-generators",
                   "subchapters": [
-                    { "id": "01-iterator-protocol", "title": "Протокол итерации", "order": 1 },
-                    { "id": "02-generators-syntax", "title": "Генераторы: синтаксис и поведение", "order": 2 },
-                    { "id": "03-practical-generators", "title": "Практические применения", "order": 3 },
-                    { "id": "04-async-generators", "title": "Async-генераторы", "order": 4 }
+                    {
+                      "id": "01-iterator-protocol",
+                      "title": "Протокол итерации",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-generators-syntax",
+                      "title": "Генераторы: синтаксис и поведение",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-practical-generators",
+                      "title": "Практические применения",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-async-generators",
+                      "title": "Async-генераторы",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -284,10 +585,26 @@
                   "order": 19,
                   "contentPath": "content/ru/ch19-proxy",
                   "subchapters": [
-                    { "id": "01-proxy-basics", "title": "Proxy: ловушки и handler", "order": 1 },
-                    { "id": "02-reflect", "title": "Reflect API", "order": 2 },
-                    { "id": "03-practical-proxy", "title": "Практические паттерны", "order": 3 },
-                    { "id": "04-reactivity", "title": "Реактивность: Vue 3 под капотом", "order": 4 }
+                    {
+                      "id": "01-proxy-basics",
+                      "title": "Proxy: ловушки и handler",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-reflect",
+                      "title": "Reflect API",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-practical-proxy",
+                      "title": "Практические паттерны",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-reactivity",
+                      "title": "Реактивность: Vue 3 под капотом",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -297,10 +614,26 @@
                   "order": 20,
                   "contentPath": "content/ru/ch20-modules",
                   "subchapters": [
-                    { "id": "01-esm-basics", "title": "ESM: import и export", "order": 1 },
-                    { "id": "02-cjs-vs-esm", "title": "CommonJS vs ESM", "order": 2 },
-                    { "id": "03-dynamic-import", "title": "Динамический import()", "order": 3 },
-                    { "id": "04-tree-shaking", "title": "Tree shaking и циклические зависимости", "order": 4 }
+                    {
+                      "id": "01-esm-basics",
+                      "title": "ESM: import и export",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-cjs-vs-esm",
+                      "title": "CommonJS vs ESM",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-dynamic-import",
+                      "title": "Динамический import()",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-tree-shaking",
+                      "title": "Tree shaking и циклические зависимости",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -310,12 +643,33 @@
                   "order": 21,
                   "contentPath": "content/ru/ch02-async",
                   "subchapters": [
-                    { "id": "01-what-and-why", "title": "Синхронный vs асинхронный код", "order": 1 },
-                    { "id": "02-event-loop", "title": "Event Loop", "order": 2 },
-                    { "id": "03-promises", "title": "Promises", "order": 3 },
-                    { "id": "04-async-await", "title": "Async/Await", "order": 4 },
-                    { "id": "05-patterns", "title": "Паттерны и реальные задачи", "order": 5 }
-                  ]
+                    {
+                      "id": "01-what-and-why",
+                      "title": "Синхронный vs асинхронный код",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-event-loop",
+                      "title": "Event Loop",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-promises",
+                      "title": "Promises",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-async-await",
+                      "title": "Async/Await",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-patterns",
+                      "title": "Паттерны и реальные задачи",
+                      "order": 5
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch03-parallelism",
@@ -324,12 +678,33 @@
                   "order": 22,
                   "contentPath": "content/ru/ch03-parallelism",
                   "subchapters": [
-                    { "id": "01-concepts", "title": "Конкурентность vs параллелизм", "order": 1 },
-                    { "id": "02-web-workers", "title": "Web Workers", "order": 2 },
-                    { "id": "03-shared-memory", "title": "SharedArrayBuffer и Atomics", "order": 3 },
-                    { "id": "04-node-parallelism", "title": "Параллелизм в Node.js", "order": 4 },
-                    { "id": "05-patterns-and-decisions", "title": "Паттерны и решения", "order": 5 }
-                  ]
+                    {
+                      "id": "01-concepts",
+                      "title": "Конкурентность vs параллелизм",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-web-workers",
+                      "title": "Web Workers",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-shared-memory",
+                      "title": "SharedArrayBuffer и Atomics",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-node-parallelism",
+                      "title": "Параллелизм в Node.js",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-patterns-and-decisions",
+                      "title": "Паттерны и решения",
+                      "order": 5
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             },
@@ -345,13 +720,38 @@
                   "order": 23,
                   "contentPath": "content/ru/ch04-v8-engine",
                   "subchapters": [
-                    { "id": "01-architecture", "title": "Архитектура V8", "order": 1 },
-                    { "id": "02-memory-model", "title": "Память: стек, куча, объекты", "order": 2 },
-                    { "id": "03-jit-optimization", "title": "JIT-компиляция и оптимизации", "order": 3 },
-                    { "id": "04-context-allocation", "title": "Context Allocation и замыкания", "order": 4 },
-                    { "id": "05-garbage-collection", "title": "Сборка мусора", "order": 5 },
-                    { "id": "06-hidden-classes", "title": "Hidden Classes и Inline Caches", "order": 6 }
-                  ]
+                    {
+                      "id": "01-architecture",
+                      "title": "Архитектура V8",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-memory-model",
+                      "title": "Память: стек, куча, объекты",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-jit-optimization",
+                      "title": "JIT-компиляция и оптимизации",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-context-allocation",
+                      "title": "Context Allocation и замыкания",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-garbage-collection",
+                      "title": "Сборка мусора",
+                      "order": 5
+                    },
+                    {
+                      "id": "06-hidden-classes",
+                      "title": "Hidden Classes и Inline Caches",
+                      "order": 6
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             }
@@ -375,11 +775,28 @@
                   "order": 32,
                   "contentPath": "content/ru/ch32-ts-intro",
                   "subchapters": [
-                    { "id": "01-what-is-ts", "title": "Что такое TypeScript и зачем он нужен", "order": 1 },
-                    { "id": "02-installation", "title": "Установка и первая программа", "order": 2 },
-                    { "id": "03-compiler", "title": "Как работает компилятор tsc", "order": 3 },
-                    { "id": "04-strict-mode", "title": "Строгий режим и флаги компилятора", "order": 4 }
-                  ]
+                    {
+                      "id": "01-what-is-ts",
+                      "title": "Что такое TypeScript и зачем он нужен",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-installation",
+                      "title": "Установка и первая программа",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-compiler",
+                      "title": "Как работает компилятор tsc",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-strict-mode",
+                      "title": "Строгий режим и флаги компилятора",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             },
@@ -395,12 +812,33 @@
                   "order": 24,
                   "contentPath": "content/ru/ch06-ts-type-system",
                   "subchapters": [
-                    { "id": "01-what-and-why", "title": "Что такое система типов и зачем она нужна", "order": 1 },
-                    { "id": "02-structural-vs-nominal", "title": "Структурная vs номинальная типизация", "order": 2 },
-                    { "id": "03-primitives-and-literals", "title": "Примитивные типы, литералы и специальные типы", "order": 3 },
-                    { "id": "04-object-types", "title": "Объектные типы: интерфейсы, type alias, классы", "order": 4 },
-                    { "id": "05-type-narrowing", "title": "Сужение типов и контроль потока", "order": 5 }
-                  ]
+                    {
+                      "id": "01-what-and-why",
+                      "title": "Что такое система типов и зачем она нужна",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-structural-vs-nominal",
+                      "title": "Структурная vs номинальная типизация",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-primitives-and-literals",
+                      "title": "Примитивные типы, литералы и специальные типы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-object-types",
+                      "title": "Объектные типы: интерфейсы, type alias, классы",
+                      "order": 4
+                    },
+                    {
+                      "id": "05-type-narrowing",
+                      "title": "Сужение типов и контроль потока",
+                      "order": 5
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch33-ts-functions",
@@ -409,11 +847,28 @@
                   "order": 33,
                   "contentPath": "content/ru/ch33-ts-functions",
                   "subchapters": [
-                    { "id": "01-function-types", "title": "Типы функций и сигнатуры вызова", "order": 1 },
-                    { "id": "02-overloads", "title": "Перегрузки функций", "order": 2 },
-                    { "id": "03-this-void", "title": "this-параметр и void", "order": 3 },
-                    { "id": "04-rest-destructuring", "title": "Rest-параметры и деструктуризация", "order": 4 }
-                  ]
+                    {
+                      "id": "01-function-types",
+                      "title": "Типы функций и сигнатуры вызова",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-overloads",
+                      "title": "Перегрузки функций",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-this-void",
+                      "title": "this-параметр и void",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-rest-destructuring",
+                      "title": "Rest-параметры и деструктуризация",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch34-ts-object-types",
@@ -422,11 +877,28 @@
                   "order": 34,
                   "contentPath": "content/ru/ch34-ts-object-types",
                   "subchapters": [
-                    { "id": "01-properties", "title": "Свойства: optional, readonly, index signatures", "order": 1 },
-                    { "id": "02-extending-intersection", "title": "Расширение и пересечение типов", "order": 2 },
-                    { "id": "03-generic-objects", "title": "Generic-объекты и интерфейсы", "order": 3 },
-                    { "id": "04-tuples", "title": "Кортежи", "order": 4 }
-                  ]
+                    {
+                      "id": "01-properties",
+                      "title": "Свойства: optional, readonly, index signatures",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-extending-intersection",
+                      "title": "Расширение и пересечение типов",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-generic-objects",
+                      "title": "Generic-объекты и интерфейсы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-tuples",
+                      "title": "Кортежи",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch39-ts-enums",
@@ -435,10 +907,23 @@
                   "order": 35,
                   "contentPath": "content/ru/ch39-ts-enums",
                   "subchapters": [
-                    { "id": "01-numeric-string", "title": "Числовые и строковые перечисления", "order": 1 },
-                    { "id": "02-const-computed", "title": "const enums и вычисляемые члены", "order": 2 },
-                    { "id": "03-patterns-alternatives", "title": "Паттерны использования и альтернативы", "order": 3 }
-                  ]
+                    {
+                      "id": "01-numeric-string",
+                      "title": "Числовые и строковые перечисления",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-const-computed",
+                      "title": "const enums и вычисляемые члены",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-patterns-alternatives",
+                      "title": "Паттерны использования и альтернативы",
+                      "order": 3
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             },
@@ -454,11 +939,28 @@
                   "order": 36,
                   "contentPath": "content/ru/ch35-ts-type-operators",
                   "subchapters": [
-                    { "id": "01-keyof", "title": "keyof: получение ключей типа", "order": 1 },
-                    { "id": "02-typeof", "title": "typeof: получение типа из значения", "order": 2 },
-                    { "id": "03-indexed-access", "title": "Индексные типы доступа T[K]", "order": 3 },
-                    { "id": "04-combining", "title": "Комбинирование операторов", "order": 4 }
-                  ]
+                    {
+                      "id": "01-keyof",
+                      "title": "keyof: получение ключей типа",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-typeof",
+                      "title": "typeof: получение типа из значения",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-indexed-access",
+                      "title": "Индексные типы доступа T[K]",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-combining",
+                      "title": "Комбинирование операторов",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch36-ts-classes",
@@ -467,11 +969,28 @@
                   "order": 37,
                   "contentPath": "content/ru/ch36-ts-classes",
                   "subchapters": [
-                    { "id": "01-members", "title": "Поля, конструкторы и методы", "order": 1 },
-                    { "id": "02-visibility-heritage", "title": "Модификаторы доступа и наследование", "order": 2 },
-                    { "id": "03-abstract-static", "title": "abstract-классы и static-члены", "order": 3 },
-                    { "id": "04-mixins-this", "title": "Mixins и this-типы", "order": 4 }
-                  ]
+                    {
+                      "id": "01-members",
+                      "title": "Поля, конструкторы и методы",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-visibility-heritage",
+                      "title": "Модификаторы доступа и наследование",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-abstract-static",
+                      "title": "abstract-классы и static-члены",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-mixins-this",
+                      "title": "Mixins и this-типы",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch37-ts-modules",
@@ -480,11 +999,28 @@
                   "order": 38,
                   "contentPath": "content/ru/ch37-ts-modules",
                   "subchapters": [
-                    { "id": "01-modules", "title": "Модули в TypeScript", "order": 1 },
-                    { "id": "02-module-resolution", "title": "Module Resolution", "order": 2 },
-                    { "id": "03-namespaces", "title": "Namespaces", "order": 3 },
-                    { "id": "04-declaration-merging", "title": "Declaration Merging", "order": 4 }
-                  ]
+                    {
+                      "id": "01-modules",
+                      "title": "Модули в TypeScript",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-module-resolution",
+                      "title": "Module Resolution",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-namespaces",
+                      "title": "Namespaces",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-declaration-merging",
+                      "title": "Declaration Merging",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch42-ts-jsx",
@@ -493,10 +1029,23 @@
                   "order": 39,
                   "contentPath": "content/ru/ch42-ts-jsx",
                   "subchapters": [
-                    { "id": "01-jsx-basics", "title": "Основы JSX в TypeScript", "order": 1 },
-                    { "id": "02-elements", "title": "Intrinsic и value-based элементы", "order": 2 },
-                    { "id": "03-attributes-children", "title": "Типизация атрибутов и children", "order": 3 }
-                  ]
+                    {
+                      "id": "01-jsx-basics",
+                      "title": "Основы JSX в TypeScript",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-elements",
+                      "title": "Intrinsic и value-based элементы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-attributes-children",
+                      "title": "Типизация атрибутов и children",
+                      "order": 3
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch44-ts-config",
@@ -505,11 +1054,28 @@
                   "order": 40,
                   "contentPath": "content/ru/ch44-ts-config",
                   "subchapters": [
-                    { "id": "01-structure", "title": "Структура tsconfig.json", "order": 1 },
-                    { "id": "02-compiler-options", "title": "Ключевые опции компилятора", "order": 2 },
-                    { "id": "03-paths-aliases", "title": "Paths, baseUrl и алиасы", "order": 3 },
-                    { "id": "04-project-references", "title": "Project References и монорепо", "order": 4 }
-                  ]
+                    {
+                      "id": "01-structure",
+                      "title": "Структура tsconfig.json",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-compiler-options",
+                      "title": "Ключевые опции компилятора",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-paths-aliases",
+                      "title": "Paths, baseUrl и алиасы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-project-references",
+                      "title": "Project References и монорепо",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             },
@@ -525,10 +1091,26 @@
                   "order": 25,
                   "contentPath": "content/ru/ch25-ts-generics",
                   "subchapters": [
-                    { "id": "01-what-are-generics", "title": "Что такое дженерики и зачем они нужны", "order": 1 },
-                    { "id": "02-generic-functions-classes", "title": "Дженерик-функции и классы", "order": 2 },
-                    { "id": "03-infer-conditional", "title": "infer и условные типы", "order": 3 },
-                    { "id": "04-real-patterns", "title": "Реальные паттерны с дженериками", "order": 4 }
+                    {
+                      "id": "01-what-are-generics",
+                      "title": "Что такое дженерики и зачем они нужны",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-generic-functions-classes",
+                      "title": "Дженерик-функции и классы",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-infer-conditional",
+                      "title": "infer и условные типы",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-real-patterns",
+                      "title": "Реальные паттерны с дженериками",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -538,10 +1120,26 @@
                   "order": 26,
                   "contentPath": "content/ru/ch26-ts-advanced",
                   "subchapters": [
-                    { "id": "01-mapped-types", "title": "Mapped Types: трансформация типов", "order": 1 },
-                    { "id": "02-conditional-types", "title": "Conditional Types в глубину", "order": 2 },
-                    { "id": "03-template-literal", "title": "Template Literal Types", "order": 3 },
-                    { "id": "04-utility-types", "title": "Утилитарные типы: полный разбор", "order": 4 }
+                    {
+                      "id": "01-mapped-types",
+                      "title": "Mapped Types: трансформация типов",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-conditional-types",
+                      "title": "Conditional Types в глубину",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-template-literal",
+                      "title": "Template Literal Types",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-utility-types",
+                      "title": "Утилитарные типы: полный разбор",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -551,10 +1149,26 @@
                   "order": 27,
                   "contentPath": "content/ru/ch27-ts-decorators",
                   "subchapters": [
-                    { "id": "01-what-are-decorators", "title": "Что такое декораторы и как они работают", "order": 1 },
-                    { "id": "02-class-method-property", "title": "Декораторы классов, методов и свойств", "order": 2 },
-                    { "id": "03-reflect-metadata", "title": "Reflect Metadata API", "order": 3 },
-                    { "id": "04-practical-decorators", "title": "Практические паттерны: DI, валидация, логирование", "order": 4 }
+                    {
+                      "id": "01-what-are-decorators",
+                      "title": "Что такое декораторы и как они работают",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-class-method-property",
+                      "title": "Декораторы классов, методов и свойств",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-reflect-metadata",
+                      "title": "Reflect Metadata API",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-practical-decorators",
+                      "title": "Практические паттерны: DI, валидация, логирование",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -564,11 +1178,28 @@
                   "order": 41,
                   "contentPath": "content/ru/ch38-ts-utility-types",
                   "subchapters": [
-                    { "id": "01-object-transform", "title": "Трансформация объектов", "order": 1 },
-                    { "id": "02-union-manipulation", "title": "Работа с union-типами", "order": 2 },
-                    { "id": "03-function-class-types", "title": "Типы функций и классов", "order": 3 },
-                    { "id": "04-awaited-string", "title": "Awaited и строковые типы", "order": 4 }
-                  ]
+                    {
+                      "id": "01-object-transform",
+                      "title": "Трансформация объектов",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-union-manipulation",
+                      "title": "Работа с union-типами",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-function-class-types",
+                      "title": "Типы функций и классов",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-awaited-string",
+                      "title": "Awaited и строковые типы",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch40-ts-type-inference",
@@ -577,10 +1208,23 @@
                   "order": 42,
                   "contentPath": "content/ru/ch40-ts-type-inference",
                   "subchapters": [
-                    { "id": "01-inference", "title": "Как TypeScript выводит типы", "order": 1 },
-                    { "id": "02-compatibility", "title": "Совместимость типов", "order": 2 },
-                    { "id": "03-variance", "title": "Ковариантность и контравариантность", "order": 3 }
-                  ]
+                    {
+                      "id": "01-inference",
+                      "title": "Как TypeScript выводит типы",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-compatibility",
+                      "title": "Совместимость типов",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-variance",
+                      "title": "Ковариантность и контравариантность",
+                      "order": 3
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch41-ts-symbols-iterators",
@@ -589,10 +1233,23 @@
                   "order": 43,
                   "contentPath": "content/ru/ch41-ts-symbols-iterators",
                   "subchapters": [
-                    { "id": "01-symbols", "title": "Символы в TypeScript", "order": 1 },
-                    { "id": "02-iterators", "title": "Итераторы и for...of", "order": 2 },
-                    { "id": "03-generators", "title": "Генераторы и типизация yield", "order": 3 }
-                  ]
+                    {
+                      "id": "01-symbols",
+                      "title": "Символы в TypeScript",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-iterators",
+                      "title": "Итераторы и for...of",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-generators",
+                      "title": "Генераторы и типизация yield",
+                      "order": 3
+                    }
+                  ],
+                  "hasPlayground": false
                 },
                 {
                   "id": "ch43-ts-declarations",
@@ -601,11 +1258,28 @@
                   "order": 44,
                   "contentPath": "content/ru/ch43-ts-declarations",
                   "subchapters": [
-                    { "id": "01-intro", "title": "Что такое .d.ts и зачем они нужны", "order": 1 },
-                    { "id": "02-writing", "title": "Написание declaration files", "order": 2 },
-                    { "id": "03-definitely-typed", "title": "DefinitelyTyped, @types и публикация", "order": 3 },
-                    { "id": "04-triple-slash", "title": "Triple-Slash Directives и Module Augmentation", "order": 4 }
-                  ]
+                    {
+                      "id": "01-intro",
+                      "title": "Что такое .d.ts и зачем они нужны",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-writing",
+                      "title": "Написание declaration files",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-definitely-typed",
+                      "title": "DefinitelyTyped, @types и публикация",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-triple-slash",
+                      "title": "Triple-Slash Directives и Module Augmentation",
+                      "order": 4
+                    }
+                  ],
+                  "hasPlayground": false
                 }
               ]
             }
@@ -629,10 +1303,26 @@
                   "order": 28,
                   "contentPath": "content/ru/ch28-dom",
                   "subchapters": [
-                    { "id": "01-dom-tree", "title": "DOM-дерево и навигация", "order": 1 },
-                    { "id": "02-query-manipulation", "title": "Поиск и изменение элементов", "order": 2 },
-                    { "id": "03-attributes-classes-styles", "title": "Атрибуты, классы и стили", "order": 3 },
-                    { "id": "04-documentfragment-performance", "title": "DocumentFragment и производительность DOM", "order": 4 }
+                    {
+                      "id": "01-dom-tree",
+                      "title": "DOM-дерево и навигация",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-query-manipulation",
+                      "title": "Поиск и изменение элементов",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-attributes-classes-styles",
+                      "title": "Атрибуты, классы и стили",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-documentfragment-performance",
+                      "title": "DocumentFragment и производительность DOM",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -642,10 +1332,26 @@
                   "order": 29,
                   "contentPath": "content/ru/ch29-events",
                   "subchapters": [
-                    { "id": "01-event-model", "title": "Модель событий: всплытие и захват", "order": 1 },
-                    { "id": "02-delegation", "title": "Делегирование событий", "order": 2 },
-                    { "id": "03-custom-events", "title": "CustomEvent и собственные события", "order": 3 },
-                    { "id": "04-optimization", "title": "Оптимизация обработчиков событий", "order": 4 }
+                    {
+                      "id": "01-event-model",
+                      "title": "Модель событий: всплытие и захват",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-delegation",
+                      "title": "Делегирование событий",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-custom-events",
+                      "title": "CustomEvent и собственные события",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-optimization",
+                      "title": "Оптимизация обработчиков событий",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -655,10 +1361,26 @@
                   "order": 30,
                   "contentPath": "content/ru/ch30-performance",
                   "subchapters": [
-                    { "id": "01-critical-rendering-path", "title": "Critical Rendering Path", "order": 1 },
-                    { "id": "02-repaint-reflow", "title": "Repaint, Reflow и батчинг", "order": 2 },
-                    { "id": "03-raf-ric", "title": "requestAnimationFrame и requestIdleCallback", "order": 3 },
-                    { "id": "04-profiling", "title": "Performance API и профилирование", "order": 4 }
+                    {
+                      "id": "01-critical-rendering-path",
+                      "title": "Critical Rendering Path",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-repaint-reflow",
+                      "title": "Repaint, Reflow и батчинг",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-raf-ric",
+                      "title": "requestAnimationFrame и requestIdleCallback",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-profiling",
+                      "title": "Performance API и профилирование",
+                      "order": 4
+                    }
                   ]
                 },
                 {
@@ -668,10 +1390,26 @@
                   "order": 31,
                   "contentPath": "content/ru/ch31-web-apis",
                   "subchapters": [
-                    { "id": "01-fetch-api", "title": "Fetch API: запросы, ответы и AbortController", "order": 1 },
-                    { "id": "02-websocket", "title": "WebSocket: двусторонняя связь", "order": 2 },
-                    { "id": "03-observers", "title": "Observer API: Intersection, Resize, Mutation", "order": 3 },
-                    { "id": "04-storage", "title": "Хранилища: localStorage, sessionStorage и IndexedDB", "order": 4 }
+                    {
+                      "id": "01-fetch-api",
+                      "title": "Fetch API: запросы, ответы и AbortController",
+                      "order": 1
+                    },
+                    {
+                      "id": "02-websocket",
+                      "title": "WebSocket: двусторонняя связь",
+                      "order": 2
+                    },
+                    {
+                      "id": "03-observers",
+                      "title": "Observer API: Intersection, Resize, Mutation",
+                      "order": 3
+                    },
+                    {
+                      "id": "04-storage",
+                      "title": "Хранилища: localStorage, sessionStorage и IndexedDB",
+                      "order": 4
+                    }
                   ]
                 }
               ]

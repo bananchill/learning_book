@@ -10,14 +10,14 @@
 
 ## Предварительные знания
 
-- [Генераторы в JavaScript](/ch18-generators) -- базовый синтаксис `function*` и `yield`
-- [Дженерики в TypeScript](/ch25-ts-generics) -- параметризованные типы
+- [Генераторы в JavaScript](/frontend/javascript/ch18-generators) -- базовый синтаксис `function*` и `yield`
+- [Дженерики в TypeScript](/frontend/typescript/ch25-ts-generics) -- параметризованные типы
 
 ## Подглавы
 
-1. [Символы в TypeScript](./01-symbols.md)
-2. [Итераторы и for...of](./02-iterators.md)
-3. [Генераторы и типизация yield](./03-generators.md)
+1. [Символы в TypeScript](/frontend/typescript/ch41-ts-symbols-iterators/01-symbols)
+2. [Итераторы и for...of](/frontend/typescript/ch41-ts-symbols-iterators/02-iterators)
+3. [Генераторы и типизация yield](/frontend/typescript/ch41-ts-symbols-iterators/03-generators)
 
 ## Почему это важно
 

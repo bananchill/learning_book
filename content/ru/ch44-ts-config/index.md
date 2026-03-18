@@ -11,10 +11,10 @@ description: "Структура tsconfig.json, ключевые опции ко
 
 ## Содержание
 
-1. [Структура tsconfig.json](/ch44-ts-config/01-structure)
-2. [Ключевые опции компилятора](/ch44-ts-config/02-compiler-options)
-3. [Paths, baseUrl и алиасы](/ch44-ts-config/03-paths-aliases)
-4. [Project References и монорепо](/ch44-ts-config/04-project-references)
+1. [Структура tsconfig.json](/frontend/typescript/ch44-ts-config/01-structure)
+2. [Ключевые опции компилятора](/frontend/typescript/ch44-ts-config/02-compiler-options)
+3. [Paths, baseUrl и алиасы](/frontend/typescript/ch44-ts-config/03-paths-aliases)
+4. [Project References и монорепо](/frontend/typescript/ch44-ts-config/04-project-references)
 
 ## Что ты научишься делать
 
@@ -26,8 +26,8 @@ description: "Структура tsconfig.json, ключевые опции ко
 
 ## Связанные темы
 
-- [Введение в TypeScript](/ch32-ts-intro) -- основы TypeScript, первое знакомство с tsc
-- [Модули и пространства имён](/ch37-ts-modules) -- модульная система, стратегии разрешения
+- [Введение в TypeScript](/frontend/typescript/ch32-ts-intro) -- основы TypeScript, первое знакомство с tsc
+- [Модули и пространства имён](/frontend/typescript/ch37-ts-modules) -- модульная система, стратегии разрешения
 
 ## Время чтения
 

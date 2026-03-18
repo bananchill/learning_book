@@ -10,14 +10,14 @@ JSX -- синтаксическое расширение, позволяющее
 
 ## Предварительные знания
 
-- [Объектные типы в TypeScript](/ch34-ts-object-types) -- интерфейсы, опциональные свойства, индексные сигнатуры
-- [Функции в TypeScript](/ch33-ts-functions) -- типизация параметров и возвращаемых значений
+- [Объектные типы в TypeScript](/frontend/typescript/ch34-ts-object-types) -- интерфейсы, опциональные свойства, индексные сигнатуры
+- [Функции в TypeScript](/frontend/typescript/ch33-ts-functions) -- типизация параметров и возвращаемых значений
 
 ## Подглавы
 
-1. [Основы JSX в TypeScript](./01-jsx-basics.md)
-2. [Intrinsic и value-based элементы](./02-elements.md)
-3. [Типизация атрибутов и children](./03-attributes-children.md)
+1. [Основы JSX в TypeScript](/frontend/typescript/ch42-ts-jsx/01-jsx-basics)
+2. [Intrinsic и value-based элементы](/frontend/typescript/ch42-ts-jsx/02-elements)
+3. [Типизация атрибутов и children](/frontend/typescript/ch42-ts-jsx/03-attributes-children)
 
 ## Почему это важно
 

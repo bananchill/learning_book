@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["operators", "destructuring", "spread", "rest", "short-circuit"],
   "subchapters": [
-    { "id": "01-arithmetic", "title": "Арифметические и строковые операторы", "file": "01-arithmetic.mdx" },
-    { "id": "02-comparison", "title": "Операторы сравнения", "file": "02-comparison.mdx" },
-    { "id": "03-logical", "title": "Логические операторы", "file": "03-logical.mdx" },
-    { "id": "04-destructuring", "title": "Деструктуризация и spread/rest", "file": "04-destructuring.mdx" }
+    { "id": "01-arithmetic", "title": "Арифметические и строковые операторы", "file": "01-arithmetic.md" },
+    { "id": "02-comparison", "title": "Операторы сравнения", "file": "02-comparison.md" },
+    { "id": "03-logical", "title": "Логические операторы", "file": "03-logical.md" },
+    { "id": "04-destructuring", "title": "Деструктуризация и spread/rest", "file": "04-destructuring.md" }
   ]
 }

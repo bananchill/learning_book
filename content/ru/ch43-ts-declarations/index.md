@@ -11,14 +11,14 @@
 
 ## Предварительные знания
 
-- [Модули и пространства имён](/ch37-ts-modules) -- ES-модули, стратегии разрешения, пространства имён
+- [Модули и пространства имён](/frontend/typescript/ch37-ts-modules) -- ES-модули, стратегии разрешения, пространства имён
 
 ## Подглавы
 
-1. [Что такое .d.ts и зачем они нужны](./01-intro.md)
-2. [Написание declaration files](./02-writing.md)
-3. [DefinitelyTyped, @types и публикация](./03-definitely-typed.md)
-4. [Triple-Slash Directives и Module Augmentation](./04-triple-slash.md)
+1. [Что такое .d.ts и зачем они нужны](/frontend/typescript/ch43-ts-declarations/01-intro)
+2. [Написание declaration files](/frontend/typescript/ch43-ts-declarations/02-writing)
+3. [DefinitelyTyped, @types и публикация](/frontend/typescript/ch43-ts-declarations/03-definitely-typed)
+4. [Triple-Slash Directives и Module Augmentation](/frontend/typescript/ch43-ts-declarations/04-triple-slash)
 
 ## Почему это важно
 

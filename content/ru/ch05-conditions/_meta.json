@@ -7,9 +7,9 @@
   "difficulty": "beginner",
   "tags": ["if-else", "switch", "ternary", "early-return", "guard-clauses"],
   "subchapters": [
-    { "id": "01-if-else", "title": "if / else if / else", "file": "01-if-else.mdx" },
-    { "id": "02-switch", "title": "switch / case", "file": "02-switch.mdx" },
-    { "id": "03-ternary", "title": "Тернарный оператор", "file": "03-ternary.mdx" },
-    { "id": "04-patterns", "title": "Паттерны условий", "file": "04-patterns.mdx" }
+    { "id": "01-if-else", "title": "if / else if / else", "file": "01-if-else.md" },
+    { "id": "02-switch", "title": "switch / case", "file": "02-switch.md" },
+    { "id": "03-ternary", "title": "Тернарный оператор", "file": "03-ternary.md" },
+    { "id": "04-patterns", "title": "Паттерны условий", "file": "04-patterns.md" }
   ]
 }

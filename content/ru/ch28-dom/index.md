@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # DOM API
 
@@ -17,11 +17,7 @@ DOM API — это не часть JavaScript! Это Web API, предоста�
 
 ## Подглавы
 
-1. [DOM-дерево](./01-dom-tree) — что такое DOM, типы узлов, traversal
-2. [Поиск и манипуляции](./02-query-manipulation) — querySelector, createElement, append/remove
-3. [Атрибуты, классы, стили](./03-attributes-classes-styles) — getAttribute, classList, dataset
-4. [DocumentFragment и производительность](./04-documentfragment-performance) — батчинг, reflow/repaint
-
-<CrossLink chapter="ch09-objects" title="Объекты" />
-<CrossLink chapter="ch29-events" title="События и делегирование" />
-<CrossLink chapter="ch30-performance" title="Производительность браузера" />
+1. [DOM-дерево](/frontend/browser/ch28-dom/01-dom-tree) — что такое DOM, типы узлов, traversal
+2. [Поиск и манипуляции](/frontend/browser/ch28-dom/02-query-manipulation) — querySelector, createElement, append/remove
+3. [Атрибуты, классы, стили](/frontend/browser/ch28-dom/03-attributes-classes-styles) — getAttribute, classList, dataset
+4. [DocumentFragment и производительность](/frontend/browser/ch28-dom/04-documentfragment-performance) — батчинг, reflow/repaint

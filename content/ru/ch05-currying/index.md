@@ -29,11 +29,3 @@ description: "Каррирование, частичное применение,
 
 - [Замыкания](/frontend/javascript/ch01-closures) — каждый вызов каррированной функции создаёт замыкание, захватывая аргумент
 - [Движок V8](/frontend/javascript/ch04-v8-engine) — как V8 оптимизирует вложенные функции и аллокацию контекстов
-
-## Задания
-
-[Перейти к заданиям](/frontend/javascript/ch05-currying/tasks) — 3 easy, 2 medium, 2 hard
-
-## Песочница
-
-[Открыть песочницу](/frontend/javascript/ch05-currying/playground)

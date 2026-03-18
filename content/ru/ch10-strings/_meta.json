@@ -9,25 +9,25 @@
     {
       "id": "01-basics",
       "title": "Строки и Unicode",
-      "file": "01-basics.mdx",
+      "file": "01-basics.md",
       "estimatedTime": 10
     },
     {
       "id": "02-methods",
       "title": "Методы строк",
-      "file": "02-methods.mdx",
+      "file": "02-methods.md",
       "estimatedTime": 12
     },
     {
       "id": "03-template-literals",
       "title": "Шаблонные литералы",
-      "file": "03-template-literals.mdx",
+      "file": "03-template-literals.md",
       "estimatedTime": 10
     },
     {
       "id": "04-regex",
       "title": "Регулярные выражения",
-      "file": "04-regex.mdx",
+      "file": "04-regex.md",
       "estimatedTime": 13
     }
   ],

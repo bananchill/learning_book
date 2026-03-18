@@ -1,4 +1,4 @@
-import { Callout, CrossLink } from '@book/ui'
+import { Callout } from '@book/ui'
 
 # Строки
 
@@ -29,15 +29,7 @@ console.log(str); // 'hello' — исходная не изменилась
 
 ## Разделы главы
 
-- [Строки и Unicode](./01-basics) — создание, символы, экранирование
-- [Методы строк](./02-methods) — slice, indexOf, split, replace, trim
-- [Шаблонные литералы](./03-template-literals) — интерполяция и теговые шаблоны
-- [Регулярные выражения](./04-regex) — паттерны, поиск и замена
-
-<CrossLink chapter="ch03-variables" section="primitives">
-Строки как примитивный тип — в главе «Переменные и типы данных».
-</CrossLink>
-
-<CrossLink chapter="ch08-arrays" section="split-join">
-`split` превращает строку в массив, `join` — обратно.
-</CrossLink>
+- [Строки и Unicode](/frontend/javascript/ch10-strings/01-basics) — создание, символы, экранирование
+- [Методы строк](/frontend/javascript/ch10-strings/02-methods) — slice, indexOf, split, replace, trim
+- [Шаблонные литералы](/frontend/javascript/ch10-strings/03-template-literals) — интерполяция и теговые шаблоны
+- [Регулярные выражения](/frontend/javascript/ch10-strings/04-regex) — паттерны, поиск и замена
