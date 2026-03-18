@@ -4,6 +4,8 @@ import { Callout, DeepDive } from '@book/ui'
 
 ## Поиск элементов
 
+Для поиска элементов в DOM существует несколько методов. Универсальные `querySelector` и `querySelectorAll` принимают любой CSS-селектор и подходят для большинства случаев. Метод `getElementById` остаётся самым быстрым способом найти элемент по ID, но ограничен только поиском по идентификатору. Методы `getElementsByClassName` и `getElementsByTagName` возвращают живые коллекции, которые автоматически обновляются при изменении DOM.
+
 ```javascript
 // querySelector — первый элемент по CSS-селектору
 const btn = document.querySelector('#submit-btn')
@@ -29,6 +31,8 @@ document.getElementsByTagName('div')     // HTMLCollection (живая)
 
 ## Создание элементов
 
+Создание нового элемента в DOM -- это двухэтапный процесс. Сначала вы создаёте узел в памяти с помощью `document.createElement()`, затем настраиваете его свойства (текст, классы, атрибуты). На этом этапе элемент существует только в JavaScript и ещё не виден на странице -- для этого его нужно вставить в DOM (об этом в следующем разделе).
+
 ```javascript
 // Создаём элемент
 const div = document.createElement('div')
@@ -47,6 +51,8 @@ const clone = div.cloneNode(true)  // true = глубокое клонирова
 ```
 
 ## Вставка в DOM
+
+Современные методы `append`, `prepend`, `before` и `after` позволяют вставить элемент в конец, в начало, перед или после целевого узла соответственно. Метод `insertAdjacentHTML` предоставляет четыре позиции вставки: `beforebegin` (перед самим элементом), `afterbegin` (внутри элемента, в самое начало), `beforeend` (внутри элемента, в самый конец) и `afterend` (после самого элемента). Все эти методы удобнее и читаемее устаревшего `insertBefore`.
 
 ```javascript
 const container = document.querySelector('.container')
@@ -67,6 +73,8 @@ container.insertAdjacentHTML('beforeend', '<p>Текст</p>')
 ```
 
 ## Удаление и замена
+
+Для удаления элемента из DOM проще всего использовать метод `remove()`, который вызывается непосредственно на самом элементе. Для замены одного элемента другим подходит `replaceWith()`. Оба метода имеют устаревшие аналоги (`removeChild`, `replaceChild`), которые требуют обращения к родительскому узлу, но могут встретиться в старом коде.
 
 ```javascript
 const el = document.querySelector('.old')
