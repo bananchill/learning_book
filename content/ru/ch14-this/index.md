@@ -11,17 +11,19 @@ description: "Четыре правила привязки this, call/apply/bind
 
 ## Содержание
 
-1. [Четыре правила привязки this](/frontend/javascript/ch14-this/01-binding-rules)
+1. [Что такое this](/frontend/javascript/ch14-this/01-what-is-this)
 2. [call, apply, bind](/frontend/javascript/ch14-this/02-call-apply-bind)
 3. [Стрелочные функции и this](/frontend/javascript/ch14-this/03-arrow-this)
 4. [Потеря контекста и решения](/frontend/javascript/ch14-this/04-context-loss)
+5. [Четыре правила привязки this](/frontend/javascript/ch14-this/05-binding-rules)
 
 ## Что ты научишься делать
 
-- Определять `this` в любом контексте по четырём правилам
+- Понимать, что такое `this` и почему он зависит от вызова
 - Использовать `call`, `apply`, `bind` для явной привязки
 - Понимать, когда стрелочные функции — правильный выбор
 - Диагностировать и исправлять потерю контекста
+- Определять `this` в любом контексте по четырём правилам
 
 ## Связанные темы
 

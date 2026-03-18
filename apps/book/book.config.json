@@ -210,10 +210,11 @@
                   "order": 14,
                   "contentPath": "content/ru/ch14-this",
                   "subchapters": [
-                    { "id": "01-binding-rules", "title": "Четыре правила привязки this", "order": 1 },
+                    { "id": "01-what-is-this", "title": "Что такое this", "order": 1 },
                     { "id": "02-call-apply-bind", "title": "call, apply и bind", "order": 2 },
                     { "id": "03-arrow-this", "title": "Стрелочные функции и this", "order": 3 },
-                    { "id": "04-context-loss", "title": "Потеря контекста и её решения", "order": 4 }
+                    { "id": "04-context-loss", "title": "Потеря контекста и её решения", "order": 4 },
+                    { "id": "05-binding-rules", "title": "Четыре правила привязки this", "order": 5 }
                   ]
                 },
                 {
