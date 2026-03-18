@@ -114,6 +114,10 @@ log('ERROR', 'Файл не найден', 'path:', '/etc/config');
 // [ERROR] Файл не найден path: /etc/config
 ```
 
+<Callout type="info">
+Метод `reduce` подробно рассмотрен в [главе Массивы](/frontend/javascript/ch08-arrays/02-iteration).
+</Callout>
+
 <DeepDive title="Spread в функциях vs Array.from">
 
 `Math.max(...arr)` работает только для небольших массивов — слишком большой массив вызовет `RangeError: Maximum call stack size exceeded`.

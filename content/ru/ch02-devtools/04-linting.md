@@ -13,6 +13,8 @@ npm install -D eslint @eslint/js
 npx eslint --init  # Интерактивная настройка
 ```
 
+(`npx` — утилита из npm, запускающая пакет без глобальной установки)
+
 ### Конфигурация (eslint.config.js)
 
 Современный формат конфигурации (Flat Config, ESLint 9+):

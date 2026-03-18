@@ -4,6 +4,8 @@ parent: "ch35-ts-type-operators"
 order: 3
 ---
 
+import { DeepDive } from '@book/ui'
+
 ## Доступ к типу свойства
 
 **Индексный тип доступа** (indexed access type) позволяет обратиться к типу конкретного свойства другого типа. Синтаксис похож на обращение к свойству объекта, но работает на уровне типов:
@@ -118,9 +120,9 @@ const isAdmin = getProperty(user, "admin");
 
 Возвращаемый тип `T[K]` меняется в зависимости от переданного ключа. TypeScript знает, что `getProperty(user, "name")` возвращает `string`, а `getProperty(user, "admin")` — `boolean`.
 
-## Индексный доступ и условные типы
+<DeepDive title="Индексный доступ и условные типы (подробнее в главе Дженерики)">
 
-Индексный доступ можно комбинировать с условными типами для создания гибких утилит:
+Индексный доступ можно комбинировать с условными типами для создания гибких утилит. Конструкция `extends ... ? ... : never` — это **условный тип** (conditional type), который подробно рассмотрен в [главе Продвинутые типы](/frontend/typescript/ch25-ts-generics).
 
 ```ts
 type HasProperty<T, K extends string> =
@@ -132,6 +134,8 @@ type UserName = HasProperty<{ name: string; age: number }, "name">;
 // never
 type UserEmail = HasProperty<{ name: string; age: number }, "email">;
 ```
+
+</DeepDive>
 
 ## Итоги
 

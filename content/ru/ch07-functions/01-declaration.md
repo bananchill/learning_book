@@ -77,7 +77,7 @@ sum2.name; // 'mySum'
 
 // Функция как возвращаемое значение
 function makeMultiplier(n) {
-  return function(x) { return x * n; }; // замыкание!
+  return function(x) { return x * n; }; // замыкание — подробнее в главе Замыкания
 }
 const triple = makeMultiplier(3);
 triple(5); // 15

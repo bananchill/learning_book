@@ -64,7 +64,11 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-## Async в циклах
+<Callout type="info">
+Этот раздел использует `async/await` и `Promise`. Если вы ещё не знакомы с асинхронностью — вернитесь к нему после [главы Асинхронность](/frontend/javascript/ch02-async).
+</Callout>
+
+<DeepDive title="Async в циклах">
 
 ```javascript
 // Последовательное выполнение — await в цикле
@@ -80,6 +84,8 @@ const users = await Promise.all(userIds.map(id => fetchUser(id)));
 <Callout type="tip">
 Если запросы независимы — `Promise.all` быстрее последовательного цикла. Если порядок важен или есть лимиты API — последовательный цикл.
 </Callout>
+
+</DeepDive>
 
 <DeepDive title="Jank и циклы в браузере">
 

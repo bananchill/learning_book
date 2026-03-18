@@ -6,6 +6,8 @@ import { Callout, DeepDive } from '@book/ui'
 
 ## var — функциональный скоуп
 
+**Область видимости (scope)** — это часть кода, в которой переменная доступна. Переменные, объявленные внутри функции, не видны снаружи. Подробно scope, hoisting и TDZ рассмотрены в [главе Scope и Hoisting](/frontend/javascript/ch12-scope-hoisting).
+
 `var` ограничен функцией, а не блоком `{}`:
 
 ```javascript

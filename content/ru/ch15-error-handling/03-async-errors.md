@@ -4,6 +4,10 @@ title: "Асинхронные ошибки"
 
 import { Callout } from '@book/ui'
 
+<Callout type="info">
+Эта подглава требует знания Promise и async/await из [главы Асинхронность](/frontend/javascript/ch02-async).
+</Callout>
+
 ## Ошибки в Promise
 
 ```js

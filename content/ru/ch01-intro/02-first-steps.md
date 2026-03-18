@@ -44,6 +44,10 @@ console.log('Привет, мир!')
 </html>
 ```
 
+<Callout type="info">
+`document.querySelector` находит HTML-элемент на странице по CSS-селектору. Подробно DOM API рассмотрен в [главе DOM](/frontend/browser/ch28-dom).
+</Callout>
+
 ```js
 // script.js
 console.log('Скрипт загружен!')

@@ -36,6 +36,10 @@ Passive listeners особенно важны для `touchstart`, `touchmove`, 
 
 ## AbortController — управление несколькими обработчиками
 
+<Callout type="info">
+`AbortController` — API для отмены асинхронных операций. Он создаёт объект `signal`, который можно передать в `addEventListener` или `fetch`. Вызов `abort()` отменяет все привязанные операции.
+</Callout>
+
 ```javascript
 // Создаём контроллер
 const controller = new AbortController()

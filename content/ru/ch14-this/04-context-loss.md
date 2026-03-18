@@ -112,6 +112,10 @@ class Processor {
 
 ## Случай 4: обработчики событий в классах
 
+<Callout type="info">
+В этом примере используются методы DOM API (`querySelector`, `addEventListener`). Они подробно рассмотрены в [главах DOM](/frontend/browser/ch28-dom) и [События](/frontend/browser/ch29-events).
+</Callout>
+
 ```js
 class Component {
   constructor() {
