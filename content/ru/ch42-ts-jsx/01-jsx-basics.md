@@ -2,6 +2,10 @@ import { Callout, DeepDive } from '@book/ui'
 
 # Основы JSX в TypeScript
 
+<Callout type="info">
+Примеры в этой главе используют React — самую популярную JSX-библиотеку. JSX также поддерживается в Vue, Solid, Preact и других фреймворках. Знание React не требуется для понимания типизации JSX.
+</Callout>
+
 ## Что такое JSX
 
 JSX (JavaScript XML) -- синтаксическое расширение, позволяющее описывать структуру UI прямо в коде:

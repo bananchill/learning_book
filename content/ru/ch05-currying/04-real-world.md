@@ -4,6 +4,12 @@ parent: "ch05-currying"
 order: 4
 ---
 
+import { Callout, DeepDive } from '@book/ui'
+
+<Callout type="info">
+Примеры в этой главе используют Lodash, Ramda, Redux и React — внешние библиотеки. Знание этих библиотек не требуется, сосредоточьтесь на паттерне каррирования.
+</Callout>
+
 ## Lodash _.curry
 
 Lodash реализует **overloaded** каррирование — поддерживает и `f(a)(b)`, и `f(a, b)`:

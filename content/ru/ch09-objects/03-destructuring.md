@@ -2,40 +2,7 @@ import { Callout, DeepDive } from '@book/ui'
 
 # Деструктуризация объектов
 
-Деструктуризация извлекает свойства объекта в именованные переменные — элегантнее, чем многократное обращение к полям.
-
-## Базовая деструктуризация
-
-```javascript
-const user = { name: 'Иван', age: 25, role: 'admin' };
-
-// Классический способ
-const name = user.name;
-const age = user.age;
-
-// Деструктуризация
-const { name, age } = user;
-// name === 'Иван', age === 25
-```
-
-## Переименование
-
-```javascript
-const { name: userName, age: userAge } = user;
-// userName === 'Иван', userAge === 25
-// Переменных name и age не создаётся
-```
-
-## Дефолтные значения
-
-```javascript
-const { name = 'Аноним', role = 'user', active = true } = user;
-// Дефолт применяется только если значение === undefined
-// role = 'admin' (есть в объекте), active = true (дефолт — нет в объекте)
-
-// Совмещение переименования и дефолта
-const { name: displayName = 'Гость' } = user;
-```
+Базовый синтаксис деструктуризации (извлечение свойств, переименование, значения по умолчанию) рассмотрен в [главе Операторы](/frontend/javascript/ch04-operators/04-destructuring). Здесь — продвинутые паттерны работы с объектами.
 
 ## Вложенная деструктуризация
 

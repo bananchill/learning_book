@@ -1,3 +1,5 @@
+import { DeepDive } from '@book/ui'
+
 # Генераторы и типизация yield
 
 ## Функции-генераторы

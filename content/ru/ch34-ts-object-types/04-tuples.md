@@ -4,6 +4,8 @@ parent: "ch34-ts-object-types"
 order: 4
 ---
 
+import { Callout } from '@book/ui'
+
 ## Что такое кортеж
 
 Кортеж (Tuple) — это тип массива, где известно точное количество элементов и тип каждого из них:
@@ -172,6 +174,10 @@ distanceFromOrigin(point); // OK
 | `as const` | `readonly T[]` | `readonly [T1, T2]` |
 
 ## Практический пример: useState
+
+<Callout type="info">
+Этот пример использует React — внешнюю библиотеку для построения UI. Знание React не требуется: здесь важен сам паттерн возврата кортежа из функции.
+</Callout>
 
 Самый известный пример кортежа — React-хук `useState`:
 

@@ -1,10 +1,12 @@
+import { DeepDive } from '@book/ui'
+
 # Итераторы и for...of
 
 ## Протокол итерации
 
 Протокол итерации -- это соглашение, определяющее два интерфейса: `Iterable` (итерируемый объект) и `Iterator` (итератор). Любой объект, реализующий `Iterable`, может использоваться в `for...of`, spread-операторе, деструктуризации и других конструкциях языка.
 
-TypeScript определяет эти интерфейсы в `lib.es2015.iterable.d.ts`:
+TypeScript определяет эти интерфейсы в `lib.es2015.iterable.d.ts`. `IteratorResult` описывает единичный шаг итерации — объект с полями `value` и `done`. `Iterator` — это объект с методом `next()`, возвращающим `IteratorResult`. `Iterable` — объект, у которого есть метод `[Symbol.iterator]()`, возвращающий `Iterator`. Эти три интерфейса связаны между собой и формируют единый протокол:
 
 ```typescript
 interface IteratorResult<T, TReturn = any> {

@@ -1,3 +1,5 @@
+import { DeepDive } from '@book/ui'
+
 # const enums и вычисляемые члены
 
 ## Константные и вычисляемые члены

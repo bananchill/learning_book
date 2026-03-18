@@ -1,3 +1,5 @@
+import { DeepDive } from '@book/ui'
+
 # Числовые и строковые перечисления
 
 ## Числовые перечисления (Numeric enums)

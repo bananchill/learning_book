@@ -1,3 +1,5 @@
+import { DeepDive } from '@book/ui'
+
 # Символы в TypeScript
 
 ## Что такое символ
