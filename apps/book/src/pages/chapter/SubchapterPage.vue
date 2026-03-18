@@ -111,11 +111,19 @@ const nextSub = computed(() => props.chapter.subchapters[currentIndex.value + 1]
         </BaseButton>
       </router-link>
       <router-link
-        v-else
+        v-else-if="chapter.hasTasks !== false"
         :to="`${basePath}/tasks`"
       >
         <BaseButton variant="primary" size="sm">
           {{ t('chapter.go_tasks') }} &rarr;
+        </BaseButton>
+      </router-link>
+      <router-link
+        v-else
+        :to="basePath"
+      >
+        <BaseButton variant="primary" size="sm">
+          {{ t('nav.back_to_chapter') }} &rarr;
         </BaseButton>
       </router-link>
     </div>

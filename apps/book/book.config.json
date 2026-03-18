@@ -23,6 +23,8 @@
                   "description": "Что такое JavaScript, где он работает и как начать писать код",
                   "order": 1,
                   "contentPath": "content/ru/ch01-intro",
+                  "hasTasks": false,
+                  "hasPlayground": false,
                   "subchapters": [
                     { "id": "01-what-is-js", "title": "Что такое JavaScript", "order": 1 },
                     { "id": "02-first-steps", "title": "Первые шаги", "order": 2 },

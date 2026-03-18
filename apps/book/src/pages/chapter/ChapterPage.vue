@@ -90,10 +90,10 @@ const { onContentClick } = useRouterLinks()
 
     <!-- Быстрые ссылки -->
     <div class="flex flex-wrap gap-3 mt-8">
-      <router-link :to="`${basePath}/tasks`">
+      <router-link v-if="chapter.hasTasks !== false" :to="`${basePath}/tasks`">
         <BaseButton variant="secondary" size="sm">{{ t('chapter.go_tasks') }}</BaseButton>
       </router-link>
-      <router-link :to="`${basePath}/playground`">
+      <router-link v-if="chapter.hasPlayground !== false" :to="`${basePath}/playground`">
         <BaseButton variant="secondary" size="sm">{{ t('chapter.go_playground') }}</BaseButton>
       </router-link>
       <router-link :to="`${basePath}/code-review`">

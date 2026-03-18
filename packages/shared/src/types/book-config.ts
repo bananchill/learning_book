@@ -13,6 +13,8 @@ export interface ChapterMeta {
   order: number
   contentPath: string
   subchapters: SubchapterMeta[]
+  hasTasks?: boolean
+  hasPlayground?: boolean
 }
 
 /** Группа глав по уровню сложности */

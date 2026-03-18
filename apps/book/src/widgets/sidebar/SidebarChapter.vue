@@ -52,12 +52,14 @@ const basePath = computed(() => `/${sectionId.value}/${subsectionId.value}/${pro
       </router-link>
 
       <router-link
+        v-if="chapter.hasTasks !== false"
         :to="`${basePath}/tasks`"
         class="block px-3 py-1 rounded text-xs text-text-muted hover:text-text-secondary transition-colors"
       >
         {{ t('nav.tasks') }}
       </router-link>
       <router-link
+        v-if="chapter.hasPlayground !== false"
         :to="`${basePath}/playground`"
         class="block px-3 py-1 rounded text-xs text-text-muted hover:text-text-secondary transition-colors"
       >
