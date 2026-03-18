@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite-ssg build",
+    "build": "vite build && npx tsx scripts/generate-sitemap.ts",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint src/"
@@ -17,15 +17,12 @@
     "@book/ui": "workspace:*",
     "@unhead/vue": "^2.1.12",
     "pinia": "^3.0.2",
-    "vite-plugin-md": "^0.21.5",
-    "vite-ssg": "^28.3.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.8",
     "@vitejs/plugin-vue": "^6.0.0",
-    "beasties": "^0.4.1",
     "unplugin-vue-markdown": "^30.0.0",
     "vue-tsc": "^2.2.10"
   }
