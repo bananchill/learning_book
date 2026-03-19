@@ -23,7 +23,7 @@ COPY apps/book/ apps/book/
 COPY content/ content/
 
 # Билдим приложение книги (ограничиваем память Node для машин с 4GB RAM)
-RUN NODE_OPTIONS="--max-old-space-size=1024" pnpm --filter @book/app build
+RUN NODE_OPTIONS="--max-old-space-size=2048" pnpm --filter @book/app build
 
 # Stage 2: Serve
 FROM nginx:alpine
