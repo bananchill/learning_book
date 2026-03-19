@@ -35,8 +35,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Clean docker cache
+        run: docker builder prune -af --filter "until=24h"
+
       - name: Build and deploy
         run: |
-          docker compose build
+          docker compose build --no-cache
           docker compose up -d
           docker image prune -f
