@@ -39,10 +39,10 @@
 
 .dark {
   /* --- Фон и текст блока кода --- */
-  --code-bg: #0d1117;
-  --code-text: #e6edf3;
-  --code-border: #21262d;
-  --code-line-highlight: rgba(129, 140, 248, 0.08);
+  --code-bg: #151920;
+  --code-text: #e8eaef;
+  --code-border: #2a2f3a;
+  --code-line-highlight: rgba(45, 190, 96, 0.08);
   --code-line-number: #484f58;
 
   /* --- Синтаксис — Dark (GitHub Dark-inspired) --- */

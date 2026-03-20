@@ -86,75 +86,74 @@
 }
 
 .dark {
-  /* Surface */
-  --book-bg: #0b0f1a;
-  --book-surface: #111827;
-  --book-surface-elevated: #1e293b;
-  --book-surface-muted: #0f172a;
-  --book-surface-inset: #1e293b;
+  /* Surface — палитра console.cloud.ru */
+  --book-bg: #111318;
+  --book-surface: #1a1e27;
+  --book-surface-elevated: #1e2330;
+  --book-surface-muted: #151920;
+  --book-surface-inset: #1a1e27;
 
   /* Border */
-  --book-border: #1e293b;
-  --book-border-muted: #1e293b;
-  --book-border-strong: #334155;
+  --book-border: #2a2f3a;
+  --book-border-muted: #222730;
+  --book-border-strong: #353b48;
 
   /* Text */
-  --book-text: #f1f5f9;
-  --book-text-secondary: #94a3b8;
-  --book-text-muted: #708198;
-  --book-text-inverse: #0f172a;
+  --book-text: #e8eaef;
+  --book-text-secondary: #9ca3b0;
+  --book-text-muted: #6b7380;
+  --book-text-inverse: #111318;
 
-  /* Brand — Primary */
-  --book-primary: #818cf8;
-  --book-primary-hover: #a5b4fc;
-  --book-primary-light: rgba(99, 102, 241, 0.15);
-  --book-primary-muted: rgba(99, 102, 241, 0.25);
-  --book-primary-text: #c7d2fe;
+  /* Brand — Primary (Green, console.cloud.ru) */
+  --book-primary: #2dbe60;
+  --book-primary-hover: #25a550;
+  --book-primary-light: rgba(45, 190, 96, 0.12);
+  --book-primary-muted: rgba(45, 190, 96, 0.20);
+  --book-primary-text: #6ee7a0;
 
-  /* Brand — Accent */
-  --book-accent: #fbbf24;
-  --book-accent-hover: #fcd34d;
-  --book-accent-light: rgba(251, 191, 36, 0.15);
-  --book-accent-text: #fde68a;
+  /* Brand — Accent (Teal) */
+  --book-accent: #56b6c2;
+  --book-accent-hover: #6ec8d4;
+  --book-accent-light: rgba(86, 182, 194, 0.12);
+  --book-accent-text: #8fd8e2;
 
   /* Semantic — Success */
   --book-success: #34d399;
-  --book-success-light: rgba(16, 185, 129, 0.15);
+  --book-success-light: rgba(52, 211, 153, 0.12);
   --book-success-text: #6ee7b7;
 
   /* Semantic — Warning */
   --book-warning: #fbbf24;
-  --book-warning-light: rgba(251, 191, 36, 0.15);
+  --book-warning-light: rgba(251, 191, 36, 0.12);
   --book-warning-text: #fde68a;
 
   /* Semantic — Danger */
   --book-danger: #fb7185;
   --book-danger-hover: #f43f5e;
-
-  --book-danger-light: rgba(244, 63, 94, 0.15);
+  --book-danger-light: rgba(244, 63, 94, 0.12);
   --book-danger-text: #fda4af;
 
   /* Semantic — Info */
-  --book-info: #38bdf8;
-  --book-info-light: rgba(14, 165, 233, 0.15);
-  --book-info-text: #7dd3fc;
+  --book-info: #56b6c2;
+  --book-info-light: rgba(86, 182, 194, 0.12);
+  --book-info-text: #8fd8e2;
 
   /* Special — Deep Dive */
   --book-deep: #a78bfa;
-  --book-deep-light: rgba(139, 92, 246, 0.15);
-  --book-deep-border: rgba(139, 92, 246, 0.3);
+  --book-deep-light: rgba(139, 92, 246, 0.12);
+  --book-deep-border: rgba(139, 92, 246, 0.25);
   --book-deep-text: #c4b5fd;
 
   /* Focus ring */
-  --book-ring: #818cf8;
-  --book-ring-offset: #0b0f1a;
+  --book-ring: #2dbe60;
+  --book-ring-offset: #111318;
 
   /* Scrollbar */
-  --book-scrollbar-track: #1e293b;
-  --book-scrollbar-thumb: #334155;
+  --book-scrollbar-track: #1a1e27;
+  --book-scrollbar-thumb: #353b48;
 
   /* Shadow color base */
-  --book-shadow-color: 226 50% 3%;
+  --book-shadow-color: 220 30% 3%;
 }
 
 /* ================================================================
