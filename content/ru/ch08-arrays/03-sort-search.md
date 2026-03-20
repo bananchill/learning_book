@@ -52,7 +52,38 @@ const sorted = original.toSorted((a, b) => a - b);
 // original = [3, 1, 2] — не изменился!
 ```
 
+## Бинарный поиск — быстрый поиск в отсортированном массиве
+
+Методы `find`, `indexOf`, `includes` перебирают массив последовательно — это **линейный поиск** O(n). Для массива из миллиона элементов это миллион проверок. Если массив **отсортирован**, можно использовать **бинарный поиск** O(log n) — он на каждом шаге отбрасывает половину массива. Миллион элементов → всего ~20 сравнений:
+
+```javascript
+function binarySearch(sortedArr, target) {
+  let left = 0;
+  let right = sortedArr.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (sortedArr[mid] === target) return mid;       // нашли
+    if (sortedArr[mid] < target) left = mid + 1;     // ищем в правой половине
+    else right = mid - 1;                            // ищем в левой половине
+  }
+
+  return -1; // не найдено
+}
+
+const sorted = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91];
+binarySearch(sorted, 23); // 5 (индекс)
+binarySearch(sorted, 10); // -1 (не найдено)
+```
+
+<Callout type="tip">
+Бинарный поиск работает **только** с отсортированным массивом. Если массив не отсортирован, сначала отсортируйте его (`toSorted`) — но учтите, что `sort` стоит O(n log n), поэтому бинарный поиск выгоден, если вы ищете по одному массиву многократно.
+</Callout>
+
 ## includes и indexOf — поиск значения
+
+`includes` — простая проверка «есть ли элемент в массиве» (возвращает `boolean`). `indexOf` — возвращает позицию первого вхождения (или `-1`). Ключевое отличие: `includes` корректно находит `NaN`, а `indexOf` — нет (он использует `===`, а `NaN !== NaN`):
 
 ```javascript
 const arr = [1, 2, 3, 'hello', NaN];
