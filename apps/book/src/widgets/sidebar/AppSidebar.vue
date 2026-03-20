@@ -25,10 +25,10 @@ const githubUrl = import.meta.env.VITE_GITHUB_URL ?? 'https://github.com/bananch
   />
 
   <aside
-    class="fixed top-14 left-0 bottom-0 w-72 bg-surface border-r border-border overflow-y-auto transition-transform duration-300 z-40"
+    class="fixed top-14 left-0 bottom-0 w-72 bg-surface border-r border-border flex flex-col transition-transform duration-300 z-40"
     :class="sidebar.isOpen ? 'translate-x-0' : '-translate-x-full'"
   >
-    <nav class="p-4 space-y-1">
+    <nav class="flex-1 overflow-y-auto p-4 space-y-1">
       <SidebarSection
         v-for="section in sections"
         :key="section.id"
@@ -38,7 +38,7 @@ const githubUrl = import.meta.env.VITE_GITHUB_URL ?? 'https://github.com/bananch
       />
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 border-t border-border p-4">
+    <div class="shrink-0 border-t border-border p-4">
       <a
         :href="githubUrl"
         target="_blank"
